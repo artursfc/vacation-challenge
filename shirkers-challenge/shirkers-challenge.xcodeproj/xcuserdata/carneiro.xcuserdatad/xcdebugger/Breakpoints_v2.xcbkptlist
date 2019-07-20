@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "shirkers-challenge/MainViewController.swift"
+            timestampString = "584992681.698091"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "MainViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "shirkers_challenge.MainViewController.memoryTitle.getter : Swift.Optional&lt;__C.UITextField&gt;"
+                  moduleName = "shirkers-challenge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/carneiro/Git/shirkers-challenge/vacation-challenge/shirkers-challenge/shirkers-challenge/MainViewController.swift"
+                  timestampString = "584562356.570079"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "114">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "shirkers_challenge.MainViewController.memoryTitle.setter : Swift.Optional&lt;__C.UITextField&gt;"
+                  moduleName = "shirkers-challenge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/carneiro/Git/shirkers-challenge/vacation-challenge/shirkers-challenge/shirkers-challenge/MainViewController.swift"
+                  timestampString = "584562356.572445"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "shirkers_challenge.MainViewController.memoryTitle.modify : Swift.Optional&lt;__C.UITextField&gt;"
+                  moduleName = "shirkers-challenge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/carneiro/Git/shirkers-challenge/vacation-challenge/shirkers-challenge/shirkers-challenge/MainViewController.swift"
+                  timestampString = "584562356.574548"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "shirkers_challenge.MainViewController.memoryTitle.modify : Swift.Optional&lt;__C.UITextField&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "shirkers-challenge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/carneiro/Git/shirkers-challenge/vacation-challenge/shirkers-challenge/shirkers-challenge/MainViewController.swift"
+                  timestampString = "584562356.576292"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "shirkers_challenge.MainViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; shirkers_challenge.MainViewController"
+                  moduleName = "shirkers-challenge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/carneiro/Git/shirkers-challenge/vacation-challenge/shirkers-challenge/shirkers-challenge/MainViewController.swift"
+                  timestampString = "584562356.578385"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "217">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "shirkers_challenge.MainViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;shirkers_challenge.MainViewController&gt;"
+                  moduleName = "shirkers-challenge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/carneiro/Git/shirkers-challenge/vacation-challenge/shirkers-challenge/shirkers-challenge/MainViewController.swift"
+                  timestampString = "584562356.580109"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "137">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
