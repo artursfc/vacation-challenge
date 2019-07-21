@@ -80,4 +80,16 @@ class SpoolView: UIView {
         rightRect.clipsToBounds = true
         
     }
+    
+    public func startAnimation(duration: CFTimeInterval) {
+        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
+        animation.toValue = NSNumber(value: .pi * 2.0)
+        animation.duration = duration
+        animation.repeatCount = .infinity
+        self.layer.add(animation, forKey: "rotatingAnimation")
+    }
+    
+    public func stopAnimation() {
+        self.layer.removeAnimation(forKey: "rotatingAnimation")
+    }
 }

@@ -17,6 +17,7 @@
 		A468156322D66E5500537D16 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468156222D66E5500537D16 /* Constants.swift */; };
 		A4877FCF22DE495D00A94411 /* CassetteTapeShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4877FCE22DE495D00A94411 /* CassetteTapeShapeLayer.swift */; };
 		A4877FD122E0E2E800A94411 /* SpoolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4877FD022E0E2E800A94411 /* SpoolView.swift */; };
+		A4CC531622E4FEC70095C921 /* CassetteTapeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CC531522E4FEC70095C921 /* CassetteTapeButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		A468156222D66E5500537D16 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A4877FCE22DE495D00A94411 /* CassetteTapeShapeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassetteTapeShapeLayer.swift; sourceTree = "<group>"; };
 		A4877FD022E0E2E800A94411 /* SpoolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpoolView.swift; sourceTree = "<group>"; };
+		A4CC531522E4FEC70095C921 /* CassetteTapeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassetteTapeButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,19 +66,44 @@
 		A468154C22D66BE200537D16 /* shirkers-challenge */ = {
 			isa = PBXGroup;
 			children = (
+				A4CC531322E3BA500095C921 /* Models */,
+				A4CC531222E3BA390095C921 /* Controllers */,
+				A4CC531122E3BA1F0095C921 /* Views */,
 				A468154D22D66BE200537D16 /* AppDelegate.swift */,
 				A468155122D66BE200537D16 /* Main.storyboard */,
 				A468155722D66BE300537D16 /* Assets.xcassets */,
 				A468155922D66BE300537D16 /* LaunchScreen.storyboard */,
 				A468155C22D66BE300537D16 /* Info.plist */,
-				A468155422D66BE200537D16 /* shirkers_challenge.xcdatamodeld */,
 				A468156222D66E5500537D16 /* Constants.swift */,
-				A40ED58B22D7B025004C3A8A /* MainScreenViewController.swift */,
-				A40ED5B422D7D623004C3A8A /* CassetteTapeView.swift */,
-				A4877FCE22DE495D00A94411 /* CassetteTapeShapeLayer.swift */,
-				A4877FD022E0E2E800A94411 /* SpoolView.swift */,
 			);
 			path = "shirkers-challenge";
+			sourceTree = "<group>";
+		};
+		A4CC531122E3BA1F0095C921 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A4877FD022E0E2E800A94411 /* SpoolView.swift */,
+				A40ED5B422D7D623004C3A8A /* CassetteTapeView.swift */,
+				A4877FCE22DE495D00A94411 /* CassetteTapeShapeLayer.swift */,
+				A4CC531522E4FEC70095C921 /* CassetteTapeButtonView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A4CC531222E3BA390095C921 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A40ED58B22D7B025004C3A8A /* MainScreenViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A4CC531322E3BA500095C921 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A468155422D66BE200537D16 /* shirkers_challenge.xcdatamodeld */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +181,7 @@
 				A468155622D66BE200537D16 /* shirkers_challenge.xcdatamodeld in Sources */,
 				A4877FD122E0E2E800A94411 /* SpoolView.swift in Sources */,
 				A468154E22D66BE200537D16 /* AppDelegate.swift in Sources */,
+				A4CC531622E4FEC70095C921 /* CassetteTapeButtonView.swift in Sources */,
 				A4877FCF22DE495D00A94411 /* CassetteTapeShapeLayer.swift in Sources */,
 				A468156322D66E5500537D16 /* Constants.swift in Sources */,
 				A40ED58C22D7B025004C3A8A /* MainScreenViewController.swift in Sources */,

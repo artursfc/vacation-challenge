@@ -14,6 +14,7 @@ enum ColorPalette {
     static let lightGrey : UIColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
     static let grey : UIColor = #colorLiteral(red: 0.2509803922, green: 0.2509803922, blue: 0.2509803922, alpha: 1)
     static let darkGrey : UIColor = #colorLiteral(red: 0.1137254902, green: 0.1137254902, blue: 0.1137254902, alpha: 1)
+    static let uiERROR : UIColor = #colorLiteral(red: 1, green: 0.9323067069, blue: 0, alpha: 1)
 }
 
 enum Fonts {
