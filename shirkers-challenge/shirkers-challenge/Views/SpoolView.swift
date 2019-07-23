@@ -82,6 +82,7 @@ class SpoolView: UIView {
     }
     
     public func startAnimation(duration: CFTimeInterval) {
+        self.alpha = 1
         let animation = CABasicAnimation(keyPath: "transform.rotation.z")
         animation.toValue = NSNumber(value: .pi * 2.0)
         animation.duration = duration

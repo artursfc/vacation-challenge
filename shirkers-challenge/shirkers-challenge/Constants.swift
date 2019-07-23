@@ -22,12 +22,33 @@ enum Fonts {
 }
 
 enum Dimensions {
-    static let spoolWidth : CGFloat = 75
-    static let spoolHeight : CGFloat = 75
-    static let cassetteTapeHeight : CGFloat = 200
-    static let cassetteTapeWidthConstant : CGFloat = 50
+    static let spoolWidth : CGFloat = Dimensions.screenHeight * 0.08
+    static let spoolHeight : CGFloat = Dimensions.screenHeight * 0.08
     static let screenWidth = UIScreen.main.bounds.width
     static let screenHeight = UIScreen.main.bounds.height
+    static let cassetteTapeHeight : CGFloat = Dimensions.screenHeight * 0.25
+    static let cassetteTapeWidth : CGFloat = Dimensions.screenWidth * 0.9
+    static let buttonWidth : CGFloat = Dimensions.buttonStackViewWidth/4
+    static let buttonHeight : CGFloat = Dimensions.buttonStackViewWidth/4
+    static let buttonStackViewSpacing : CGFloat = 5
+    static let buttonStackViewWidth : CGFloat = Dimensions.screenWidth * 0.8
+    static let leftSpoolCenter : CGPoint = CGPoint(x: Dimensions.cassetteTapeWidth/4, y: Dimensions.cassetteTapeHeight/2)
+    static let rightSpoolCenter : CGPoint = CGPoint(x: Dimensions.cassetteTapeWidth * 0.75, y: Dimensions.cassetteTapeHeight/2)
+}
+
+enum ReminderPeriods {
+    static let timePeriods : [String] = ["1 to 7", "30 to 90", "120 to 365"]
+}
+
+extension UIViewController {
+    public func hideKeyboardOnTap() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
 
 

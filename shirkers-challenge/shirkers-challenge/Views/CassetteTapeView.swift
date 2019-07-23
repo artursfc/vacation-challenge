@@ -52,8 +52,8 @@ class CassetteTapeView: UIView {
         outlinePath = UIBezierPath()
         guard let outlinePath = outlinePath else { return }
         
-        outlinePath.move(to: CGPoint(x: self.center.x - (2.5 * Dimensions.cassetteTapeWidthConstant), y: 2.5 * Dimensions.cassetteTapeWidthConstant))
-        outlinePath.addLine(to: CGPoint(x: self.center.x - (2.5 * Dimensions.cassetteTapeWidthConstant), y: Dimensions.cassetteTapeHeight))
+        outlinePath.move(to: CGPoint(x: Dimensions.leftSpoolCenter.x, y: Dimensions.leftSpoolCenter.y + Dimensions.spoolHeight/2))
+        outlinePath.addLine(to: CGPoint(x: Dimensions.leftSpoolCenter.x, y: Dimensions.cassetteTapeHeight))
         outlinePath.addLine(to: CGPoint(x: self.frame.width * 0.25, y: Dimensions.cassetteTapeHeight))
         outlinePath.addLine(to: CGPoint(x: self.frame.width * 0.35, y: Dimensions.cassetteTapeHeight * 0.8 ))
         outlinePath.addLine(to: CGPoint(x: self.frame.width * 0.65, y: Dimensions.cassetteTapeHeight * 0.8))
@@ -62,7 +62,7 @@ class CassetteTapeView: UIView {
         outlinePath.addLine(to: CGPoint(x: self.frame.width, y: 0))
         outlinePath.addLine(to: CGPoint(x: 0, y: 0))
         outlinePath.addLine(to: CGPoint(x: 0, y: Dimensions.cassetteTapeHeight))
-        outlinePath.addLine(to: CGPoint(x: self.center.x - (2.8 * Dimensions.cassetteTapeWidthConstant), y: Dimensions.cassetteTapeHeight))
+        outlinePath.addLine(to: CGPoint(x: (Dimensions.leftSpoolCenter.x - 10), y: Dimensions.cassetteTapeHeight))
         
         let outlineShapeLayer = CAShapeLayer()
         outlineShapeLayer.path = outlinePath.cgPath
@@ -79,7 +79,7 @@ class CassetteTapeView: UIView {
         self.addSubview(rightSpool)
         
         leftSpool.translatesAutoresizingMaskIntoConstraints = false
-        leftSpool.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -(2 * Dimensions.cassetteTapeWidthConstant)).isActive = true
+        leftSpool.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -Dimensions.leftSpoolCenter.x).isActive = true
         leftSpool.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         leftSpool.widthAnchor.constraint(equalToConstant: Dimensions.spoolWidth).isActive = true
         leftSpool.heightAnchor.constraint(equalToConstant: Dimensions.spoolHeight).isActive = true
@@ -92,10 +92,10 @@ class CassetteTapeView: UIView {
         leftSpoolCenter = leftSpool.center
         
         rightSpool.translatesAutoresizingMaskIntoConstraints = false
-        rightSpool.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 2 * Dimensions.cassetteTapeWidthConstant).isActive = true
+        rightSpool.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: Dimensions.leftSpoolCenter.x).isActive = true
         rightSpool.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        rightSpool.widthAnchor.constraint(equalToConstant: 75).isActive = true
-        rightSpool.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        rightSpool.widthAnchor.constraint(equalToConstant: Dimensions.spoolWidth).isActive = true
+        rightSpool.heightAnchor.constraint(equalToConstant: Dimensions.spoolHeight).isActive = true
         
         rightSpool.layer.cornerRadius = Dimensions.spoolHeight / 2
         rightSpool.backgroundColor = ColorPalette.lightGrey
@@ -129,10 +129,12 @@ class CassetteTapeView: UIView {
         leftSpoolView = SpoolView()
         guard let leftSpoolView = leftSpoolView else { return }
         guard let leftSpool = leftSpool else { return }
+        leftSpoolView.alpha = 0
         
         rightSpoolView = SpoolView()
         guard let rightSpoolView = rightSpoolView else { return }
         guard let rightSpool = rightSpool else { return }
+        rightSpoolView.alpha = 0
         
         self.addSubview(leftSpoolView)
         self.addSubview(rightSpoolView)
@@ -155,10 +157,10 @@ class CassetteTapeView: UIView {
     }
     
     private func setUpInnerCircles() {
-        leftInnerCircle = UIBezierPath(arcCenter: CGPoint(x: self.center.x - (2.5 * Dimensions.cassetteTapeWidthConstant), y: 2 * Dimensions.cassetteTapeWidthConstant), radius: Dimensions.spoolHeight * 0.3, startAngle: 0, endAngle: .pi * 2, clockwise: true)
+        leftInnerCircle = UIBezierPath(arcCenter: Dimensions.leftSpoolCenter, radius: Dimensions.spoolHeight * 0.3, startAngle: 0, endAngle: .pi * 2, clockwise: true)
         guard let leftInnerCircle = leftInnerCircle else { return }
         
-        rightInnerCircle = UIBezierPath(arcCenter: CGPoint(x: self.center.x + (1.5 * Dimensions.cassetteTapeWidthConstant), y: 2 * Dimensions.cassetteTapeWidthConstant), radius: Dimensions.spoolHeight * 0.3, startAngle: 0, endAngle: .pi * 2, clockwise: true)
+        rightInnerCircle = UIBezierPath(arcCenter: Dimensions.rightSpoolCenter, radius: Dimensions.spoolHeight * 0.3, startAngle: 0, endAngle: .pi * 2, clockwise: true)
         guard let rightInnerCircle = rightInnerCircle else { return }
         
         let leftShapeLayer = CAShapeLayer()
@@ -166,14 +168,14 @@ class CassetteTapeView: UIView {
         
         leftShapeLayer.fillColor = UIColor.clear.cgColor
         leftShapeLayer.strokeColor = ColorPalette.grey.cgColor
-        leftShapeLayer.lineWidth = 10
+        leftShapeLayer.lineWidth = 7
         
         let rightShapeLayer = CAShapeLayer()
         rightShapeLayer.path = rightInnerCircle.cgPath
         
         rightShapeLayer.fillColor = UIColor.clear.cgColor
         rightShapeLayer.strokeColor = ColorPalette.grey.cgColor
-        rightShapeLayer.lineWidth = 10
+        rightShapeLayer.lineWidth = 7
         
         self.layer.addSublayer(leftShapeLayer)
         self.layer.addSublayer(rightShapeLayer)
@@ -195,14 +197,19 @@ class CassetteTapeView: UIView {
     
     public func stopOutlineAnimation() {
         guard let cassetteTapeShapeLayer = cassetteTapeShapeLayer else { return }
-        cassetteTapeShapeLayer.removeAnimation(forKey: "outlineAnimation")
+//        cassetteTapeShapeLayer.removeAnimation(forKey: "outlineAnimation")
+        let pausedTime : CFTimeInterval = cassetteTapeShapeLayer.convertTime(CACurrentMediaTime(), from: nil)
+        cassetteTapeShapeLayer.speed = 0.0
+        cassetteTapeShapeLayer.timeOffset = pausedTime
         //comment line below to not fill after stopping recording
-        cassetteTapeShapeLayer.removeFromSuperlayer()
+//        cassetteTapeShapeLayer.removeFromSuperlayer()
     }
     
     public func startOutlineAnimation(duration: CFTimeInterval) {
         guard let cassetteTapeShapeLayer = cassetteTapeShapeLayer else { return }
         cassetteTapeShapeLayer.overlayedOutlinePath(view: self)
+        cassetteTapeShapeLayer.speed = 1
+        cassetteTapeShapeLayer.timeOffset = 0
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.fromValue = 0
         animation.duration = duration
@@ -213,6 +220,19 @@ class CassetteTapeView: UIView {
     override func layoutSubviews() {
         self.setUpSpool()
         self.setUpInnerCircles()
+    }
+    
+    public func startAnimation(duration: CFTimeInterval) {
+        self.alpha = 1
+        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
+        animation.toValue = NSNumber(value: .pi * 2.0)
+        animation.duration = duration
+        animation.repeatCount = .infinity
+        self.layer.add(animation, forKey: "rotatingAnimation")
+    }
+    
+    public func stopAnimation() {
+        self.layer.removeAnimation(forKey: "rotatingAnimation")
     }
     
 }

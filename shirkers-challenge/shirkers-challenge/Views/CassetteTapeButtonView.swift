@@ -14,44 +14,47 @@ class CassetteTapeButtonView: UIButton {
     private var color : UIColor?
     private var altColor : UIColor?
     private var text :  String?
+    private var border : Bool?
     
-    required init(color: UIColor, altColor: UIColor, text: String) {
+    required init(color: UIColor, altColor: UIColor, text: String, border: Bool) {
         super.init(frame: .zero)
         self.color = color
         self.altColor = altColor
         self.text = text
-        self.backgroundColor = color
+        self.border = border
         self.setTitle(text, for: .normal)
         self.setTitleColor(ColorPalette.lightGrey, for: .normal)
         self.titleLabel?.font = UIFont(name: Fonts.main, size: 24)
         self.layer.cornerRadius = 10
+        if !border {
+            self.backgroundColor = color
+        } else {
+            self.layer.borderColor = color.cgColor
+            self.layer.borderWidth = 5
+            self.backgroundColor = .clear
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    recordButton.backgroundColor = ColorPalette.red
-//    recordButton.setTitle("REC", for: .normal)
-//    recordButton.setTitleColor(ColorPalette.lightGrey, for: .normal)
-//    recordButton.titleLabel?.font = UIFont(name: Fonts.main, size: 24)
-//    recordButton.addTarget(self, action: #selector(startRec), for: .touchUpInside)
-//    recordButton.layer.cornerRadius = 10
-
-//    override func draw(_ rect: CGRect) {
-//        self.backgroundColor = color
-//        self.setTitle(text, for: .normal)
-//        self.setTitleColor(ColorPalette.lightGrey, for: .normal)
-//        self.titleLabel?.font = UIFont(name: Fonts.main, size: 24)
-//        self.layer.cornerRadius = 10
-//    }
-
-    
     public func switchColors() {
-        if (self.backgroundColor == color) {
-            self.backgroundColor = altColor
+        guard let border = border else { return }
+        guard let color = color else { return }
+        guard let altColor = altColor else { return }
+        if !border {
+            if (self.backgroundColor == color) {
+                self.backgroundColor = altColor
+            } else {
+                self.backgroundColor = color
+            }
         } else {
-            self.backgroundColor = color
+            if (self.layer.borderColor == color.cgColor) {
+                self.layer.borderColor = altColor.cgColor
+            } else {
+                self.layer.borderColor = color.cgColor
+            }
         }
     }
 }
