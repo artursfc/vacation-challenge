@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Foundation
+import AVFoundation
+import CoreData
 
-class MainScreenViewController: UIViewController {
+class MainScreenViewController: UIViewController, UITextFieldDelegate {
     
     private var memoryTitle : UITextField?
     private var timePeriodLabel : UILabel?
@@ -23,10 +26,22 @@ class MainScreenViewController: UIViewController {
     private var stopButton : CassetteTapeButtonView?
     private var saveButton : CassetteTapeButtonView?
     
+    private var recordingsButton : UIButton?
+    
+    private var audioSessionHandler : AudioSession?
+    private var context : NSManagedObjectContext?
+    private var date : Date?
+    private var currentPath : String?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.hideKeyboardOnTap()
+        
+        audioSessionHandler = AudioSession()
+        
+        context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         self.view.backgroundColor = ColorPalette.darkGrey
         
@@ -58,6 +73,8 @@ class MainScreenViewController: UIViewController {
         memoryTitle.keyboardAppearance = .dark
         memoryTitle.autocorrectionType = .no
         memoryTitle.returnKeyType = .done
+        memoryTitle.textAlignment = .center
+        memoryTitle.delegate = self
         memoryTitle.textColor = ColorPalette.lightGrey
         memoryTitle.font = UIFont(name: Fonts.main, size: 24)
         
@@ -117,43 +134,74 @@ class MainScreenViewController: UIViewController {
 
         memoryTitle.translatesAutoresizingMaskIntoConstraints = false
         memoryTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        memoryTitle.widthAnchor.constraint(equalToConstant: self.view.frame.width * 0.9).isActive = true
         memoryTitle.bottomAnchor.constraint(equalTo: timePeriodLabel.topAnchor, constant: -20).isActive = true
     }
-    
     
     @objc private func startRec() {
         guard let cassetteTapeView = cassetteTapeView else { return }
         guard let recordButton = recordButton else { return }
-        if isTapeRunning == false {
+        guard let audioSessionHandler = audioSessionHandler else { return }
+        date = getDate()
+        guard let date = date else { return }
+        if !isTapeRunning {
+            if let currentPath = currentPath {
+                audioSessionHandler.clearCache(name: currentPath)
+            }
+            let fileName = createFileName(date: date)
+            currentPath = fileName
+            audioSessionHandler.setFile(name: fileName)
+            audioSessionHandler.setupRecorder()
             cassetteTapeView.startSpoolsAnimation(duration: 1)
-            cassetteTapeView.startOutlineAnimation(duration: 15)
+            cassetteTapeView.startOutlineAnimation(duration: AudioSettings.duration)
             recordButton.switchColors()
             isTapeRunning = true
+            audioSessionHandler.record()
         } else {
             cassetteTapeView.stopSpoolsAnimation()
             cassetteTapeView.stopOutlineAnimation()
             recordButton.switchColors()
             isTapeRunning = false
+            audioSessionHandler.stopRecording()
+            audioSessionHandler.setupPlayer()
         }
     }
     
     @objc private func playAudio() {
-        guard let playButton = playButton else { return }
-        playButton.alpha = 1
-        playButton.switchColors()
+        guard let audioSessionHandler = audioSessionHandler else { return }
+        audioSessionHandler.play()
     }
     
     @objc private func stopAudio() {
-        guard let stopButton = stopButton  else { return }
-        stopButton.alpha = 1
-        stopButton.switchColors()
+        guard let audioSessionHandler = audioSessionHandler else { return }
+        audioSessionHandler.stopPlaying()
     }
     
     @objc private func saveAudio() {
         guard let saveButton = saveButton else { return }
         saveButton.alpha = 1
+        
+        guard let memoryTitle = memoryTitle else { return }
+        guard let name = memoryTitle.text else { return }
+        guard let date = date else { return }
+        guard let currentPath = currentPath else { return }
+        guard let context = context else { return }
+        if let recording = NSEntityDescription.insertNewObject(forEntityName: "Recording", into: context) as? Recording {
+            recording.name = name
+            recording.date = date as NSDate
+            recording.path = currentPath
+        }
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        appDelegate.saveContext()
     }
     
-
+    private func createFileName(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd+HH:mm:ss"
+        return dateFormatter.string(from: date)
+    }
+    
+    private func getDate() -> Date {
+        return Date()
+    }
 }
-

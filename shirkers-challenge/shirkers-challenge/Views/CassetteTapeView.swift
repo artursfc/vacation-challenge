@@ -213,6 +213,7 @@ class CassetteTapeView: UIView {
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.fromValue = 0
         animation.duration = duration
+        animation.delegate = self
         self.layer.addSublayer(cassetteTapeShapeLayer)
         cassetteTapeShapeLayer.add(animation, forKey: "outlineAnimation")
     }
@@ -222,17 +223,23 @@ class CassetteTapeView: UIView {
         self.setUpInnerCircles()
     }
     
-    public func startAnimation(duration: CFTimeInterval) {
-        self.alpha = 1
-        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
-        animation.toValue = NSNumber(value: .pi * 2.0)
-        animation.duration = duration
-        animation.repeatCount = .infinity
-        self.layer.add(animation, forKey: "rotatingAnimation")
-    }
+//    public func startAnimation(duration: CFTimeInterval) {
+//        self.alpha = 1
+//        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
+//        animation.toValue = NSNumber(value: .pi * 2.0)
+//        animation.duration = duration
+//        animation.repeatCount = .infinity
+//        self.layer.add(animation, forKey: "rotatingAnimation")
+//    }
+//    
+//    public func stopAnimation() {
+//        self.layer.removeAnimation(forKey: "rotatingAnimation")
+//    }
     
-    public func stopAnimation() {
-        self.layer.removeAnimation(forKey: "rotatingAnimation")
+}
+
+extension CassetteTapeView : CAAnimationDelegate {
+    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        self.stopSpoolsAnimation()
     }
-    
 }

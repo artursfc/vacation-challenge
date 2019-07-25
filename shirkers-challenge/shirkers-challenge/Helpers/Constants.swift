@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 enum ColorPalette {
     static let red : UIColor = #colorLiteral(red: 0.6588235294, green: 0, blue: 0, alpha: 1)
@@ -38,6 +39,18 @@ enum Dimensions {
 
 enum ReminderPeriods {
     static let timePeriods : [String] = ["1 to 7", "30 to 90", "120 to 365"]
+}
+
+enum AudioSettings {
+    static let encoderBitRate = 320000
+    static let numberOfChannels = 2
+    static let sampleRate = 44100.2
+    static let recordSettings = [ AVFormatIDKey : kAudioFormatAppleLossless,
+                                  AVEncoderAudioQualityKey :AVAudioQuality.max.rawValue,
+                                  AVEncoderBitRateKey : AudioSettings.encoderBitRate,
+                                  AVNumberOfChannelsKey : AudioSettings.numberOfChannels,
+                                  AVSampleRateKey : AudioSettings.sampleRate] as [String : Any]
+    static let duration : CFTimeInterval = 30
 }
 
 extension UIViewController {

@@ -10,6 +10,11 @@
 		A40ED58C22D7B025004C3A8A /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40ED58B22D7B025004C3A8A /* MainScreenViewController.swift */; };
 		A40ED5B522D7D623004C3A8A /* CassetteTapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40ED5B422D7D623004C3A8A /* CassetteTapeView.swift */; };
 		A43EA28922E775C4001A7310 /* CassetteTapeSegmentedControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA28822E775C4001A7310 /* CassetteTapeSegmentedControlView.swift */; };
+		A43EA29022E9D71F001A7310 /* AudioSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA28F22E9D71F001A7310 /* AudioSession.swift */; };
+		A43EA29322E9ECE1001A7310 /* Recording+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA29122E9ECE1001A7310 /* Recording+CoreDataClass.swift */; };
+		A43EA29422E9ECE1001A7310 /* Recording+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA29222E9ECE1001A7310 /* Recording+CoreDataProperties.swift */; };
+		A43EA29622EA1193001A7310 /* RecordingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA29522EA1193001A7310 /* RecordingsTableViewController.swift */; };
+		A43EA29822EA145B001A7310 /* RecordingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA29722EA145B001A7310 /* RecordingsTableViewCell.swift */; };
 		A468154E22D66BE200537D16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468154D22D66BE200537D16 /* AppDelegate.swift */; };
 		A468155322D66BE200537D16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A468155122D66BE200537D16 /* Main.storyboard */; };
 		A468155622D66BE200537D16 /* shirkers_challenge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A468155422D66BE200537D16 /* shirkers_challenge.xcdatamodeld */; };
@@ -25,6 +30,11 @@
 		A40ED58B22D7B025004C3A8A /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		A40ED5B422D7D623004C3A8A /* CassetteTapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassetteTapeView.swift; sourceTree = "<group>"; };
 		A43EA28822E775C4001A7310 /* CassetteTapeSegmentedControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassetteTapeSegmentedControlView.swift; sourceTree = "<group>"; };
+		A43EA28F22E9D71F001A7310 /* AudioSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSession.swift; sourceTree = "<group>"; };
+		A43EA29122E9ECE1001A7310 /* Recording+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recording+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A43EA29222E9ECE1001A7310 /* Recording+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recording+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A43EA29522EA1193001A7310 /* RecordingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsTableViewController.swift; sourceTree = "<group>"; };
+		A43EA29722EA145B001A7310 /* RecordingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsTableViewCell.swift; sourceTree = "<group>"; };
 		A468154A22D66BE200537D16 /* shirkers-challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shirkers-challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A468154D22D66BE200537D16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A468155222D66BE200537D16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -49,6 +59,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A43EA28A22E8C038001A7310 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A468156222D66E5500537D16 /* Constants.swift */,
+				A43EA28F22E9D71F001A7310 /* AudioSession.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		A468154122D66BE200537D16 = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +87,7 @@
 		A468154C22D66BE200537D16 /* shirkers-challenge */ = {
 			isa = PBXGroup;
 			children = (
+				A43EA28A22E8C038001A7310 /* Helpers */,
 				A4CC531322E3BA500095C921 /* Models */,
 				A4CC531222E3BA390095C921 /* Controllers */,
 				A4CC531122E3BA1F0095C921 /* Views */,
@@ -76,7 +96,6 @@
 				A468155722D66BE300537D16 /* Assets.xcassets */,
 				A468155922D66BE300537D16 /* LaunchScreen.storyboard */,
 				A468155C22D66BE300537D16 /* Info.plist */,
-				A468156222D66E5500537D16 /* Constants.swift */,
 			);
 			path = "shirkers-challenge";
 			sourceTree = "<group>";
@@ -89,6 +108,7 @@
 				A4877FCE22DE495D00A94411 /* CassetteTapeShapeLayer.swift */,
 				A4CC531522E4FEC70095C921 /* CassetteTapeButtonView.swift */,
 				A43EA28822E775C4001A7310 /* CassetteTapeSegmentedControlView.swift */,
+				A43EA29722EA145B001A7310 /* RecordingsTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -97,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				A40ED58B22D7B025004C3A8A /* MainScreenViewController.swift */,
+				A43EA29522EA1193001A7310 /* RecordingsTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -104,6 +125,8 @@
 		A4CC531322E3BA500095C921 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A43EA29122E9ECE1001A7310 /* Recording+CoreDataClass.swift */,
+				A43EA29222E9ECE1001A7310 /* Recording+CoreDataProperties.swift */,
 				A468155422D66BE200537D16 /* shirkers_challenge.xcdatamodeld */,
 			);
 			path = Models;
@@ -181,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A40ED5B522D7D623004C3A8A /* CassetteTapeView.swift in Sources */,
+				A43EA29022E9D71F001A7310 /* AudioSession.swift in Sources */,
 				A468155622D66BE200537D16 /* shirkers_challenge.xcdatamodeld in Sources */,
 				A4877FD122E0E2E800A94411 /* SpoolView.swift in Sources */,
 				A468154E22D66BE200537D16 /* AppDelegate.swift in Sources */,
@@ -188,7 +212,11 @@
 				A4877FCF22DE495D00A94411 /* CassetteTapeShapeLayer.swift in Sources */,
 				A468156322D66E5500537D16 /* Constants.swift in Sources */,
 				A43EA28922E775C4001A7310 /* CassetteTapeSegmentedControlView.swift in Sources */,
+				A43EA29422E9ECE1001A7310 /* Recording+CoreDataProperties.swift in Sources */,
+				A43EA29322E9ECE1001A7310 /* Recording+CoreDataClass.swift in Sources */,
+				A43EA29622EA1193001A7310 /* RecordingsTableViewController.swift in Sources */,
 				A40ED58C22D7B025004C3A8A /* MainScreenViewController.swift in Sources */,
+				A43EA29822EA145B001A7310 /* RecordingsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
