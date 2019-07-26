@@ -15,6 +15,7 @@
 		A43EA29422E9ECE1001A7310 /* Recording+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA29222E9ECE1001A7310 /* Recording+CoreDataProperties.swift */; };
 		A43EA29622EA1193001A7310 /* RecordingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA29522EA1193001A7310 /* RecordingsTableViewController.swift */; };
 		A43EA29822EA145B001A7310 /* RecordingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA29722EA145B001A7310 /* RecordingsTableViewCell.swift */; };
+		A43EA29C22EB66DD001A7310 /* WarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA29B22EB66DC001A7310 /* WarningView.swift */; };
 		A468154E22D66BE200537D16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468154D22D66BE200537D16 /* AppDelegate.swift */; };
 		A468155322D66BE200537D16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A468155122D66BE200537D16 /* Main.storyboard */; };
 		A468155622D66BE200537D16 /* shirkers_challenge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A468155422D66BE200537D16 /* shirkers_challenge.xcdatamodeld */; };
@@ -35,6 +36,7 @@
 		A43EA29222E9ECE1001A7310 /* Recording+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recording+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A43EA29522EA1193001A7310 /* RecordingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsTableViewController.swift; sourceTree = "<group>"; };
 		A43EA29722EA145B001A7310 /* RecordingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsTableViewCell.swift; sourceTree = "<group>"; };
+		A43EA29B22EB66DC001A7310 /* WarningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningView.swift; sourceTree = "<group>"; };
 		A468154A22D66BE200537D16 /* shirkers-challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shirkers-challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A468154D22D66BE200537D16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A468155222D66BE200537D16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -91,7 +93,6 @@
 				A4CC531322E3BA500095C921 /* Models */,
 				A4CC531222E3BA390095C921 /* Controllers */,
 				A4CC531122E3BA1F0095C921 /* Views */,
-				A468154D22D66BE200537D16 /* AppDelegate.swift */,
 				A468155122D66BE200537D16 /* Main.storyboard */,
 				A468155722D66BE300537D16 /* Assets.xcassets */,
 				A468155922D66BE300537D16 /* LaunchScreen.storyboard */,
@@ -109,6 +110,7 @@
 				A4CC531522E4FEC70095C921 /* CassetteTapeButtonView.swift */,
 				A43EA28822E775C4001A7310 /* CassetteTapeSegmentedControlView.swift */,
 				A43EA29722EA145B001A7310 /* RecordingsTableViewCell.swift */,
+				A43EA29B22EB66DC001A7310 /* WarningView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -118,6 +120,7 @@
 			children = (
 				A40ED58B22D7B025004C3A8A /* MainScreenViewController.swift */,
 				A43EA29522EA1193001A7310 /* RecordingsTableViewController.swift */,
+				A468154D22D66BE200537D16 /* AppDelegate.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				A43EA29422E9ECE1001A7310 /* Recording+CoreDataProperties.swift in Sources */,
 				A43EA29322E9ECE1001A7310 /* Recording+CoreDataClass.swift in Sources */,
 				A43EA29622EA1193001A7310 /* RecordingsTableViewController.swift in Sources */,
+				A43EA29C22EB66DD001A7310 /* WarningView.swift in Sources */,
 				A40ED58C22D7B025004C3A8A /* MainScreenViewController.swift in Sources */,
 				A43EA29822EA145B001A7310 /* RecordingsTableViewCell.swift in Sources */,
 			);

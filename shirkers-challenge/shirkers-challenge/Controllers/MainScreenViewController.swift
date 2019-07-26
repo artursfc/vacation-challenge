@@ -10,8 +10,11 @@ import UIKit
 import Foundation
 import AVFoundation
 import CoreData
+import UserNotifications
 
-class MainScreenViewController: UIViewController, UITextFieldDelegate {
+class MainScreenViewController: UIViewController, UITextFieldDelegate, UNUserNotificationCenterDelegate {
+    
+    @IBOutlet weak var recordingsBarButton: UIBarButtonItem!
     
     private var memoryTitle : UITextField?
     private var timePeriodLabel : UILabel?
@@ -33,6 +36,8 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     private var date : Date?
     private var currentPath : String?
     
+    private var notificationsAllowed : Bool = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +55,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         
         cassetteTapeView = CassetteTapeView()
         guard let cassetteTapeView = cassetteTapeView else { return }
+        cassetteTapeView.delegate = self
         
         buttonStackView = UIStackView()
         guard let buttonStackView = buttonStackView else { return }
@@ -64,9 +70,9 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         timePeriodLabel = UILabel()
         guard let timePeriodLabel = timePeriodLabel else { return }
         
-        timePeriodLabel.text = "Remind me in days:"
-        timePeriodLabel.textColor = ColorPalette.grey
-        timePeriodLabel.font = UIFont(name: Fonts.main, size: 17)
+        timePeriodLabel.text = "Remind me in about:"
+        timePeriodLabel.textColor = ColorPalette.lightGrey
+        timePeriodLabel.font = UIFont(name: Fonts.main, size: 20)
         timePeriodLabel.textAlignment = .center
         
         memoryTitle.attributedPlaceholder = NSAttributedString(string: "memory title", attributes: [NSAttributedString.Key.foregroundColor : ColorPalette.grey])
@@ -84,18 +90,29 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         
         playButton = CassetteTapeButtonView(color: ColorPalette.grey, altColor: ColorPalette.darkGrey, text: "PLAY", border: true)
         guard let playButton = playButton else { return }
+        playButton.isEnabled = false
         playButton.alpha = 0.2
         playButton.addTarget(self, action: #selector(playAudio), for: .touchDown)
         
         stopButton = CassetteTapeButtonView(color: ColorPalette.grey, altColor: ColorPalette.darkGrey, text: "STOP", border: true)
         guard let stopButton = stopButton else { return }
+        stopButton.isEnabled = false
         stopButton.alpha = 0.2
         stopButton.addTarget(self, action: #selector(stopAudio), for: .touchDown)
         
         saveButton = CassetteTapeButtonView(color: ColorPalette.grey, altColor: ColorPalette.darkGrey, text: "SAVE", border: false)
         guard let saveButton = saveButton else { return }
+        saveButton.isEnabled = false
         saveButton.alpha = 0.2
         saveButton.addTarget(self, action: #selector(saveAudio), for: .touchDown)
+        
+        recordingsBarButton.title = "Recordings"
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = false
+        
+        self.navigationController?.navigationBar.barTintColor = ColorPalette.darkGrey
     
         buttonStackView.addArrangedSubview(recordButton)
         buttonStackView.addArrangedSubview(playButton)
@@ -110,13 +127,13 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
 
         cassetteTapeView.translatesAutoresizingMaskIntoConstraints = false
         cassetteTapeView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        cassetteTapeView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        cassetteTapeView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 40).isActive = true
         cassetteTapeView.widthAnchor.constraint(equalToConstant: Dimensions.cassetteTapeWidth).isActive = true
         cassetteTapeView.heightAnchor.constraint(equalToConstant: Dimensions.cassetteTapeHeight).isActive = true
         
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         buttonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        buttonStackView.topAnchor.constraint(equalTo: cassetteTapeView.bottomAnchor, constant: 100).isActive = true
+        buttonStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -self.view.frame.height * 0.05).isActive = true
         buttonStackView.widthAnchor.constraint(equalToConstant: Dimensions.screenWidth * 0.9).isActive = true
         buttonStackView.heightAnchor.constraint(equalToConstant: Dimensions.buttonHeight).isActive = true
         
@@ -139,61 +156,188 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc private func startRec() {
-        guard let cassetteTapeView = cassetteTapeView else { return }
-        guard let recordButton = recordButton else { return }
-        guard let audioSessionHandler = audioSessionHandler else { return }
-        date = getDate()
-        guard let date = date else { return }
-        if !isTapeRunning {
-            if let currentPath = currentPath {
-                audioSessionHandler.clearCache(name: currentPath)
+        if getMicrophonePermission() {
+            guard let playButton = playButton else { return }
+            guard let stopButton = stopButton else { return }
+            guard let saveButton = saveButton else { return }
+            guard let cassetteTapeView = cassetteTapeView else { return }
+            guard let audioSessionHandler = audioSessionHandler else { return }
+            date = getDate()
+            guard let date = date else { return }
+            if !isTapeRunning {
+                if let currentPath = currentPath {
+                    audioSessionHandler.clearCache(name: currentPath)
+                }
+                let fileName = createFileName(date: date)
+                currentPath = fileName
+                audioSessionHandler.setFile(name: fileName)
+                audioSessionHandler.setupRecorder()
+                cassetteTapeView.startSpoolsAnimation(duration: 1)
+                cassetteTapeView.startOutlineAnimation(duration: AudioSettings.duration)
+                isTapeRunning = true
+                audioSessionHandler.record()
+            } else {
+                cassetteTapeView.stopSpoolsAnimation()
+                cassetteTapeView.stopOutlineAnimation()
+                isTapeRunning = false
+                audioSessionHandler.stopRecording()
+                audioSessionHandler.setupPlayer()
+                
+                playButton.isEnabled = true
+                stopButton.isEnabled = true
+                saveButton.isEnabled = true
             }
-            let fileName = createFileName(date: date)
-            currentPath = fileName
-            audioSessionHandler.setFile(name: fileName)
-            audioSessionHandler.setupRecorder()
-            cassetteTapeView.startSpoolsAnimation(duration: 1)
-            cassetteTapeView.startOutlineAnimation(duration: AudioSettings.duration)
-            recordButton.switchColors()
-            isTapeRunning = true
-            audioSessionHandler.record()
         } else {
-            cassetteTapeView.stopSpoolsAnimation()
-            cassetteTapeView.stopOutlineAnimation()
-            recordButton.switchColors()
-            isTapeRunning = false
-            audioSessionHandler.stopRecording()
-            audioSessionHandler.setupPlayer()
+            let warningView = WarningView(text: NotificationTexts.micNotificationText)
+            warningView.alpha = 0
+            
+            self.view.addSubview(warningView)
+            
+            warningView.translatesAutoresizingMaskIntoConstraints = false
+            warningView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+            warningView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+            warningView.widthAnchor.constraint(equalToConstant: Dimensions.screenWidth * 0.9).isActive = true
+            warningView.heightAnchor.constraint(equalToConstant: Dimensions.screenHeight * 0.2).isActive = true
+            
+            UIView.animate(withDuration: 2.5, delay: 0, options: [.curveEaseInOut], animations: {
+                warningView.alpha = 1
+            }, completion: nil)
+            UIView.animate(withDuration: 0.5, delay: 2.5, options: [.curveEaseInOut], animations: {
+                warningView.alpha = 0
+            }) { (finished) in
+                warningView.removeFromSuperview()
+            }
         }
     }
     
     @objc private func playAudio() {
-        guard let audioSessionHandler = audioSessionHandler else { return }
-        audioSessionHandler.play()
+        if isTapeRunning {
+            
+        } else {
+            isTapeRunning = true
+            guard let cassetteTapeView = cassetteTapeView else { return }
+            guard let audioSessionHandler = audioSessionHandler else { return }
+            cassetteTapeView.startSpoolsAnimation(duration: 1)
+            cassetteTapeView.startOutlineAnimation(duration: AudioSettings.duration)
+            audioSessionHandler.play()
+        }
     }
     
     @objc private func stopAudio() {
-        guard let audioSessionHandler = audioSessionHandler else { return }
-        audioSessionHandler.stopPlaying()
+        if isTapeRunning {
+            isTapeRunning = false
+            guard let cassetteTapeView = cassetteTapeView else { return }
+            guard let audioSessionHandler = audioSessionHandler else { return }
+            cassetteTapeView.stopSpoolsAnimation()
+            cassetteTapeView.stopOutlineAnimation()
+            audioSessionHandler.stopPlaying()
+        }
     }
     
     @objc private func saveAudio() {
-        guard let saveButton = saveButton else { return }
-        saveButton.alpha = 1
-        
-        guard let memoryTitle = memoryTitle else { return }
-        guard let name = memoryTitle.text else { return }
-        guard let date = date else { return }
-        guard let currentPath = currentPath else { return }
-        guard let context = context else { return }
-        if let recording = NSEntityDescription.insertNewObject(forEntityName: "Recording", into: context) as? Recording {
-            recording.name = name
-            recording.date = date as NSDate
-            recording.path = currentPath
-        }
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        appDelegate.saveContext()
+        if getNotificationsPermission() {
+            guard let playButton = playButton else { return }
+            guard let stopButton = stopButton else { return }
+            guard let saveButton = saveButton else { return }
+            guard let memoryTitle = memoryTitle else { return }
+            guard let name = memoryTitle.text else { return }
+            guard let date = date else { return }
+            guard let context = context else { return }
+            guard let audioSessionHandler = audioSessionHandler else { return }
+            guard let reminderTimeSegmentedControl = reminderTimeSegmentedControl else { return }
+            
+            if let currentPath = currentPath {
+                audioSessionHandler.clearCache(name: currentPath)
+            }
+            if !name.isEmpty {
+                if let recording = NSEntityDescription.insertNewObject(forEntityName: "Recording", into: context) as? Recording {
+                    recording.name = name
+                    recording.date = date as NSDate
+                    recording.path = currentPath
+                }
+                
+                let chosenTimePeriod = ReminderPeriods.timeArray[reminderTimeSegmentedControl.selectedSegmentIndex]
+
+                let notificationCenter = UNUserNotificationCenter.current()
+                
+                guard let currentPath = currentPath else { return }
+                
+                notificationCenter.getNotificationSettings { (settings) in
+                    if settings.authorizationStatus == .authorized {
+                        let content = UNMutableNotificationContent()
+                        
+                        content.title = NSString.localizedUserNotificationString(forKey: NotificationTexts.title, arguments: nil)
+                        content.body = NSString.localizedUserNotificationString(forKey: NotificationTexts.body, arguments: nil)
+                        content.sound = UNNotificationSound.default
+                        
+                        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: chosenTimePeriod, repeats: false)
+                        let request = UNNotificationRequest(identifier: currentPath, content: content, trigger: trigger)
+                        
+                        notificationCenter.add(request, withCompletionHandler: { (error : Error? ) in
+                            if let error = error {
+                                print(error.localizedDescription)
+                            }
+                        })
+                    } else {
+                        print("permissao negada")
+                    }
+                }
+                
+                
+                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+                appDelegate.saveContext()
+                memoryTitle.text = ""
+                playButton.isEnabled = false
+                stopButton.isEnabled = false
+                saveButton.isEnabled = false
+                
+                playButton.alpha = 1
+                stopButton.alpha = 1
+                saveButton.alpha = 1
+            } else {
+                let warningView = WarningView(text: NotificationTexts.notificationsText)
+                warningView.alpha = 0
+                
+                self.view.addSubview(warningView)
+                
+                warningView.translatesAutoresizingMaskIntoConstraints = false
+                warningView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+                warningView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+                warningView.widthAnchor.constraint(equalToConstant: Dimensions.screenWidth * 0.9).isActive = true
+                warningView.heightAnchor.constraint(equalToConstant: Dimensions.screenHeight * 0.2).isActive = true
+                
+                UIView.animate(withDuration: 2.5, delay: 0, options: [.curveEaseInOut], animations: {
+                    warningView.alpha = 1
+                }, completion: nil)
+                UIView.animate(withDuration: 0.5, delay: 2.5, options: [.curveEaseInOut], animations: {
+                    warningView.alpha = 0
+                }) { (finished) in
+                    warningView.removeFromSuperview()
+                }
+                }
+            } else {
+                let warningView = WarningView(text: NotificationTexts.notificationsText)
+                warningView.alpha = 0
+                
+                self.view.addSubview(warningView)
+                
+                warningView.translatesAutoresizingMaskIntoConstraints = false
+                warningView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+                warningView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+                warningView.widthAnchor.constraint(equalToConstant: Dimensions.screenWidth * 0.9).isActive = true
+                warningView.heightAnchor.constraint(equalToConstant: Dimensions.screenHeight * 0.2).isActive = true
+                
+                UIView.animate(withDuration: 2.5, delay: 0, options: [.curveEaseInOut], animations: {
+                    warningView.alpha = 1
+                }, completion: nil)
+                UIView.animate(withDuration: 0.5, delay: 2.5, options: [.curveEaseInOut], animations: {
+                    warningView.alpha = 0
+                }) { (finished) in
+                    warningView.removeFromSuperview()
+                    }
+                }
     }
+        
     
     private func createFileName(date: Date) -> String {
         let dateFormatter = DateFormatter()
@@ -204,4 +348,40 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     private func getDate() -> Date {
         return Date()
     }
+    
+    private func getMicrophonePermission() -> Bool {
+        guard let audioSessionHandler = audioSessionHandler else { return false }
+        return audioSessionHandler.checkMicrophonePermission()
+    }
+    
+    private func getNotificationsPermission() -> Bool {
+        print("eur")
+        let notiticationCenter = UNUserNotificationCenter.current()
+        let options : UNAuthorizationOptions = [.alert, .sound]
+        
+//        guard let notificationsAllowed = notificationsAllowed else { return false }
+        
+        notiticationCenter.requestAuthorization(options: options) { (didAllow, error) in
+            NotificationCenter.default.post(name: NSNotification.Name("permissionDidChange"), object: self)
+            self.notificationsAllowed = didAllow
+            if !didAllow {
+                print("Notifications not allowed by user")
+            }
+        }
+        return notificationsAllowed
+    }
 }
+
+extension MainScreenViewController : CassetteTapeViewDelegate {
+    
+    func tapeDidStop(finished flag: Bool) {
+        guard let playButton = playButton else { return }
+        guard let stopButton = stopButton else { return }
+        guard let saveButton = saveButton else { return }
+        self.isTapeRunning = false
+        playButton.alpha = 1
+        stopButton.alpha = 1
+        saveButton.alpha = 1
+    }
+}
+

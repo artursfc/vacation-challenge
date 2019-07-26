@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol CassetteTapeViewDelegate {
+    func tapeDidStop(finished flag: Bool)
+}
+
 class CassetteTapeView: UIView {
     
     private var cassetteTapeShapeLayer : CassetteTapeShapeLayer?
@@ -33,6 +37,7 @@ class CassetteTapeView: UIView {
     public var rightSpoolView : SpoolView?
     private var rightInnerCircle : UIBezierPath?
     private var rightSpoolCenter : CGPoint = CGPoint()
+    public var delegate : CassetteTapeViewDelegate?
     
     /* -- MARK: Outline Path
      outlinePath : used to draw the frame of the cassette tape; same path coordinates is used for animating
@@ -193,6 +198,7 @@ class CassetteTapeView: UIView {
         guard let rightSpoolView = rightSpoolView else { return }
         leftSpoolView.stopAnimation()
         rightSpoolView.stopAnimation()
+        delegate?.tapeDidStop(finished: true)
     }
     
     public func stopOutlineAnimation() {
@@ -239,6 +245,7 @@ class CassetteTapeView: UIView {
 }
 
 extension CassetteTapeView : CAAnimationDelegate {
+    
     public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         self.stopSpoolsAnimation()
     }

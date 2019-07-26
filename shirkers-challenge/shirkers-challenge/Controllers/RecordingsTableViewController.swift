@@ -35,7 +35,7 @@ class RecordingsTableViewController: UIViewController, UITableViewDelegate, UITa
         tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
         tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         tableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        tableView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -50).isActive = true
+        tableView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
 
         
         tableView.delegate = self
@@ -61,11 +61,15 @@ class RecordingsTableViewController: UIViewController, UITableViewDelegate, UITa
         guard let recordings = recordings else { return 0 }
         return recordings.count
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = RecordingsTableViewCell()
         guard let recordings = recordings else { return UITableViewCell() }
-        guard let recording = recordings[indexPath.row] as? Recording else { return UITableViewCell() }
+        let recording = recordings[indexPath.row]
         guard let cellTextLabel = cell.textLabel else { return UITableViewCell() }
         cellTextLabel.text = recording.name
         cell.backgroundColor = ColorPalette.darkGrey

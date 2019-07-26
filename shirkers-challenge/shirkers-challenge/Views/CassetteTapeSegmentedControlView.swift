@@ -16,8 +16,8 @@ class CassetteTapeSegmentedControlView: UISegmentedControl {
         self.layer.cornerRadius = 10
         self.layer.borderWidth = 3
         self.setTitleTextAttributes([NSAttributedString.Key.font : UIFont(name: Fonts.main, size: 17) as Any], for: .normal)
-        self.layer.borderColor = ColorPalette.grey.cgColor
-        self.tintColor = ColorPalette.grey
+        self.layer.borderColor = ColorPalette.lightGrey.cgColor
+        self.tintColor = ColorPalette.lightGrey
         self.backgroundColor = .clear
         self.clipsToBounds = true
     }

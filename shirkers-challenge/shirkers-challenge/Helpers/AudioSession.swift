@@ -19,7 +19,6 @@ class AudioSession: NSObject {
     
     override init() {
         super.init()
-        self.checkMicrophonePermission()
     }
     
     private func getDocumentsDirectory() -> URL {
@@ -77,7 +76,7 @@ class AudioSession: NSObject {
         }
     }
     
-    private func checkMicrophonePermission() {
+    public func checkMicrophonePermission() -> Bool {
         switch AVAudioSession.sharedInstance().recordPermission {
         case .granted:
             isMicAccessGranted = true
@@ -96,6 +95,7 @@ class AudioSession: NSObject {
         default:
             break
         }
+        return isMicAccessGranted
     }
     
     public func record() {

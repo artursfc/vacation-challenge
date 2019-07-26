@@ -27,12 +27,15 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="recordingsBarButton" destination="xDW-2n-sYs" id="ExF-CJ-Cnq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="957.97101449275374" y="20.758928571428569"/>
         </scene>
-        <!--Recordings Table View Controller-->
+        <!--Recordings-->
         <scene sceneID="J7h-Vu-MUH">
             <objects>
                 <viewController id="EPB-sO-d3E" customClass="RecordingsTableViewController" customModule="shirkers_challenge" customModuleProvider="target" sceneMemberID="viewController">
@@ -42,6 +45,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="iy8-iu-C1f"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Recordings" id="mZ5-y3-jmn"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ohE-Il-pgw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -57,6 +61,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3DB-1A-Wdj">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="dxg-h9-Rjc"/>
                     </connections>

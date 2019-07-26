@@ -22,6 +22,14 @@ enum Fonts {
     static let main : String = "Gill Sans"
 }
 
+enum NotificationTexts {
+    static let title : String = "You got memory!"
+    static let body : String = "Time to listen to a saved memory."
+    static let micNotificationText : String = "Microphone permission denied. Check your microphone permission."
+    static let notificationsText : String = "Notifications permission denied. Check your notifications permission."
+    static let nameIsEmptyText : String = "Could not save memory. Name is empty."
+}
+
 enum Dimensions {
     static let spoolWidth : CGFloat = Dimensions.screenHeight * 0.08
     static let spoolHeight : CGFloat = Dimensions.screenHeight * 0.08
@@ -38,7 +46,8 @@ enum Dimensions {
 }
 
 enum ReminderPeriods {
-    static let timePeriods : [String] = ["1 to 7", "30 to 90", "120 to 365"]
+    static let timePeriods : [String] = ["a week", "a month", "a year"]
+    static let timeArray : [TimeInterval] = [5, 10, 15]
 }
 
 enum AudioSettings {
@@ -62,6 +71,7 @@ extension UIViewController {
     @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
+    
 }
 
 
