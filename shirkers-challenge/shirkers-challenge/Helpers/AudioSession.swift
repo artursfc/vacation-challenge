@@ -9,16 +9,26 @@
 import UIKit
 import AVFoundation
 
-class AudioSession: NSObject {
+final class AudioSession: NSObject {
+    
+    static let shared = AudioSession()
     
     private var audioRecorder : AVAudioRecorder?
     private var audioPlayer : AVAudioPlayer?
     private var isMicAccessGranted : Bool = false
     private var fileName : String?
-    private var lastFileName : String?
+    private var clearName: String?
+    
+    private var duration : TimeInterval?
     
     override init() {
         super.init()
+    }
+    
+    public func clear() {
+        if let fileName = clearName {
+            deleteAudioFile(name: fileName)
+        }
     }
     
     private func getDocumentsDirectory() -> URL {
@@ -28,15 +38,15 @@ class AudioSession: NSObject {
     
     public func setFile(name: String) {
         self.fileName = name + ".m4a"
-        self.lastFileName = fileName
+        self.clearName = name
     }
     
-    public func clearCache(name: String) {
+    public func deleteAudioFile(name: String) {
         let audio = name + ".m4a"
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
+        let documentsPath : URL = getDocumentsDirectory()
         let audioPath = documentsPath.appendingPathComponent(audio)
         do {
-            try FileManager.default.removeItem(atPath: audioPath)
+            try FileManager.default.removeItem(at: audioPath)
         } catch {
             print(error)
         }
@@ -68,9 +78,10 @@ class AudioSession: NSObject {
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: audioFileName)
             guard let audioPlayer = audioPlayer else { return }
-            audioPlayer.delegate = self
+            duration = audioPlayer.duration
             audioPlayer.prepareToPlay()
             audioPlayer.volume = 1.0
+            audioPlayer.delegate = self
         } catch {
             print(error)
         }
@@ -117,16 +128,25 @@ class AudioSession: NSObject {
         guard let audioPlayer = audioPlayer else { return }
         audioPlayer.stop()
     }
-}
-
-extension AudioSession : AVAudioPlayerDelegate {
-//    public func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-//        <#code#>
-//    }
+    
+    public func getDuration() -> TimeInterval? {
+        guard let duration = duration else { return nil }
+        return duration
+        
+    }
 }
 
 extension AudioSession : AVAudioRecorderDelegate {
 //    public func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
 //        <#code#>
 //    }
+}
+
+extension AudioSession: AVAudioPlayerDelegate {
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        let name = Notification.Name("didFinishPlaying")
+        let notification: Notification = Notification(name: name)
+        NotificationCenter.default.post(notification)
+    }
 }

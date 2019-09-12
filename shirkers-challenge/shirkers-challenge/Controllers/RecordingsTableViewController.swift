@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 class RecordingsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
@@ -41,7 +42,6 @@ class RecordingsTableViewController: UIViewController, UITableViewDelegate, UITa
         tableView.delegate = self
         tableView.dataSource = self
         
-//        tableView.register(RecordingsTableViewCell.self, forCellReuseIdentifier: "cell")
         
         if let context = context {
             do {
@@ -63,7 +63,7 @@ class RecordingsTableViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 60
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -73,11 +73,42 @@ class RecordingsTableViewController: UIViewController, UITableViewDelegate, UITa
         guard let cellTextLabel = cell.textLabel else { return UITableViewCell() }
         cellTextLabel.text = recording.name
         cell.backgroundColor = ColorPalette.darkGrey
+        guard let recordingPath = recording.path else { return UITableViewCell() }
+        cell.setFileName(name: recordingPath)
             return cell
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 1
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, success) in
+            
+            let center = UNUserNotificationCenter.current()
+            
+            guard let recordings = self.recordings else { return }
+            let recording = recordings[indexPath.row]
+            guard let path = recording.path else { return }
+            
+            self.context?.delete(recording)
+            self.recordings?.remove(at: indexPath.row)
+            AudioSession.shared.deleteAudioFile(name: path)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            center.removePendingNotificationRequests(withIdentifiers: [path])
+            
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            appDelegate.saveContext()
+            
+            success(true)
+        
+        }
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        AudioSession.shared.stopPlaying()
     }
 
 }

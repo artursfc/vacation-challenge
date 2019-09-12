@@ -117,13 +117,61 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "shirkers-challenge/Controllers/RecordingsTableViewController.swift"
-            timestampString = "585863754.156304"
+            filePath = "shirkers-challenge/Views/CassetteTapeView.swift"
+            timestampString = "589479822.265835"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "CassetteTapeView"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "shirkers_challenge.CassetteTapeView.init(frame: __C.CGRect) -&gt; shirkers_challenge.CassetteTapeView"
+                  moduleName = "shirkers-challenge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/carneiro/Git/shirkers-challenge/vacation-challenge/shirkers-challenge/shirkers-challenge/Views/CassetteTapeView.swift"
+                  timestampString = "589469761.647405"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "355">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "shirkers_challenge.CassetteTapeView.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;shirkers_challenge.CassetteTapeView&gt;"
+                  moduleName = "shirkers-challenge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/carneiro/Git/shirkers-challenge/vacation-challenge/shirkers-challenge/shirkers-challenge/Views/CassetteTapeView.swift"
+                  timestampString = "589469761.649385"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "352">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "shirkers-challenge/Controllers/MemoryPlayerViewController.swift"
+            timestampString = "589985544.890277"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

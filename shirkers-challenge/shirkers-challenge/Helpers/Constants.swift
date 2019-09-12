@@ -47,7 +47,7 @@ enum Dimensions {
 
 enum ReminderPeriods {
     static let timePeriods : [String] = ["a week", "a month", "a year"]
-    static let timeArray : [TimeInterval] = [5, 10, 15]
+    static let timeArray : [TimeInterval] = [5, 15, 25]
 }
 
 enum AudioSettings {
