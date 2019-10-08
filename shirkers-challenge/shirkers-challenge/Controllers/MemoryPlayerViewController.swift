@@ -171,6 +171,40 @@ class MemoryPlayerViewController: UIViewController {
     
     
     @objc private func keepAudio() {
+        guard let reminderTimeSegmentedControl = reminderTimeSegmentedControl else { return }
+        let chosenTimePeriod = ReminderPeriods.timeArray[reminderTimeSegmentedControl.selectedSegmentIndex]
+
+        let notificationCenter = UNUserNotificationCenter.current()
+        var currentPath: String?
+        guard let recordings = self.recordings else { return }
+        for n in 0..<recordings.count {
+            if recordings[n].path == notificationIdentifier {
+                currentPath = recordings[n].path
+            }
+        }
+        if let currentPath = currentPath {
+        notificationCenter.getNotificationSettings { (settings) in
+            if settings.authorizationStatus == .authorized {
+                let content = UNMutableNotificationContent()
+                
+                content.title = NSString.localizedUserNotificationString(forKey: NotificationTexts.title, arguments: nil)
+                content.body = NSString.localizedUserNotificationString(forKey: NotificationTexts.body, arguments: nil)
+                content.sound = UNNotificationSound.default
+                
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: chosenTimePeriod, repeats: false)
+                let request = UNNotificationRequest(identifier: currentPath, content: content, trigger: trigger)
+                
+                notificationCenter.add(request, withCompletionHandler: { (error : Error? ) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                })
+            } else {
+                print("Permission denied")
+            }
+        }
+        }
+        navigationController?.popViewController(animated: true)
     }
     
     @objc private func discardAudio() {
@@ -186,6 +220,7 @@ class MemoryPlayerViewController: UIViewController {
                 appDelegate.saveContext()
             }
         }
+        navigationController?.popViewController(animated: true)
         
     }
     

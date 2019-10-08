@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
+   uuid = "BACC96F9-1551-4358-9FE5-BD0F4FCD00E2"
    type = "1"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "614A29E8-C3C5-4851-AB60-A9C51454EB72"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -19,6 +21,7 @@
             landmarkType = "3">
             <Locations>
                <Location
+                  uuid = "614A29E8-C3C5-4851-AB60-A9C51454EB72 - e11feaf781e41f6"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -34,6 +37,7 @@
                   offsetFromSymbolStart = "114">
                </Location>
                <Location
+                  uuid = "614A29E8-C3C5-4851-AB60-A9C51454EB72 - d619de90b1d87de2"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -49,6 +53,7 @@
                   offsetFromSymbolStart = "128">
                </Location>
                <Location
+                  uuid = "614A29E8-C3C5-4851-AB60-A9C51454EB72 - bf03f589ef2a26f3"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -64,6 +69,7 @@
                   offsetFromSymbolStart = "18">
                </Location>
                <Location
+                  uuid = "614A29E8-C3C5-4851-AB60-A9C51454EB72 - 8cda18d819b72a84"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -79,6 +85,7 @@
                   offsetFromSymbolStart = "4">
                </Location>
                <Location
+                  uuid = "614A29E8-C3C5-4851-AB60-A9C51454EB72 - 504b12ef26d79d96"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -94,6 +101,7 @@
                   offsetFromSymbolStart = "217">
                </Location>
                <Location
+                  uuid = "614A29E8-C3C5-4851-AB60-A9C51454EB72 - e550c46c119bbf45"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -114,6 +122,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "7C3A9521-031B-4BDF-879D-5900CB8554D3"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -127,6 +136,7 @@
             landmarkType = "3">
             <Locations>
                <Location
+                  uuid = "7C3A9521-031B-4BDF-879D-5900CB8554D3 - e27928a11d89c87b"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -142,6 +152,7 @@
                   offsetFromSymbolStart = "355">
                </Location>
                <Location
+                  uuid = "7C3A9521-031B-4BDF-879D-5900CB8554D3 - abc1bb6b4dadff35"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -162,16 +173,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            uuid = "82F98A04-6130-453D-A84F-2FFCC0B483F9"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "shirkers-challenge/Controllers/MemoryPlayerViewController.swift"
-            timestampString = "589985544.890277"
+            filePath = "shirkers-challenge/Helpers/AudioSession.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "setupPlayer()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

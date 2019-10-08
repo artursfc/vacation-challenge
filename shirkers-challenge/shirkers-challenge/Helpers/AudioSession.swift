@@ -41,6 +41,11 @@ final class AudioSession: NSObject {
         self.clearName = name
     }
     
+    public func clearFileNames() {
+        self.clearName = nil
+        self.fileName = nil
+    }
+    
     public func deleteAudioFile(name: String) {
         let audio = name + ".m4a"
         let documentsPath : URL = getDocumentsDirectory()

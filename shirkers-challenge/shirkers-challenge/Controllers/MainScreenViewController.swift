@@ -278,6 +278,8 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
             stopButton.alpha = 1
             saveButton.alpha = 1
             
+            AudioSession.shared.clearFileNames()
+            
         }
     }
         
@@ -318,9 +320,8 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if let currentPath = currentPath {
-            AudioSession.shared.deleteAudioFile(name: currentPath)
-        }
+        
+        AudioSession.shared.clearFileNames()
         
         guard let cassetteTapeView = cassetteTapeView else { return }
         if isTapeRunning {

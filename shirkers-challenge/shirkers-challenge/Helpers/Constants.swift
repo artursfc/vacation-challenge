@@ -47,8 +47,10 @@ enum Dimensions {
 
 enum ReminderPeriods {
     static let timePeriods : [String] = ["a week", "a month", "a year"]
-    static let timeArray : [TimeInterval] = [5, 15, 25]
+    static let timeArray : [TimeInterval] = [getRandomSeconds(from: 5, to: 30), getRandomSeconds(from: 604801, to: 2.419e+6), getRandomSeconds(from: 2628265.68, to: 7.884e+6)]
 }
+
+//getRandomSeconds(from: 86400, to: 604800)
 
 enum AudioSettings {
     static let encoderBitRate = 320000
@@ -60,6 +62,10 @@ enum AudioSettings {
                                   AVNumberOfChannelsKey : AudioSettings.numberOfChannels,
                                   AVSampleRateKey : AudioSettings.sampleRate] as [String : Any]
     static let duration : CFTimeInterval = 30
+}
+
+func getRandomSeconds(from: Double, to: Double) -> TimeInterval{
+    return Double.random(in: from..<to)
 }
 
 extension UIViewController {

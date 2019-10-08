@@ -52,6 +52,9 @@ class RecordingsTableViewController: UIViewController, UITableViewDelegate, UITa
         }
         
     }
+    
+    
+
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -75,7 +78,7 @@ class RecordingsTableViewController: UIViewController, UITableViewDelegate, UITa
         cell.backgroundColor = ColorPalette.darkGrey
         guard let recordingPath = recording.path else { return UITableViewCell() }
         cell.setFileName(name: recordingPath)
-            return cell
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
