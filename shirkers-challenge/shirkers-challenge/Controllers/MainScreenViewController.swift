@@ -23,6 +23,11 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     private var cassetteTapeView : CassetteTapeView?
     private var buttonStackView : UIStackView?
     private var reminderTimeSegmentedControl : CassetteTapeSegmentedControlView?
+    private lazy var warningLabel: UILabel = {
+        let view = UILabel(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     private var isTapeRunning : Bool = false
     
@@ -99,19 +104,19 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         playButton = CassetteTapeButtonView(color: ColorPalette.grey, altColor: ColorPalette.darkGrey, text: "PLAY", border: true)
         guard let playButton = playButton else { return }
         playButton.isEnabled = false
-        playButton.alpha = 0.2
+        playButton.alpha = 0.1
         playButton.addTarget(self, action: #selector(playAudio), for: .touchDown)
         
         stopButton = CassetteTapeButtonView(color: ColorPalette.grey, altColor: ColorPalette.darkGrey, text: "STOP", border: true)
         guard let stopButton = stopButton else { return }
         stopButton.isEnabled = false
-        stopButton.alpha = 0.2
+        stopButton.alpha = 0.1
         stopButton.addTarget(self, action: #selector(stopAudio), for: .touchDown)
         
         saveButton = CassetteTapeButtonView(color: ColorPalette.grey, altColor: ColorPalette.darkGrey, text: "SAVE", border: false)
         guard let saveButton = saveButton else { return }
         saveButton.isEnabled = false
-        saveButton.alpha = 0.2
+        saveButton.alpha = 0.1
         saveButton.addTarget(self, action: #selector(saveAudio), for: .touchDown)
         
         recordingsBarButton.title = "Recordings"
@@ -161,6 +166,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         memoryTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         memoryTitle.widthAnchor.constraint(equalToConstant: self.view.frame.width * 0.9).isActive = true
         memoryTitle.bottomAnchor.constraint(equalTo: timePeriodLabel.topAnchor, constant: -20).isActive = true
+
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -173,6 +179,9 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         guard let stopButton = stopButton else { return }
         guard let saveButton = saveButton else { return }
         guard let cassetteTapeView = cassetteTapeView else { return }
+        playButton.isEnabled = false
+        stopButton.isEnabled = false
+        saveButton.isEnabled = false
         date = getDate()
         guard let date = date else { return }
         if !isTapeRunning {
@@ -280,6 +289,10 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
             
             AudioSession.shared.clearFileNames()
             
+            memoryTitle.attributedPlaceholder = NSAttributedString(string: "memory title", attributes: [NSAttributedString.Key.foregroundColor : ColorPalette.grey])
+            
+        } else {
+            memoryTitle.attributedPlaceholder = NSAttributedString(string: "A memory title is required", attributes: [NSAttributedString.Key.foregroundColor : ColorPalette.grey])
         }
     }
         
@@ -339,13 +352,16 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         guard let playButton = playButton, let stopButton = stopButton, let saveButton = saveButton else { return }
+        guard let memoryTitle = memoryTitle else { return }
         playButton.isEnabled = false
         stopButton.isEnabled = false
         saveButton.isEnabled = false
         
-        playButton.alpha = 0.2
-        stopButton.alpha = 0.2
-        saveButton.alpha = 0.2
+        playButton.alpha = 0.1
+        stopButton.alpha = 0.1
+        saveButton.alpha = 0.1
+        
+        memoryTitle.attributedPlaceholder = NSAttributedString(string: "memory title", attributes: [NSAttributedString.Key.foregroundColor : ColorPalette.grey])
     }
 }
 
@@ -378,6 +394,7 @@ extension MainScreenViewController : UNUserNotificationCenterDelegate {
         default:
             completionHandler()
         }
+
     }
 }
 

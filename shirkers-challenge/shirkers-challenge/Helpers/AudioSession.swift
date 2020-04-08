@@ -9,7 +9,15 @@
 import UIKit
 import AVFoundation
 
-final class AudioSession: NSObject {
+extension FileManager {
+    static var userDocumentDirectory: URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    }
+}
+
+
+
+public final class AudioSession: NSObject {
     
     static let shared = AudioSession()
     
@@ -20,10 +28,6 @@ final class AudioSession: NSObject {
     private var clearName: String?
     
     private var duration : TimeInterval?
-    
-    override init() {
-        super.init()
-    }
     
     public func clear() {
         if let fileName = clearName {
@@ -149,7 +153,7 @@ extension AudioSession : AVAudioRecorderDelegate {
 
 extension AudioSession: AVAudioPlayerDelegate {
     
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+    public func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         let name = Notification.Name("didFinishPlaying")
         let notification: Notification = Notification(name: name)
         NotificationCenter.default.post(notification)

@@ -122,57 +122,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7C3A9521-031B-4BDF-879D-5900CB8554D3"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "shirkers-challenge/Views/CassetteTapeView.swift"
-            timestampString = "589479822.265835"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "CassetteTapeView"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "7C3A9521-031B-4BDF-879D-5900CB8554D3 - e27928a11d89c87b"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "shirkers_challenge.CassetteTapeView.init(frame: __C.CGRect) -&gt; shirkers_challenge.CassetteTapeView"
-                  moduleName = "shirkers-challenge"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/carneiro/Git/shirkers-challenge/vacation-challenge/shirkers-challenge/shirkers-challenge/Views/CassetteTapeView.swift"
-                  timestampString = "589469761.647405"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "355">
-               </Location>
-               <Location
-                  uuid = "7C3A9521-031B-4BDF-879D-5900CB8554D3 - abc1bb6b4dadff35"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "shirkers_challenge.CassetteTapeView.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;shirkers_challenge.CassetteTapeView&gt;"
-                  moduleName = "shirkers-challenge"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/carneiro/Git/shirkers-challenge/vacation-challenge/shirkers-challenge/shirkers-challenge/Views/CassetteTapeView.swift"
-                  timestampString = "589469761.649385"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "352">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "82F98A04-6130-453D-A84F-2FFCC0B483F9"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -180,8 +129,8 @@
             filePath = "shirkers-challenge/Helpers/AudioSession.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "setupPlayer()"
             landmarkType = "7">
          </BreakpointContent>

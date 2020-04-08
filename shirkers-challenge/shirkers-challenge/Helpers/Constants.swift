@@ -47,10 +47,8 @@ enum Dimensions {
 
 enum ReminderPeriods {
     static let timePeriods : [String] = ["a week", "a month", "a year"]
-    static let timeArray : [TimeInterval] = [getRandomSeconds(from: 5, to: 30), getRandomSeconds(from: 604801, to: 2.419e+6), getRandomSeconds(from: 2628265.68, to: 7.884e+6)]
+    static let timeArray : [TimeInterval] = [getRandomSeconds(from: 86400, to: 604800), getRandomSeconds(from: 604801, to: 2.419e+6), getRandomSeconds(from: 2628265.68, to: 7.884e+6)]
 }
-
-//getRandomSeconds(from: 86400, to: 604800)
 
 enum AudioSettings {
     static let encoderBitRate = 320000
