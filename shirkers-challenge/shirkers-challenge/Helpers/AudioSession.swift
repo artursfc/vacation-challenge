@@ -68,7 +68,7 @@ public final class AudioSession: NSObject {
         let session = AVAudioSession.sharedInstance()
         
         do {
-            try session.setCategory(.playAndRecord, mode: .default, options: .defaultToSpeaker)
+            try session.setCategory(.record)
             try session.setActive(true)
             
             audioRecorder = try AVAudioRecorder(url: audioFileName, settings: recordSettings)

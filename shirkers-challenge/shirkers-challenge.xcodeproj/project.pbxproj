@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A40ED58C22D7B025004C3A8A /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40ED58B22D7B025004C3A8A /* MainScreenViewController.swift */; };
 		A40ED5B522D7D623004C3A8A /* CassetteTapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40ED5B422D7D623004C3A8A /* CassetteTapeView.swift */; };
+		A43A5DB8243F918000E6FBBB /* RecordingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A5DB7243F918000E6FBBB /* RecordingController.swift */; };
 		A43EA28922E775C4001A7310 /* CassetteTapeSegmentedControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA28822E775C4001A7310 /* CassetteTapeSegmentedControlView.swift */; };
 		A43EA29022E9D71F001A7310 /* AudioSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA28F22E9D71F001A7310 /* AudioSession.swift */; };
 		A43EA29322E9ECE1001A7310 /* Recording+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA29122E9ECE1001A7310 /* Recording+CoreDataClass.swift */; };
@@ -25,6 +26,8 @@
 		A468156322D66E5500537D16 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468156222D66E5500537D16 /* Constants.swift */; };
 		A4877FCF22DE495D00A94411 /* CassetteTapeShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4877FCE22DE495D00A94411 /* CassetteTapeShapeLayer.swift */; };
 		A4877FD122E0E2E800A94411 /* SpoolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4877FD022E0E2E800A94411 /* SpoolView.swift */; };
+		A4A241E3243FB50E0025DA3D /* OSLog+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A241E2243FB50E0025DA3D /* OSLog+Extensions.swift */; };
+		A4A241E5243FC1850025DA3D /* RecordingControllerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A241E4243FC1850025DA3D /* RecordingControllerError.swift */; };
 		A4CC531622E4FEC70095C921 /* CassetteTapeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CC531522E4FEC70095C921 /* CassetteTapeButtonView.swift */; };
 		A4F74D97230F1D29006B43E1 /* MemoryPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F74D96230F1D29006B43E1 /* MemoryPlayerViewController.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +45,7 @@
 /* Begin PBXFileReference section */
 		A40ED58B22D7B025004C3A8A /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		A40ED5B422D7D623004C3A8A /* CassetteTapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassetteTapeView.swift; sourceTree = "<group>"; };
+		A43A5DB7243F918000E6FBBB /* RecordingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingController.swift; sourceTree = "<group>"; };
 		A43EA28822E775C4001A7310 /* CassetteTapeSegmentedControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassetteTapeSegmentedControlView.swift; sourceTree = "<group>"; };
 		A43EA28F22E9D71F001A7310 /* AudioSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSession.swift; sourceTree = "<group>"; };
 		A43EA29122E9ECE1001A7310 /* Recording+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recording+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -62,6 +66,8 @@
 		A468156222D66E5500537D16 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A4877FCE22DE495D00A94411 /* CassetteTapeShapeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassetteTapeShapeLayer.swift; sourceTree = "<group>"; };
 		A4877FD022E0E2E800A94411 /* SpoolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpoolView.swift; sourceTree = "<group>"; };
+		A4A241E2243FB50E0025DA3D /* OSLog+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+Extensions.swift"; sourceTree = "<group>"; };
+		A4A241E4243FC1850025DA3D /* RecordingControllerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingControllerError.swift; sourceTree = "<group>"; };
 		A4CC531522E4FEC70095C921 /* CassetteTapeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassetteTapeButtonView.swift; sourceTree = "<group>"; };
 		A4F74D96230F1D29006B43E1 /* MemoryPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryPlayerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,12 +90,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A43A5DB9243F950700E6FBBB /* Recorder */ = {
+			isa = PBXGroup;
+			children = (
+				A453E260243E680D00D05C65 /* RecordingSession.swift */,
+				A43A5DB7243F918000E6FBBB /* RecordingController.swift */,
+				A4A241E4243FC1850025DA3D /* RecordingControllerError.swift */,
+			);
+			path = Recorder;
+			sourceTree = "<group>";
+		};
 		A43EA28A22E8C038001A7310 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				A468156222D66E5500537D16 /* Constants.swift */,
 				A43EA28F22E9D71F001A7310 /* AudioSession.swift */,
-				A453E260243E680D00D05C65 /* RecordingSession.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -124,6 +139,7 @@
 		A468154C22D66BE200537D16 /* shirkers-challenge */ = {
 			isa = PBXGroup;
 			children = (
+				A43A5DB9243F950700E6FBBB /* Recorder */,
 				A43EA28A22E8C038001A7310 /* Helpers */,
 				A4CC531322E3BA500095C921 /* Models */,
 				A4CC531222E3BA390095C921 /* Controllers */,
@@ -133,6 +149,7 @@
 				A468155722D66BE300537D16 /* Assets.xcassets */,
 				A468155922D66BE300537D16 /* LaunchScreen.storyboard */,
 				A468155C22D66BE300537D16 /* Info.plist */,
+				A4A241E2243FB50E0025DA3D /* OSLog+Extensions.swift */,
 			);
 			path = "shirkers-challenge";
 			sourceTree = "<group>";
@@ -289,11 +306,14 @@
 				A4877FCF22DE495D00A94411 /* CassetteTapeShapeLayer.swift in Sources */,
 				A468156322D66E5500537D16 /* Constants.swift in Sources */,
 				A43EA28922E775C4001A7310 /* CassetteTapeSegmentedControlView.swift in Sources */,
+				A4A241E3243FB50E0025DA3D /* OSLog+Extensions.swift in Sources */,
 				A43EA29422E9ECE1001A7310 /* Recording+CoreDataProperties.swift in Sources */,
+				A43A5DB8243F918000E6FBBB /* RecordingController.swift in Sources */,
 				A4F74D97230F1D29006B43E1 /* MemoryPlayerViewController.swift in Sources */,
 				A43EA29322E9ECE1001A7310 /* Recording+CoreDataClass.swift in Sources */,
 				A43EA29622EA1193001A7310 /* RecordingsTableViewController.swift in Sources */,
 				A40ED58C22D7B025004C3A8A /* MainScreenViewController.swift in Sources */,
+				A4A241E5243FC1850025DA3D /* RecordingControllerError.swift in Sources */,
 				A43EA29822EA145B001A7310 /* RecordingsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
