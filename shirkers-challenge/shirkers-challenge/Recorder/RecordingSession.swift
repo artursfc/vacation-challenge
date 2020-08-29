@@ -6,7 +6,6 @@
 //  Copyright © 2020 Artur Carneiro. All rights reserved.
 //
 
-import Foundation
 import AVFoundation
 
 /// A structure containing the necessary information to initialize a recording session.
@@ -18,13 +17,14 @@ struct RecordingSession {
     private let filename: String
     /// The session's settings used by the RecordingController in the setup process.
     /// Should always be declared with the RecordingSettings property wrapper.
-    @RecordingSettings var settings: [String : Any]
+    @RecordingSettings var settings: [String: Any]
     /// The recording file URL used by the RecordingController in the setup process.
     let filepath: URL
 
     /// Initialize a new instance of this type:
     /// - parameter filename: The filename of the recording.
-    /// - parameter directory: The URL of the directory used to save the recording. Defaults to the user's document directory.
+    /// - parameter directory: The URL of the directory used to save the recording.
+    /// Defaults to the user's document directory.
     init(filename: String, directory: URL = FileManager.userDocumentDirectory) {
         self.filename = filename
         self.directory = directory
@@ -43,11 +43,12 @@ extension RecordingSession {
         private let sampleRate: Double
         /// The number of channels being used. Defaults to max. See Apple's documentation for more information.
         private let audioQuality: Int
-        /// The number of channels being used. Defaults to .m4a format (MPEG4ACC). See Apple's documentation for more information.
+        /// The number of channels being used. Defaults to .m4a format (MPEG4ACC).
+        /// See Apple's documentation for more information.
         private let format: Int
 
         /// Read-only wrapped value. Builds the necessary structure used by AVAudioRecorder.
-        var wrappedValue: [String : Any] {
+        var wrappedValue: [String: Any] {
             return [AVFormatIDKey: format,
                     AVEncoderAudioQualityKey: audioQuality,
                     AVEncoderBitRateKey: enconderBitRate,
@@ -55,7 +56,7 @@ extension RecordingSession {
                     AVSampleRateKey: sampleRate]
         }
 
-        /// Initialize a new instance of this type
+        /// Initialize a new instance of this type.
         init() {
             self.enconderBitRate = 48000
             self.numberOfChannels = 2
