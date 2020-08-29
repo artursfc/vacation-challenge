@@ -5,6 +5,7 @@
 //  Created by Artur Carneiro on 11/07/19.
 //  Copyright © 2019 Artur Carneiro. All rights reserved.
 //
+// swiftlint:disable force_cast
 
 import UIKit
 import Foundation
@@ -244,7 +245,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         if !name.isEmpty {
             if let recording = NSEntityDescription.insertNewObject(forEntityName: "Recording", into: context) as? Recording {
                 recording.name = name
-                recording.date = date as NSDate
+                recording.date = date
                 recording.path = currentPath
             }
             

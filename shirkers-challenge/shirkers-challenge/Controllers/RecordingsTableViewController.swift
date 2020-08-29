@@ -5,6 +5,7 @@
 //  Created by Artur Carneiro on 25/07/19.
 //  Copyright © 2019 Artur Carneiro. All rights reserved.
 //
+// swiftlint:disable force_cast
 
 import UIKit
 import CoreData
