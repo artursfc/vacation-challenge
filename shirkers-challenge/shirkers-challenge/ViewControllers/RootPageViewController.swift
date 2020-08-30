@@ -33,6 +33,7 @@ final class RootPageViewController: UIPageViewController {
         if !pages.isEmpty {
             self.setViewControllers([pages[0]], direction: .forward, animated: true, completion: nil)
             setupPageControl()
+            title = pages.first?.title
         }
     }
 
@@ -63,6 +64,7 @@ extension RootPageViewController: UIPageViewControllerDelegate {
             if let firstPage = pages.first {
                 if let newCurrentPage = self.pages.firstIndex(of: firstPage) {
                     self.pageControl.currentPage = newCurrentPage
+                    title = firstPage.title
                 }
             }
         }

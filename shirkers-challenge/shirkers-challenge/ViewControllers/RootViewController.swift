@@ -13,16 +13,11 @@ final class RootViewController: UIViewController {
     private let rootPageViewController: RootPageViewController
 
     init() {
-        let first = UIViewController()
-        first.view.backgroundColor = .memoraDarkGray
+        let first = UINavigationController(rootViewController: InboxViewController())
 
-        let second = UIViewController()
-        second.view.backgroundColor = .memoraRed
+        let second = UINavigationController(rootViewController: ArchiveViewController())
 
-        let third = UIViewController()
-        third.view.backgroundColor = .systemPink
-
-        rootPageViewController = RootPageViewController(pages: [first, second, third])
+        rootPageViewController = RootPageViewController(pages: [first, second])
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -32,13 +27,13 @@ final class RootViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        view.backgroundColor = .systemRed
+        view.backgroundColor = .memoraDarkGray
 
         self.addChild(rootPageViewController)
         self.view.addSubview(rootPageViewController.view)
 
-        rootPageViewController.view.frame = UIScreen.main.bounds
-
         rootPageViewController.didMove(toParent: self)
+
+        title = "Teste"
     }
 }

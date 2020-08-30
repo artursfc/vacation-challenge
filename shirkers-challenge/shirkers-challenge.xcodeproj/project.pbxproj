@@ -11,6 +11,8 @@
 		A40BCDC924FADF54002F53A0 /* AutoLayoutPropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BCDC824FADF54002F53A0 /* AutoLayoutPropertyWrapper.swift */; };
 		A40BCDCE24FAF542002F53A0 /* RootPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BCDCD24FAF542002F53A0 /* RootPageViewController.swift */; };
 		A40BCDD024FB0272002F53A0 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BCDCF24FB0272002F53A0 /* UIColor+Extensions.swift */; };
+		A40BCDD224FB05BE002F53A0 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BCDD124FB05BE002F53A0 /* InboxViewController.swift */; };
+		A40BCDD524FC2C3B002F53A0 /* InboxCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BCDD424FC2C3B002F53A0 /* InboxCollectionViewCell.swift */; };
 		A40ED58C22D7B025004C3A8A /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40ED58B22D7B025004C3A8A /* MainScreenViewController.swift */; };
 		A40ED5B522D7D623004C3A8A /* CassetteTapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40ED5B422D7D623004C3A8A /* CassetteTapeView.swift */; };
 		A43A5DB8243F918000E6FBBB /* RecordingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A5DB7243F918000E6FBBB /* RecordingController.swift */; };
@@ -27,6 +29,8 @@
 		A468156322D66E5500537D16 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468156222D66E5500537D16 /* Constants.swift */; };
 		A4877FCF22DE495D00A94411 /* CassetteTapeShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4877FCE22DE495D00A94411 /* CassetteTapeShapeLayer.swift */; };
 		A4877FD122E0E2E800A94411 /* SpoolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4877FD022E0E2E800A94411 /* SpoolView.swift */; };
+		A499E96A24FC3D0200290B16 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A499E96924FC3D0200290B16 /* ArchiveViewController.swift */; };
+		A499E96C24FC3DD000290B16 /* ArchiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A499E96B24FC3DD000290B16 /* ArchiveTableViewCell.swift */; };
 		A4A241E3243FB50E0025DA3D /* OSLog+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A241E2243FB50E0025DA3D /* OSLog+Extensions.swift */; };
 		A4A241E5243FC1850025DA3D /* RecordingControllerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A241E4243FC1850025DA3D /* RecordingControllerError.swift */; };
 		A4CC531622E4FEC70095C921 /* CassetteTapeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CC531522E4FEC70095C921 /* CassetteTapeButtonView.swift */; };
@@ -48,6 +52,8 @@
 		A40BCDC824FADF54002F53A0 /* AutoLayoutPropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutPropertyWrapper.swift; sourceTree = "<group>"; };
 		A40BCDCD24FAF542002F53A0 /* RootPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootPageViewController.swift; sourceTree = "<group>"; };
 		A40BCDCF24FB0272002F53A0 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		A40BCDD124FB05BE002F53A0 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
+		A40BCDD424FC2C3B002F53A0 /* InboxCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxCollectionViewCell.swift; sourceTree = "<group>"; };
 		A40ED58B22D7B025004C3A8A /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		A40ED5B422D7D623004C3A8A /* CassetteTapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassetteTapeView.swift; sourceTree = "<group>"; };
 		A43A5DB7243F918000E6FBBB /* RecordingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingController.swift; sourceTree = "<group>"; };
@@ -68,6 +74,8 @@
 		A468156222D66E5500537D16 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A4877FCE22DE495D00A94411 /* CassetteTapeShapeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassetteTapeShapeLayer.swift; sourceTree = "<group>"; };
 		A4877FD022E0E2E800A94411 /* SpoolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpoolView.swift; sourceTree = "<group>"; };
+		A499E96924FC3D0200290B16 /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
+		A499E96B24FC3DD000290B16 /* ArchiveTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveTableViewCell.swift; sourceTree = "<group>"; };
 		A4A241E2243FB50E0025DA3D /* OSLog+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+Extensions.swift"; sourceTree = "<group>"; };
 		A4A241E4243FC1850025DA3D /* RecordingControllerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingControllerError.swift; sourceTree = "<group>"; };
 		A4CC531522E4FEC70095C921 /* CassetteTapeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassetteTapeButtonView.swift; sourceTree = "<group>"; };
@@ -97,6 +105,9 @@
 			children = (
 				A40BCDC624FADF2C002F53A0 /* RootViewController.swift */,
 				A40BCDCD24FAF542002F53A0 /* RootPageViewController.swift */,
+				A499E96824FC3CEB00290B16 /* Settings */,
+				A499E96724FC3CE500290B16 /* Archive */,
+				A40BCDD324FC2C2D002F53A0 /* Inbox */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -126,6 +137,15 @@
 			children = (
 			);
 			path = "Recording UI Component";
+			sourceTree = "<group>";
+		};
+		A40BCDD324FC2C2D002F53A0 /* Inbox */ = {
+			isa = PBXGroup;
+			children = (
+				A40BCDD124FB05BE002F53A0 /* InboxViewController.swift */,
+				A40BCDD424FC2C3B002F53A0 /* InboxCollectionViewCell.swift */,
+			);
+			path = Inbox;
 			sourceTree = "<group>";
 		};
 		A43A5DB9243F950700E6FBBB /* Recorder */ = {
@@ -190,6 +210,22 @@
 				A40BCDC824FADF54002F53A0 /* AutoLayoutPropertyWrapper.swift */,
 			);
 			path = "shirkers-challenge";
+			sourceTree = "<group>";
+		};
+		A499E96724FC3CE500290B16 /* Archive */ = {
+			isa = PBXGroup;
+			children = (
+				A499E96924FC3D0200290B16 /* ArchiveViewController.swift */,
+				A499E96B24FC3DD000290B16 /* ArchiveTableViewCell.swift */,
+			);
+			path = Archive;
+			sourceTree = "<group>";
+		};
+		A499E96824FC3CEB00290B16 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		A4CC531122E3BA1F0095C921 /* Views */ = {
@@ -352,12 +388,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A499E96C24FC3DD000290B16 /* ArchiveTableViewCell.swift in Sources */,
 				A40ED5B522D7D623004C3A8A /* CassetteTapeView.swift in Sources */,
+				A40BCDD224FB05BE002F53A0 /* InboxViewController.swift in Sources */,
 				A43EA29022E9D71F001A7310 /* AudioSession.swift in Sources */,
 				A40BCDC724FADF2C002F53A0 /* RootViewController.swift in Sources */,
 				A453E261243E680D00D05C65 /* RecordingSession.swift in Sources */,
 				A40BCDD024FB0272002F53A0 /* UIColor+Extensions.swift in Sources */,
 				A468155622D66BE200537D16 /* shirkers_challenge.xcdatamodeld in Sources */,
+				A499E96A24FC3D0200290B16 /* ArchiveViewController.swift in Sources */,
 				A4877FD122E0E2E800A94411 /* SpoolView.swift in Sources */,
 				A468154E22D66BE200537D16 /* AppDelegate.swift in Sources */,
 				A40BCDCE24FAF542002F53A0 /* RootPageViewController.swift in Sources */,
@@ -371,6 +410,7 @@
 				A4F74D97230F1D29006B43E1 /* MemoryPlayerViewController.swift in Sources */,
 				A43EA29622EA1193001A7310 /* RecordingsTableViewController.swift in Sources */,
 				A40ED58C22D7B025004C3A8A /* MainScreenViewController.swift in Sources */,
+				A40BCDD524FC2C3B002F53A0 /* InboxCollectionViewCell.swift in Sources */,
 				A4A241E5243FC1850025DA3D /* RecordingControllerError.swift in Sources */,
 				A43EA29822EA145B001A7310 /* RecordingsTableViewCell.swift in Sources */,
 			);
