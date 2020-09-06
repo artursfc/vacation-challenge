@@ -20,8 +20,7 @@
 		A43EA29022E9D71F001A7310 /* AudioSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA28F22E9D71F001A7310 /* AudioSession.swift */; };
 		A43EA29622EA1193001A7310 /* RecordingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA29522EA1193001A7310 /* RecordingsTableViewController.swift */; };
 		A43EA29822EA145B001A7310 /* RecordingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA29722EA145B001A7310 /* RecordingsTableViewCell.swift */; };
-		A453E261243E680D00D05C65 /* RecordingSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A453E260243E680D00D05C65 /* RecordingSession.swift */; };
-		A453E269243E694D00D05C65 /* shirkers_challengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A453E268243E694D00D05C65 /* shirkers_challengeTests.swift */; };
+		A453E261243E680D00D05C65 /* RecordingInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A453E260243E680D00D05C65 /* RecordingInformation.swift */; };
 		A468154E22D66BE200537D16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468154D22D66BE200537D16 /* AppDelegate.swift */; };
 		A468155622D66BE200537D16 /* shirkers_challenge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A468155422D66BE200537D16 /* shirkers_challenge.xcdatamodeld */; };
 		A468155822D66BE300537D16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A468155722D66BE300537D16 /* Assets.xcassets */; };
@@ -34,11 +33,13 @@
 		A4A241E3243FB50E0025DA3D /* OSLog+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A241E2243FB50E0025DA3D /* OSLog+Extensions.swift */; };
 		A4A241E5243FC1850025DA3D /* RecordingControllerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A241E4243FC1850025DA3D /* RecordingControllerError.swift */; };
 		A4CC531622E4FEC70095C921 /* CassetteTapeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CC531522E4FEC70095C921 /* CassetteTapeButtonView.swift */; };
+		A4D0E00C25056C1200B3B12D /* RecordingControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0E00B25056C1200B3B12D /* RecordingControllerProtocol.swift */; };
+		A4D0E0242505706900B3B12D /* shirkers_challengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0E0232505706900B3B12D /* shirkers_challengeTests.swift */; };
 		A4F74D97230F1D29006B43E1 /* MemoryPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F74D96230F1D29006B43E1 /* MemoryPlayerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A453E26B243E694D00D05C65 /* PBXContainerItemProxy */ = {
+		A4D0E0262505706900B3B12D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A468154222D66BE200537D16 /* Project object */;
 			proxyType = 1;
@@ -61,10 +62,7 @@
 		A43EA28F22E9D71F001A7310 /* AudioSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSession.swift; sourceTree = "<group>"; };
 		A43EA29522EA1193001A7310 /* RecordingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsTableViewController.swift; sourceTree = "<group>"; };
 		A43EA29722EA145B001A7310 /* RecordingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsTableViewCell.swift; sourceTree = "<group>"; };
-		A453E260243E680D00D05C65 /* RecordingSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingSession.swift; sourceTree = "<group>"; };
-		A453E266243E694D00D05C65 /* shirkers-challengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "shirkers-challengeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A453E268243E694D00D05C65 /* shirkers_challengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shirkers_challengeTests.swift; sourceTree = "<group>"; };
-		A453E26A243E694D00D05C65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A453E260243E680D00D05C65 /* RecordingInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingInformation.swift; sourceTree = "<group>"; };
 		A468154A22D66BE200537D16 /* shirkers-challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shirkers-challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A468154D22D66BE200537D16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A468155522D66BE200537D16 /* shirkers_challenge.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = shirkers_challenge.xcdatamodel; sourceTree = "<group>"; };
@@ -79,18 +77,22 @@
 		A4A241E2243FB50E0025DA3D /* OSLog+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+Extensions.swift"; sourceTree = "<group>"; };
 		A4A241E4243FC1850025DA3D /* RecordingControllerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingControllerError.swift; sourceTree = "<group>"; };
 		A4CC531522E4FEC70095C921 /* CassetteTapeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassetteTapeButtonView.swift; sourceTree = "<group>"; };
+		A4D0E00B25056C1200B3B12D /* RecordingControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingControllerProtocol.swift; sourceTree = "<group>"; };
+		A4D0E0212505706800B3B12D /* shirkers-challengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "shirkers-challengeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4D0E0232505706900B3B12D /* shirkers_challengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shirkers_challengeTests.swift; sourceTree = "<group>"; };
+		A4D0E0252505706900B3B12D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4F74D96230F1D29006B43E1 /* MemoryPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryPlayerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A453E263243E694D00D05C65 /* Frameworks */ = {
+		A468154722D66BE200537D16 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A468154722D66BE200537D16 /* Frameworks */ = {
+		A4D0E01E2505706800B3B12D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -151,9 +153,10 @@
 		A43A5DB9243F950700E6FBBB /* Recorder */ = {
 			isa = PBXGroup;
 			children = (
-				A453E260243E680D00D05C65 /* RecordingSession.swift */,
+				A453E260243E680D00D05C65 /* RecordingInformation.swift */,
 				A43A5DB7243F918000E6FBBB /* RecordingController.swift */,
 				A4A241E4243FC1850025DA3D /* RecordingControllerError.swift */,
+				A4D0E00B25056C1200B3B12D /* RecordingControllerProtocol.swift */,
 			);
 			path = Recorder;
 			sourceTree = "<group>";
@@ -167,20 +170,11 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		A453E267243E694D00D05C65 /* shirkers-challengeTests */ = {
-			isa = PBXGroup;
-			children = (
-				A453E268243E694D00D05C65 /* shirkers_challengeTests.swift */,
-				A453E26A243E694D00D05C65 /* Info.plist */,
-			);
-			path = "shirkers-challengeTests";
-			sourceTree = "<group>";
-		};
 		A468154122D66BE200537D16 = {
 			isa = PBXGroup;
 			children = (
 				A468154C22D66BE200537D16 /* shirkers-challenge */,
-				A453E267243E694D00D05C65 /* shirkers-challengeTests */,
+				A4D0E0222505706900B3B12D /* shirkers-challengeTests */,
 				A468154B22D66BE200537D16 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -189,7 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				A468154A22D66BE200537D16 /* shirkers-challenge.app */,
-				A453E266243E694D00D05C65 /* shirkers-challengeTests.xctest */,
+				A4D0E0212505706800B3B12D /* shirkers-challengeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -258,27 +252,18 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		A4D0E0222505706900B3B12D /* shirkers-challengeTests */ = {
+			isa = PBXGroup;
+			children = (
+				A4D0E0232505706900B3B12D /* shirkers_challengeTests.swift */,
+				A4D0E0252505706900B3B12D /* Info.plist */,
+			);
+			path = "shirkers-challengeTests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A453E265243E694D00D05C65 /* shirkers-challengeTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A453E26D243E694D00D05C65 /* Build configuration list for PBXNativeTarget "shirkers-challengeTests" */;
-			buildPhases = (
-				A453E262243E694D00D05C65 /* Sources */,
-				A453E263243E694D00D05C65 /* Frameworks */,
-				A453E264243E694D00D05C65 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A453E26C243E694D00D05C65 /* PBXTargetDependency */,
-			);
-			name = "shirkers-challengeTests";
-			productName = "shirkers-challengeTests";
-			productReference = A453E266243E694D00D05C65 /* shirkers-challengeTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		A468154922D66BE200537D16 /* shirkers-challenge */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A468155F22D66BE300537D16 /* Build configuration list for PBXNativeTarget "shirkers-challenge" */;
@@ -297,22 +282,40 @@
 			productReference = A468154A22D66BE200537D16 /* shirkers-challenge.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A4D0E0202505706800B3B12D /* shirkers-challengeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A4D0E0282505706900B3B12D /* Build configuration list for PBXNativeTarget "shirkers-challengeTests" */;
+			buildPhases = (
+				A4D0E01D2505706800B3B12D /* Sources */,
+				A4D0E01E2505706800B3B12D /* Frameworks */,
+				A4D0E01F2505706800B3B12D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A4D0E0272505706900B3B12D /* PBXTargetDependency */,
+			);
+			name = "shirkers-challengeTests";
+			productName = "shirkers-challengeTests";
+			productReference = A4D0E0212505706800B3B12D /* shirkers-challengeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		A468154222D66BE200537D16 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1140;
+				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Artur Carneiro";
 				TargetAttributes = {
-					A453E265243E694D00D05C65 = {
-						CreatedOnToolsVersion = 11.4;
-						TestTargetID = A468154922D66BE200537D16;
-					};
 					A468154922D66BE200537D16 = {
 						CreatedOnToolsVersion = 10.2.1;
+					};
+					A4D0E0202505706800B3B12D = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = A468154922D66BE200537D16;
 					};
 				};
 			};
@@ -330,25 +333,25 @@
 			projectRoot = "";
 			targets = (
 				A468154922D66BE200537D16 /* shirkers-challenge */,
-				A453E265243E694D00D05C65 /* shirkers-challengeTests */,
+				A4D0E0202505706800B3B12D /* shirkers-challengeTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A453E264243E694D00D05C65 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A468154822D66BE200537D16 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A468155B22D66BE300537D16 /* LaunchScreen.storyboard in Resources */,
 				A468155822D66BE300537D16 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A4D0E01F2505706800B3B12D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,14 +379,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A453E262243E694D00D05C65 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A453E269243E694D00D05C65 /* shirkers_challengeTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A468154622D66BE200537D16 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -393,12 +388,13 @@
 				A40BCDD224FB05BE002F53A0 /* InboxViewController.swift in Sources */,
 				A43EA29022E9D71F001A7310 /* AudioSession.swift in Sources */,
 				A40BCDC724FADF2C002F53A0 /* RootViewController.swift in Sources */,
-				A453E261243E680D00D05C65 /* RecordingSession.swift in Sources */,
+				A453E261243E680D00D05C65 /* RecordingInformation.swift in Sources */,
 				A40BCDD024FB0272002F53A0 /* UIColor+Extensions.swift in Sources */,
 				A468155622D66BE200537D16 /* shirkers_challenge.xcdatamodeld in Sources */,
 				A499E96A24FC3D0200290B16 /* ArchiveViewController.swift in Sources */,
 				A4877FD122E0E2E800A94411 /* SpoolView.swift in Sources */,
 				A468154E22D66BE200537D16 /* AppDelegate.swift in Sources */,
+				A4D0E00C25056C1200B3B12D /* RecordingControllerProtocol.swift in Sources */,
 				A40BCDCE24FAF542002F53A0 /* RootPageViewController.swift in Sources */,
 				A4CC531622E4FEC70095C921 /* CassetteTapeButtonView.swift in Sources */,
 				A4877FCF22DE495D00A94411 /* CassetteTapeShapeLayer.swift in Sources */,
@@ -416,13 +412,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A4D0E01D2505706800B3B12D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4D0E0242505706900B3B12D /* shirkers_challengeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A453E26C243E694D00D05C65 /* PBXTargetDependency */ = {
+		A4D0E0272505706900B3B12D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A468154922D66BE200537D16 /* shirkers-challenge */;
-			targetProxy = A453E26B243E694D00D05C65 /* PBXContainerItemProxy */;
+			targetProxy = A4D0E0262505706900B3B12D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -438,48 +442,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		A453E26E243E694D00D05C65 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L76X5KFZD9;
-				INFOPLIST_FILE = "shirkers-challengeTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.csfa.shirkers-challengeTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shirkers-challenge.app/shirkers-challenge";
-			};
-			name = Debug;
-		};
-		A453E26F243E694D00D05C65 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L76X5KFZD9;
-				INFOPLIST_FILE = "shirkers-challengeTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.csfa.shirkers-challengeTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shirkers-challenge.app/shirkers-challenge";
-			};
-			name = Release;
-		};
 		A468155D22D66BE300537D16 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -636,18 +598,51 @@
 			};
 			name = Release;
 		};
+		A4D0E0292505706900B3B12D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L76X5KFZD9;
+				INFOPLIST_FILE = "shirkers-challengeTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.shirkers-challengeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shirkers-challenge.app/shirkers-challenge";
+			};
+			name = Debug;
+		};
+		A4D0E02A2505706900B3B12D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L76X5KFZD9;
+				INFOPLIST_FILE = "shirkers-challengeTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.shirkers-challengeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shirkers-challenge.app/shirkers-challenge";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A453E26D243E694D00D05C65 /* Build configuration list for PBXNativeTarget "shirkers-challengeTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A453E26E243E694D00D05C65 /* Debug */,
-				A453E26F243E694D00D05C65 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		A468154522D66BE200537D16 /* Build configuration list for PBXProject "shirkers-challenge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -662,6 +657,15 @@
 			buildConfigurations = (
 				A468156022D66BE300537D16 /* Debug */,
 				A468156122D66BE300537D16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A4D0E0282505706900B3B12D /* Build configuration list for PBXNativeTarget "shirkers-challengeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A4D0E0292505706900B3B12D /* Debug */,
+				A4D0E02A2505706900B3B12D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -8,7 +8,10 @@
 
 import UIKit
 
+/// Representation of the Archive screen. Should be instantianted as one the pages of
+/// a `UIPageViewController`. However, it should be encapsulated inside a `UINavigationController`.
 final class ArchiveViewController: UIViewController {
+    /// `UITableView` used to display all archived recordings.
     @AutoLayout private var archiveTableView: UITableView
 
     init() {
@@ -36,6 +39,7 @@ final class ArchiveViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = .memoraDarkGray
     }
 
+    /// Setups constraints and look of the `archiveTableView`.
     private func setupTableViewLayout() {
         archiveTableView.backgroundColor = .memoraDarkGray
 
@@ -56,6 +60,7 @@ extension ArchiveViewController: UITableViewDelegate {
 
 extension ArchiveViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        /// - TODO: Add correct number of archived recordings.
         return 30
     }
 

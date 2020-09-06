@@ -1,5 +1,5 @@
 //
-//  RecordingSession.swift
+//  RecordingInformation.swift
 //  shirkers-challenge
 //
 //  Created by Artur Carneiro on 08/04/20.

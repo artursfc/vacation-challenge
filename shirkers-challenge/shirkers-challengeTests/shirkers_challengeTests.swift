@@ -2,45 +2,31 @@
 //  shirkers_challengeTests.swift
 //  shirkers-challengeTests
 //
-//  Created by Artur Carneiro on 08/04/20.
+//  Created by Artur Carneiro on 06/09/20.
 //  Copyright © 2020 Artur Carneiro. All rights reserved.
 //
 
 import XCTest
-import AVFoundation
-@testable import shirkers_challenge
 
-class RecordingSessionTests: XCTestCase {
+class shirkers_challengeTests: XCTestCase {
 
-    //Property wrappers can't be declared in local scope.
-    @RecordingSettings var pwSettings: [String : Any]
-
-    func testRecordingSettings() {
-        let settings: [String : Any] = [AVFormatIDKey: kAudioFormatAppleLossless,
-                        AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue,
-                        AVEncoderBitRateKey: 32000 ,
-                        AVNumberOfChannelsKey: 2,
-                        AVSampleRateKey: 44100.2]
-
-        for key in settings.keys {
-            if let lhs = settings[key] as? String, let rhs = pwSettings[key] as? String {
-                XCTAssert(lhs == rhs)
-            }
-        }
+    override func setUpWithError() throws {
+        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
-    func testRecordingSession() {
-        let fileName = "FILENAME"
-        let fileExtension = ".mp3"
-        let session = RecordingSession(on: fileName)
-        let filePath = FileManager.userDocumentDirectory.appendingPathComponent(fileName).appendingPathExtension(fileExtension)
+    override func tearDownWithError() throws {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
 
-        XCTAssert(session.filePath == filePath)
+    func testExample() throws {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
 
-        for key in session.settings.keys {
-            if let lhs = session.settings[key] as? String, let rhs = pwSettings[key] as? String {
-                XCTAssert(lhs == rhs)
-            }
+    func testPerformanceExample() throws {
+        // This is an example of a performance test case.
+        measure {
+            // Put the code you want to measure the time of here.
         }
     }
 

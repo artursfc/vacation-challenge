@@ -9,9 +9,9 @@
 import AVFoundation
 import os.log
 
-/// Class used setup a recording session and to record audio. Preferably, it should not be
+/// Type used setup a recording session and to record audio. Preferably, it should not be
 /// instantiated by a ViewController as the error responses were not made with that in mind.
-public final class RecordingController: NSObject {
+public final class RecordingController: NSObject, RecordingControllerProtocol {
     /// The AVAudioRecorder used to record. Optional as the initializer for the class requires
     ///  a filename that does not exist at RecordingController initialization.
     private var recorder: AVAudioRecorder?
@@ -24,22 +24,21 @@ public final class RecordingController: NSObject {
     }
 
     /// Enum used to describe all possible states of an instance. Recording should only be possible at idle.
-    private enum State {
+    enum State {
         case requiresPermission
-        case requiresSession
         case sessionActive
-        case invalidSession
         case idle
         case recording
-        case invalidRecorder
     }
 
     /// The instance state. Remember to always check the state before an action and set the correct state after
     /// an action. After a recording is done the state should be set to idle.
-    private var state: State = .idle
+    private(set) var state: State = .requiresPermission
 
     /// Initialize a new instance of this type.
     public override init() {
+        super.init()
+        self.setupRecordingSession()
     }
 
     /// Requests user permission to record. No need to treat the
@@ -65,12 +64,11 @@ public final class RecordingController: NSObject {
             os_log("AVAudioSession creation failed. Category: .record. Mode: .default",
                    log: OSLog.recordingCycle,
                    type: .error)
-            state = .invalidSession
         }
     }
 
     public func setup(for filename: String) throws {
-        let session = RecordingSession(filename: filename)
+        let session = RecordingInformation(filename: filename)
         let url = session.filepath
         let settings = session.settings
 
@@ -84,12 +82,11 @@ public final class RecordingController: NSObject {
             os_log("AVAudioRecorder created. Set to prepareToRecord().", log: OSLog.recordingCycle, type: .info)
         } catch {
             os_log("AVAudioRecorder creation failed.", log: OSLog.recordingCycle, type: .error)
-            state = .invalidRecorder
             throw RecordingControllerError.setupRequired
         }
     }
 
-    public func record() throws {
+    public func start() throws {
         if state == .idle {
             if let recorder = recorder {
                 recorder.record()
@@ -99,7 +96,7 @@ public final class RecordingController: NSObject {
             switch state {
             case .requiresPermission:
                 throw RecordingControllerError.permissionDenied
-            case .sessionActive, .invalidSession, .requiresSession, .invalidRecorder:
+            case .sessionActive:
                 throw RecordingControllerError.setupRequired
             case .recording:
                 throw RecordingControllerError.stillRecording
@@ -119,7 +116,7 @@ public final class RecordingController: NSObject {
             switch state {
             case .requiresPermission:
                 throw RecordingControllerError.permissionDenied
-            case .sessionActive, .invalidSession, .requiresSession, .invalidRecorder:
+            case .sessionActive:
                 throw RecordingControllerError.setupRequired
             case .idle:
                 throw RecordingControllerError.notRecording

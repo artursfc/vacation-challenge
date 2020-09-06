@@ -8,9 +8,12 @@
 
 import UIKit
 
+/// Representation of the Inbox screen. Should be instantianted as one the pages of
+/// a `UIPageViewController`. However, it should be encapsulated inside a `UINavigationController`.
 final class InboxViewController: UIViewController {
 
-    private lazy var collectionView: UICollectionView = {
+    /// `UICollectionView` used to display all recordings currently in the Inbox.
+    private lazy var inboxCollectionView: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collection.translatesAutoresizingMaskIntoConstraints = false
         return collection
@@ -18,10 +21,10 @@ final class InboxViewController: UIViewController {
 
     init() {
         super.init(nibName: nil, bundle: nil)
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
+        self.inboxCollectionView.delegate = self
+        self.inboxCollectionView.dataSource = self
 
-        self.collectionView.register(InboxCollectionViewCell.self,
+        self.inboxCollectionView.register(InboxCollectionViewCell.self,
                                      forCellWithReuseIdentifier: InboxCollectionViewCell.identifier)
     }
 
@@ -41,16 +44,17 @@ final class InboxViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = .memoraDarkGray
     }
 
+    /// Setups constraints and look of the `inboxCollectionView`
     private func setupCollectionViewLayout() {
-        collectionView.backgroundColor = .memoraDarkGray
+        inboxCollectionView.backgroundColor = .memoraDarkGray
 
-        self.view.addSubview(collectionView)
+        self.view.addSubview(inboxCollectionView)
 
         NSLayoutConstraint.activate([
-            collectionView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            collectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.90),
-            collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            collectionView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            inboxCollectionView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            inboxCollectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.90),
+            inboxCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            inboxCollectionView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
 }

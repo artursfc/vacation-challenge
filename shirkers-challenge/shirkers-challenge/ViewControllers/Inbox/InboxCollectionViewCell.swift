@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Representation of a `InboxViewController`'s cell.
 final class InboxCollectionViewCell: UICollectionViewCell {
 
     static let identifier: String = "Inbox Cell"

@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Representation of a `ArchiveViewController`'s cell.
 final class ArchiveTableViewCell: UITableViewCell {
 
     static let identifier: String = "Archive Cell"

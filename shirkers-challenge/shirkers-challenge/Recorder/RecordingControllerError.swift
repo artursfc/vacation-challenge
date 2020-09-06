@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// The representation of a `RecordingController`'s thrown errors.
 public enum RecordingControllerError: Error {
     case permissionDenied
     case setupRequired
