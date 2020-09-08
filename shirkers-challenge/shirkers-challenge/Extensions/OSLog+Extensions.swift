@@ -10,7 +10,8 @@ import Foundation
 import os.log
 
 extension OSLog {
-    private static var subsystem: String = Bundle.main.bundleIdentifier ?? "FAILED-TO-LOAD-BUNDLE-IDENTIFIER"
+    private static var subsystem: String = Bundle.main.bundleIdentifier!
 
     static let recordingCycle: OSLog = OSLog(subsystem: subsystem, category: "recordingCycle")
+    static let coreDataStack: OSLog = OSLog(subsystem: subsystem, category: "coreDataStack")
 }

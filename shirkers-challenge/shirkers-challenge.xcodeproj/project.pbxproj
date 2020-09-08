@@ -35,6 +35,8 @@
 		A4CC531622E4FEC70095C921 /* CassetteTapeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CC531522E4FEC70095C921 /* CassetteTapeButtonView.swift */; };
 		A4D0E00C25056C1200B3B12D /* RecordingControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0E00B25056C1200B3B12D /* RecordingControllerProtocol.swift */; };
 		A4D0E0242505706900B3B12D /* shirkers_challengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0E0232505706900B3B12D /* shirkers_challengeTests.swift */; };
+		A4D0E030250587EB00B3B12D /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0E02F250587EB00B3B12D /* CoreDataStack.swift */; };
+		A4D0E03225058A6700B3B12D /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0E03125058A6700B3B12D /* FileManager+Extensions.swift */; };
 		A4F74D97230F1D29006B43E1 /* MemoryPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F74D96230F1D29006B43E1 /* MemoryPlayerViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +83,8 @@
 		A4D0E0212505706800B3B12D /* shirkers-challengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "shirkers-challengeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4D0E0232505706900B3B12D /* shirkers_challengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shirkers_challengeTests.swift; sourceTree = "<group>"; };
 		A4D0E0252505706900B3B12D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4D0E02F250587EB00B3B12D /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		A4D0E03125058A6700B3B12D /* FileManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extensions.swift"; sourceTree = "<group>"; };
 		A4F74D96230F1D29006B43E1 /* MemoryPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryPlayerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +134,7 @@
 			children = (
 				A4A241E2243FB50E0025DA3D /* OSLog+Extensions.swift */,
 				A40BCDCF24FB0272002F53A0 /* UIColor+Extensions.swift */,
+				A4D0E03125058A6700B3B12D /* FileManager+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 		A468154C22D66BE200537D16 /* shirkers-challenge */ = {
 			isa = PBXGroup;
 			children = (
+				A4D0E02D250587D000B3B12D /* Core Data */,
 				A40BCDC524FADEC4002F53A0 /* Extensions */,
 				A40BCDC424FADE3C002F53A0 /* Resources */,
 				A40BCDCA24FADFD3002F53A0 /* Recording UI Component */,
@@ -259,6 +265,14 @@
 				A4D0E0252505706900B3B12D /* Info.plist */,
 			);
 			path = "shirkers-challengeTests";
+			sourceTree = "<group>";
+		};
+		A4D0E02D250587D000B3B12D /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				A4D0E02F250587EB00B3B12D /* CoreDataStack.swift */,
+			);
+			path = "Core Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -384,8 +398,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A499E96C24FC3DD000290B16 /* ArchiveTableViewCell.swift in Sources */,
+				A4D0E03225058A6700B3B12D /* FileManager+Extensions.swift in Sources */,
 				A40ED5B522D7D623004C3A8A /* CassetteTapeView.swift in Sources */,
 				A40BCDD224FB05BE002F53A0 /* InboxViewController.swift in Sources */,
+				A4D0E030250587EB00B3B12D /* CoreDataStack.swift in Sources */,
 				A43EA29022E9D71F001A7310 /* AudioSession.swift in Sources */,
 				A40BCDC724FADF2C002F53A0 /* RootViewController.swift in Sources */,
 				A453E261243E680D00D05C65 /* RecordingInformation.swift in Sources */,

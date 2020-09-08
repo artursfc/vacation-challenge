@@ -129,8 +129,8 @@
             filePath = "shirkers-challenge/Helpers/AudioSession.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "setupPlayer()"
             landmarkType = "7">
          </BreakpointContent>

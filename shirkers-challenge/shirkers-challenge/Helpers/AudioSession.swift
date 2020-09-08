@@ -9,13 +9,6 @@
 import UIKit
 import AVFoundation
 
-extension FileManager {
-    static var userDocumentDirectory: URL {
-        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    }
-}
-
-
 
 public final class AudioSession: NSObject {
     
