@@ -38,7 +38,7 @@ final class ArchiveViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.memoraLightGray]
         navigationController?.navigationBar.barTintColor = .memoraDarkGray
     }
-
+    
     /// Setups constraints and look of the `archiveTableView`.
     private func setupTableViewLayout() {
         archiveTableView.backgroundColor = .memoraDarkGray

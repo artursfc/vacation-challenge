@@ -68,7 +68,7 @@ public final class RecordingController: NSObject, RecordingControllerProtocol {
     }
 
     public func setup(for filename: String) throws {
-        let session = RecordingInformation(filename: filename)
+        let session = RecordingSessionSettings(filename: filename)
         let url = session.filepath
         let settings = session.settings
 

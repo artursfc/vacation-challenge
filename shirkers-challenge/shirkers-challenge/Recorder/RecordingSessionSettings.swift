@@ -1,5 +1,5 @@
 //
-//  RecordingInformation.swift
+//  RecordingSessionSettings.swift
 //  shirkers-challenge
 //
 //  Created by Artur Carneiro on 08/04/20.
@@ -10,7 +10,7 @@ import AVFoundation
 
 /// A structure containing the necessary information to initialize a recording session.
 /// Should be used by the RecordingController to setup itself.
-struct RecordingInformation {
+struct RecordingSessionSettings {
     /// The URL of the directory used to save the recording. Defaults to the user's document directory.
     private let directory: URL
     /// The filename of the recording.
@@ -32,7 +32,7 @@ struct RecordingInformation {
     }
 }
 
-extension RecordingInformation {
+extension RecordingSessionSettings {
     /// Property wrapper used to build a default recording settings.
     @propertyWrapper struct RecordingSettings {
         /// The enconder bitrate. Defaults to 48000. See Apple's documentation for more information.

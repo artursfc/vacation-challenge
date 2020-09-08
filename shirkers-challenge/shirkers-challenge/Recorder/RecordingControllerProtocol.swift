@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// The protocol determining the expected behaviors of a `RecordingController`.
+/// The protocol determining the public interface of a `RecordingController`.
 public protocol RecordingControllerProtocol {
     func requestRecordPermission() throws
     func setup(for filename: String) throws
