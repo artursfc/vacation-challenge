@@ -27,11 +27,11 @@ final class PlayerComponentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .memoraMediumGray
+        view.layer.cornerRadius = view.frame.height * 0.015
 
         setupProgressSlider()
         setupLabels()
         setupPlayButton()
-        
         setupLayout()
     }
 
@@ -41,17 +41,21 @@ final class PlayerComponentViewController: UIViewController {
 
     private func setupLabels() {
         timestampLabel.textColor = .memoraLightGray
+        timestampLabel.font = .preferredFont(forTextStyle: .body)
         timestampLabel.text = "04:00"
 
         creationDateLabel.textColor = .memoraLightGray
+        creationDateLabel.font = .preferredFont(forTextStyle: .body)
         creationDateLabel.text = "12/12/2020"
 
         titleLabel.textColor = .memoraLightGray
+        titleLabel.font = .preferredFont(forTextStyle: .title2)
         titleLabel.text = "Memory Title"
     }
 
     private func setupPlayButton() {
         playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        playButton.tintColor = .memoraLightGray
     }
 
     private func setupLayout() {
@@ -62,30 +66,24 @@ final class PlayerComponentViewController: UIViewController {
         view.addSubview(playButton)
 
         NSLayoutConstraint.activate([
-            progressSlider.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            progressSlider.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
-            progressSlider.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25),
-            progressSlider.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            progressSlider.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 10),
+            progressSlider.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor),
+            progressSlider.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2),
+            progressSlider.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
 
-            timestampLabel.topAnchor.constraint(equalTo: progressSlider.bottomAnchor),
-            timestampLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            timestampLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25),
-            timestampLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            timestampLabel.topAnchor.constraint(equalTo: progressSlider.bottomAnchor, constant: 10),
+            timestampLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
 
-            creationDateLabel.topAnchor.constraint(equalTo: progressSlider.bottomAnchor),
-            creationDateLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            creationDateLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25),
-            creationDateLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            creationDateLabel.topAnchor.constraint(equalTo: progressSlider.bottomAnchor, constant: 10),
+            creationDateLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
 
             titleLabel.topAnchor.constraint(equalTo: timestampLabel.bottomAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            titleLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
-            titleLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
 
             playButton.topAnchor.constraint(equalTo: creationDateLabel.bottomAnchor),
-            playButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            playButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
-            playButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
+            playButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            playButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
         ])
     }
 }

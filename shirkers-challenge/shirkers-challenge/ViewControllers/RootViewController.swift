@@ -55,12 +55,12 @@ final class RootViewController: UIViewController {
             rootPageViewController.view.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             rootPageViewController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             rootPageViewController.view.widthAnchor.constraint(equalTo: view.widthAnchor),
-            rootPageViewController.view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.7),
+            rootPageViewController.view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.8),
 
             playerComponentViewController.view.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             playerComponentViewController.view.topAnchor.constraint(equalTo: rootPageViewController.view.bottomAnchor),
             playerComponentViewController.view.widthAnchor.constraint(equalTo: view.widthAnchor),
-            playerComponentViewController.view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.3)
+            playerComponentViewController.view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.15)
         ])
     }
 }

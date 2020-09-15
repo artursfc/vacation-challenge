@@ -40,7 +40,7 @@ large_tuple:
   error: 3
 
 line_length:
-  warning: 120
+  warning: 140
   error: 200
   ignores_urls: false
   ignores_function_declarations: false
