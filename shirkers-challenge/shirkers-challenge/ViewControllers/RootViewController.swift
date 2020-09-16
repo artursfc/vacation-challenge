@@ -18,7 +18,9 @@ final class RootViewController: UIViewController {
 
         let second = UINavigationController(rootViewController: ArchiveViewController())
 
-        rootPageViewController = RootPageViewController(pages: [first, second])
+        let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+
+        rootPageViewController = RootPageViewController(pages: [first, second], pageViewController: pageViewController)
 
         self.playerComponentViewController = PlayerComponentViewController()
 
@@ -58,9 +60,9 @@ final class RootViewController: UIViewController {
             rootPageViewController.view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.8),
 
             playerComponentViewController.view.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            playerComponentViewController.view.topAnchor.constraint(equalTo: rootPageViewController.view.bottomAnchor),
-            playerComponentViewController.view.widthAnchor.constraint(equalTo: view.widthAnchor),
-            playerComponentViewController.view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.15)
+            playerComponentViewController.view.topAnchor.constraint(equalTo: rootPageViewController.view.bottomAnchor, constant: 5),
+            playerComponentViewController.view.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor),
+            playerComponentViewController.view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.175)
         ])
     }
 }

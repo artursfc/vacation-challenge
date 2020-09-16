@@ -8,8 +8,9 @@
 
 import UIKit
 
-final class RootPageViewController: UIPageViewController {
+final class RootPageViewController: UIViewController {
 
+    private let pageViewController: UIPageViewController
     private let pages: [UIViewController]
 
     @AutoLayout private var pageControl: UIPageControl
@@ -18,11 +19,12 @@ final class RootPageViewController: UIPageViewController {
         return pages.count
     }
 
-    init(pages: [UIViewController]) {
+    init(pages: [UIViewController], pageViewController: UIPageViewController) {
         self.pages = pages
-        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-        self.delegate = self
-        self.dataSource = self
+        self.pageViewController = pageViewController
+        super.init(nibName: nil, bundle: nil)
+        self.pageViewController.delegate = self
+        self.pageViewController.dataSource = self
     }
 
     required init?(coder: NSCoder) {
@@ -30,12 +32,30 @@ final class RootPageViewController: UIPageViewController {
     }
 
     override func viewDidLoad() {
-        if !pages.isEmpty {
-            self.setViewControllers([pages[0]], direction: .forward, animated: true, completion: nil)
-            setupPageControl()
-            title = pages.first?.title
+        super.viewDidLoad()
+        setupPageControl()
+        setupPageViewController()
+    }
+
+    private func setupPageViewController() {
+        pageViewController.setViewControllers([pages[0]], direction: .forward, animated: true, completion: nil)
+        title = pages.first?.title
+
+        pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(pageViewController.view)
+
+        guard let pageViewControllerView = pageViewController.view else {
+            /// - TODO: Add error handling
+            return
         }
 
+        NSLayoutConstraint.activate([
+            pageViewControllerView.topAnchor.constraint(equalTo: view.topAnchor),
+            pageViewControllerView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            pageViewControllerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
+            pageViewControllerView.leftAnchor.constraint(equalTo: view.leftAnchor)
+        ])
     }
 
     private func setupPageControl() {
@@ -43,13 +63,13 @@ final class RootPageViewController: UIPageViewController {
         pageControl.numberOfPages = numberOfPages
         pageControl.currentPageIndicatorTintColor = .memoraLightGray
         pageControl.pageIndicatorTintColor = .memoraMediumGray
-
+        pageControl.transform = CGAffineTransform(scaleX: 2, y: 2)
+        
         view.addSubview(pageControl)
 
         NSLayoutConstraint.activate([
             pageControl.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             pageControl.widthAnchor.constraint(equalTo: view.widthAnchor),
-            pageControl.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05),
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
