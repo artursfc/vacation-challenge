@@ -8,10 +8,17 @@
 
 import UIKit
 
+/// Container UIViewController for the app's main interface.
 final class RootViewController: UIViewController {
 
+// - MARK: Properties
+
+    /// The UIViewController containing the Inbox, Archive and Settings screens.
     private let rootPageViewController: RootPageViewController
+    /// The UIViewController representing the Player Component.
     private let playerComponentViewController: PlayerComponentViewController
+
+// - MARK: Init
 
     init() {
         let first = UINavigationController(rootViewController: InboxViewController())
@@ -31,6 +38,8 @@ final class RootViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+// - MARK: Life cycle
+
     override func viewDidLoad() {
         view.backgroundColor = .memoraDarkGray
 
@@ -49,6 +58,9 @@ final class RootViewController: UIViewController {
         setupLayout()
     }
 
+// - MARK: Layout
+
+    /// Configures all the necessary constraints.
     private func setupLayout() {
         rootPageViewController.view.translatesAutoresizingMaskIntoConstraints = false
         playerComponentViewController.view.translatesAutoresizingMaskIntoConstraints = false

@@ -12,12 +12,16 @@ import UIKit
 /// a `UIPageViewController`. However, it should be encapsulated inside a `UINavigationController`.
 final class InboxViewController: UIViewController {
 
+// - MARK: Properties
+
     /// `UICollectionView` used to display all recordings currently in the Inbox.
     private lazy var inboxCollectionView: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collection.translatesAutoresizingMaskIntoConstraints = false
         return collection
     }()
+
+// - MARK: Init
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -32,6 +36,8 @@ final class InboxViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+// - MARK: Life cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionViewLayout()
@@ -44,7 +50,9 @@ final class InboxViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = .memoraDarkGray
     }
 
-    /// Setups constraints and look of the `inboxCollectionView`
+// - MARK: Layout
+
+    /// Configures constraints and look of the `inboxCollectionView`
     private func setupCollectionViewLayout() {
         inboxCollectionView.backgroundColor = .memoraDarkGray
 
@@ -59,9 +67,13 @@ final class InboxViewController: UIViewController {
     }
 }
 
+// - MARK: UICollectionViewDelegate
+
 extension InboxViewController: UICollectionViewDelegate {
 
 }
+
+// - MARK: UICollectionViewDataSource
 
 extension InboxViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -78,6 +90,8 @@ extension InboxViewController: UICollectionViewDataSource {
         return UICollectionViewCell()
     }
 }
+
+// - MARK: UICollcetionViewDelegateFlowLayout
 
 extension InboxViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,

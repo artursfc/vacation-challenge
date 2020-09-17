@@ -11,8 +11,12 @@ import UIKit
 /// Representation of the Archive screen. Should be instantianted as one the pages of
 /// a `UIPageViewController`. However, it should be encapsulated inside a `UINavigationController`.
 final class ArchiveViewController: UIViewController {
+// - MARK: Properties
+
     /// `UITableView` used to display all archived recordings.
     @AutoLayout private var archiveTableView: UITableView
+
+// - MARK: Init
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -27,6 +31,8 @@ final class ArchiveViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+// - MARK: Life cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableViewLayout()
@@ -38,8 +44,10 @@ final class ArchiveViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.memoraLightGray]
         navigationController?.navigationBar.barTintColor = .memoraDarkGray
     }
-    
-    /// Setups constraints and look of the `archiveTableView`.
+
+// - MARK: Layout
+
+    /// Configures constraints and look of the `archiveTableView`.
     private func setupTableViewLayout() {
         archiveTableView.backgroundColor = .memoraDarkGray
 
@@ -54,9 +62,13 @@ final class ArchiveViewController: UIViewController {
     }
 }
 
+// - MARK: UITableViewDelegate
+
 extension ArchiveViewController: UITableViewDelegate {
 
 }
+
+// - MARK: UITableViewDataSource
 
 extension ArchiveViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
