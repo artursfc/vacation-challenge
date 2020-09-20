@@ -8,14 +8,26 @@
 
 import UIKit
 
+/// Representation of the Player Component. Should be instantiated only once as part
+/// of the `RootViewController`.
 final class PlayerComponentViewController: UIViewController {
 
+// - MARK: Properties
+    /// The slider representing the progress of the audio playback.
     @AutoLayout private var progressSlider: UISlider
+    /// The timestamp of the audio's duration.
     @AutoLayout private var timestampLabel: UILabel
+    /// The creation data of the audio.
     @AutoLayout private var creationDateLabel: UILabel
+    /// The title of the audio.
     @AutoLayout private var titleLabel: UILabel
+    /// The play button used to control the component.
     @AutoLayout private var playButton: UIButton
+    /// The view used to encapsulate all the views. Used to more easily configure
+    /// constraints with its superview (`RootViewController.view`).
+    @AutoLayout private var contentView: UIView
 
+// - MARK: Init
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -24,22 +36,31 @@ final class PlayerComponentViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+// - MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .memoraMediumGray
-        view.layer.cornerRadius = view.frame.height * 0.015
-
-        setupProgressSlider()
-        setupLabels()
-        setupPlayButton()
-        setupLayout()
+        configureView()
+        configureProgressSlider()
+        configureLabels()
+        configurePlayButton()
+        configureLayout()
     }
 
-    private func setupProgressSlider() {
+// - MARK: Layout
+
+    /// Configures the main view.
+    private func configureView() {
+        view.backgroundColor = .memoraMediumGray
+        view.layer.cornerRadius = view.frame.height * 0.015
+    }
+
+    /// Configures the progress slider.
+    private func configureProgressSlider() {
         progressSlider.tintColor = .memoraLightGray
     }
 
-    private func setupLabels() {
+    /// Configures all the labels.
+    private func configureLabels() {
         timestampLabel.textColor = .memoraLightGray
         timestampLabel.font = .preferredFont(forTextStyle: .body)
         timestampLabel.text = "04:00"
@@ -53,37 +74,49 @@ final class PlayerComponentViewController: UIViewController {
         titleLabel.text = "Memory Title"
     }
 
-    private func setupPlayButton() {
+    /// Configures the play button.
+    private func configurePlayButton() {
         playButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
         playButton.tintColor = .memoraLightGray
     }
 
-    private func setupLayout() {
-        view.addSubview(progressSlider)
-        view.addSubview(timestampLabel)
-        view.addSubview(creationDateLabel)
-        view.addSubview(titleLabel)
-        view.addSubview(playButton)
+    /// Configures the layout using the `contentView`.
+    private func configureLayout() {
+        contentView.addSubview(progressSlider)
+        contentView.addSubview(timestampLabel)
+        contentView.addSubview(creationDateLabel)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(playButton)
+
+        view.addSubview(contentView)
+
+        let rootLayoutMarginsGuide = view.layoutMarginsGuide
+        let contentLayoutMarginsGuide = contentView.layoutMarginsGuide
 
         NSLayoutConstraint.activate([
-            progressSlider.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 10),
-            progressSlider.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor),
-            progressSlider.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2),
-            progressSlider.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
+            contentView.topAnchor.constraint(equalTo: rootLayoutMarginsGuide.topAnchor),
+            contentView.leftAnchor.constraint(equalTo: rootLayoutMarginsGuide.leftAnchor),
+            contentView.rightAnchor.constraint(equalTo: rootLayoutMarginsGuide.rightAnchor),
+            contentView.bottomAnchor.constraint(equalTo: rootLayoutMarginsGuide.bottomAnchor),
+
+            progressSlider.topAnchor.constraint(equalTo: contentLayoutMarginsGuide.topAnchor),
+            progressSlider.widthAnchor.constraint(equalTo: contentLayoutMarginsGuide.widthAnchor),
+            progressSlider.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2),
+            progressSlider.centerXAnchor.constraint(equalTo: contentLayoutMarginsGuide.centerXAnchor),
 
             timestampLabel.topAnchor.constraint(equalTo: progressSlider.bottomAnchor, constant: 10),
-            timestampLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            timestampLabel.leadingAnchor.constraint(equalTo: contentLayoutMarginsGuide.leadingAnchor),
 
             creationDateLabel.topAnchor.constraint(equalTo: progressSlider.bottomAnchor, constant: 10),
-            creationDateLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            creationDateLabel.trailingAnchor.constraint(equalTo: contentLayoutMarginsGuide.trailingAnchor),
 
             titleLabel.topAnchor.constraint(equalTo: timestampLabel.bottomAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: contentLayoutMarginsGuide.leadingAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: contentLayoutMarginsGuide.bottomAnchor),
 
             playButton.topAnchor.constraint(equalTo: creationDateLabel.bottomAnchor),
-            playButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            playButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
+            playButton.trailingAnchor.constraint(equalTo: contentLayoutMarginsGuide.trailingAnchor),
+            playButton.bottomAnchor.constraint(equalTo: contentLayoutMarginsGuide.bottomAnchor)
         ])
     }
 }
