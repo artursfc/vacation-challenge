@@ -11,18 +11,18 @@ import UIKit
 
 extension UIColor {
     class var memoraRed: UIColor {
-        return UIColor(named: "Memora Red")!
+        return UIColor(red: 192.0/255.0, green: 33.0/255.0, blue: 33.0/255.0, alpha: 1.0)
     }
 
     class var memoraLightGray: UIColor {
-        return UIColor(named: "Memora Light Gray")!
+        return UIColor(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0)
     }
 
     class var memoraMediumGray: UIColor {
-        return UIColor(named: "Memora Medium Gray")!
+        return UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0)
     }
 
     class var memoraDarkGray: UIColor {
-        return UIColor(named: "Memora Dark Gray")!
+        return UIColor(red: 29.0/255.0, green: 29.0/255.0, blue: 29.0/255.0, alpha: 1.0)
     }
 }
