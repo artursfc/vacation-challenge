@@ -70,14 +70,14 @@ final class PlayerComponentViewController: UIViewController {
         creationDateLabel.text = "12/12/2020"
 
         titleLabel.textColor = .memoraLightGray
-        titleLabel.font = .preferredFont(forTextStyle: .title2)
+        titleLabel.font = .preferredFont(forTextStyle: .title1)
         titleLabel.text = "🔥 Memory Title"
     }
 
     /// Configures the play button.
     private func configurePlayButton() {
         playButton.setImage(UIImage(systemName: "play.fill",
-                                    withConfiguration: UIImage.SymbolConfiguration(textStyle: .title2)),
+                                    withConfiguration: UIImage.SymbolConfiguration(textStyle: .largeTitle)),
                             for: .normal)
         playButton.tintColor = .memoraLightGray
     }

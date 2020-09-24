@@ -16,7 +16,7 @@ final class InboxViewController: UIViewController {
 
     /// `UICollectionView` used to display all recordings currently in the Inbox.
     private lazy var inboxCollectionView: UICollectionView = {
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: setupCollectionViewLayout())
         collection.translatesAutoresizingMaskIntoConstraints = false
         return collection
     }()
@@ -40,7 +40,7 @@ final class InboxViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCollectionViewLayout()
+        setupCollectionView()
 
         title = "Inbox"
 
@@ -53,7 +53,7 @@ final class InboxViewController: UIViewController {
 // - MARK: Layout
 
     /// Configures constraints and look of the `inboxCollectionView`
-    private func setupCollectionViewLayout() {
+    private func setupCollectionView() {
         inboxCollectionView.backgroundColor = .memoraDarkGray
 
         self.view.addSubview(inboxCollectionView)
@@ -64,6 +64,18 @@ final class InboxViewController: UIViewController {
             inboxCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             inboxCollectionView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+    }
+
+    private func setupCollectionViewLayout() -> UICollectionViewCompositionalLayout {
+        let itemLayoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemLayoutSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+        let groupLayoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.30))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupLayoutSize, subitems: [item])
+        group.contentInsets = NSDirectionalEdgeInsets(top: 10.0, leading: 20.0, bottom: 10.0, trailing: 20.0)
+        let section = NSCollectionLayoutSection(group: group)
+
+        return UICollectionViewCompositionalLayout(section: section)
     }
 }
 
@@ -82,21 +94,13 @@ extension InboxViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InboxCollectionViewCell.identifier,
-                                                         for: indexPath) as? InboxCollectionViewCell {
-            cell.contentView.backgroundColor = .memoraLightGray
-            return cell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InboxCollectionViewCell.identifier,
+                                                         for: indexPath) as? InboxCollectionViewCell else {
+            return UICollectionViewCell()
         }
-        return UICollectionViewCell()
-    }
-}
 
-// - MARK: UICollcetionViewDelegateFlowLayout
+        cell.configure(with: "💎")
 
-extension InboxViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height * 0.15)
+        return cell
     }
 }

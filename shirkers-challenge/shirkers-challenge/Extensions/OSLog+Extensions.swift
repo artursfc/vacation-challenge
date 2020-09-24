@@ -5,6 +5,7 @@
 //  Created by Artur Carneiro on 09/04/20.
 //  Copyright © 2020 Artur Carneiro. All rights reserved.
 //
+// swiftlint:disable force_unwrapping
 
 import Foundation
 import os.log
