@@ -67,12 +67,22 @@ final class InboxViewController: UIViewController {
     }
 
     private func setupCollectionViewLayout() -> UICollectionViewCompositionalLayout {
-        let itemLayoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
+        let itemLayoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(DesignSystem.Inbox.itemFractionalWidth),
+                                                    heightDimension: .fractionalHeight(DesignSystem.Inbox.itemFractionalHeight))
         let item = NSCollectionLayoutItem(layoutSize: itemLayoutSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
-        let groupLayoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.30))
+        item.contentInsets = NSDirectionalEdgeInsets(top: DesignSystem.Inbox.itemTopSpacing,
+                                                     leading: DesignSystem.Inbox.itemLeadingSpacing,
+                                                     bottom: DesignSystem.Inbox.itemBottomSpacing,
+                                                     trailing: DesignSystem.Inbox.itemTrailingSpacing)
+
+        let groupLayoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(DesignSystem.Inbox.groupFractionalWidth),
+                                                     heightDimension: .fractionalHeight(DesignSystem.Inbox.groupFractionalHeight))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupLayoutSize, subitems: [item])
-        group.contentInsets = NSDirectionalEdgeInsets(top: 10.0, leading: 20.0, bottom: 10.0, trailing: 20.0)
+        group.contentInsets = NSDirectionalEdgeInsets(top: DesignSystem.Inbox.groupTopSpacing,
+                                                      leading: DesignSystem.Inbox.groupLeadingSpacing,
+                                                      bottom: DesignSystem.Inbox.groupBottomSpacing,
+                                                      trailing: DesignSystem.Inbox.groupTrailingSpacing)
+
         let section = NSCollectionLayoutSection(group: group)
 
         return UICollectionViewCompositionalLayout(section: section)

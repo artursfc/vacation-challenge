@@ -26,6 +26,7 @@
 		A468155822D66BE300537D16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A468155722D66BE300537D16 /* Assets.xcassets */; };
 		A468155B22D66BE300537D16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A468155922D66BE300537D16 /* LaunchScreen.storyboard */; };
 		A468156322D66E5500537D16 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468156222D66E5500537D16 /* Constants.swift */; };
+		A47C3C2F251CF3D1001C3A55 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47C3C2E251CF3D1001C3A55 /* DesignSystem.swift */; };
 		A4877FCF22DE495D00A94411 /* CassetteTapeShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4877FCE22DE495D00A94411 /* CassetteTapeShapeLayer.swift */; };
 		A4877FD122E0E2E800A94411 /* SpoolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4877FD022E0E2E800A94411 /* SpoolView.swift */; };
 		A499E96A24FC3D0200290B16 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A499E96924FC3D0200290B16 /* ArchiveViewController.swift */; };
@@ -73,6 +74,7 @@
 		A468155A22D66BE300537D16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A468155C22D66BE300537D16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A468156222D66E5500537D16 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A47C3C2E251CF3D1001C3A55 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 		A4877FCE22DE495D00A94411 /* CassetteTapeShapeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassetteTapeShapeLayer.swift; sourceTree = "<group>"; };
 		A4877FD022E0E2E800A94411 /* SpoolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpoolView.swift; sourceTree = "<group>"; };
 		A499E96924FC3D0200290B16 /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 		A468154C22D66BE200537D16 /* shirkers-challenge */ = {
 			isa = PBXGroup;
 			children = (
+				A47C3C2D251CF3BB001C3A55 /* Design System */,
 				A4D0E02D250587D000B3B12D /* Core Data */,
 				A40BCDC524FADEC4002F53A0 /* Extensions */,
 				A40BCDC424FADE3C002F53A0 /* Resources */,
@@ -213,6 +216,14 @@
 				A40BCDC824FADF54002F53A0 /* AutoLayoutPropertyWrapper.swift */,
 			);
 			path = "shirkers-challenge";
+			sourceTree = "<group>";
+		};
+		A47C3C2D251CF3BB001C3A55 /* Design System */ = {
+			isa = PBXGroup;
+			children = (
+				A47C3C2E251CF3D1001C3A55 /* DesignSystem.swift */,
+			);
+			path = "Design System";
 			sourceTree = "<group>";
 		};
 		A499E96724FC3CE500290B16 /* Archive */ = {
@@ -406,6 +417,7 @@
 				A40BCDD224FB05BE002F53A0 /* InboxViewController.swift in Sources */,
 				A4D0E030250587EB00B3B12D /* CoreDataStack.swift in Sources */,
 				A43EA29022E9D71F001A7310 /* AudioSession.swift in Sources */,
+				A47C3C2F251CF3D1001C3A55 /* DesignSystem.swift in Sources */,
 				A40BCDC724FADF2C002F53A0 /* RootViewController.swift in Sources */,
 				A453E261243E680D00D05C65 /* RecordingSessionSettings.swift in Sources */,
 				A40BCDD024FB0272002F53A0 /* UIColor+Extensions.swift in Sources */,

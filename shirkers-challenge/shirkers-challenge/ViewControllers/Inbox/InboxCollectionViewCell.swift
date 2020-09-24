@@ -30,7 +30,7 @@ final class InboxCollectionViewCell: UICollectionViewCell {
 
     func configure(with emoji: String) {
         memoryEmojiLabel.text = emoji
-        memoryEmojiLabel.font = .preferredFont(forTextStyle: .title1)
+        memoryEmojiLabel.font = .preferredFont(forTextStyle: .largeTitle)
         memoryEmojiLabel.textAlignment = .center
     }
 
