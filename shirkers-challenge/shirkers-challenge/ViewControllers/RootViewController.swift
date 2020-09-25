@@ -25,9 +25,11 @@ final class RootViewController: UIViewController {
 
         let second = UINavigationController(rootViewController: ArchiveViewController())
 
+        let third = UINavigationController(rootViewController: SettingsViewController())
+
         let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
 
-        rootPageViewController = RootPageViewController(pages: [first, second], pageViewController: pageViewController)
+        rootPageViewController = RootPageViewController(pages: [third, first, second], pageViewController: pageViewController)
 
         self.playerComponentViewController = PlayerComponentViewController()
 
