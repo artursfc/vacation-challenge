@@ -16,19 +16,8 @@ final class CoreDataStack {
     // - MARK: Properties
     private let model: String
 
-    private lazy var managedModel: NSManagedObjectModel = {
-        guard let url = Bundle.main.url(forResource: model, withExtension: "momd") else {
-            fatalError("Failed to locate model URL in Bundle.main")
-        }
-
-        guard let managedModel = NSManagedObjectModel(contentsOf: url) else {
-            fatalError("Failed to initialize NSManagedObjectModel with model URL")
-        }
-        return managedModel
-    }()
-
     private lazy var container: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: self.model, managedObjectModel: self.managedModel)
+        let container = NSPersistentContainer(name: self.model)
         let defaultURL = NSPersistentContainer.defaultDirectoryURL()
         let persistentDescription = NSPersistentStoreDescription(url: defaultURL)
 
@@ -37,7 +26,7 @@ final class CoreDataStack {
 
         container.loadPersistentStores { (_, error) in
             if let error = error {
-                os_log("Failed to load persistent store", log: .coreDataStack, type: .error)
+                fatalError("Failed to load persistent store: \(error)")
             }
         }
         return container
@@ -51,5 +40,15 @@ final class CoreDataStack {
     // - MARK: Init
     init(model: String) {
         self.model = model
+    }
+
+    func save() {
+        if mainContext.hasChanges {
+            do {
+                try mainContext.save()
+            } catch {
+                os_log("Failed to save changes from main context", log: .coreDataStack, type: .error)
+            }
+        }
     }
 }
