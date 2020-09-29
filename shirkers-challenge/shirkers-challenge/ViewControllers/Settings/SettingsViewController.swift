@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SafariServices
 
 final class SettingsViewController: UIViewController {
     // - MARK: Properties
@@ -96,9 +95,19 @@ final class SettingsViewController: UIViewController {
 // - MARK: UITableViewDelegate
 extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let url = URL(string: "https://github.com/csfar/vacation-challenge"),
-           indexPath.section == 1 && indexPath.row == 0 {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        if indexPath.section == 1 {
+            switch indexPath.row {
+            case 0:
+                if let githubURL = URL(string: ExternalURL.github.rawValue) {
+                    UIApplication.shared.open(githubURL)
+                }
+            case 1:
+                if let privacyURL = URL(string: ExternalURL.privacy.rawValue) {
+                    UIApplication.shared.open(privacyURL)
+                }
+            default:
+                break
+            }
         }
     }
 
@@ -118,17 +127,4 @@ extension SettingsViewController: UITableViewDataSource {
         return settingsCellArray[indexPath.section][indexPath.row]
     }
 
-}
-
-extension SettingsViewController: SFSafariViewControllerDelegate {
-    fileprivate func openURL(_ url: URL) {
-        let safariaViewController = SFSafariViewController(url: url)
-        safariaViewController.delegate = self
-
-        present(safariaViewController, animated: true, completion: nil)
-    }
-
-    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
-        dismiss(animated: true, completion: nil)
-    }
 }

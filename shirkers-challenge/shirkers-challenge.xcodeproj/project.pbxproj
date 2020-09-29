@@ -13,6 +13,7 @@
 		A40BCDD024FB0272002F53A0 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BCDCF24FB0272002F53A0 /* UIColor+Extensions.swift */; };
 		A40BCDD224FB05BE002F53A0 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BCDD124FB05BE002F53A0 /* InboxViewController.swift */; };
 		A40BCDD524FC2C3B002F53A0 /* InboxCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BCDD424FC2C3B002F53A0 /* InboxCollectionViewCell.swift */; };
+		A40BE4F22523E0170013C09C /* ExternalURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BE4F12523E0170013C09C /* ExternalURL.swift */; };
 		A40ED58C22D7B025004C3A8A /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40ED58B22D7B025004C3A8A /* MainScreenViewController.swift */; };
 		A40ED5B522D7D623004C3A8A /* CassetteTapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40ED5B422D7D623004C3A8A /* CassetteTapeView.swift */; };
 		A43A5DB8243F918000E6FBBB /* RecordingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A5DB7243F918000E6FBBB /* RecordingController.swift */; };
@@ -60,6 +61,7 @@
 		A40BCDCF24FB0272002F53A0 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		A40BCDD124FB05BE002F53A0 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
 		A40BCDD424FC2C3B002F53A0 /* InboxCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxCollectionViewCell.swift; sourceTree = "<group>"; };
+		A40BE4F12523E0170013C09C /* ExternalURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalURL.swift; sourceTree = "<group>"; };
 		A40ED58B22D7B025004C3A8A /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		A40ED5B422D7D623004C3A8A /* CassetteTapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassetteTapeView.swift; sourceTree = "<group>"; };
 		A43A5DB7243F918000E6FBBB /* RecordingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingController.swift; sourceTree = "<group>"; };
@@ -162,6 +164,21 @@
 			path = Inbox;
 			sourceTree = "<group>";
 		};
+		A40BE4F02523E0080013C09C /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				A40BE4F12523E0170013C09C /* ExternalURL.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		A40BE4F72523E1290013C09C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		A43A5DB9243F950700E6FBBB /* Recorder */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +220,8 @@
 		A468154C22D66BE200537D16 /* shirkers-challenge */ = {
 			isa = PBXGroup;
 			children = (
+				A40BE4F72523E1290013C09C /* Protocols */,
+				A40BE4F02523E0080013C09C /* Enums */,
 				A47C3C2D251CF3BB001C3A55 /* Design System */,
 				A4D0E02D250587D000B3B12D /* Core Data */,
 				A40BCDC524FADEC4002F53A0 /* Extensions */,
@@ -416,6 +435,7 @@
 			files = (
 				A499E96C24FC3DD000290B16 /* ArchiveTableViewCell.swift in Sources */,
 				A4D0E03225058A6700B3B12D /* FileManager+Extensions.swift in Sources */,
+				A40BE4F22523E0170013C09C /* ExternalURL.swift in Sources */,
 				A40ED5B522D7D623004C3A8A /* CassetteTapeView.swift in Sources */,
 				A40BCDD224FB05BE002F53A0 /* InboxViewController.swift in Sources */,
 				A4D0E030250587EB00B3B12D /* CoreDataStack.swift in Sources */,
