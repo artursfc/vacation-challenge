@@ -14,41 +14,38 @@ import os.log
 /// `viewContext.automaticallyMergesChangesFromParent = true`.
 final class CoreDataStack {
     // - MARK: Properties
+
+    /// The model's name.
     private let model: String
 
+    /// A lazily instantiated instance of `NSPersistentContainer` with the
+    /// `automaticallyMergesChangesFromParent` property of its `viewContext`
+    /// set to `true`.
     private lazy var container: NSPersistentContainer = {
         let container = NSPersistentContainer(name: self.model)
-        let defaultURL = NSPersistentContainer.defaultDirectoryURL()
-        let persistentDescription = NSPersistentStoreDescription(url: defaultURL)
-
-        container.persistentStoreDescriptions = [persistentDescription]
-        container.viewContext.automaticallyMergesChangesFromParent = true
 
         container.loadPersistentStores { (_, error) in
             if let error = error {
                 fatalError("Failed to load persistent store: \(error)")
             }
+
+            container.viewContext.automaticallyMergesChangesFromParent = true
         }
+
         return container
     }()
 
     // - MARK: Contexts
+    /// A read-only computed property to access the context of the
+    /// `NSPersistentContainer`. It should only be used for UI-related actions.
     var mainContext: NSManagedObjectContext {
         return container.viewContext
     }
 
     // - MARK: Init
+    /// Initializes a new instance of this type.
+    /// - Parameter model: The model's name.
     init(model: String) {
         self.model = model
-    }
-
-    func save() {
-        if mainContext.hasChanges {
-            do {
-                try mainContext.save()
-            } catch {
-                os_log("Failed to save changes from main context", log: .coreDataStack, type: .error)
-            }
-        }
     }
 }
