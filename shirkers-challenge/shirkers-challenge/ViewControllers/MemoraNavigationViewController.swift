@@ -20,10 +20,10 @@ final class MemoraNavigationViewController: UINavigationController {
     }
 
     private func setUpNavigationController() {
-        self.navigationBar.prefersLargeTitles = true
-        self.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.memoraLightGray]
-        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.memoraLightGray]
-        self.navigationBar.barTintColor = .memoraDarkGray
-        self.navigationBar.isTranslucent = false
+        navigationBar.prefersLargeTitles = true
+        navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.memoraLightGray]
+        navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.memoraLightGray]
+        navigationBar.barTintColor = .memoraDarkGray
+        navigationBar.isTranslucent = true
     }
 }

@@ -36,7 +36,6 @@ final class ArchiveViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableViewLayout()
-
         title = "Archive"
     }
 

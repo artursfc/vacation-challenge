@@ -11,7 +11,7 @@ import Foundation
 /// The protocol determining the public interface of a `RecordingController`.
 public protocol RecordingControllerProtocol {
     func requestRecordPermission() throws
-    func setup(for filename: String) throws
+    func setUp(for filename: String) throws
     func start() throws
     func stop() throws
 }

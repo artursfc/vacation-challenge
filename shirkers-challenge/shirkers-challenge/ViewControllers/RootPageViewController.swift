@@ -19,15 +19,17 @@ final class RootPageViewController: UIViewController {
     /// be passed through Dependency Injection using the init for this type.
     private let pages: [UIViewController]
 
-    /// The UIPageControl used to display the amount of pages and on
-    /// what page the user is currently in.
-    @AutoLayout private var pageControl: UIPageControl
-
     /// The number of pages currently available. Convenience property used
     /// to avoid having to count the amount of pages in the array of
     /// pages
     private var numberOfPages: Int {
         return pages.count
+    }
+
+    /// The index of the middle page in the array of pages.
+    /// It should be used to correctly build the `UIPageViewController`
+    private var middlePageIndex: Int {
+        return 1
     }
 
 // - MARK: Init
@@ -48,7 +50,6 @@ final class RootPageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupPageControl()
         setupPageViewController()
     }
 
@@ -57,8 +58,8 @@ final class RootPageViewController: UIViewController {
     /// Configures the UIPageViewController with the pages passed through
     /// the init. It also layouts all the necessary constraints for this view.
     private func setupPageViewController() {
-        pageViewController.setViewControllers([pages[0]], direction: .forward, animated: true, completion: nil)
-        title = pages.first?.title
+        pageViewController.setViewControllers([pages[middlePageIndex]], direction: .forward, animated: true, completion: nil)
+        title = pages[middlePageIndex].title
 
         pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
 
@@ -70,28 +71,10 @@ final class RootPageViewController: UIViewController {
         }
 
         NSLayoutConstraint.activate([
-            pageViewControllerView.topAnchor.constraint(equalTo: view.topAnchor),
+            pageViewControllerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             pageViewControllerView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            pageViewControllerView.bottomAnchor.constraint(equalTo: pageControl.topAnchor, constant: -10),
+            pageViewControllerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             pageViewControllerView.leftAnchor.constraint(equalTo: view.leftAnchor)
-        ])
-    }
-
-    /// Configures the UIPageControl used in this container UIViewController.
-    /// It performs some light customization and styling as well as
-    /// add all the necessary constraints for this view.
-    private func setupPageControl() {
-        pageControl.currentPage = 1
-        pageControl.numberOfPages = numberOfPages
-        pageControl.currentPageIndicatorTintColor = .memoraLightGray
-        pageControl.pageIndicatorTintColor = .memoraMediumGray
-        
-        view.addSubview(pageControl)
-
-        NSLayoutConstraint.activate([
-            pageControl.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            pageControl.widthAnchor.constraint(equalTo: view.widthAnchor),
-            pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 }
@@ -106,10 +89,7 @@ extension RootPageViewController: UIPageViewControllerDelegate {
                             transitionCompleted completed: Bool) {
         if let pages = pageViewController.viewControllers {
             if let firstPage = pages.first {
-                if let newCurrentPage = self.pages.firstIndex(of: firstPage) {
-                    self.pageControl.currentPage = newCurrentPage
-                    title = firstPage.title
-                }
+                title = firstPage.title
             }
         }
     }
@@ -141,6 +121,14 @@ extension RootPageViewController: UIPageViewControllerDataSource {
             }
         }
         return nil
+    }
+
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+        return 1
+    }
+
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
+        return numberOfPages
     }
 
 }

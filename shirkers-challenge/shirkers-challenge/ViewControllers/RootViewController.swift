@@ -13,25 +13,18 @@ final class RootViewController: UIViewController {
 
 // - MARK: Properties
 
-    /// The UIViewController containing the Inbox, Archive and Settings screens.
-    private let rootPageViewController: RootPageViewController
+    /// The UINavigationController with its `rootViewController` property
+    /// set as an instance of `RootPageViewController` containing the Inbox, Archive and Settings screens.
+    private let memoraNavigationViewController: MemoraNavigationViewController
     /// The UIViewController representing the Player Component.
     private let playerComponentViewController: PlayerComponentViewController
 
 // - MARK: Init
 
-    init() {
-        let first = MemoraNavigationViewController(rootViewController: InboxViewController())
+    init(memoraNavigationViewController: MemoraNavigationViewController, playerComponentViewController: PlayerComponentViewController) {
+        self.memoraNavigationViewController = memoraNavigationViewController
 
-        let second = MemoraNavigationViewController(rootViewController: ArchiveViewController())
-
-        let third = MemoraNavigationViewController(rootViewController: SettingsViewController())
-
-        let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-
-        rootPageViewController = RootPageViewController(pages: [third, first, second], pageViewController: pageViewController)
-
-        self.playerComponentViewController = PlayerComponentViewController()
+        self.playerComponentViewController = playerComponentViewController
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -45,17 +38,15 @@ final class RootViewController: UIViewController {
     override func viewDidLoad() {
         view.backgroundColor = .memoraDarkGray
 
-        self.addChild(rootPageViewController)
-        self.view.addSubview(rootPageViewController.view)
+        self.addChild(memoraNavigationViewController)
+        self.view.addSubview(memoraNavigationViewController.view)
 
-        rootPageViewController.didMove(toParent: self)
+        memoraNavigationViewController.didMove(toParent: self)
 
         self.addChild(playerComponentViewController)
         self.view.addSubview(playerComponentViewController.view)
 
         playerComponentViewController.didMove(toParent: self)
-
-        title = "Teste"
 
         setupLayout()
     }
@@ -64,17 +55,17 @@ final class RootViewController: UIViewController {
 
     /// Configures all the necessary constraints.
     private func setupLayout() {
-        rootPageViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        memoraNavigationViewController.view.translatesAutoresizingMaskIntoConstraints = false
         playerComponentViewController.view.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            rootPageViewController.view.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            rootPageViewController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            rootPageViewController.view.widthAnchor.constraint(equalTo: view.widthAnchor),
-            rootPageViewController.view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.8),
+            memoraNavigationViewController.view.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            memoraNavigationViewController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            memoraNavigationViewController.view.widthAnchor.constraint(equalTo: view.widthAnchor),
+            memoraNavigationViewController.view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.8),
 
             playerComponentViewController.view.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            playerComponentViewController.view.topAnchor.constraint(equalTo: rootPageViewController.view.bottomAnchor, constant: 5),
+            playerComponentViewController.view.topAnchor.constraint(equalTo: memoraNavigationViewController.view.bottomAnchor, constant: 5),
             playerComponentViewController.view.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor),
             playerComponentViewController.view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.175)
         ])

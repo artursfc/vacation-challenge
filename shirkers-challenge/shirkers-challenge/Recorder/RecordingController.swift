@@ -38,7 +38,7 @@ public final class RecordingController: NSObject, RecordingControllerProtocol {
     /// Initialize a new instance of this type.
     public override init() {
         super.init()
-        self.setupRecordingSession()
+        self.setUpRecordingSession()
     }
 
     /// Requests user permission to record. No need to treat the
@@ -54,7 +54,7 @@ public final class RecordingController: NSObject, RecordingControllerProtocol {
         }
     }
 
-    private func setupRecordingSession() {
+    private func setUpRecordingSession() {
         do {
             try audioSession.setCategory(.record, mode: .default)
             try audioSession.setActive(true)
@@ -67,7 +67,7 @@ public final class RecordingController: NSObject, RecordingControllerProtocol {
         }
     }
 
-    public func setup(for filename: String) throws {
+    public func setUp(for filename: String) throws {
         let session = RecordingSessionSettings(filename: filename)
         let url = session.filepath
         let settings = session.settings
