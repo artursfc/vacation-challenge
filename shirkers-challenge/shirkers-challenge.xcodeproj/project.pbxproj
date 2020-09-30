@@ -199,6 +199,22 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		A443CADA25240B2300397E86 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A468154D22D66BE200537D16 /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A443CADB25240B2C00397E86 /* Property Wrappers */ = {
+			isa = PBXGroup;
+			children = (
+				A40BCDC824FADF54002F53A0 /* AutoLayoutPropertyWrapper.swift */,
+			);
+			path = "Property Wrappers";
+			sourceTree = "<group>";
+		};
 		A468154122D66BE200537D16 = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +236,8 @@
 		A468154C22D66BE200537D16 /* shirkers-challenge */ = {
 			isa = PBXGroup;
 			children = (
+				A443CADB25240B2C00397E86 /* Property Wrappers */,
+				A443CADA25240B2300397E86 /* App */,
 				A40BE4F72523E1290013C09C /* Protocols */,
 				A40BE4F02523E0080013C09C /* Enums */,
 				A47C3C2D251CF3BB001C3A55 /* Design System */,
@@ -233,8 +251,6 @@
 				A4CC531322E3BA500095C921 /* Models */,
 				A4CC531222E3BA390095C921 /* Controllers */,
 				A4CC531122E3BA1F0095C921 /* Views */,
-				A468154D22D66BE200537D16 /* AppDelegate.swift */,
-				A40BCDC824FADF54002F53A0 /* AutoLayoutPropertyWrapper.swift */,
 			);
 			path = "shirkers-challenge";
 			sourceTree = "<group>";
