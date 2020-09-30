@@ -21,11 +21,11 @@ final class RootViewController: UIViewController {
 // - MARK: Init
 
     init() {
-        let first = UINavigationController(rootViewController: InboxViewController())
+        let first = MemoraNavigationViewController(rootViewController: InboxViewController())
 
-        let second = UINavigationController(rootViewController: ArchiveViewController())
+        let second = MemoraNavigationViewController(rootViewController: ArchiveViewController())
 
-        let third = UINavigationController(rootViewController: SettingsViewController())
+        let third = MemoraNavigationViewController(rootViewController: SettingsViewController())
 
         let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
 

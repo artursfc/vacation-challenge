@@ -72,7 +72,7 @@ final class RootPageViewController: UIViewController {
         NSLayoutConstraint.activate([
             pageViewControllerView.topAnchor.constraint(equalTo: view.topAnchor),
             pageViewControllerView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            pageViewControllerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
+            pageViewControllerView.bottomAnchor.constraint(equalTo: pageControl.topAnchor, constant: -10),
             pageViewControllerView.leftAnchor.constraint(equalTo: view.leftAnchor)
         ])
     }

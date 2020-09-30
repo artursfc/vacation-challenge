@@ -38,11 +38,6 @@ final class ArchiveViewController: UIViewController {
         setupTableViewLayout()
 
         title = "Archive"
-
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.memoraLightGray]
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.memoraLightGray]
-        navigationController?.navigationBar.barTintColor = .memoraDarkGray
     }
 
 // - MARK: Layout
@@ -55,7 +50,7 @@ final class ArchiveViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             archiveTableView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            archiveTableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.9),
+            archiveTableView.heightAnchor.constraint(equalTo: view.heightAnchor),
             archiveTableView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             archiveTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])

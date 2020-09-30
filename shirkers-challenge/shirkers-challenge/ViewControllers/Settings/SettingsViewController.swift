@@ -15,6 +15,7 @@ final class SettingsViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .memoraDarkGray
         tableView.separatorStyle = .none
+        tableView.isScrollEnabled = false
         return tableView
     }()
 
@@ -77,14 +78,9 @@ final class SettingsViewController: UIViewController {
             settingsTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             settingsTableView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             settingsTableView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            settingsTableView.heightAnchor.constraint(equalTo: view.heightAnchor,
-                                                      multiplier: 0.9)
+            settingsTableView.heightAnchor.constraint(equalTo: view.heightAnchor)
         ])
 
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.memoraLightGray]
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.memoraLightGray]
-        navigationController?.navigationBar.barTintColor = .memoraDarkGray
     }
 
     override func viewDidLoad() {

@@ -43,11 +43,6 @@ final class InboxViewController: UIViewController {
         setupCollectionView()
 
         title = "Inbox"
-
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.memoraLightGray]
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.memoraLightGray]
-        navigationController?.navigationBar.barTintColor = .memoraDarkGray
     }
 
 // - MARK: Layout
@@ -60,7 +55,7 @@ final class InboxViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             inboxCollectionView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            inboxCollectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.90),
+            inboxCollectionView.heightAnchor.constraint(equalTo: view.heightAnchor),
             inboxCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             inboxCollectionView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
