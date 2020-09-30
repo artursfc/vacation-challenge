@@ -85,7 +85,6 @@ final class RootPageViewController: UIViewController {
         pageControl.numberOfPages = numberOfPages
         pageControl.currentPageIndicatorTintColor = .memoraLightGray
         pageControl.pageIndicatorTintColor = .memoraMediumGray
-        pageControl.transform = CGAffineTransform(scaleX: 2, y: 2)
         
         view.addSubview(pageControl)
 

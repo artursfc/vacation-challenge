@@ -77,7 +77,8 @@ final class SettingsViewController: UIViewController {
             settingsTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             settingsTableView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             settingsTableView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            settingsTableView.heightAnchor.constraint(equalTo: view.heightAnchor)
+            settingsTableView.heightAnchor.constraint(equalTo: view.heightAnchor,
+                                                      multiplier: 0.9)
         ])
 
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -115,6 +116,17 @@ extension SettingsViewController: UITableViewDelegate {
 
 // - MARK: UITableViewDataSource
 extension SettingsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Theme"
+        case 1:
+            return "About"
+        default:
+            return ""
+        }
+    }
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return settingsCellArray.count
     }
