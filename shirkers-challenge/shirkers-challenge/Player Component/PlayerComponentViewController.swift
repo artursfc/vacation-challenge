@@ -14,7 +14,7 @@ final class PlayerComponentViewController: UIViewController {
 
 // - MARK: Properties
     /// The slider representing the progress of the audio playback.
-    @AutoLayout private var progressSlider: UISlider
+    @AutoLayout private var progressSlider: MemoraSlider
     /// The timestamp of the audio's duration.
     @AutoLayout private var timestampLabel: UILabel
     /// The creation data of the audio.
@@ -40,7 +40,7 @@ final class PlayerComponentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        configureProgressSlider()
+//        configureProgressSlider()
         configureLabels()
         configurePlayButton()
         configureLayout()

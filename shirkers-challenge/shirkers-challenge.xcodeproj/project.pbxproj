@@ -43,6 +43,7 @@
 		A4D0E03225058A6700B3B12D /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0E03125058A6700B3B12D /* FileManager+Extensions.swift */; };
 		A4D0E0342507B8A400B3B12D /* PlayerComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0E0332507B8A400B3B12D /* PlayerComponentViewController.swift */; };
 		A4DB55AE2524D76300C9A3B2 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DB55AD2524D76300C9A3B2 /* UIFont+Extensions.swift */; };
+		A4DB55B42524EA7E00C9A3B2 /* MemoraSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DB55B32524EA7E00C9A3B2 /* MemoraSlider.swift */; };
 		A4F74D97230F1D29006B43E1 /* MemoryPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F74D96230F1D29006B43E1 /* MemoryPlayerViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +98,7 @@
 		A4D0E03125058A6700B3B12D /* FileManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extensions.swift"; sourceTree = "<group>"; };
 		A4D0E0332507B8A400B3B12D /* PlayerComponentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerComponentViewController.swift; sourceTree = "<group>"; };
 		A4DB55AD2524D76300C9A3B2 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
+		A4DB55B32524EA7E00C9A3B2 /* MemoraSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoraSlider.swift; sourceTree = "<group>"; };
 		A4F74D96230F1D29006B43E1 /* MemoryPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryPlayerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				A4D0E0332507B8A400B3B12D /* PlayerComponentViewController.swift */,
+				A4DB55B32524EA7E00C9A3B2 /* MemoraSlider.swift */,
 			);
 			path = "Player Component";
 			sourceTree = "<group>";
@@ -464,6 +467,7 @@
 				A4D0E030250587EB00B3B12D /* CoreDataStack.swift in Sources */,
 				A43EA29022E9D71F001A7310 /* AudioSession.swift in Sources */,
 				A47C3C2F251CF3D1001C3A55 /* DesignSystem.swift in Sources */,
+				A4DB55B42524EA7E00C9A3B2 /* MemoraSlider.swift in Sources */,
 				A40BCDC724FADF2C002F53A0 /* RootViewController.swift in Sources */,
 				A453E261243E680D00D05C65 /* RecordingSessionSettings.swift in Sources */,
 				A40BCDD024FB0272002F53A0 /* UIColor+Extensions.swift in Sources */,
