@@ -70,14 +70,14 @@ final class PlayerComponentViewController: UIViewController {
         creationDateLabel.text = "12/12/2020"
 
         titleLabel.textColor = .memoraLightGray
-        titleLabel.font = .preferredFont(forTextStyle: .title1)
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .title2).bold()
         titleLabel.text = "🔥 Memory Title"
     }
 
     /// Configures the play button.
     private func configurePlayButton() {
         playButton.setImage(UIImage(systemName: "play.fill",
-                                    withConfiguration: UIImage.SymbolConfiguration(textStyle: .largeTitle)),
+                                    withConfiguration: UIImage.SymbolConfiguration(textStyle: .title2)),
                             for: .normal)
         playButton.tintColor = .memoraLightGray
     }
@@ -96,20 +96,24 @@ final class PlayerComponentViewController: UIViewController {
         let contentLayoutMarginsGuide = contentView.layoutMarginsGuide
 
         NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: rootLayoutMarginsGuide.topAnchor),
-            contentView.leftAnchor.constraint(equalTo: rootLayoutMarginsGuide.leftAnchor),
-            contentView.rightAnchor.constraint(equalTo: rootLayoutMarginsGuide.rightAnchor),
-            contentView.bottomAnchor.constraint(equalTo: rootLayoutMarginsGuide.bottomAnchor),
+            contentView.heightAnchor.constraint(equalTo: rootLayoutMarginsGuide.heightAnchor,
+                                             multiplier: DesignSystem.PlayerComponent.heightMultiplier),
+            contentView.widthAnchor.constraint(equalTo: rootLayoutMarginsGuide.widthAnchor,
+                                              multiplier: DesignSystem.PlayerComponent.widthMultiplier),
+            contentView.centerXAnchor.constraint(equalTo: rootLayoutMarginsGuide.centerXAnchor),
+            contentView.centerYAnchor.constraint(equalTo: rootLayoutMarginsGuide.centerYAnchor),
 
             progressSlider.topAnchor.constraint(equalTo: contentLayoutMarginsGuide.topAnchor),
             progressSlider.widthAnchor.constraint(equalTo: contentLayoutMarginsGuide.widthAnchor),
             progressSlider.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.2),
             progressSlider.centerXAnchor.constraint(equalTo: contentLayoutMarginsGuide.centerXAnchor),
 
-            timestampLabel.topAnchor.constraint(equalTo: progressSlider.bottomAnchor, constant: 10),
+            timestampLabel.topAnchor.constraint(equalTo: progressSlider.bottomAnchor,
+                                                constant: DesignSystem.PlayerComponent.spacingFromProgressSlider),
             timestampLabel.leadingAnchor.constraint(equalTo: contentLayoutMarginsGuide.leadingAnchor),
 
-            creationDateLabel.topAnchor.constraint(equalTo: progressSlider.bottomAnchor, constant: 10),
+            creationDateLabel.topAnchor.constraint(equalTo: progressSlider.bottomAnchor,
+                                                   constant: DesignSystem.PlayerComponent.spacingFromProgressSlider),
             creationDateLabel.trailingAnchor.constraint(equalTo: contentLayoutMarginsGuide.trailingAnchor),
 
             titleLabel.topAnchor.constraint(equalTo: timestampLabel.bottomAnchor),

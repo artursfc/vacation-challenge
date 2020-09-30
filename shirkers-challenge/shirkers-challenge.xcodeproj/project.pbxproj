@@ -42,6 +42,7 @@
 		A4D0E030250587EB00B3B12D /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0E02F250587EB00B3B12D /* CoreDataStack.swift */; };
 		A4D0E03225058A6700B3B12D /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0E03125058A6700B3B12D /* FileManager+Extensions.swift */; };
 		A4D0E0342507B8A400B3B12D /* PlayerComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0E0332507B8A400B3B12D /* PlayerComponentViewController.swift */; };
+		A4DB55AE2524D76300C9A3B2 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DB55AD2524D76300C9A3B2 /* UIFont+Extensions.swift */; };
 		A4F74D97230F1D29006B43E1 /* MemoryPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F74D96230F1D29006B43E1 /* MemoryPlayerViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,7 @@
 		A4D0E02F250587EB00B3B12D /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		A4D0E03125058A6700B3B12D /* FileManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extensions.swift"; sourceTree = "<group>"; };
 		A4D0E0332507B8A400B3B12D /* PlayerComponentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerComponentViewController.swift; sourceTree = "<group>"; };
+		A4DB55AD2524D76300C9A3B2 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		A4F74D96230F1D29006B43E1 /* MemoryPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryPlayerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,7 +118,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A40BCDC324FADE1C002F53A0 /* ViewControllers */ = {
+		A40BCDC324FADE1C002F53A0 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
 				A40BCDC624FADF2C002F53A0 /* RootViewController.swift */,
@@ -126,7 +128,7 @@
 				A499E96724FC3CE500290B16 /* Archive */,
 				A40BCDD324FC2C2D002F53A0 /* Inbox */,
 			);
-			path = ViewControllers;
+			path = Screens;
 			sourceTree = "<group>";
 		};
 		A40BCDC424FADE3C002F53A0 /* Resources */ = {
@@ -146,6 +148,7 @@
 				A4A241E2243FB50E0025DA3D /* OSLog+Extensions.swift */,
 				A40BCDCF24FB0272002F53A0 /* UIColor+Extensions.swift */,
 				A4D0E03125058A6700B3B12D /* FileManager+Extensions.swift */,
+				A4DB55AD2524D76300C9A3B2 /* UIFont+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -248,7 +251,7 @@
 				A40BCDC524FADEC4002F53A0 /* Extensions */,
 				A40BCDC424FADE3C002F53A0 /* Resources */,
 				A40BCDCA24FADFD3002F53A0 /* Player Component */,
-				A40BCDC324FADE1C002F53A0 /* ViewControllers */,
+				A40BCDC324FADE1C002F53A0 /* Screens */,
 				A43A5DB9243F950700E6FBBB /* Recorder */,
 				A43EA28A22E8C038001A7310 /* Helpers */,
 				A4CC531322E3BA500095C921 /* Models */,
@@ -466,6 +469,7 @@
 				A40BCDD024FB0272002F53A0 /* UIColor+Extensions.swift in Sources */,
 				A468155622D66BE200537D16 /* shirkers_challenge.xcdatamodeld in Sources */,
 				A499E96A24FC3D0200290B16 /* ArchiveViewController.swift in Sources */,
+				A4DB55AE2524D76300C9A3B2 /* UIFont+Extensions.swift in Sources */,
 				A4877FD122E0E2E800A94411 /* SpoolView.swift in Sources */,
 				A468154E22D66BE200537D16 /* AppDelegate.swift in Sources */,
 				A4D0E00C25056C1200B3B12D /* RecordingControllerProtocol.swift in Sources */,

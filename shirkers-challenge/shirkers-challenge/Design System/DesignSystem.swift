@@ -30,4 +30,13 @@ enum DesignSystem {
         static let groupFractionalWidth: CGFloat = 1.0
         static let groupFractionalHeight: CGFloat = 0.3
     }
+
+    enum PlayerComponent {
+        /// Safe area for the elements inside the `Player Component`.
+        static let widthMultiplier: CGFloat = 0.9
+        static let heightMultiplier: CGFloat = 0.9
+
+        /// Elements spacing
+        static let spacingFromProgressSlider: CGFloat = 5
+    }
 }
