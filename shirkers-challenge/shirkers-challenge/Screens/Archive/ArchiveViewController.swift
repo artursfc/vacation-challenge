@@ -37,14 +37,15 @@ final class ArchiveViewController: UIViewController {
         super.viewDidLoad()
         setupTableViewLayout()
         title = "Archive"
+
+        
     }
 
 // - MARK: Layout
-
     /// Configures constraints and look of the `archiveTableView`.
     private func setupTableViewLayout() {
         archiveTableView.backgroundColor = .memoraDarkGray
-        archiveTableView.estimatedRowHeight = 44
+        archiveTableView.estimatedRowHeight = DesignSystem.Archive.rowHeight
         archiveTableView.rowHeight = UITableView.automaticDimension
         archiveTableView.separatorStyle = .none
 
@@ -68,6 +69,11 @@ extension ArchiveViewController: UITableViewDelegate {
 // - MARK: UITableViewDataSource
 
 extension ArchiveViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return DesignSystem.Archive.rowHeight
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         /// - TODO: Add correct number of archived recordings.
         return 30

@@ -10,7 +10,7 @@ import UIKit
 
 enum DesignSystem {
 
-    // - MARK: Inbox
+    //- MARK: Inbox
     enum Inbox {
         /// UICollectionViewCompositionalLayout Item
         static let itemTopSpacing: CGFloat = 0
@@ -31,6 +31,7 @@ enum DesignSystem {
         static let groupFractionalHeight: CGFloat = 0.3
     }
 
+    //- MARK: PlayerComponent
     enum PlayerComponent {
         /// Safe area for the elements inside the `Player Component`.
         static let widthMultiplier: CGFloat = 0.9
@@ -38,5 +39,10 @@ enum DesignSystem {
 
         /// Elements spacing
         static let spacingFromProgressSlider: CGFloat = 5
+    }
+
+    //- MARK: Archive
+    enum Archive {
+        static let rowHeight: CGFloat = 60
     }
 }

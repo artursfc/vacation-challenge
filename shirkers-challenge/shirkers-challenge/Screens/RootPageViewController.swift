@@ -51,6 +51,14 @@ final class RootPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPageViewController()
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(recordMemory))
+        navigationItem.rightBarButtonItem?.tintColor = .memoraLightGray
+    }
+
+    //- MARK : @objc
+    @objc private func recordMemory() {
+        print("RECORDING")
     }
 
 // - MARK: Layout

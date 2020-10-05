@@ -16,7 +16,7 @@ final class ArchiveTableViewCell: UITableViewCell {
     }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+        super.init(style: .default, reuseIdentifier: reuseIdentifier)
         self.style()
     }
 
@@ -28,9 +28,6 @@ final class ArchiveTableViewCell: UITableViewCell {
         textLabel?.text = "🍑 Memory Title"
         textLabel?.textColor = .memoraLightGray
         textLabel?.font = UIFont.preferredFont(forTextStyle: .title2).bold()
-
-        detailTextLabel?.text = "12/12/2020"
-        detailTextLabel?.textColor = .memoraLightGray
 
         contentView.backgroundColor = .memoraDarkGray
     }
