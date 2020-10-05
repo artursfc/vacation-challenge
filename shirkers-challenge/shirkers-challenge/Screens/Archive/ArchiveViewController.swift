@@ -44,6 +44,9 @@ final class ArchiveViewController: UIViewController {
     /// Configures constraints and look of the `archiveTableView`.
     private func setupTableViewLayout() {
         archiveTableView.backgroundColor = .memoraDarkGray
+        archiveTableView.estimatedRowHeight = 44
+        archiveTableView.rowHeight = UITableView.automaticDimension
+        archiveTableView.separatorStyle = .none
 
         view.addSubview(archiveTableView)
 
@@ -71,12 +74,11 @@ extension ArchiveViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: ArchiveTableViewCell.identifier,
-                                                    for: indexPath) as? ArchiveTableViewCell {
-            cell.contentView.backgroundColor = .memoraLightGray
-            return cell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ArchiveTableViewCell.identifier,
+                                                    for: indexPath) as? ArchiveTableViewCell else {
+            return UITableViewCell()
         }
-        return UITableViewCell()
+        return cell
     }
 
 }

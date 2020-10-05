@@ -11,5 +11,27 @@ import UIKit
 /// Representation of a `ArchiveViewController`'s cell.
 final class ArchiveTableViewCell: UITableViewCell {
 
-    static let identifier: String = "Archive Cell"
+    static var identifier: String {
+        return String(describing: self)
+    }
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+        self.style()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func style() {
+        textLabel?.text = "🍑 Memory Title"
+        textLabel?.textColor = .memoraLightGray
+        textLabel?.font = UIFont.preferredFont(forTextStyle: .title2).bold()
+
+        detailTextLabel?.text = "12/12/2020"
+        detailTextLabel?.textColor = .memoraLightGray
+
+        contentView.backgroundColor = .memoraDarkGray
+    }
 }
