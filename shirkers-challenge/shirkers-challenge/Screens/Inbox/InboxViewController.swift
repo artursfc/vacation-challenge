@@ -15,21 +15,12 @@ final class InboxViewController: UIViewController {
 // - MARK: Properties
 
     /// `UICollectionView` used to display all recordings currently in the Inbox.
-    private lazy var inboxCollectionView: UICollectionView = {
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: setupCollectionViewLayout())
-        collection.translatesAutoresizingMaskIntoConstraints = false
-        return collection
-    }()
+    @AutoLayout private var inboxCollectionView: InboxCollectionView
 
 // - MARK: Init
 
     init() {
         super.init(nibName: nil, bundle: nil)
-        self.inboxCollectionView.delegate = self
-        self.inboxCollectionView.dataSource = self
-
-        self.inboxCollectionView.register(InboxCollectionViewCell.self,
-                                     forCellWithReuseIdentifier: InboxCollectionViewCell.identifier)
     }
 
     required init?(coder: NSCoder) {
@@ -49,9 +40,13 @@ final class InboxViewController: UIViewController {
 
     /// Configures constraints and look of the `inboxCollectionView`
     private func setupCollectionView() {
-        inboxCollectionView.backgroundColor = .memoraDarkGray
+        inboxCollectionView.delegate = self
+        inboxCollectionView.dataSource = self
 
-        self.view.addSubview(inboxCollectionView)
+        inboxCollectionView.register(InboxCollectionViewCell.self,
+                                     forCellWithReuseIdentifier: InboxCollectionViewCell.identifier)
+        
+        view.addSubview(inboxCollectionView)
 
         NSLayoutConstraint.activate([
             inboxCollectionView.widthAnchor.constraint(equalTo: view.widthAnchor),
@@ -59,28 +54,6 @@ final class InboxViewController: UIViewController {
             inboxCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             inboxCollectionView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-    }
-
-    private func setupCollectionViewLayout() -> UICollectionViewCompositionalLayout {
-        let itemLayoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(DesignSystem.Inbox.itemFractionalWidth),
-                                                    heightDimension: .fractionalHeight(DesignSystem.Inbox.itemFractionalHeight))
-        let item = NSCollectionLayoutItem(layoutSize: itemLayoutSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: DesignSystem.Inbox.itemTopSpacing,
-                                                     leading: DesignSystem.Inbox.itemLeadingSpacing,
-                                                     bottom: DesignSystem.Inbox.itemBottomSpacing,
-                                                     trailing: DesignSystem.Inbox.itemTrailingSpacing)
-
-        let groupLayoutSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(DesignSystem.Inbox.groupFractionalWidth),
-                                                     heightDimension: .fractionalHeight(DesignSystem.Inbox.groupFractionalHeight))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupLayoutSize, subitems: [item])
-        group.contentInsets = NSDirectionalEdgeInsets(top: DesignSystem.Inbox.groupTopSpacing,
-                                                      leading: DesignSystem.Inbox.groupLeadingSpacing,
-                                                      bottom: DesignSystem.Inbox.groupBottomSpacing,
-                                                      trailing: DesignSystem.Inbox.groupTrailingSpacing)
-
-        let section = NSCollectionLayoutSection(group: group)
-
-        return UICollectionViewCompositionalLayout(section: section)
     }
 }
 

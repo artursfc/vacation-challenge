@@ -71,7 +71,7 @@ final class PlayerComponentViewController: UIViewController {
 
         titleLabel.textColor = .memoraLightGray
         titleLabel.font = UIFont.preferredFont(forTextStyle: .title2).bold()
-        titleLabel.text = "🔥 Memory Title"
+        titleLabel.text = "🍑 Memory Title"
     }
 
     /// Configures the play button.

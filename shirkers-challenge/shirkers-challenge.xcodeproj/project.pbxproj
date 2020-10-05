@@ -45,6 +45,7 @@
 		A4DB55AE2524D76300C9A3B2 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DB55AD2524D76300C9A3B2 /* UIFont+Extensions.swift */; };
 		A4DB55B42524EA7E00C9A3B2 /* MemoraSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DB55B32524EA7E00C9A3B2 /* MemoraSlider.swift */; };
 		A4F74D97230F1D29006B43E1 /* MemoryPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F74D96230F1D29006B43E1 /* MemoryPlayerViewController.swift */; };
+		A4F80E14252B55720098919E /* InboxCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F80E13252B55720098919E /* InboxCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		A4DB55AD2524D76300C9A3B2 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		A4DB55B32524EA7E00C9A3B2 /* MemoraSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoraSlider.swift; sourceTree = "<group>"; };
 		A4F74D96230F1D29006B43E1 /* MemoryPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryPlayerViewController.swift; sourceTree = "<group>"; };
+		A4F80E13252B55720098919E /* InboxCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 			children = (
 				A40BCDD124FB05BE002F53A0 /* InboxViewController.swift */,
 				A40BCDD424FC2C3B002F53A0 /* InboxCollectionViewCell.swift */,
+				A4F80E13252B55720098919E /* InboxCollectionView.swift */,
 			);
 			path = Inbox;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 				A40BCDC924FADF54002F53A0 /* AutoLayoutPropertyWrapper.swift in Sources */,
 				A4F74D97230F1D29006B43E1 /* MemoryPlayerViewController.swift in Sources */,
 				A43EA29622EA1193001A7310 /* RecordingsTableViewController.swift in Sources */,
+				A4F80E14252B55720098919E /* InboxCollectionView.swift in Sources */,
 				A40ED58C22D7B025004C3A8A /* MainScreenViewController.swift in Sources */,
 				A40BCDD524FC2C3B002F53A0 /* InboxCollectionViewCell.swift in Sources */,
 				A4A241E5243FC1850025DA3D /* RecordingControllerError.swift in Sources */,
