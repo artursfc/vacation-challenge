@@ -77,6 +77,13 @@ final class CoreDataStack {
         return container.viewContext
     }
 
+    /// The context for background tasks.
+    /// It should be used for non-UI related tasks, especially computationally or time-consuming ones.
+    lazy var backgroundContext: NSManagedObjectContext = {
+        let context = container.newBackgroundContext()
+        return context
+    }()
+
     // - MARK: Init
     /// Initializes a new instance of this type.
     /// - Parameter model: The model's name.
