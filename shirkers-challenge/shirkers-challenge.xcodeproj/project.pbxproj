@@ -14,29 +14,19 @@
 		A40BCDD224FB05BE002F53A0 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BCDD124FB05BE002F53A0 /* InboxViewController.swift */; };
 		A40BCDD524FC2C3B002F53A0 /* InboxCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BCDD424FC2C3B002F53A0 /* InboxCollectionViewCell.swift */; };
 		A40BE4F22523E0170013C09C /* ExternalURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BE4F12523E0170013C09C /* ExternalURL.swift */; };
-		A40ED58C22D7B025004C3A8A /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40ED58B22D7B025004C3A8A /* MainScreenViewController.swift */; };
-		A40ED5B522D7D623004C3A8A /* CassetteTapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40ED5B422D7D623004C3A8A /* CassetteTapeView.swift */; };
 		A43A5DB8243F918000E6FBBB /* RecordingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A5DB7243F918000E6FBBB /* RecordingController.swift */; };
-		A43EA28922E775C4001A7310 /* CassetteTapeSegmentedControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA28822E775C4001A7310 /* CassetteTapeSegmentedControlView.swift */; };
-		A43EA29022E9D71F001A7310 /* AudioSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA28F22E9D71F001A7310 /* AudioSession.swift */; };
-		A43EA29622EA1193001A7310 /* RecordingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA29522EA1193001A7310 /* RecordingsTableViewController.swift */; };
-		A43EA29822EA145B001A7310 /* RecordingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43EA29722EA145B001A7310 /* RecordingsTableViewCell.swift */; };
 		A44AEA13251E9D6C00352E21 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44AEA12251E9D6C00352E21 /* SettingsViewController.swift */; };
 		A453E261243E680D00D05C65 /* RecordingSessionSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A453E260243E680D00D05C65 /* RecordingSessionSettings.swift */; };
 		A468154E22D66BE200537D16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468154D22D66BE200537D16 /* AppDelegate.swift */; };
 		A468155622D66BE200537D16 /* shirkers_challenge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A468155422D66BE200537D16 /* shirkers_challenge.xcdatamodeld */; };
 		A468155822D66BE300537D16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A468155722D66BE300537D16 /* Assets.xcassets */; };
 		A468155B22D66BE300537D16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A468155922D66BE300537D16 /* LaunchScreen.storyboard */; };
-		A468156322D66E5500537D16 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468156222D66E5500537D16 /* Constants.swift */; };
 		A47C3C2F251CF3D1001C3A55 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47C3C2E251CF3D1001C3A55 /* DesignSystem.swift */; };
-		A4877FCF22DE495D00A94411 /* CassetteTapeShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4877FCE22DE495D00A94411 /* CassetteTapeShapeLayer.swift */; };
-		A4877FD122E0E2E800A94411 /* SpoolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4877FD022E0E2E800A94411 /* SpoolView.swift */; };
 		A499E96A24FC3D0200290B16 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A499E96924FC3D0200290B16 /* ArchiveViewController.swift */; };
 		A499E96C24FC3DD000290B16 /* ArchiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A499E96B24FC3DD000290B16 /* ArchiveTableViewCell.swift */; };
 		A4A241E3243FB50E0025DA3D /* OSLog+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A241E2243FB50E0025DA3D /* OSLog+Extensions.swift */; };
 		A4A241E5243FC1850025DA3D /* RecordingControllerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A241E4243FC1850025DA3D /* RecordingControllerError.swift */; };
 		A4C49CC025240E0F0057507C /* MemoraNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C49CBF25240E0F0057507C /* MemoraNavigationViewController.swift */; };
-		A4CC531622E4FEC70095C921 /* CassetteTapeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CC531522E4FEC70095C921 /* CassetteTapeButtonView.swift */; };
 		A4D0E00C25056C1200B3B12D /* RecordingControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0E00B25056C1200B3B12D /* RecordingControllerProtocol.swift */; };
 		A4D0E0242505706900B3B12D /* shirkers_challengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0E0232505706900B3B12D /* shirkers_challengeTests.swift */; };
 		A4D0E030250587EB00B3B12D /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0E02F250587EB00B3B12D /* CoreDataStack.swift */; };
@@ -44,7 +34,6 @@
 		A4D0E0342507B8A400B3B12D /* PlayerComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0E0332507B8A400B3B12D /* PlayerComponentViewController.swift */; };
 		A4DB55AE2524D76300C9A3B2 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DB55AD2524D76300C9A3B2 /* UIFont+Extensions.swift */; };
 		A4DB55B42524EA7E00C9A3B2 /* MemoraSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DB55B32524EA7E00C9A3B2 /* MemoraSlider.swift */; };
-		A4F74D97230F1D29006B43E1 /* MemoryPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F74D96230F1D29006B43E1 /* MemoryPlayerViewController.swift */; };
 		A4F80E14252B55720098919E /* InboxCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F80E13252B55720098919E /* InboxCollectionView.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,13 +55,7 @@
 		A40BCDD124FB05BE002F53A0 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
 		A40BCDD424FC2C3B002F53A0 /* InboxCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxCollectionViewCell.swift; sourceTree = "<group>"; };
 		A40BE4F12523E0170013C09C /* ExternalURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalURL.swift; sourceTree = "<group>"; };
-		A40ED58B22D7B025004C3A8A /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
-		A40ED5B422D7D623004C3A8A /* CassetteTapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassetteTapeView.swift; sourceTree = "<group>"; };
 		A43A5DB7243F918000E6FBBB /* RecordingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingController.swift; sourceTree = "<group>"; };
-		A43EA28822E775C4001A7310 /* CassetteTapeSegmentedControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassetteTapeSegmentedControlView.swift; sourceTree = "<group>"; };
-		A43EA28F22E9D71F001A7310 /* AudioSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSession.swift; sourceTree = "<group>"; };
-		A43EA29522EA1193001A7310 /* RecordingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsTableViewController.swift; sourceTree = "<group>"; };
-		A43EA29722EA145B001A7310 /* RecordingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsTableViewCell.swift; sourceTree = "<group>"; };
 		A44AEA12251E9D6C00352E21 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A453E260243E680D00D05C65 /* RecordingSessionSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingSessionSettings.swift; sourceTree = "<group>"; };
 		A468154A22D66BE200537D16 /* shirkers-challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shirkers-challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,16 +64,12 @@
 		A468155722D66BE300537D16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A468155A22D66BE300537D16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A468155C22D66BE300537D16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A468156222D66E5500537D16 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A47C3C2E251CF3D1001C3A55 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
-		A4877FCE22DE495D00A94411 /* CassetteTapeShapeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassetteTapeShapeLayer.swift; sourceTree = "<group>"; };
-		A4877FD022E0E2E800A94411 /* SpoolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpoolView.swift; sourceTree = "<group>"; };
 		A499E96924FC3D0200290B16 /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
 		A499E96B24FC3DD000290B16 /* ArchiveTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveTableViewCell.swift; sourceTree = "<group>"; };
 		A4A241E2243FB50E0025DA3D /* OSLog+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+Extensions.swift"; sourceTree = "<group>"; };
 		A4A241E4243FC1850025DA3D /* RecordingControllerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingControllerError.swift; sourceTree = "<group>"; };
 		A4C49CBF25240E0F0057507C /* MemoraNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoraNavigationViewController.swift; sourceTree = "<group>"; };
-		A4CC531522E4FEC70095C921 /* CassetteTapeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CassetteTapeButtonView.swift; sourceTree = "<group>"; };
 		A4D0E00B25056C1200B3B12D /* RecordingControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingControllerProtocol.swift; sourceTree = "<group>"; };
 		A4D0E0212505706800B3B12D /* shirkers-challengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "shirkers-challengeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4D0E0232505706900B3B12D /* shirkers_challengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shirkers_challengeTests.swift; sourceTree = "<group>"; };
@@ -100,7 +79,6 @@
 		A4D0E0332507B8A400B3B12D /* PlayerComponentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerComponentViewController.swift; sourceTree = "<group>"; };
 		A4DB55AD2524D76300C9A3B2 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		A4DB55B32524EA7E00C9A3B2 /* MemoraSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoraSlider.swift; sourceTree = "<group>"; };
-		A4F74D96230F1D29006B43E1 /* MemoryPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryPlayerViewController.swift; sourceTree = "<group>"; };
 		A4F80E13252B55720098919E /* InboxCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,19 +100,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A40BCDC324FADE1C002F53A0 /* Screens */ = {
-			isa = PBXGroup;
-			children = (
-				A40BCDC624FADF2C002F53A0 /* RootViewController.swift */,
-				A40BCDCD24FAF542002F53A0 /* RootPageViewController.swift */,
-				A4C49CBF25240E0F0057507C /* MemoraNavigationViewController.swift */,
-				A499E96824FC3CEB00290B16 /* Settings */,
-				A499E96724FC3CE500290B16 /* Archive */,
-				A40BCDD324FC2C2D002F53A0 /* Inbox */,
-			);
-			path = Screens;
-			sourceTree = "<group>";
-		};
 		A40BCDC424FADE3C002F53A0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,25 +120,6 @@
 				A4DB55AD2524D76300C9A3B2 /* UIFont+Extensions.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		A40BCDCA24FADFD3002F53A0 /* Player Component */ = {
-			isa = PBXGroup;
-			children = (
-				A4D0E0332507B8A400B3B12D /* PlayerComponentViewController.swift */,
-				A4DB55B32524EA7E00C9A3B2 /* MemoraSlider.swift */,
-			);
-			path = "Player Component";
-			sourceTree = "<group>";
-		};
-		A40BCDD324FC2C2D002F53A0 /* Inbox */ = {
-			isa = PBXGroup;
-			children = (
-				A40BCDD124FB05BE002F53A0 /* InboxViewController.swift */,
-				A40BCDD424FC2C3B002F53A0 /* InboxCollectionViewCell.swift */,
-				A4F80E13252B55720098919E /* InboxCollectionView.swift */,
-			);
-			path = Inbox;
 			sourceTree = "<group>";
 		};
 		A40BE4F02523E0080013C09C /* Enums */ = {
@@ -200,15 +146,6 @@
 				A4D0E00B25056C1200B3B12D /* RecordingControllerProtocol.swift */,
 			);
 			path = Recorder;
-			sourceTree = "<group>";
-		};
-		A43EA28A22E8C038001A7310 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				A468156222D66E5500537D16 /* Constants.swift */,
-				A43EA28F22E9D71F001A7310 /* AudioSession.swift */,
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		A443CADA25240B2300397E86 /* App */ = {
@@ -248,21 +185,19 @@
 		A468154C22D66BE200537D16 /* shirkers-challenge */ = {
 			isa = PBXGroup;
 			children = (
-				A443CADB25240B2C00397E86 /* Property Wrappers */,
 				A443CADA25240B2300397E86 /* App */,
+				A40BCDC424FADE3C002F53A0 /* Resources */,
+				A443CADB25240B2C00397E86 /* Property Wrappers */,
 				A40BE4F72523E1290013C09C /* Protocols */,
 				A40BE4F02523E0080013C09C /* Enums */,
 				A47C3C2D251CF3BB001C3A55 /* Design System */,
 				A4D0E02D250587D000B3B12D /* Core Data */,
 				A40BCDC524FADEC4002F53A0 /* Extensions */,
-				A40BCDC424FADE3C002F53A0 /* Resources */,
-				A40BCDCA24FADFD3002F53A0 /* Player Component */,
-				A40BCDC324FADE1C002F53A0 /* Screens */,
-				A43A5DB9243F950700E6FBBB /* Recorder */,
-				A43EA28A22E8C038001A7310 /* Helpers */,
+				A47D8174252C992400242592 /* Views */,
+				A47D816A252C98A100242592 /* ViewControllers */,
+				A47D816D252C98EE00242592 /* ViewModels */,
 				A4CC531322E3BA500095C921 /* Models */,
-				A4CC531222E3BA390095C921 /* Controllers */,
-				A4CC531122E3BA1F0095C921 /* Views */,
+				A43A5DB9243F950700E6FBBB /* Recorder */,
 			);
 			path = "shirkers-challenge";
 			sourceTree = "<group>";
@@ -275,44 +210,36 @@
 			path = "Design System";
 			sourceTree = "<group>";
 		};
-		A499E96724FC3CE500290B16 /* Archive */ = {
+		A47D816A252C98A100242592 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				A499E96924FC3D0200290B16 /* ArchiveViewController.swift */,
-				A499E96B24FC3DD000290B16 /* ArchiveTableViewCell.swift */,
-			);
-			path = Archive;
-			sourceTree = "<group>";
-		};
-		A499E96824FC3CEB00290B16 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
+				A40BCDC624FADF2C002F53A0 /* RootViewController.swift */,
+				A40BCDCD24FAF542002F53A0 /* RootPageViewController.swift */,
+				A4C49CBF25240E0F0057507C /* MemoraNavigationViewController.swift */,
+				A4D0E0332507B8A400B3B12D /* PlayerComponentViewController.swift */,
 				A44AEA12251E9D6C00352E21 /* SettingsViewController.swift */,
+				A499E96924FC3D0200290B16 /* ArchiveViewController.swift */,
+				A40BCDD124FB05BE002F53A0 /* InboxViewController.swift */,
 			);
-			path = Settings;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		A4CC531122E3BA1F0095C921 /* Views */ = {
+		A47D816D252C98EE00242592 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				A4877FD022E0E2E800A94411 /* SpoolView.swift */,
-				A40ED5B422D7D623004C3A8A /* CassetteTapeView.swift */,
-				A4877FCE22DE495D00A94411 /* CassetteTapeShapeLayer.swift */,
-				A4CC531522E4FEC70095C921 /* CassetteTapeButtonView.swift */,
-				A43EA28822E775C4001A7310 /* CassetteTapeSegmentedControlView.swift */,
-				A43EA29722EA145B001A7310 /* RecordingsTableViewCell.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A47D8174252C992400242592 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A4DB55B32524EA7E00C9A3B2 /* MemoraSlider.swift */,
+				A499E96B24FC3DD000290B16 /* ArchiveTableViewCell.swift */,
+				A40BCDD424FC2C3B002F53A0 /* InboxCollectionViewCell.swift */,
+				A4F80E13252B55720098919E /* InboxCollectionView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		A4CC531222E3BA390095C921 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				A40ED58B22D7B025004C3A8A /* MainScreenViewController.swift */,
-				A43EA29522EA1193001A7310 /* RecordingsTableViewController.swift */,
-				A4F74D96230F1D29006B43E1 /* MemoryPlayerViewController.swift */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		A4CC531322E3BA500095C921 /* Models */ = {
@@ -385,7 +312,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Artur Carneiro";
 				TargetAttributes = {
 					A468154922D66BE200537D16 = {
@@ -465,10 +392,8 @@
 				A4D0E03225058A6700B3B12D /* FileManager+Extensions.swift in Sources */,
 				A40BE4F22523E0170013C09C /* ExternalURL.swift in Sources */,
 				A4C49CC025240E0F0057507C /* MemoraNavigationViewController.swift in Sources */,
-				A40ED5B522D7D623004C3A8A /* CassetteTapeView.swift in Sources */,
 				A40BCDD224FB05BE002F53A0 /* InboxViewController.swift in Sources */,
 				A4D0E030250587EB00B3B12D /* CoreDataStack.swift in Sources */,
-				A43EA29022E9D71F001A7310 /* AudioSession.swift in Sources */,
 				A47C3C2F251CF3D1001C3A55 /* DesignSystem.swift in Sources */,
 				A4DB55B42524EA7E00C9A3B2 /* MemoraSlider.swift in Sources */,
 				A40BCDC724FADF2C002F53A0 /* RootViewController.swift in Sources */,
@@ -477,26 +402,17 @@
 				A468155622D66BE200537D16 /* shirkers_challenge.xcdatamodeld in Sources */,
 				A499E96A24FC3D0200290B16 /* ArchiveViewController.swift in Sources */,
 				A4DB55AE2524D76300C9A3B2 /* UIFont+Extensions.swift in Sources */,
-				A4877FD122E0E2E800A94411 /* SpoolView.swift in Sources */,
 				A468154E22D66BE200537D16 /* AppDelegate.swift in Sources */,
 				A4D0E00C25056C1200B3B12D /* RecordingControllerProtocol.swift in Sources */,
 				A4D0E0342507B8A400B3B12D /* PlayerComponentViewController.swift in Sources */,
 				A40BCDCE24FAF542002F53A0 /* RootPageViewController.swift in Sources */,
-				A4CC531622E4FEC70095C921 /* CassetteTapeButtonView.swift in Sources */,
-				A4877FCF22DE495D00A94411 /* CassetteTapeShapeLayer.swift in Sources */,
-				A468156322D66E5500537D16 /* Constants.swift in Sources */,
 				A44AEA13251E9D6C00352E21 /* SettingsViewController.swift in Sources */,
-				A43EA28922E775C4001A7310 /* CassetteTapeSegmentedControlView.swift in Sources */,
 				A4A241E3243FB50E0025DA3D /* OSLog+Extensions.swift in Sources */,
 				A43A5DB8243F918000E6FBBB /* RecordingController.swift in Sources */,
 				A40BCDC924FADF54002F53A0 /* AutoLayoutPropertyWrapper.swift in Sources */,
-				A4F74D97230F1D29006B43E1 /* MemoryPlayerViewController.swift in Sources */,
-				A43EA29622EA1193001A7310 /* RecordingsTableViewController.swift in Sources */,
 				A4F80E14252B55720098919E /* InboxCollectionView.swift in Sources */,
-				A40ED58C22D7B025004C3A8A /* MainScreenViewController.swift in Sources */,
 				A40BCDD524FC2C3B002F53A0 /* InboxCollectionViewCell.swift in Sources */,
 				A4A241E5243FC1850025DA3D /* RecordingControllerError.swift in Sources */,
-				A43EA29822EA145B001A7310 /* RecordingsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,6 +472,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -617,6 +534,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

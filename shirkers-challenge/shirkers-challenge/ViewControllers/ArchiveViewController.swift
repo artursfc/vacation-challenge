@@ -38,7 +38,6 @@ final class ArchiveViewController: UIViewController {
         setupTableViewLayout()
         title = "Archive"
 
-        
     }
 
 // - MARK: Layout
