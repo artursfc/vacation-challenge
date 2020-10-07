@@ -58,7 +58,9 @@ final class RootPageViewController: UIViewController {
 
     //- MARK : @objc
     @objc private func recordMemory() {
-        print("RECORDING")
+        let recorderViewController = RecorderViewController()
+
+        present(recorderViewController, animated: true, completion: nil)
     }
 
 // - MARK: Layout

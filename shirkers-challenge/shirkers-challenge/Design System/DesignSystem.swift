@@ -45,4 +45,15 @@ enum DesignSystem {
     enum Archive {
         static let rowHeight: CGFloat = 60
     }
+
+    // MARK: Recorder
+    enum Recorder {
+        static let spacingFromBottom: CGFloat = 50
+        static let recordButtonWidth: CGFloat = 100
+        static let recordButtonHeight: CGFloat = 100
+
+        static let spacingFromRecordButton: CGFloat = 50
+        static let timestampLabelHeight: CGFloat = 30
+        static let timestampLabelWidthMultiplier: CGFloat = 0.3
+    }
 }
