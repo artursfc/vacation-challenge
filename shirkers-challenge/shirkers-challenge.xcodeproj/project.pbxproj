@@ -21,6 +21,7 @@
 		A468155622D66BE200537D16 /* shirkers_challenge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A468155422D66BE200537D16 /* shirkers_challenge.xcdatamodeld */; };
 		A468155822D66BE300537D16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A468155722D66BE300537D16 /* Assets.xcassets */; };
 		A468155B22D66BE300537D16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A468155922D66BE300537D16 /* LaunchScreen.storyboard */; };
+		A46B35E2252F4DEA00B6ECCF /* RecorderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46B35E1252F4DEA00B6ECCF /* RecorderViewModel.swift */; };
 		A47C3C2F251CF3D1001C3A55 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47C3C2E251CF3D1001C3A55 /* DesignSystem.swift */; };
 		A499E96A24FC3D0200290B16 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A499E96924FC3D0200290B16 /* ArchiveViewController.swift */; };
 		A499E96C24FC3DD000290B16 /* ArchiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A499E96B24FC3DD000290B16 /* ArchiveTableViewCell.swift */; };
@@ -65,6 +66,7 @@
 		A468155722D66BE300537D16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A468155A22D66BE300537D16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A468155C22D66BE300537D16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A46B35E1252F4DEA00B6ECCF /* RecorderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderViewModel.swift; sourceTree = "<group>"; };
 		A47C3C2E251CF3D1001C3A55 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 		A499E96924FC3D0200290B16 /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
 		A499E96B24FC3DD000290B16 /* ArchiveTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveTableViewCell.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 		A47D816D252C98EE00242592 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				A46B35E1252F4DEA00B6ECCF /* RecorderViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				A499E96C24FC3DD000290B16 /* ArchiveTableViewCell.swift in Sources */,
 				A4D0E03225058A6700B3B12D /* FileManager+Extensions.swift in Sources */,
 				A4CCA8A1252DFB3C0035676E /* RecorderViewController.swift in Sources */,
+				A46B35E2252F4DEA00B6ECCF /* RecorderViewModel.swift in Sources */,
 				A40BE4F22523E0170013C09C /* ExternalURL.swift in Sources */,
 				A4C49CC025240E0F0057507C /* MemoraNavigationViewController.swift in Sources */,
 				A40BCDD224FB05BE002F53A0 /* InboxViewController.swift in Sources */,

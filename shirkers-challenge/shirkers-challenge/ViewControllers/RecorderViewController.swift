@@ -13,7 +13,7 @@ final class RecorderViewController: UIViewController {
     @AutoLayout private var recordButton: UIButton
     @AutoLayout private var timestampLabel: UILabel
 
-    private var recording: Bool = false
+    private let viewModel: RecorderViewModel
 
     /// The anchors identifier used to animate constraints.
     fileprivate enum AnchorIdentifier: String {
@@ -24,7 +24,8 @@ final class RecorderViewController: UIViewController {
     }
 
     // MARK: Init
-    init() {
+    init(viewModel: RecorderViewModel = RecorderViewModel()) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -38,56 +39,17 @@ final class RecorderViewController: UIViewController {
         view.backgroundColor = .memoraMediumGray
         setUpViews()
         layoutConstraints()
+        setUpViewModel()
     }
 
     // MARK: @objc
     @objc private func didTapRecord(_ button: UIButton) {
-        guard let timestampBottomAnchor = view.constraints.first(where: {
-            $0.identifier == AnchorIdentifier.timestampLabelBottom.rawValue
-        }) else { return }
-        guard let bottomAnchor = self.view.constraints.first(where: {
-            $0.identifier == AnchorIdentifier.recordButtonBottom.rawValue
-        }) else { return }
-        guard let widthAnchor = button.constraints.first(where: {
-            $0.identifier == AnchorIdentifier.recordButtonWidth.rawValue
-        }) else { return }
-        guard let heightAnchor = button.constraints.first(where: {
-            $0.identifier == AnchorIdentifier.recordButtonHeight.rawValue
-        }) else { return }
+        viewModel.recording.toggle()
+    }
 
-        if recording {
-            timestampBottomAnchor.constant = -(DesignSystem.Recorder.spacingFromRecordButton)
-
-            UIView.animate(withDuration: 0.2,
-                           delay: 0,
-                           usingSpringWithDamping: 0.5,
-                           initialSpringVelocity: 1) { [weak self] in
-                guard let self = self else { return }
-                button.layer.cornerRadius = (DesignSystem.Recorder.recordButtonHeight * 1.0) / 2
-                bottomAnchor.constant = -(DesignSystem.Recorder.spacingFromBottom)
-                widthAnchor.constant = DesignSystem.Recorder.recordButtonWidth * 1.0
-                heightAnchor.constant = DesignSystem.Recorder.recordButtonHeight * 1.0
-
-                button.layoutIfNeeded()
-                self.recording = false
-            }
-        } else {
-            timestampBottomAnchor.constant = -(DesignSystem.Recorder.spacingFromRecordButton + DesignSystem.Recorder.recordButtonHeight * 0.5/2)
-
-            UIView.animate(withDuration: 0.2,
-                           delay: 0,
-                           usingSpringWithDamping: 0.5,
-                           initialSpringVelocity: 1) { [weak self] in
-                guard let self = self else { return }
-                button.layer.cornerRadius = (DesignSystem.Recorder.recordButtonHeight * 0.5) / 2
-                bottomAnchor.constant = -(DesignSystem.Recorder.spacingFromBottom + (DesignSystem.Recorder.recordButtonHeight * 0.5)/2)
-                widthAnchor.constant = DesignSystem.Recorder.recordButtonWidth * 0.5
-                heightAnchor.constant = DesignSystem.Recorder.recordButtonHeight * 0.5
-
-                button.layoutIfNeeded()
-                self.recording = true
-            }
-        }
+    // MARK: ViewModel setup
+    private func setUpViewModel() {
+        viewModel.delegate = self
     }
 
     // MARK: Views setup
@@ -155,5 +117,67 @@ final class RecorderViewController: UIViewController {
         ])
 
         bottomAnchor.identifier = AnchorIdentifier.timestampLabelBottom.rawValue
+    }
+}
+
+extension RecorderViewController: RecorderViewModelDelegate {
+    func didStartRecording() {
+        guard let timestampBottomAnchor = view.constraints.first(where: {
+            $0.identifier == AnchorIdentifier.timestampLabelBottom.rawValue
+        }) else { return }
+        guard let bottomAnchor = view.constraints.first(where: {
+            $0.identifier == AnchorIdentifier.recordButtonBottom.rawValue
+        }) else { return }
+        guard let widthAnchor = recordButton.constraints.first(where: {
+            $0.identifier == AnchorIdentifier.recordButtonWidth.rawValue
+        }) else { return }
+        guard let heightAnchor = recordButton.constraints.first(where: {
+            $0.identifier == AnchorIdentifier.recordButtonHeight.rawValue
+        }) else { return }
+
+        timestampBottomAnchor.constant = -(DesignSystem.Recorder.spacingFromRecordButton + DesignSystem.Recorder.recordButtonHeight * 0.5/2)
+
+        UIView.animate(withDuration: 0.2,
+                       delay: 0,
+                       usingSpringWithDamping: 0.5,
+                       initialSpringVelocity: 1) { [weak self] in
+            guard let self = self else { return }
+            self.recordButton.layer.cornerRadius = (DesignSystem.Recorder.recordButtonHeight * 0.5) / 2
+            bottomAnchor.constant = -(DesignSystem.Recorder.spacingFromBottom + (DesignSystem.Recorder.recordButtonHeight * 0.5)/2)
+            widthAnchor.constant = DesignSystem.Recorder.recordButtonWidth * 0.5
+            heightAnchor.constant = DesignSystem.Recorder.recordButtonHeight * 0.5
+
+            self.recordButton.layoutIfNeeded()
+        }
+    }
+
+    func didStopRecording() {
+        guard let timestampBottomAnchor = view.constraints.first(where: {
+            $0.identifier == AnchorIdentifier.timestampLabelBottom.rawValue
+        }) else { return }
+        guard let bottomAnchor = view.constraints.first(where: {
+            $0.identifier == AnchorIdentifier.recordButtonBottom.rawValue
+        }) else { return }
+        guard let widthAnchor = recordButton.constraints.first(where: {
+            $0.identifier == AnchorIdentifier.recordButtonWidth.rawValue
+        }) else { return }
+        guard let heightAnchor = recordButton.constraints.first(where: {
+            $0.identifier == AnchorIdentifier.recordButtonHeight.rawValue
+        }) else { return }
+
+        timestampBottomAnchor.constant = -(DesignSystem.Recorder.spacingFromRecordButton)
+
+        UIView.animate(withDuration: 0.2,
+                       delay: 0,
+                       usingSpringWithDamping: 0.5,
+                       initialSpringVelocity: 1) { [weak self] in
+            guard let self = self else { return }
+            self.recordButton.layer.cornerRadius = (DesignSystem.Recorder.recordButtonHeight * 1.0) / 2
+            bottomAnchor.constant = -(DesignSystem.Recorder.spacingFromBottom)
+            widthAnchor.constant = DesignSystem.Recorder.recordButtonWidth * 1.0
+            heightAnchor.constant = DesignSystem.Recorder.recordButtonHeight * 1.0
+
+            self.recordButton.layoutIfNeeded()
+        }
     }
 }
