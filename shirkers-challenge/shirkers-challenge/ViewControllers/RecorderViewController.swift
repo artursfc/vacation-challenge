@@ -13,7 +13,7 @@ final class RecorderViewController: UIViewController {
     @AutoLayout private var recordButton: UIButton
     @AutoLayout private var timestampLabel: UILabel
 
-    private lazy var recordingButtonShapeLayer = RecordingButtonShapeLayer(buttonFrame: recordButton.frame)
+    private lazy var recordButtonShapeLayer = RecordButtonShapeLayer(buttonFrame: recordButton.frame)
 
     private let viewModel: RecorderViewModel
 
@@ -38,7 +38,6 @@ final class RecorderViewController: UIViewController {
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .memoraMediumGray
         setUpViews()
         layoutConstraints()
         setUpViewModel()
@@ -56,8 +55,17 @@ final class RecorderViewController: UIViewController {
 
     // MARK: Views setup
     private func setUpViews() {
+        setUpBlurredView()
         setUpRecordButton()
         setUpTimestampLabel()
+    }
+
+    private func setUpBlurredView() {
+        let blurredView = UIBlurEffect(style: .dark)
+        let visualEffectView = UIVisualEffectView(effect: blurredView)
+        visualEffectView.frame = view.frame
+
+        view.addSubview(visualEffectView)
     }
 
     private func setUpRecordButton() {
@@ -124,13 +132,13 @@ final class RecorderViewController: UIViewController {
     // MARK: Animations
     private func shouldAnimateRecordingButton(_ animated: Bool) {
         if animated {
-            let animation = RecordingButtonAnimation()
+            let animation = RecordButtonAnimation()
 
-            view.layer.addSublayer(recordingButtonShapeLayer)
-            recordingButtonShapeLayer.add(animation, forKey: animation.identifier)
+            view.layer.addSublayer(recordButtonShapeLayer)
+            recordButtonShapeLayer.add(animation, forKey: animation.identifier)
         } else {
-            recordingButtonShapeLayer.removeAllAnimations()
-            recordingButtonShapeLayer.removeFromSuperlayer()
+            recordButtonShapeLayer.removeAllAnimations()
+            recordButtonShapeLayer.removeFromSuperlayer()
         }
     }
 }

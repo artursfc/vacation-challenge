@@ -59,6 +59,7 @@ final class RootPageViewController: UIViewController {
     //- MARK : @objc
     @objc private func recordMemory() {
         let recorderViewController = RecorderViewController()
+        recorderViewController.modalPresentationStyle = .overFullScreen
 
         present(recorderViewController, animated: true, completion: nil)
     }

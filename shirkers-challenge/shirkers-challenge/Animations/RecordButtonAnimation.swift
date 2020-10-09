@@ -16,7 +16,7 @@ final class RecordButtonAnimation: CAAnimationGroup {
         return String(describing: self)
     }
 
-    /// The starting animation. Its `duration` should be the same as `endAnimation`.
+    /// The start animation. Its `duration` should be the same as `endAnimation`.
     private lazy var startAnimation: CABasicAnimation = {
         let animation = CABasicAnimation(keyPath: "strokeStart")
         animation.fromValue = 0
@@ -25,7 +25,7 @@ final class RecordButtonAnimation: CAAnimationGroup {
         return animation
     }()
 
-    /// The ending animation. Its `duration` should be the same as `startAnimation`
+    /// The end animation. Its `duration` should be the same as `startAnimation`
     /// and have a `beginTime` equal to `duration`.
     private lazy var endAnimation: CABasicAnimation = {
         let animation = CABasicAnimation(keyPath: "strokeEnd")
