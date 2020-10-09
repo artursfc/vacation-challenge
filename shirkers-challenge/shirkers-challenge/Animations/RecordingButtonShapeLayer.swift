@@ -8,10 +8,14 @@
 
 import UIKit
 
+/// Responsible for describing how to draw the desired shape for the
+/// animation.
 final class RecordingButtonShapeLayer: CAShapeLayer {
 
+    /// The button's frame used in drawing the animated shape.
     private let buttonFrame: CGRect
 
+    /// The shape drawn based on `buttonFrame`.
     private lazy var buttonPath: UIBezierPath = {
         let path = UIBezierPath()
         let center = CGPoint(x: buttonFrame.midX, y: buttonFrame.midY)
@@ -25,6 +29,8 @@ final class RecordingButtonShapeLayer: CAShapeLayer {
         return path
     }()
 
+    /// Initializes a new instance of this type.
+    /// - Parameter buttonFrame: The button's frame used in drawing the animated shape.
     init(buttonFrame frame: CGRect) {
         self.buttonFrame = frame
         super.init()
