@@ -13,9 +13,11 @@ final class RecorderViewController: UIViewController {
     @AutoLayout private var recordButton: UIButton
     @AutoLayout private var timestampLabel: UILabel
 
+    private lazy var recordingButtonShapeLayer = RecordingButtonShapeLayer(buttonFrame: recordButton.frame)
+
     private let viewModel: RecorderViewModel
 
-    /// The anchors identifier used to animate constraints.
+    /// A anchor identifier used to animate constraints.
     fileprivate enum AnchorIdentifier: String {
         case recordButtonBottom = "record-bottom"
         case recordButtonWidth = "record-width"
@@ -118,8 +120,22 @@ final class RecorderViewController: UIViewController {
 
         bottomAnchor.identifier = AnchorIdentifier.timestampLabelBottom.rawValue
     }
+
+    // MARK: Animations
+    private func shouldAnimateRecordingButton(_ animated: Bool) {
+        if animated {
+            let animation = RecordingButtonAnimation()
+
+            view.layer.addSublayer(recordingButtonShapeLayer)
+            recordingButtonShapeLayer.add(animation, forKey: animation.identifier)
+        } else {
+            recordingButtonShapeLayer.removeAllAnimations()
+            recordingButtonShapeLayer.removeFromSuperlayer()
+        }
+    }
 }
 
+// MARK: ViewModel Delegate
 extension RecorderViewController: RecorderViewModelDelegate {
     func didStartRecording() {
         guard let timestampBottomAnchor = view.constraints.first(where: {
@@ -134,6 +150,8 @@ extension RecorderViewController: RecorderViewModelDelegate {
         guard let heightAnchor = recordButton.constraints.first(where: {
             $0.identifier == AnchorIdentifier.recordButtonHeight.rawValue
         }) else { return }
+
+        shouldAnimateRecordingButton(true)
 
         timestampBottomAnchor.constant = -(DesignSystem.Recorder.spacingFromRecordButton + DesignSystem.Recorder.recordButtonHeight * 0.5/2)
 
@@ -165,6 +183,7 @@ extension RecorderViewController: RecorderViewModelDelegate {
             $0.identifier == AnchorIdentifier.recordButtonHeight.rawValue
         }) else { return }
 
+        shouldAnimateRecordingButton(false)
         timestampBottomAnchor.constant = -(DesignSystem.Recorder.spacingFromRecordButton)
 
         UIView.animate(withDuration: 0.2,

@@ -14,6 +14,8 @@
 		A40BCDD224FB05BE002F53A0 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BCDD124FB05BE002F53A0 /* InboxViewController.swift */; };
 		A40BCDD524FC2C3B002F53A0 /* InboxCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BCDD424FC2C3B002F53A0 /* InboxCollectionViewCell.swift */; };
 		A40BE4F22523E0170013C09C /* ExternalURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BE4F12523E0170013C09C /* ExternalURL.swift */; };
+		A4152CF925309EA500556D3A /* RecordingButtonAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4152CF825309EA500556D3A /* RecordingButtonAnimation.swift */; };
+		A4152CFD2530A0EA00556D3A /* RecordingButtonShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4152CFC2530A0EA00556D3A /* RecordingButtonShapeLayer.swift */; };
 		A43A5DB8243F918000E6FBBB /* RecordingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A5DB7243F918000E6FBBB /* RecordingController.swift */; };
 		A44AEA13251E9D6C00352E21 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44AEA12251E9D6C00352E21 /* SettingsViewController.swift */; };
 		A453E261243E680D00D05C65 /* RecordingSessionSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A453E260243E680D00D05C65 /* RecordingSessionSettings.swift */; };
@@ -57,6 +59,8 @@
 		A40BCDD124FB05BE002F53A0 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
 		A40BCDD424FC2C3B002F53A0 /* InboxCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxCollectionViewCell.swift; sourceTree = "<group>"; };
 		A40BE4F12523E0170013C09C /* ExternalURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalURL.swift; sourceTree = "<group>"; };
+		A4152CF825309EA500556D3A /* RecordingButtonAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingButtonAnimation.swift; sourceTree = "<group>"; };
+		A4152CFC2530A0EA00556D3A /* RecordingButtonShapeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingButtonShapeLayer.swift; sourceTree = "<group>"; };
 		A43A5DB7243F918000E6FBBB /* RecordingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingController.swift; sourceTree = "<group>"; };
 		A44AEA12251E9D6C00352E21 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A453E260243E680D00D05C65 /* RecordingSessionSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingSessionSettings.swift; sourceTree = "<group>"; };
@@ -141,6 +145,15 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		A4152CF725309E8C00556D3A /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				A4152CF825309EA500556D3A /* RecordingButtonAnimation.swift */,
+				A4152CFC2530A0EA00556D3A /* RecordingButtonShapeLayer.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		A43A5DB9243F950700E6FBBB /* Recorder */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +210,7 @@
 				A47C3C2D251CF3BB001C3A55 /* Design System */,
 				A4D0E02D250587D000B3B12D /* Core Data */,
 				A40BCDC524FADEC4002F53A0 /* Extensions */,
+				A4152CF725309E8C00556D3A /* Animations */,
 				A47D8174252C992400242592 /* Views */,
 				A47D816A252C98A100242592 /* ViewControllers */,
 				A47D816D252C98EE00242592 /* ViewModels */,
@@ -404,6 +418,7 @@
 				A4D0E030250587EB00B3B12D /* CoreDataStack.swift in Sources */,
 				A47C3C2F251CF3D1001C3A55 /* DesignSystem.swift in Sources */,
 				A4DB55B42524EA7E00C9A3B2 /* MemoraSlider.swift in Sources */,
+				A4152CFD2530A0EA00556D3A /* RecordingButtonShapeLayer.swift in Sources */,
 				A40BCDC724FADF2C002F53A0 /* RootViewController.swift in Sources */,
 				A453E261243E680D00D05C65 /* RecordingSessionSettings.swift in Sources */,
 				A40BCDD024FB0272002F53A0 /* UIColor+Extensions.swift in Sources */,
@@ -412,6 +427,7 @@
 				A4DB55AE2524D76300C9A3B2 /* UIFont+Extensions.swift in Sources */,
 				A468154E22D66BE200537D16 /* AppDelegate.swift in Sources */,
 				A4D0E00C25056C1200B3B12D /* RecordingControllerProtocol.swift in Sources */,
+				A4152CF925309EA500556D3A /* RecordingButtonAnimation.swift in Sources */,
 				A4D0E0342507B8A400B3B12D /* PlayerComponentViewController.swift in Sources */,
 				A40BCDCE24FAF542002F53A0 /* RootPageViewController.swift in Sources */,
 				A44AEA13251E9D6C00352E21 /* SettingsViewController.swift in Sources */,
