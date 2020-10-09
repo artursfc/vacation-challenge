@@ -12,6 +12,7 @@ final class RecorderViewController: UIViewController {
     // MARK: Properties
     @AutoLayout private var recordButton: UIButton
     @AutoLayout private var timestampLabel: UILabel
+    @AutoLayout private var titleTextField: UITextField
 
     private lazy var recordButtonShapeLayer = RecordButtonShapeLayer(buttonFrame: recordButton.frame)
 
@@ -58,6 +59,7 @@ final class RecorderViewController: UIViewController {
         setUpBlurredView()
         setUpRecordButton()
         setUpTimestampLabel()
+        setUpTitleTextField()
     }
 
     private func setUpBlurredView() {
@@ -83,10 +85,19 @@ final class RecorderViewController: UIViewController {
         timestampLabel.font = .preferredFont(forTextStyle: .headline)
     }
 
+    private func setUpTitleTextField() {
+        titleTextField.placeholder = "Memory's title"
+        titleTextField.font = UIFont.preferredFont(forTextStyle: .title2).bold()
+        titleTextField.tintColor = .memoraLightGray
+        titleTextField.textAlignment = .center
+        titleTextField.textColor = .memoraLightGray
+    }
+
     // MARK: Layout
     private func layoutConstraints() {
         layoutRecordButtonConstraints()
         layoutTimestampLabelConstraints()
+        layoutTitleTextFieldConstraints()
     }
 
     private func layoutRecordButtonConstraints() {
@@ -127,6 +138,21 @@ final class RecorderViewController: UIViewController {
         ])
 
         bottomAnchor.identifier = AnchorIdentifier.timestampLabelBottom.rawValue
+    }
+
+    private func layoutTitleTextFieldConstraints() {
+        view.addSubview(titleTextField)
+
+        let guides = view.safeAreaLayoutGuide
+
+        NSLayoutConstraint.activate([
+            titleTextField.centerXAnchor.constraint(equalTo: guides.centerXAnchor),
+            titleTextField.heightAnchor.constraint(equalToConstant: 30),
+            titleTextField.topAnchor.constraint(equalTo: guides.topAnchor,
+                                                constant: 50),
+            titleTextField.widthAnchor.constraint(equalTo: guides.widthAnchor,
+                                                  multiplier: 0.8)
+        ])
     }
 
     // MARK: Animations
