@@ -19,6 +19,7 @@
 		A43A5DB8243F918000E6FBBB /* RecordingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A5DB7243F918000E6FBBB /* RecordingController.swift */; };
 		A44AEA13251E9D6C00352E21 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44AEA12251E9D6C00352E21 /* SettingsViewController.swift */; };
 		A453E261243E680D00D05C65 /* RecordingSessionSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A453E260243E680D00D05C65 /* RecordingSessionSettings.swift */; };
+		A4596AC22530CCBF00D1D034 /* MemoraTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4596AC12530CCBF00D1D034 /* MemoraTextField.swift */; };
 		A468154E22D66BE200537D16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468154D22D66BE200537D16 /* AppDelegate.swift */; };
 		A468155622D66BE200537D16 /* shirkers_challenge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A468155422D66BE200537D16 /* shirkers_challenge.xcdatamodeld */; };
 		A468155822D66BE300537D16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A468155722D66BE300537D16 /* Assets.xcassets */; };
@@ -64,6 +65,7 @@
 		A43A5DB7243F918000E6FBBB /* RecordingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingController.swift; sourceTree = "<group>"; };
 		A44AEA12251E9D6C00352E21 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A453E260243E680D00D05C65 /* RecordingSessionSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingSessionSettings.swift; sourceTree = "<group>"; };
+		A4596AC12530CCBF00D1D034 /* MemoraTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoraTextField.swift; sourceTree = "<group>"; };
 		A468154A22D66BE200537D16 /* shirkers-challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shirkers-challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A468154D22D66BE200537D16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A468155522D66BE200537D16 /* shirkers_challenge.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = shirkers_challenge.xcdatamodel; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				A499E96B24FC3DD000290B16 /* ArchiveTableViewCell.swift */,
 				A40BCDD424FC2C3B002F53A0 /* InboxCollectionViewCell.swift */,
 				A4F80E13252B55720098919E /* InboxCollectionView.swift */,
+				A4596AC12530CCBF00D1D034 /* MemoraTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				A4A241E3243FB50E0025DA3D /* OSLog+Extensions.swift in Sources */,
 				A43A5DB8243F918000E6FBBB /* RecordingController.swift in Sources */,
 				A40BCDC924FADF54002F53A0 /* AutoLayoutPropertyWrapper.swift in Sources */,
+				A4596AC22530CCBF00D1D034 /* MemoraTextField.swift in Sources */,
 				A4F80E14252B55720098919E /* InboxCollectionView.swift in Sources */,
 				A40BCDD524FC2C3B002F53A0 /* InboxCollectionViewCell.swift in Sources */,
 				A4A241E5243FC1850025DA3D /* RecordingControllerError.swift in Sources */,

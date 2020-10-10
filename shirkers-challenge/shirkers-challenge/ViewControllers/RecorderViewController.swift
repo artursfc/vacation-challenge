@@ -9,10 +9,13 @@
 import UIKit
 
 final class RecorderViewController: UIViewController {
-    // MARK: Properties
+    // MARK: - Properties
     @AutoLayout private var recordButton: UIButton
     @AutoLayout private var timestampLabel: UILabel
-    @AutoLayout private var titleTextField: UITextField
+    @AutoLayout private var titleLabel: UILabel
+    @AutoLayout private var titleTextField: MemoraTextField
+    @AutoLayout private var remindMeLabel: UILabel
+    @AutoLayout private var remindMeSlider: MemoraSlider
 
     private lazy var recordButtonShapeLayer = RecordButtonShapeLayer(buttonFrame: recordButton.frame)
 
@@ -26,7 +29,7 @@ final class RecorderViewController: UIViewController {
         case timestampLabelBottom = "timestamp-bottom"
     }
 
-    // MARK: Init
+    // MARK: - Init
     init(viewModel: RecorderViewModel = RecorderViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -36,7 +39,7 @@ final class RecorderViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: Life cycle
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
@@ -44,22 +47,22 @@ final class RecorderViewController: UIViewController {
         setUpViewModel()
     }
 
-    // MARK: @objc
+    // MARK: - @objc
     @objc private func didTapRecord(_ button: UIButton) {
         viewModel.recording.toggle()
     }
 
-    // MARK: ViewModel setup
+    // MARK: - ViewModel setup
     private func setUpViewModel() {
         viewModel.delegate = self
     }
 
-    // MARK: Views setup
+    // MARK: - Views setup
     private func setUpViews() {
         setUpBlurredView()
         setUpRecordButton()
         setUpTimestampLabel()
-        setUpTitleTextField()
+        setUpInfoStackViews()
     }
 
     private func setUpBlurredView() {
@@ -85,19 +88,23 @@ final class RecorderViewController: UIViewController {
         timestampLabel.font = .preferredFont(forTextStyle: .headline)
     }
 
-    private func setUpTitleTextField() {
-        titleTextField.placeholder = "Memory's title"
-        titleTextField.font = UIFont.preferredFont(forTextStyle: .title2).bold()
-        titleTextField.tintColor = .memoraLightGray
-        titleTextField.textAlignment = .center
-        titleTextField.textColor = .memoraLightGray
+    private func setUpInfoStackViews() {
+        titleLabel.text = "TITLE"
+        titleLabel.textAlignment = .natural
+        titleLabel.textColor = .memoraLightGray
+        titleLabel.font = .preferredFont(forTextStyle: .subheadline)
+
+        remindMeLabel.text = "REMIND ME IN ABOUT 90 DAYS"
+        remindMeLabel.textAlignment = .natural
+        remindMeLabel.textColor = .memoraLightGray
+        remindMeLabel.font = .preferredFont(forTextStyle: .subheadline)
     }
 
-    // MARK: Layout
+    // MARK: - Layout
     private func layoutConstraints() {
         layoutRecordButtonConstraints()
         layoutTimestampLabelConstraints()
-        layoutTitleTextFieldConstraints()
+        layoutInfoStackViewsConstraints()
     }
 
     private func layoutRecordButtonConstraints() {
@@ -140,22 +147,42 @@ final class RecorderViewController: UIViewController {
         bottomAnchor.identifier = AnchorIdentifier.timestampLabelBottom.rawValue
     }
 
-    private func layoutTitleTextFieldConstraints() {
+    private func layoutInfoStackViewsConstraints() {
+        view.addSubview(titleLabel)
         view.addSubview(titleTextField)
+        view.addSubview(remindMeLabel)
+        view.addSubview(remindMeSlider)
 
-        let guides = view.safeAreaLayoutGuide
+        let guides = view.layoutMarginsGuide
 
         NSLayoutConstraint.activate([
-            titleTextField.centerXAnchor.constraint(equalTo: guides.centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: guides.topAnchor,
+                                            constant: 40),
+            titleLabel.widthAnchor.constraint(equalTo: guides.widthAnchor),
+            titleLabel.heightAnchor.constraint(equalToConstant: 20),
+            titleLabel.centerXAnchor.constraint(equalTo: guides.centerXAnchor),
+
+            titleTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,
+                                                constant: 20),
+            titleTextField.widthAnchor.constraint(equalTo: guides.widthAnchor),
             titleTextField.heightAnchor.constraint(equalToConstant: 30),
-            titleTextField.topAnchor.constraint(equalTo: guides.topAnchor,
-                                                constant: 50),
-            titleTextField.widthAnchor.constraint(equalTo: guides.widthAnchor,
-                                                  multiplier: 0.8)
+            titleTextField.centerXAnchor.constraint(equalTo: guides.centerXAnchor),
+
+            remindMeLabel.topAnchor.constraint(equalTo: titleTextField.bottomAnchor,
+                                               constant: 60),
+            remindMeLabel.widthAnchor.constraint(equalTo: guides.widthAnchor),
+            remindMeLabel.heightAnchor.constraint(equalToConstant: 20),
+            remindMeLabel.centerXAnchor.constraint(equalTo: guides.centerXAnchor),
+
+            remindMeSlider.topAnchor.constraint(equalTo: remindMeLabel.bottomAnchor,
+                                               constant: 20),
+            remindMeSlider.widthAnchor.constraint(equalTo: guides.widthAnchor),
+            remindMeSlider.heightAnchor.constraint(equalToConstant: 30),
+            remindMeSlider.centerXAnchor.constraint(equalTo: guides.centerXAnchor)
         ])
     }
 
-    // MARK: Animations
+    // MARK: - Animations
     private func shouldAnimateRecordingButton(_ animated: Bool) {
         if animated {
             let animation = RecordButtonAnimation()
@@ -169,7 +196,7 @@ final class RecorderViewController: UIViewController {
     }
 }
 
-// MARK: ViewModel Delegate
+// MARK: - ViewModel Delegate
 extension RecorderViewController: RecorderViewModelDelegate {
     func didStartRecording() {
         guard let timestampBottomAnchor = view.constraints.first(where: {

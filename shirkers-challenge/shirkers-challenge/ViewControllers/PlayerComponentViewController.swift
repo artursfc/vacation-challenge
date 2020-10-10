@@ -40,7 +40,6 @@ final class PlayerComponentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-//        configureProgressSlider()
         configureLabels()
         configurePlayButton()
         configureLayout()
@@ -52,11 +51,6 @@ final class PlayerComponentViewController: UIViewController {
     private func configureView() {
         view.backgroundColor = .memoraMediumGray
         view.layer.cornerRadius = view.frame.height * 0.015
-    }
-
-    /// Configures the progress slider.
-    private func configureProgressSlider() {
-        progressSlider.tintColor = .memoraLightGray
     }
 
     /// Configures all the labels.

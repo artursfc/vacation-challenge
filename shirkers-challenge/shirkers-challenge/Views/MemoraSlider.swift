@@ -14,7 +14,7 @@ final class MemoraSlider: UISlider {
     // - MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUpSlider()
+        setUp()
     }
 
     required init?(coder: NSCoder) {
@@ -23,7 +23,7 @@ final class MemoraSlider: UISlider {
 
     // - MARK: Layout
     /// Sets up the `UISlider`.
-    private func setUpSlider() {
+    private func setUp() {
         minimumTrackTintColor = .memoraLightGray
         maximumTrackTintColor = .memoraLightGray
 
