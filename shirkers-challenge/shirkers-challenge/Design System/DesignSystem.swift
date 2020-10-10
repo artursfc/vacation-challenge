@@ -49,8 +49,8 @@ enum DesignSystem {
     // MARK: Recorder
     enum Recorder {
         static let spacingFromBottom: CGFloat = 50
-        static let recordButtonWidth: CGFloat = 100
-        static let recordButtonHeight: CGFloat = 100
+        static let recordButtonWidth: CGFloat = 80
+        static let recordButtonHeight: CGFloat = 80
 
         static let spacingFromRecordButton: CGFloat = 50
         static let timestampLabelHeight: CGFloat = 30

@@ -16,6 +16,7 @@ final class RecorderViewController: UIViewController {
     @AutoLayout private var titleTextField: MemoraTextField
     @AutoLayout private var remindMeLabel: UILabel
     @AutoLayout private var remindMeSlider: MemoraSlider
+    @AutoLayout private var saveButton: UIButton
 
     private lazy var recordButtonShapeLayer = RecordButtonShapeLayer(buttonFrame: recordButton.frame)
 
@@ -98,6 +99,11 @@ final class RecorderViewController: UIViewController {
         remindMeLabel.textAlignment = .natural
         remindMeLabel.textColor = .memoraLightGray
         remindMeLabel.font = .preferredFont(forTextStyle: .subheadline)
+
+        saveButton.setTitle("Save", for: .normal)
+        saveButton.setTitleColor(.memoraDarkGray, for: .normal)
+        saveButton.layer.cornerRadius = 10
+        saveButton.backgroundColor = .memoraLightGray
     }
 
     // MARK: - Layout
@@ -152,6 +158,7 @@ final class RecorderViewController: UIViewController {
         view.addSubview(titleTextField)
         view.addSubview(remindMeLabel)
         view.addSubview(remindMeSlider)
+        view.addSubview(saveButton)
 
         let guides = view.layoutMarginsGuide
 
@@ -178,7 +185,13 @@ final class RecorderViewController: UIViewController {
                                                constant: 20),
             remindMeSlider.widthAnchor.constraint(equalTo: guides.widthAnchor),
             remindMeSlider.heightAnchor.constraint(equalToConstant: 30),
-            remindMeSlider.centerXAnchor.constraint(equalTo: guides.centerXAnchor)
+            remindMeSlider.centerXAnchor.constraint(equalTo: guides.centerXAnchor),
+
+            saveButton.topAnchor.constraint(equalTo: remindMeSlider.bottomAnchor,
+                                               constant: 60),
+            saveButton.widthAnchor.constraint(equalToConstant: 100),
+            saveButton.heightAnchor.constraint(equalToConstant: 50),
+            saveButton.centerXAnchor.constraint(equalTo: guides.centerXAnchor)
         ])
     }
 

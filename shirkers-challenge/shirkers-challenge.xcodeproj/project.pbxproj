@@ -256,9 +256,8 @@
 		A47D8174252C992400242592 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A4D286BC25323F78005EF229 /* Cells */,
 				A4DB55B32524EA7E00C9A3B2 /* MemoraSlider.swift */,
-				A499E96B24FC3DD000290B16 /* ArchiveTableViewCell.swift */,
-				A40BCDD424FC2C3B002F53A0 /* InboxCollectionViewCell.swift */,
 				A4F80E13252B55720098919E /* InboxCollectionView.swift */,
 				A4596AC12530CCBF00D1D034 /* MemoraTextField.swift */,
 			);
@@ -287,6 +286,15 @@
 				A4D0E02F250587EB00B3B12D /* CoreDataStack.swift */,
 			);
 			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		A4D286BC25323F78005EF229 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A499E96B24FC3DD000290B16 /* ArchiveTableViewCell.swift */,
+				A40BCDD424FC2C3B002F53A0 /* InboxCollectionViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
