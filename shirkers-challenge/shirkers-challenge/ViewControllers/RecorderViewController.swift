@@ -10,14 +10,14 @@ import UIKit
 
 final class RecorderViewController: UIViewController {
     // MARK: - Properties
-    @AutoLayout private var recordButton: UIButton
-    @AutoLayout private var timestampLabel: UILabel
-    @AutoLayout private var titleLabel: UILabel
+    @AutoLayout private var recordButton: MemoraRecordButton
+    @AutoLayout private var timestampLabel: MemoraLabel
+    @AutoLayout private var titleLabel: MemoraLabel
     @AutoLayout private var titleTextField: MemoraTextField
-    @AutoLayout private var remindMeLabel: UILabel
+    @AutoLayout private var remindMeLabel: MemoraLabel
     @AutoLayout private var remindMeSlider: MemoraSlider
-    @AutoLayout private var saveButton: UIButton
-    @AutoLayout private var closeButton: UIButton
+    @AutoLayout private var saveButton: MemoraButton
+    @AutoLayout private var closeButton: MemoraButton
 
     private lazy var recordButtonShapeLayer = RecordButtonShapeLayer(buttonFrame: recordButton.frame)
 
@@ -51,7 +51,6 @@ final class RecorderViewController: UIViewController {
 
     // MARK: - @objc
     @objc private func didTapRecord(_ button: UIButton) {
-        print(button)
         viewModel.recording.toggle()
     }
 
@@ -82,44 +81,27 @@ final class RecorderViewController: UIViewController {
     }
 
     private func setUpRecordButton() {
-        recordButton.backgroundColor = .memoraRed
-        recordButton.layer.cornerRadius = DesignSystem.Recorder.recordButtonHeight/2
-        recordButton.clipsToBounds = true
-
         recordButton.addTarget(self, action: #selector(didTapRecord(_:)), for: .touchUpInside)
     }
 
     private func setUpTimestampLabel() {
-        timestampLabel.text = "04:00"
-        timestampLabel.textColor = .memoraLightGray
-        timestampLabel.textAlignment = .center
-        timestampLabel.font = .preferredFont(forTextStyle: .headline)
+        timestampLabel.setUp(with: .timestamp)
     }
 
     private func setUpCloseButton() {
-        let buttonImageConfig = UIImage.SymbolConfiguration(pointSize: 0, weight: .bold, scale: .large)
-        let buttonImage = UIImage(systemName: "xmark.circle.fill", withConfiguration: buttonImageConfig)
-        closeButton.setImage(buttonImage, for: .normal)
-        closeButton.tintColor = .memoraLightGray
+        closeButton.setUp(with: .close)
         closeButton.addTarget(self, action: #selector(didTapClose(_:)), for: .touchUpInside)
     }
 
     private func setUpInfoStackViews() {
+        titleLabel.setUp(with: .default)
         titleLabel.text = "Title"
-        titleLabel.textAlignment = .natural
-        titleLabel.textColor = .memoraLightGray
-        titleLabel.font = .preferredFont(forTextStyle: .subheadline)
 
+        remindMeLabel.setUp(with: .default)
         remindMeLabel.text = "Remind me in about 90 days"
-        remindMeLabel.textAlignment = .natural
-        remindMeLabel.textColor = .memoraLightGray
-        remindMeLabel.font = .preferredFont(forTextStyle: .subheadline)
 
+        saveButton.setUp(with: .save)
         saveButton.setTitle("Save", for: .normal)
-        saveButton.setTitleColor(.memoraDarkGray, for: .normal)
-        saveButton.titleLabel?.font = .preferredFont(forTextStyle: .headline)
-        saveButton.layer.cornerRadius = 10
-        saveButton.backgroundColor = .memoraLightGray
     }
 
     // MARK: - Layout
