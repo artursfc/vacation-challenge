@@ -52,7 +52,7 @@ enum DesignSystem {
         static let recordButtonWidth: CGFloat = 80
         static let recordButtonHeight: CGFloat = 80
 
-        static let spacingFromRecordButton: CGFloat = 50
+        static let spacingFromRecordButton: CGFloat = 20
         static let timestampLabelHeight: CGFloat = 30
         static let timestampLabelWidthMultiplier: CGFloat = 0.3
     }

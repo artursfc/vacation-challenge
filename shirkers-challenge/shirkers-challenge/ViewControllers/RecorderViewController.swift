@@ -17,6 +17,7 @@ final class RecorderViewController: UIViewController {
     @AutoLayout private var remindMeLabel: UILabel
     @AutoLayout private var remindMeSlider: MemoraSlider
     @AutoLayout private var saveButton: UIButton
+    @AutoLayout private var closeButton: UIButton
 
     private lazy var recordButtonShapeLayer = RecordButtonShapeLayer(buttonFrame: recordButton.frame)
 
@@ -50,7 +51,12 @@ final class RecorderViewController: UIViewController {
 
     // MARK: - @objc
     @objc private func didTapRecord(_ button: UIButton) {
+        print(button)
         viewModel.recording.toggle()
+    }
+
+    @objc private func didTapClose(_ button: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
 
     // MARK: - ViewModel setup
@@ -63,6 +69,7 @@ final class RecorderViewController: UIViewController {
         setUpBlurredView()
         setUpRecordButton()
         setUpTimestampLabel()
+        setUpCloseButton()
         setUpInfoStackViews()
     }
 
@@ -89,19 +96,28 @@ final class RecorderViewController: UIViewController {
         timestampLabel.font = .preferredFont(forTextStyle: .headline)
     }
 
+    private func setUpCloseButton() {
+        let buttonImageConfig = UIImage.SymbolConfiguration(pointSize: 0, weight: .bold, scale: .large)
+        let buttonImage = UIImage(systemName: "xmark.circle.fill", withConfiguration: buttonImageConfig)
+        closeButton.setImage(buttonImage, for: .normal)
+        closeButton.tintColor = .memoraLightGray
+        closeButton.addTarget(self, action: #selector(didTapClose(_:)), for: .touchUpInside)
+    }
+
     private func setUpInfoStackViews() {
-        titleLabel.text = "TITLE"
+        titleLabel.text = "Title"
         titleLabel.textAlignment = .natural
         titleLabel.textColor = .memoraLightGray
         titleLabel.font = .preferredFont(forTextStyle: .subheadline)
 
-        remindMeLabel.text = "REMIND ME IN ABOUT 90 DAYS"
+        remindMeLabel.text = "Remind me in about 90 days"
         remindMeLabel.textAlignment = .natural
         remindMeLabel.textColor = .memoraLightGray
         remindMeLabel.font = .preferredFont(forTextStyle: .subheadline)
 
         saveButton.setTitle("Save", for: .normal)
         saveButton.setTitleColor(.memoraDarkGray, for: .normal)
+        saveButton.titleLabel?.font = .preferredFont(forTextStyle: .headline)
         saveButton.layer.cornerRadius = 10
         saveButton.backgroundColor = .memoraLightGray
     }
@@ -110,6 +126,7 @@ final class RecorderViewController: UIViewController {
     private func layoutConstraints() {
         layoutRecordButtonConstraints()
         layoutTimestampLabelConstraints()
+        layoutCloseButtonConstraints()
         layoutInfoStackViewsConstraints()
     }
 
@@ -153,6 +170,18 @@ final class RecorderViewController: UIViewController {
         bottomAnchor.identifier = AnchorIdentifier.timestampLabelBottom.rawValue
     }
 
+    private func layoutCloseButtonConstraints() {
+        view.addSubview(closeButton)
+
+        let guides = view.layoutMarginsGuide
+
+        NSLayoutConstraint.activate([
+            closeButton.topAnchor.constraint(equalTo: guides.topAnchor),
+            closeButton.trailingAnchor.constraint(equalTo: guides.trailingAnchor),
+            closeButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+
     private func layoutInfoStackViewsConstraints() {
         view.addSubview(titleLabel)
         view.addSubview(titleTextField)
@@ -163,8 +192,8 @@ final class RecorderViewController: UIViewController {
         let guides = view.layoutMarginsGuide
 
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: guides.topAnchor,
-                                            constant: 40),
+            titleLabel.topAnchor.constraint(equalTo: closeButton.bottomAnchor,
+                                            constant: 30),
             titleLabel.widthAnchor.constraint(equalTo: guides.widthAnchor),
             titleLabel.heightAnchor.constraint(equalToConstant: 20),
             titleLabel.centerXAnchor.constraint(equalTo: guides.centerXAnchor),
@@ -176,7 +205,7 @@ final class RecorderViewController: UIViewController {
             titleTextField.centerXAnchor.constraint(equalTo: guides.centerXAnchor),
 
             remindMeLabel.topAnchor.constraint(equalTo: titleTextField.bottomAnchor,
-                                               constant: 60),
+                                               constant: 30),
             remindMeLabel.widthAnchor.constraint(equalTo: guides.widthAnchor),
             remindMeLabel.heightAnchor.constraint(equalToConstant: 20),
             remindMeLabel.centerXAnchor.constraint(equalTo: guides.centerXAnchor),
@@ -187,9 +216,9 @@ final class RecorderViewController: UIViewController {
             remindMeSlider.heightAnchor.constraint(equalToConstant: 30),
             remindMeSlider.centerXAnchor.constraint(equalTo: guides.centerXAnchor),
 
-            saveButton.topAnchor.constraint(equalTo: remindMeSlider.bottomAnchor,
-                                               constant: 60),
-            saveButton.widthAnchor.constraint(equalToConstant: 100),
+            saveButton.bottomAnchor.constraint(equalTo: timestampLabel.topAnchor,
+                                               constant: -50),
+            saveButton.widthAnchor.constraint(equalTo: guides.widthAnchor),
             saveButton.heightAnchor.constraint(equalToConstant: 50),
             saveButton.centerXAnchor.constraint(equalTo: guides.centerXAnchor)
         ])
