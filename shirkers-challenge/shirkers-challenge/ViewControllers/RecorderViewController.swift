@@ -160,7 +160,7 @@ final class RecorderViewController: UIViewController {
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalTo: guides.topAnchor),
             closeButton.trailingAnchor.constraint(equalTo: guides.trailingAnchor),
-            closeButton.heightAnchor.constraint(equalToConstant: 50)
+            closeButton.heightAnchor.constraint(equalToConstant: DesignSystem.Recorder.closeButtonHeight)
         ])
     }
 
@@ -175,33 +175,33 @@ final class RecorderViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: closeButton.bottomAnchor,
-                                            constant: 30),
+                                            constant: DesignSystem.Recorder.titleLabelSpacingFromCloseButton),
             titleLabel.widthAnchor.constraint(equalTo: guides.widthAnchor),
-            titleLabel.heightAnchor.constraint(equalToConstant: 20),
+            titleLabel.heightAnchor.constraint(equalToConstant: DesignSystem.Recorder.titleLabelHeight),
             titleLabel.centerXAnchor.constraint(equalTo: guides.centerXAnchor),
 
             titleTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,
-                                                constant: 20),
+                                                constant: DesignSystem.Recorder.titleTextFieldSpacingFromTitleLabel),
             titleTextField.widthAnchor.constraint(equalTo: guides.widthAnchor),
-            titleTextField.heightAnchor.constraint(equalToConstant: 30),
+            titleTextField.heightAnchor.constraint(equalToConstant: DesignSystem.Recorder.titleTextFieldHeight),
             titleTextField.centerXAnchor.constraint(equalTo: guides.centerXAnchor),
 
             remindMeLabel.topAnchor.constraint(equalTo: titleTextField.bottomAnchor,
-                                               constant: 30),
+                                               constant: DesignSystem.Recorder.remindMeLabelSpacingFromTitleTextField),
             remindMeLabel.widthAnchor.constraint(equalTo: guides.widthAnchor),
-            remindMeLabel.heightAnchor.constraint(equalToConstant: 20),
+            remindMeLabel.heightAnchor.constraint(equalToConstant: DesignSystem.Recorder.remindMeLabelHeight),
             remindMeLabel.centerXAnchor.constraint(equalTo: guides.centerXAnchor),
 
             remindMeSlider.topAnchor.constraint(equalTo: remindMeLabel.bottomAnchor,
-                                               constant: 20),
+                                                constant: DesignSystem.Recorder.remindMeSliderSpacingFromRemindMeLabel),
             remindMeSlider.widthAnchor.constraint(equalTo: guides.widthAnchor),
-            remindMeSlider.heightAnchor.constraint(equalToConstant: 30),
+            remindMeSlider.heightAnchor.constraint(equalToConstant: DesignSystem.Recorder.remindMeSliderHeight),
             remindMeSlider.centerXAnchor.constraint(equalTo: guides.centerXAnchor),
 
             saveButton.bottomAnchor.constraint(equalTo: timestampLabel.topAnchor,
-                                               constant: -50),
+                                               constant: DesignSystem.Recorder.saveButtonSpacingFromTimestampLabel),
             saveButton.widthAnchor.constraint(equalTo: guides.widthAnchor),
-            saveButton.heightAnchor.constraint(equalToConstant: 50),
+            saveButton.heightAnchor.constraint(equalToConstant: DesignSystem.Recorder.saveButtonHeight),
             saveButton.centerXAnchor.constraint(equalTo: guides.centerXAnchor)
         ])
     }

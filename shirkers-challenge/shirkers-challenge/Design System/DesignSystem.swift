@@ -55,5 +55,22 @@ enum DesignSystem {
         static let spacingFromRecordButton: CGFloat = 20
         static let timestampLabelHeight: CGFloat = 30
         static let timestampLabelWidthMultiplier: CGFloat = 0.3
+
+        static let closeButtonHeight: CGFloat = 50
+
+        static let titleLabelSpacingFromCloseButton: CGFloat = 30
+        static let titleLabelHeight: CGFloat = 20
+
+        static let titleTextFieldSpacingFromTitleLabel: CGFloat = 20
+        static let titleTextFieldHeight: CGFloat = 30
+
+        static let remindMeLabelSpacingFromTitleTextField: CGFloat = 30
+        static let remindMeLabelHeight: CGFloat = 20
+
+        static let remindMeSliderSpacingFromRemindMeLabel: CGFloat = 20
+        static let remindMeSliderHeight: CGFloat = 30
+
+        static let saveButtonSpacingFromTimestampLabel: CGFloat = -50
+        static let saveButtonHeight: CGFloat = 50
     }
 }
