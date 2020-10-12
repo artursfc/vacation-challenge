@@ -113,7 +113,7 @@ final class RecorderViewController: UIViewController {
         titleLabel.text = NSLocalizedString("title", comment: "The memory's title")
 
         remindMeLabel.setUp(with: .default)
-        remindMeLabel.text = NSLocalizedString("remind-me-in", comment: "The reminder deadline")
+        remindMeLabel.text = "\(NSLocalizedString("remind-me-in", comment: "The reminder deadline")) 1 day"
 
         saveButton.setUp(with: .save)
         saveButton.setTitle(NSLocalizedString("save", comment: ""), for: .normal)
