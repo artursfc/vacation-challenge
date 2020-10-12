@@ -21,6 +21,7 @@
 		A419A3052533965C00BE5A1F /* MemoraButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A419A3042533965C00BE5A1F /* MemoraButton.swift */; };
 		A41B419F253491D100AC11EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A41B41A1253491D100AC11EE /* Localizable.strings */; };
 		A41B41B02534F4F200AC11EE /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41B41AF2534F4F200AC11EE /* Date+Extensions.swift */; };
+		A41B41B42535018600AC11EE /* UserDefaultsAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41B41B32535018600AC11EE /* UserDefaultsAccess.swift */; };
 		A43A5DB8243F918000E6FBBB /* RecordingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A5DB7243F918000E6FBBB /* RecordingController.swift */; };
 		A44AEA13251E9D6C00352E21 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44AEA12251E9D6C00352E21 /* SettingsViewController.swift */; };
 		A453E261243E680D00D05C65 /* RecordingSessionSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A453E260243E680D00D05C65 /* RecordingSessionSettings.swift */; };
@@ -73,6 +74,7 @@
 		A41B41A0253491D100AC11EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A41B41A82534929100AC11EE /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A41B41AF2534F4F200AC11EE /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		A41B41B32535018600AC11EE /* UserDefaultsAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsAccess.swift; sourceTree = "<group>"; };
 		A43A5DB7243F918000E6FBBB /* RecordingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingController.swift; sourceTree = "<group>"; };
 		A44AEA12251E9D6C00352E21 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A453E260243E680D00D05C65 /* RecordingSessionSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingSessionSettings.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				A40BCDC824FADF54002F53A0 /* AutoLayoutPropertyWrapper.swift */,
+				A41B41B32535018600AC11EE /* UserDefaultsAccess.swift */,
 			);
 			path = "Property Wrappers";
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				A44AEA13251E9D6C00352E21 /* SettingsViewController.swift in Sources */,
 				A4A241E3243FB50E0025DA3D /* OSLog+Extensions.swift in Sources */,
 				A43A5DB8243F918000E6FBBB /* RecordingController.swift in Sources */,
+				A41B41B42535018600AC11EE /* UserDefaultsAccess.swift in Sources */,
 				A40BCDC924FADF54002F53A0 /* AutoLayoutPropertyWrapper.swift in Sources */,
 				A4596AC22530CCBF00D1D034 /* MemoraTextField.swift in Sources */,
 				A4F80E14252B55720098919E /* InboxCollectionView.swift in Sources */,
