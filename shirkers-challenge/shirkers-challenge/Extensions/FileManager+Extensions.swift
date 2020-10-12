@@ -12,4 +12,8 @@ extension FileManager {
     static var userDocumentDirectory: URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
+
+    var userDocumentDirectory: URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    }
 }

@@ -21,7 +21,7 @@
             landmarkType = "3">
             <Locations>
                <Location
-                  uuid = "614A29E8-C3C5-4851-AB60-A9C51454EB72 - e11feaf781e41f6"
+                  uuid = "614A29E8-C3C5-4851-AB60-A9C51454EB72 - ccad05e8a4ffce1"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -37,7 +37,7 @@
                   offsetFromSymbolStart = "114">
                </Location>
                <Location
-                  uuid = "614A29E8-C3C5-4851-AB60-A9C51454EB72 - d619de90b1d87de2"
+                  uuid = "614A29E8-C3C5-4851-AB60-A9C51454EB72 - d4c2f0614389c0f5"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -53,7 +53,7 @@
                   offsetFromSymbolStart = "128">
                </Location>
                <Location
-                  uuid = "614A29E8-C3C5-4851-AB60-A9C51454EB72 - bf03f589ef2a26f3"
+                  uuid = "614A29E8-C3C5-4851-AB60-A9C51454EB72 - bdd8db781d7b99b3"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -69,7 +69,7 @@
                   offsetFromSymbolStart = "18">
                </Location>
                <Location
-                  uuid = "614A29E8-C3C5-4851-AB60-A9C51454EB72 - 8cda18d819b72a84"
+                  uuid = "614A29E8-C3C5-4851-AB60-A9C51454EB72 - 8e013629ebe69793"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -85,7 +85,7 @@
                   offsetFromSymbolStart = "4">
                </Location>
                <Location
-                  uuid = "614A29E8-C3C5-4851-AB60-A9C51454EB72 - 504b12ef26d79d96"
+                  uuid = "614A29E8-C3C5-4851-AB60-A9C51454EB72 - 52903c1ed4862081"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -101,7 +101,7 @@
                   offsetFromSymbolStart = "217">
                </Location>
                <Location
-                  uuid = "614A29E8-C3C5-4851-AB60-A9C51454EB72 - e550c46c119bbf45"
+                  uuid = "614A29E8-C3C5-4851-AB60-A9C51454EB72 - e78bea9de3ca0252"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -132,6 +132,22 @@
             startingLineNumber = "84"
             endingLineNumber = "84"
             landmarkName = "setupPlayer()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5CC20E3A-08B0-4525-B979-8855148A3CFE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "shirkers-challenge/ViewModels/RecorderViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "remove(file:at:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

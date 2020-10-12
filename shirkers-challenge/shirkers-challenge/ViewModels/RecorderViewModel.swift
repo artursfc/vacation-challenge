@@ -6,7 +6,7 @@
 //  Copyright © 2020 Artur Carneiro. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol RecorderViewModelDelegate: AnyObject {
     func didStartRecording()
@@ -20,6 +20,14 @@ final class RecorderViewModel {
 
     private var remindMeInSeconds: Int = 0
 
+    private var currentDate: Date? {
+        didSet {
+            if let previousDate = oldValue {
+                remove(file: previousDate.stringFormatted())
+            }
+        }
+    }
+
     weak var delegate: RecorderViewModelDelegate?
 
     // MARK: - Init
@@ -29,6 +37,11 @@ final class RecorderViewModel {
             guard let self = self else { return }
             self.recording = false
         }
+
+        NotificationCenter.default.addObserver(self,
+                                       selector: #selector(remove(_:)),
+                                       name: UIApplication.willTerminateNotification,
+                                       object: nil)
     }
 
     // MARK: - API
@@ -39,29 +52,44 @@ final class RecorderViewModel {
     var recording: Bool = false {
         didSet {
             if recording {
-                delegate?.didStartRecording()
+                currentDate = Date()
+                if let fileName = currentDate?.stringFormatted() {
+                    do {
+                        try recorder.setUp(for: fileName)
+                        try recorder.start()
+                        delegate?.didStartRecording()
+                    } catch {
+                        // TODO: Error Handling
+                    }
+                }
             } else {
-                delegate?.didStopRecording()
+                do {
+                    try recorder.stop()
+                    delegate?.didStopRecording()
+                } catch {
+                    // TODO: Error handling
+                }
+
             }
         }
     }
 
     var title: String = ""
 
-    var remindMeIn: String {
+    var remindMe: String {
         let localizedRemindMe = NSLocalizedString("remind-me-in", comment: "The reminder deadline")
         if remindMeInSeconds > (60*60*24) {
             let localizedDays = NSLocalizedString("days", comment: "Plural reminder period")
-            return "\(localizedRemindMe) \(Int(remindMeInPeriod)) \(localizedDays)"
+            return "\(localizedRemindMe) \(Int(remindMePeriod)) \(localizedDays)"
         } else {
             let localizedDay = NSLocalizedString("day", comment: "Singular reminder period")
-            return "\(localizedRemindMe) \(Int(remindMeInPeriod)) \(localizedDay)"
+            return "\(localizedRemindMe) \(Int(remindMePeriod)) \(localizedDay)"
         }
     }
 
-    var remindMeInPeriod: Float = 0.0 {
+    var remindMePeriod: Float = 0.0 {
         didSet {
-            remindMeInSeconds = Int(remindMeInPeriod) * 24 * 60 * 60
+            remindMeInSeconds = Int(remindMePeriod) * 24 * 60 * 60
             delegate?.didUpdateRemindMe()
         }
     }
@@ -72,5 +100,28 @@ final class RecorderViewModel {
         } catch {
             // TODO: Error handling
         }
+    }
+
+    // MARK: - FileManager
+    private func remove(file: String, at fileManager: FileManager = FileManager.default) {
+        print("Deleting...")
+        let url = fileManager.userDocumentDirectory
+        let fileURL = url.appendingPathComponent("\(file).m4a")
+        do {
+            try fileManager.removeItem(at: fileURL)
+        } catch {
+            // TODO: Error handling
+        }
+    }
+
+    @objc private func remove(_ notification: Notification) {
+        guard let fileName = currentDate?.stringFormatted() else {
+            return
+        }
+        remove(file: fileName)
+    }
+    // MARK: - Deinit
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }

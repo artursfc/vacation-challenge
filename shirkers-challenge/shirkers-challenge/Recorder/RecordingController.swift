@@ -101,6 +101,7 @@ final class RecordingController: NSObject, Recorder {
             if let recorder = recorder {
                 recorder.record()
                 state = .recording
+                os_log("Recording...", log: .recordingCycle, type: .debug)
             }
         } else {
             switch state {
@@ -121,6 +122,7 @@ final class RecordingController: NSObject, Recorder {
             if let recorder = recorder {
                 recorder.stop()
                 state = .idle
+                os_log("Stopped recording.", log: .recordingCycle, type: .debug)
             }
         } else {
             switch state {

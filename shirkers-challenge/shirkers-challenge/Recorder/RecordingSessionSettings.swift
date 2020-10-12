@@ -62,7 +62,7 @@ extension RecordingSessionSettings {
             self.numberOfChannels = 2
             self.sampleRate = 44100
             self.audioQuality = AVAudioQuality.max.rawValue
-            self.format = Int(kAudioFormatMPEG4AAC)
+            self.format = Int(kAudioFormatAppleLossless)
         }
     }
 }

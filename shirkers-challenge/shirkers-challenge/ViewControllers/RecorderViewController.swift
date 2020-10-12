@@ -44,9 +44,9 @@ final class RecorderViewController: UIViewController {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpViewModel()
         setUpViews()
         layoutConstraints()
-        setUpViewModel()
     }
 
     // MARK: - @objc
@@ -59,11 +59,14 @@ final class RecorderViewController: UIViewController {
     }
 
     @objc private func didChangeRemindMe(_ slider: MemoraSlider) {
-        viewModel.remindMeInPeriod = slider.value
+        viewModel.remindMePeriod = slider.value
     }
 
     // MARK: - ViewModel setup
     private func setUpViewModel() {
+        if !viewModel.permission {
+            viewModel.requestPermission()
+        }
         viewModel.delegate = self
     }
 
@@ -235,7 +238,7 @@ final class RecorderViewController: UIViewController {
 // MARK: - ViewModel Delegate
 extension RecorderViewController: RecorderViewModelDelegate {
     func didUpdateRemindMe() {
-        remindMeLabel.text = viewModel.remindMeIn
+        remindMeLabel.text = viewModel.remindMe
     }
 
     func didStartRecording() {
