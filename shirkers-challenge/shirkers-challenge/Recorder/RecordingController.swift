@@ -19,8 +19,15 @@ final class RecordingController: NSObject, Recorder {
     private let audioSession: AVAudioSession
     /// A variable used to determine whether or not recording is permitted at any given time.
     /// Should be kept as a computed property to get correct permission condition at call time.
-    private var permission: AVAudioSession.RecordPermission {
-        return audioSession.recordPermission
+    var permission: Bool {
+        switch audioSession.recordPermission {
+        case .denied, .undetermined:
+            return false
+        case .granted:
+            return true
+        default:
+            return false
+        }
     }
 
     /// Enum used to describe all possible states of an instance. Recording should only be possible at idle.
@@ -47,7 +54,7 @@ final class RecordingController: NSObject, Recorder {
     /// Requests user permission to record. No need to treat the
     /// closure's response as the instance state will determine whether
     /// recording is possible.
-    func requestRecordPermission() throws {
+    func requestPermission() throws {
         var permission = false
         audioSession.requestRecordPermission { (response) in
             permission = response
@@ -62,7 +69,7 @@ final class RecordingController: NSObject, Recorder {
             try audioSession.setCategory(.record, mode: .default)
             try audioSession.setActive(true)
             state = .sessionActive
-            os_log("AVAudioSession created and active", log: OSLog.recordingCycle, type: .info)
+            os_log("AVAudioSession created and active", log: OSLog.recordingCycle, type: .debug)
         } catch {
             os_log("AVAudioSession creation failed. Category: .record. Mode: .default",
                    log: OSLog.recordingCycle,
@@ -82,7 +89,7 @@ final class RecordingController: NSObject, Recorder {
                 recorder.prepareToRecord()
                 state = .idle
             }
-            os_log("AVAudioRecorder created. Set to prepareToRecord().", log: OSLog.recordingCycle, type: .info)
+            os_log("AVAudioRecorder created. Set to prepareToRecord().", log: OSLog.recordingCycle, type: .debug)
         } catch {
             os_log("AVAudioRecorder creation failed.", log: OSLog.recordingCycle, type: .error)
             throw RecordingControllerError.setupRequired

@@ -15,19 +15,25 @@ protocol RecorderViewModelDelegate: AnyObject {
 }
 
 final class RecorderViewModel {
-
+    // MARK: - Properties
     private var recorder: Recorder
 
     private var remindMeInSeconds: Int = 0
 
     weak var delegate: RecorderViewModelDelegate?
 
+    // MARK: - Init
     init(recorder: Recorder) {
         self.recorder = recorder
         self.recorder.didFinishRecording = { [weak self] (successfully) in
             guard let self = self else { return }
             self.recording = false
         }
+    }
+
+    // MARK: - API
+    var permission: Bool {
+        return recorder.permission
     }
 
     var recording: Bool = false {
@@ -60,4 +66,11 @@ final class RecorderViewModel {
         }
     }
 
+    func requestPermission() {
+        do {
+            try recorder.requestPermission()
+        } catch {
+            // TODO: Error handling
+        }
+    }
 }

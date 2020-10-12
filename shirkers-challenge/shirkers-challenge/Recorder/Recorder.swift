@@ -10,8 +10,9 @@ import Foundation
 
 /// The protocol determining the interface of a `RecordingController`.
 protocol Recorder {
+    var permission: Bool { get }
     var didFinishRecording: ((_ successfully: Bool) -> Void)? { get set }
-    func requestRecordPermission() throws
+    func requestPermission() throws
     func setUp(for filename: String) throws
     func start() throws
     func stop() throws
