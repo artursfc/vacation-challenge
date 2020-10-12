@@ -11,12 +11,12 @@ import os.log
 
 /// Type used setup a recording session and to record audio. Preferably, it should not be
 /// instantiated by a ViewController as the error responses were not made with that in mind.
-public final class RecordingController: NSObject, RecordingControllerProtocol {
+final class RecordingController: NSObject, Recorder {
     /// The AVAudioRecorder used to record. Optional as the initializer for the class requires
     ///  a filename that does not exist at RecordingController initialization.
     private var recorder: AVAudioRecorder?
     /// AVAudioSession Singleton access.
-    private let audioSession: AVAudioSession = AVAudioSession.sharedInstance()
+    private let audioSession: AVAudioSession
     /// A variable used to determine whether or not recording is permitted at any given time.
     /// Should be kept as a computed property to get correct permission condition at call time.
     private var permission: AVAudioSession.RecordPermission {
@@ -24,7 +24,7 @@ public final class RecordingController: NSObject, RecordingControllerProtocol {
     }
 
     /// Enum used to describe all possible states of an instance. Recording should only be possible at idle.
-    enum State {
+    private enum State {
         case requiresPermission
         case sessionActive
         case idle
@@ -33,10 +33,13 @@ public final class RecordingController: NSObject, RecordingControllerProtocol {
 
     /// The instance state. Remember to always check the state before an action and set the correct state after
     /// an action. After a recording is done the state should be set to idle.
-    private(set) var state: State = .requiresPermission
+    private var state: State = .requiresPermission
+
+    var didFinishRecording: ((Bool) -> Void)?
 
     /// Initialize a new instance of this type.
-    public override init() {
+    init(session: AVAudioSession = AVAudioSession.sharedInstance()) {
+        self.audioSession = session
         super.init()
         self.setUpRecordingSession()
     }
@@ -44,7 +47,7 @@ public final class RecordingController: NSObject, RecordingControllerProtocol {
     /// Requests user permission to record. No need to treat the
     /// closure's response as the instance state will determine whether
     /// recording is possible.
-    public func requestRecordPermission() throws {
+    func requestRecordPermission() throws {
         var permission = false
         audioSession.requestRecordPermission { (response) in
             permission = response
@@ -67,7 +70,7 @@ public final class RecordingController: NSObject, RecordingControllerProtocol {
         }
     }
 
-    public func setUp(for filename: String) throws {
+    func setUp(for filename: String) throws {
         let session = RecordingSessionSettings(filename: filename)
         let url = session.filepath
         let settings = session.settings
@@ -86,7 +89,7 @@ public final class RecordingController: NSObject, RecordingControllerProtocol {
         }
     }
 
-    public func start() throws {
+    func start() throws {
         if state == .idle {
             if let recorder = recorder {
                 recorder.record()
@@ -106,7 +109,7 @@ public final class RecordingController: NSObject, RecordingControllerProtocol {
         }
     }
 
-    public func stop() throws {
+    func stop() throws {
         if state == .recording {
             if let recorder = recorder {
                 recorder.stop()
@@ -128,5 +131,7 @@ public final class RecordingController: NSObject, RecordingControllerProtocol {
 }
 
 extension RecordingController: AVAudioRecorderDelegate {
-
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        didFinishRecording?(flag)
+    }
 }

@@ -20,19 +20,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Override point for customization after application launch.
 
-        /// Initialization of each page for the `UIPageViewController`.
+        // Initialization of each page for the `UIPageViewController`.
         let firstPage = SettingsViewController()
         let secondPage = InboxViewController()
         let thirdPage = ArchiveViewController()
 
         let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
 
-        /// Initialization of the `RootPageViewController` and `MemoraNavigationViewController`
+        // Initialization of the `RootPageViewController` and `MemoraNavigationViewController`
         let rootPageViewController = RootPageViewController(pages: [firstPage, secondPage, thirdPage],
                                                             pageViewController: pageViewController)
         let memoraNavigationViewController = MemoraNavigationViewController(rootViewController: rootPageViewController)
 
-        /// Initialization of the PlayerComponentViewController
+        // Initialization of the PlayerComponentViewController
         let playerComponentViewController = PlayerComponentViewController()
 
         window = UIWindow(frame: UIScreen.main.bounds)

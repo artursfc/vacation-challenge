@@ -32,7 +32,7 @@ final class RecorderViewController: UIViewController {
     }
 
     // MARK: - Init
-    init(viewModel: RecorderViewModel = RecorderViewModel()) {
+    init(viewModel: RecorderViewModel = RecorderViewModel(recorder: RecordingController())) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -50,12 +50,16 @@ final class RecorderViewController: UIViewController {
     }
 
     // MARK: - @objc
-    @objc private func didTapRecord(_ button: UIButton) {
+    @objc private func didTapRecord(_ button: MemoraButton) {
         viewModel.recording.toggle()
     }
 
-    @objc private func didTapClose(_ button: UIButton) {
+    @objc private func didTapClose(_ button: MemoraButton) {
         dismiss(animated: true, completion: nil)
+    }
+
+    @objc private func didChangeRemindMe(_ slider: MemoraSlider) {
+        viewModel.remindMeInPeriod = slider.value
     }
 
     // MARK: - ViewModel setup
@@ -67,6 +71,7 @@ final class RecorderViewController: UIViewController {
     private func setUpViews() {
         setUpBlurredView()
         setUpRecordButton()
+        setUpRemindMeSlider()
         setUpTimestampLabel()
         setUpCloseButton()
         setUpInfoStackViews()
@@ -82,6 +87,13 @@ final class RecorderViewController: UIViewController {
 
     private func setUpRecordButton() {
         recordButton.addTarget(self, action: #selector(didTapRecord(_:)), for: .touchUpInside)
+    }
+
+    private func setUpRemindMeSlider() {
+        remindMeSlider.minimumValue = 1
+        remindMeSlider.maximumValue = 365
+
+        remindMeSlider.addTarget(self, action: #selector(didChangeRemindMe(_:)), for: .valueChanged)
     }
 
     private func setUpTimestampLabel() {
@@ -222,6 +234,10 @@ final class RecorderViewController: UIViewController {
 
 // MARK: - ViewModel Delegate
 extension RecorderViewController: RecorderViewModelDelegate {
+    func didUpdateRemindMe() {
+        remindMeLabel.text = viewModel.remindMeIn
+    }
+
     func didStartRecording() {
         guard let timestampBottomAnchor = view.constraints.first(where: {
             $0.identifier == AnchorIdentifier.timestampLabelBottom.rawValue

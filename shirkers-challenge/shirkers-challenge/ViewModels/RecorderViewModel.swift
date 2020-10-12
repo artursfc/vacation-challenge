@@ -11,14 +11,23 @@ import Foundation
 protocol RecorderViewModelDelegate: AnyObject {
     func didStartRecording()
     func didStopRecording()
+    func didUpdateRemindMe()
 }
 
 final class RecorderViewModel {
 
+    private var recorder: Recorder
+
+    private var remindMeInSeconds: Int = 0
+
     weak var delegate: RecorderViewModelDelegate?
 
-    init() {
-
+    init(recorder: Recorder) {
+        self.recorder = recorder
+        self.recorder.didFinishRecording = { [weak self] (successfully) in
+            guard let self = self else { return }
+            self.recording = false
+        }
     }
 
     var recording: Bool = false {
@@ -30,4 +39,25 @@ final class RecorderViewModel {
             }
         }
     }
+
+    var title: String = ""
+
+    var remindMeIn: String {
+        let localizedRemindMe = NSLocalizedString("remind-me-in", comment: "The reminder deadline")
+        if remindMeInSeconds > (60*60*24) {
+            let localizedDays = NSLocalizedString("days", comment: "Plural reminder period")
+            return "\(localizedRemindMe) \(Int(remindMeInPeriod)) \(localizedDays)"
+        } else {
+            let localizedDay = NSLocalizedString("day", comment: "Singular reminder period")
+            return "\(localizedRemindMe) \(Int(remindMeInPeriod)) \(localizedDay)"
+        }
+    }
+
+    var remindMeInPeriod: Float = 0.0 {
+        didSet {
+            remindMeInSeconds = Int(remindMeInPeriod) * 24 * 60 * 60
+            delegate?.didUpdateRemindMe()
+        }
+    }
+
 }

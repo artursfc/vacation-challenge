@@ -9,7 +9,7 @@
 import Foundation
 
 /// The representation of a `RecordingController`'s thrown errors.
-public enum RecordingControllerError: Error {
+enum RecordingControllerError: Error {
     case permissionDenied
     case setupRequired
     case stillRecording
@@ -18,7 +18,7 @@ public enum RecordingControllerError: Error {
 }
 
 extension RecordingControllerError: LocalizedError {
-    public var errorDescription: String? {
+    var errorDescription: String? {
         switch self {
         case .permissionDenied:
             return NSLocalizedString("User has not given permission to record.", comment: "")

@@ -36,7 +36,7 @@
 		A4A241E5243FC1850025DA3D /* RecordingControllerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A241E4243FC1850025DA3D /* RecordingControllerError.swift */; };
 		A4C49CC025240E0F0057507C /* MemoraNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C49CBF25240E0F0057507C /* MemoraNavigationViewController.swift */; };
 		A4CCA8A1252DFB3C0035676E /* RecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CCA8A0252DFB3C0035676E /* RecorderViewController.swift */; };
-		A4D0E00C25056C1200B3B12D /* RecordingControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0E00B25056C1200B3B12D /* RecordingControllerProtocol.swift */; };
+		A4D0E00C25056C1200B3B12D /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0E00B25056C1200B3B12D /* Recorder.swift */; };
 		A4D0E0242505706900B3B12D /* shirkers_challengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0E0232505706900B3B12D /* shirkers_challengeTests.swift */; };
 		A4D0E030250587EB00B3B12D /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0E02F250587EB00B3B12D /* CoreDataStack.swift */; };
 		A4D0E03225058A6700B3B12D /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0E03125058A6700B3B12D /* FileManager+Extensions.swift */; };
@@ -89,7 +89,7 @@
 		A4A241E4243FC1850025DA3D /* RecordingControllerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingControllerError.swift; sourceTree = "<group>"; };
 		A4C49CBF25240E0F0057507C /* MemoraNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoraNavigationViewController.swift; sourceTree = "<group>"; };
 		A4CCA8A0252DFB3C0035676E /* RecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderViewController.swift; sourceTree = "<group>"; };
-		A4D0E00B25056C1200B3B12D /* RecordingControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingControllerProtocol.swift; sourceTree = "<group>"; };
+		A4D0E00B25056C1200B3B12D /* Recorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recorder.swift; sourceTree = "<group>"; };
 		A4D0E0212505706800B3B12D /* shirkers-challengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "shirkers-challengeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4D0E0232505706900B3B12D /* shirkers_challengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shirkers_challengeTests.swift; sourceTree = "<group>"; };
 		A4D0E0252505706900B3B12D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -172,7 +172,7 @@
 				A453E260243E680D00D05C65 /* RecordingSessionSettings.swift */,
 				A43A5DB7243F918000E6FBBB /* RecordingController.swift */,
 				A4A241E4243FC1850025DA3D /* RecordingControllerError.swift */,
-				A4D0E00B25056C1200B3B12D /* RecordingControllerProtocol.swift */,
+				A4D0E00B25056C1200B3B12D /* Recorder.swift */,
 			);
 			path = Recorder;
 			sourceTree = "<group>";
@@ -454,7 +454,7 @@
 				A499E96A24FC3D0200290B16 /* ArchiveViewController.swift in Sources */,
 				A4DB55AE2524D76300C9A3B2 /* UIFont+Extensions.swift in Sources */,
 				A468154E22D66BE200537D16 /* AppDelegate.swift in Sources */,
-				A4D0E00C25056C1200B3B12D /* RecordingControllerProtocol.swift in Sources */,
+				A4D0E00C25056C1200B3B12D /* Recorder.swift in Sources */,
 				A419A2FD253393DC00BE5A1F /* MemoraLabel.swift in Sources */,
 				A4152CF925309EA500556D3A /* RecordButtonAnimation.swift in Sources */,
 				A4D0E0342507B8A400B3B12D /* PlayerComponentViewController.swift in Sources */,

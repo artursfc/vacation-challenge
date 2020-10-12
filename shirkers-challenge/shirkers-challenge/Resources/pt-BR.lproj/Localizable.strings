@@ -10,6 +10,8 @@
 "title" = "Título";
 "title-placeholder" = "Título da Memória";
 "remind-me-in" = "Lembre-me por volta de";
+"days" = "dias";
+"day" = "dia";
 "save" = "Salvar";
 
 // MARK: - RootPageViewController
