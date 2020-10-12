@@ -36,7 +36,7 @@ final class ArchiveViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableViewLayout()
-        title = "Archive"
+        title = NSLocalizedString("archive", comment: "Title of the ArchiveViewController")
 
     }
 

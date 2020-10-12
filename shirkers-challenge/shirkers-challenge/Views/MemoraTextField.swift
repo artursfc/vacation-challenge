@@ -24,6 +24,6 @@ final class MemoraTextField: UITextField {
         tintColor = .memoraLightGray
         textColor = .memoraLightGray
         textAlignment = .natural
-        placeholder = "Memory's title"
+        placeholder = NSLocalizedString("title-placeholder", comment: "")
     }
 }

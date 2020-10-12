@@ -95,13 +95,13 @@ final class RecorderViewController: UIViewController {
 
     private func setUpInfoStackViews() {
         titleLabel.setUp(with: .default)
-        titleLabel.text = "Title"
+        titleLabel.text = NSLocalizedString("title", comment: "The memory's title")
 
         remindMeLabel.setUp(with: .default)
-        remindMeLabel.text = "Remind me in about 90 days"
+        remindMeLabel.text = NSLocalizedString("remind-me-in", comment: "The reminder deadline")
 
         saveButton.setUp(with: .save)
-        saveButton.setTitle("Save", for: .normal)
+        saveButton.setTitle(NSLocalizedString("save", comment: ""), for: .normal)
     }
 
     // MARK: - Layout

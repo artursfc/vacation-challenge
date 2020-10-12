@@ -21,7 +21,7 @@ final class SettingsViewController: UIViewController {
 
     private lazy var settingsCellArray: [[UITableViewCell]] = {
         let defaultThemeCell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        defaultThemeCell.textLabel?.text = "Default"
+        defaultThemeCell.textLabel?.text = NSLocalizedString("default-theme", comment: "The app's default theme")
         defaultThemeCell.textLabel?.font = .preferredFont(forTextStyle: .headline)
         defaultThemeCell.textLabel?.textColor = .memoraLightGray
         defaultThemeCell.backgroundColor = .memoraDarkGray
@@ -40,7 +40,7 @@ final class SettingsViewController: UIViewController {
         }
 
         let privacyPolicyCell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        privacyPolicyCell.textLabel?.text = "Privacy Policy"
+        privacyPolicyCell.textLabel?.text = NSLocalizedString("privacy", comment: "The app's privacy policy")
         privacyPolicyCell.textLabel?.font = .preferredFont(forTextStyle: .headline)
         privacyPolicyCell.textLabel?.textColor = .memoraLightGray
         privacyPolicyCell.backgroundColor = .memoraDarkGray
@@ -85,7 +85,7 @@ final class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Settings"
+        title = NSLocalizedString("settings", comment: "Title of the SettingsViewController")
     }
 }
 
@@ -115,9 +115,9 @@ extension SettingsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Theme"
+            return NSLocalizedString("themes", comment: "The themes section")
         case 1:
-            return "About"
+            return NSLocalizedString("about", comment: "The about section")
         default:
             return ""
         }

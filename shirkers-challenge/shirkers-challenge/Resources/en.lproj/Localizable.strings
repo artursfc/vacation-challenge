@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  shirkers-challenge
+
+  Created by Artur Carneiro on 12/10/20.
+  Copyright © 2020 Artur Carneiro. All rights reserved.
+*/
+
+// MARK: - RecorderViewController
+"title" = "Title";
+"title-placeholder" = "Memory's title";
+"remind-me-in" = "Remind me in around";
+"save" = "Save";
+
+// MARK: - RootPageViewController
+"inbox" = "Inbox";
+"archive" = "Archive";
+"settings" = "Settings";
+
+// MARK: - SettingsViewController
+"themes" = "Themes";
+"about" = "About";
+"default-theme" = "Default";
+"privacy" = "Privacy Policy";

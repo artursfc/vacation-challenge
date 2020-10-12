@@ -32,8 +32,7 @@ final class InboxViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
-
-        title = "Inbox"
+        title = NSLocalizedString("inbox", comment: "Title of the InboxViewController")
     }
 
 // - MARK: Layout
