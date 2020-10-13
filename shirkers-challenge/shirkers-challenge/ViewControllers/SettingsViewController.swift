@@ -13,7 +13,7 @@ final class SettingsViewController: UIViewController {
     private lazy var settingsTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .memoraDarkGray
+        tableView.backgroundColor = .memoraBackground
         tableView.separatorStyle = .none
         tableView.isScrollEnabled = false
         return tableView
@@ -23,18 +23,26 @@ final class SettingsViewController: UIViewController {
         let defaultThemeCell = UITableViewCell(style: .default, reuseIdentifier: nil)
         defaultThemeCell.textLabel?.text = NSLocalizedString("default-theme", comment: "The app's default theme")
         defaultThemeCell.textLabel?.font = .preferredFont(forTextStyle: .headline)
-        defaultThemeCell.textLabel?.textColor = .memoraLightGray
-        defaultThemeCell.backgroundColor = .memoraDarkGray
+        defaultThemeCell.textLabel?.textColor = .memoraAccent
+        defaultThemeCell.backgroundColor = .memoraBackground
+        defaultThemeCell.selectionStyle = .none
 
-        let themesSection = [defaultThemeCell]
+        let pastelThemeCell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        pastelThemeCell.textLabel?.text = "Pastel"
+        pastelThemeCell.textLabel?.font = .preferredFont(forTextStyle: .headline)
+        pastelThemeCell.textLabel?.textColor = .memoraAccent
+        pastelThemeCell.backgroundColor = .memoraBackground
+        pastelThemeCell.selectionStyle = .none
+
+        let themesSection = [defaultThemeCell, pastelThemeCell]
 
         let githubCell = UITableViewCell(style: .default, reuseIdentifier: nil)
         githubCell.textLabel?.text = "GitHub"
         githubCell.textLabel?.font = .preferredFont(forTextStyle: .headline)
-        githubCell.textLabel?.textColor = .memoraLightGray
-        githubCell.backgroundColor = .memoraDarkGray
-        githubCell.tintColor = .memoraLightGray
-        githubCell.selectedBackgroundView = UIView()
+        githubCell.textLabel?.textColor = .memoraAccent
+        githubCell.backgroundColor = .memoraBackground
+        githubCell.tintColor = .memoraAccent
+        githubCell.selectionStyle = .none
         if let chevron = UIImage(systemName: "chevron.right") {
             githubCell.accessoryView = UIImageView(image: chevron)
         }
@@ -42,13 +50,13 @@ final class SettingsViewController: UIViewController {
         let privacyPolicyCell = UITableViewCell(style: .default, reuseIdentifier: nil)
         privacyPolicyCell.textLabel?.text = NSLocalizedString("privacy", comment: "The app's privacy policy")
         privacyPolicyCell.textLabel?.font = .preferredFont(forTextStyle: .headline)
-        privacyPolicyCell.textLabel?.textColor = .memoraLightGray
-        privacyPolicyCell.backgroundColor = .memoraDarkGray
-        privacyPolicyCell.tintColor = .memoraLightGray
+        privacyPolicyCell.textLabel?.textColor = .memoraAccent
+        privacyPolicyCell.backgroundColor = .memoraBackground
+        privacyPolicyCell.tintColor = .memoraAccent
+        privacyPolicyCell.selectionStyle = .none
         if let chevron = UIImage(systemName: "chevron.right") {
             privacyPolicyCell.accessoryView = UIImageView(image: chevron)
         }
-        privacyPolicyCell.selectedBackgroundView = UIView()
 
         let aboutSection = [githubCell, privacyPolicyCell]
 
@@ -86,12 +94,43 @@ final class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = NSLocalizedString("settings", comment: "Title of the SettingsViewController")
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didChangeTheme(_:)),
+                                               name: Notification.Name("theme-changed"),
+                                               object: nil)
+    }
+
+    // MARK: @objc
+    @objc private func didChangeTheme(_ notification: NSNotification) {
+        settingsTableView.backgroundColor = .memoraBackground
+        for section in settingsCellArray {
+            for row in section {
+                row.tintColor = .memoraAccent
+                row.textLabel?.textColor = .memoraAccent
+                row.backgroundColor = .memoraBackground
+            }
+        }
+    }
+
+    // MARK: Deinit
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
 // - MARK: UITableViewDelegate
 extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            switch indexPath.row {
+            case 0:
+                UIColor.currentTheme = .default
+            case 1:
+                UIColor.currentTheme = .pastel
+            default:
+                break
+            }
+        }
         if indexPath.section == 1 {
             switch indexPath.row {
             case 0:

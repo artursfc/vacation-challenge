@@ -20,7 +20,7 @@ final class InboxCollectionView: UICollectionView {
     }
 
     private func style() {
-        backgroundColor = .memoraDarkGray
+        backgroundColor = .memoraBackground
     }
 
     private static func setupCollectionViewLayout() -> UICollectionViewCompositionalLayout {

@@ -37,13 +37,23 @@ final class ArchiveViewController: UIViewController {
         super.viewDidLoad()
         setupTableViewLayout()
         title = NSLocalizedString("archive", comment: "Title of the ArchiveViewController")
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didChangeTheme(_:)),
+                                               name: Notification.Name("theme-changed"),
+                                               object: nil)
 
+    }
+
+    // MARK: @objc
+    @objc private func didChangeTheme(_ notification: NSNotification) {
+        archiveTableView.backgroundColor = .memoraBackground
+        archiveTableView.reloadData()
     }
 
 // - MARK: Layout
     /// Configures constraints and look of the `archiveTableView`.
     private func setupTableViewLayout() {
-        archiveTableView.backgroundColor = .memoraDarkGray
+        archiveTableView.backgroundColor = .memoraBackground
         archiveTableView.estimatedRowHeight = DesignSystem.Archive.rowHeight
         archiveTableView.rowHeight = UITableView.automaticDimension
         archiveTableView.separatorStyle = .none
@@ -56,6 +66,11 @@ final class ArchiveViewController: UIViewController {
             archiveTableView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             archiveTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
+    }
+
+    // MARK: Deinit
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -83,6 +98,7 @@ extension ArchiveViewController: UITableViewDataSource {
                                                     for: indexPath) as? ArchiveTableViewCell else {
             return UITableViewCell()
         }
+        cell.style()
         return cell
     }
 

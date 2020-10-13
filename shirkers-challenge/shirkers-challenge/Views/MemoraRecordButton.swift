@@ -19,7 +19,7 @@ final class MemoraRecordButton: UIButton {
     }
 
     private func setUp() {
-        backgroundColor = .memoraRed
+        backgroundColor = .memoraRecord
         layer.cornerRadius = DesignSystem.Recorder.recordButtonHeight/2
         clipsToBounds = true
     }

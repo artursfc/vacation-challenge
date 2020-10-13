@@ -21,8 +21,8 @@ final class MemoraTextField: UITextField {
 
     private func setUp() {
         font = UIFont.preferredFont(forTextStyle: .title2).bold()
-        tintColor = .memoraLightGray
-        textColor = .memoraLightGray
+        tintColor = .memoraAccent
+        textColor = .memoraAccent
         textAlignment = .natural
         placeholder = NSLocalizedString("title-placeholder", comment: "")
     }

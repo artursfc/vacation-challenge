@@ -46,6 +46,6 @@ final class RecordButtonShapeLayer: CAShapeLayer {
         lineWidth = 4
         lineCap = .round
         fillColor = .none
-        strokeColor = UIColor.memoraLightGray.cgColor
+        strokeColor = UIColor.memoraAccent.cgColor
     }
 }

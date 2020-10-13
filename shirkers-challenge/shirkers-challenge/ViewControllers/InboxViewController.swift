@@ -33,6 +33,16 @@ final class InboxViewController: UIViewController {
         super.viewDidLoad()
         setupCollectionView()
         title = NSLocalizedString("inbox", comment: "Title of the InboxViewController")
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didChangeTheme(_:)),
+                                               name: Notification.Name("theme-changed"),
+                                               object: nil)
+    }
+
+    // MARK: @objc
+    @objc private func didChangeTheme(_ notification: NSNotification) {
+        inboxCollectionView.backgroundColor = .memoraBackground
+        inboxCollectionView.reloadData()
     }
 
 // - MARK: Layout
@@ -53,6 +63,11 @@ final class InboxViewController: UIViewController {
             inboxCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             inboxCollectionView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+    }
+
+    // MARK: Deinit
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

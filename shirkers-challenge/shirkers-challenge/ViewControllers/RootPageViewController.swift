@@ -51,9 +51,15 @@ final class RootPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPageViewController()
+        setUpPageControl()
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(recordMemory))
-        navigationItem.rightBarButtonItem?.tintColor = .memoraLightGray
+        navigationItem.rightBarButtonItem?.tintColor = .memoraAccent
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didChangeTheme(_:)),
+                                               name: Notification.Name("theme-changed"),
+                                               object: nil)
     }
 
     //- MARK : @objc
@@ -64,8 +70,23 @@ final class RootPageViewController: UIViewController {
         present(recorderViewController, animated: true, completion: nil)
     }
 
-// - MARK: Layout
+    @objc private func didChangeTheme(_ notification: NSNotification) {
+        navigationItem.rightBarButtonItem?.tintColor = .memoraAccent
+        setUpPageControl()
 
+    }
+
+    // MARK: Views setup
+    private func setUpPageControl() {
+        for subView in pageViewController.view.subviews {
+            if let pageControl = subView as? UIPageControl {
+                pageControl.pageIndicatorTintColor = .memoraFill
+                pageControl.currentPageIndicatorTintColor = .memoraAccent
+            }
+        }
+    }
+
+// - MARK: Layout
     /// Configures the UIPageViewController with the pages passed through
     /// the init. It also layouts all the necessary constraints for this view.
     private func setupPageViewController() {
@@ -87,6 +108,11 @@ final class RootPageViewController: UIViewController {
             pageViewControllerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             pageViewControllerView.leftAnchor.constraint(equalTo: view.leftAnchor)
         ])
+    }
+
+    // MARK: Deinitt
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

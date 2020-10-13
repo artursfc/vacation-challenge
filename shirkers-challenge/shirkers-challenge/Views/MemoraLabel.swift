@@ -23,7 +23,7 @@ final class MemoraLabel: UILabel {
     }
 
     func setUp(with style: MemoraLabel.Style) {
-        textColor = .memoraLightGray
+        textColor = .memoraAccent
         switch style {
         case .default:
             setUpWithDefault()

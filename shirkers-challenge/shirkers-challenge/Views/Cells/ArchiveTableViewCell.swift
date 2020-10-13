@@ -17,18 +17,17 @@ final class ArchiveTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
-        self.style()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func style() {
+    func style() {
         textLabel?.text = "🍑 Memory Title"
-        textLabel?.textColor = .memoraLightGray
+        textLabel?.textColor = .memoraAccent
         textLabel?.font = UIFont.preferredFont(forTextStyle: .title2).bold()
 
-        contentView.backgroundColor = .memoraDarkGray
+        contentView.backgroundColor = .memoraBackground
     }
 }

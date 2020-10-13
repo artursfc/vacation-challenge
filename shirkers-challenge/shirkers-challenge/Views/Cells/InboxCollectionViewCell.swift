@@ -32,11 +32,12 @@ final class InboxCollectionViewCell: UICollectionViewCell {
         memoryEmojiLabel.text = emoji
         memoryEmojiLabel.font = .preferredFont(forTextStyle: .largeTitle)
         memoryEmojiLabel.textAlignment = .center
+
+        contentView.backgroundColor = .memoraFill
     }
 
     // - MARK: Layout
     private func setupContentView() {
-        contentView.backgroundColor = .memoraMediumGray
         contentView.layer.cornerRadius = 15
         contentView.clipsToBounds = true
     }

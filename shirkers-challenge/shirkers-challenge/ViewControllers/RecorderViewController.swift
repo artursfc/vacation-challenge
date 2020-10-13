@@ -81,11 +81,20 @@ final class RecorderViewController: UIViewController {
     }
 
     private func setUpBlurredView() {
-        let blurredView = UIBlurEffect(style: .dark)
-        let visualEffectView = UIVisualEffectView(effect: blurredView)
-        visualEffectView.frame = view.frame
+        switch UIColor.currentTheme {
+        case .default:
+            let blurredView = UIBlurEffect(style: .dark)
+            let visualEffectView = UIVisualEffectView(effect: blurredView)
+            visualEffectView.frame = view.frame
 
-        view.addSubview(visualEffectView)
+            view.addSubview(visualEffectView)
+        case .pastel:
+            let blurredView = UIBlurEffect(style: .light)
+            let visualEffectView = UIVisualEffectView(effect: blurredView)
+            visualEffectView.frame = view.frame
+
+            view.addSubview(visualEffectView)
+        }
     }
 
     private func setUpRecordButton() {

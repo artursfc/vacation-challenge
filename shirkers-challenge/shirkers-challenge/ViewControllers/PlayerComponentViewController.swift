@@ -43,27 +43,45 @@ final class PlayerComponentViewController: UIViewController {
         configureLabels()
         configurePlayButton()
         configureLayout()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didChangeTheme(_:)),
+                                               name: Notification.Name("theme-changed"),
+                                               object: nil)
+    }
+
+    // MARK: @objc
+    @objc private func didChangeTheme(_ notification: NSNotification) {
+        timestampLabel.textColor = .memoraAccent
+        creationDateLabel.textColor = .memoraAccent
+        titleLabel.textColor = .memoraAccent
+        playButton.tintColor = .memoraAccent
+        progressSlider.tintColor = .memoraAccent
+        progressSlider.minimumTrackTintColor = .memoraAccent
+        progressSlider.maximumTrackTintColor = .memoraAccent
+        contentView.backgroundColor = .memoraFill
+        view.backgroundColor = .memoraFill
     }
 
 // - MARK: Layout
 
     /// Configures the main view.
     private func configureView() {
-        view.backgroundColor = .memoraMediumGray
+        view.backgroundColor = .memoraFill
         view.layer.cornerRadius = view.frame.height * 0.015
     }
 
     /// Configures all the labels.
     private func configureLabels() {
-        timestampLabel.textColor = .memoraLightGray
+        timestampLabel.textColor = .memoraAccent
         timestampLabel.font = .preferredFont(forTextStyle: .body)
         timestampLabel.text = "04:00"
 
-        creationDateLabel.textColor = .memoraLightGray
+        creationDateLabel.textColor = .memoraAccent
         creationDateLabel.font = .preferredFont(forTextStyle: .body)
         creationDateLabel.text = "12/12/2020"
 
-        titleLabel.textColor = .memoraLightGray
+        titleLabel.textColor = .memoraAccent
         titleLabel.font = UIFont.preferredFont(forTextStyle: .title2).bold()
         titleLabel.text = "🍑 Memory Title"
     }
@@ -73,7 +91,7 @@ final class PlayerComponentViewController: UIViewController {
         playButton.setImage(UIImage(systemName: "play.fill",
                                     withConfiguration: UIImage.SymbolConfiguration(textStyle: .title2)),
                             for: .normal)
-        playButton.tintColor = .memoraLightGray
+        playButton.tintColor = .memoraAccent
     }
 
     /// Configures the layout using the `contentView`.
@@ -90,8 +108,6 @@ final class PlayerComponentViewController: UIViewController {
         let contentLayoutMarginsGuide = contentView.layoutMarginsGuide
 
         NSLayoutConstraint.activate([
-            contentView.heightAnchor.constraint(equalTo: rootLayoutMarginsGuide.heightAnchor,
-                                             multiplier: DesignSystem.PlayerComponent.heightMultiplier),
             contentView.widthAnchor.constraint(equalTo: rootLayoutMarginsGuide.widthAnchor,
                                               multiplier: DesignSystem.PlayerComponent.widthMultiplier),
             contentView.centerXAnchor.constraint(equalTo: rootLayoutMarginsGuide.centerXAnchor),
@@ -118,5 +134,10 @@ final class PlayerComponentViewController: UIViewController {
             playButton.trailingAnchor.constraint(equalTo: contentLayoutMarginsGuide.trailingAnchor),
             playButton.bottomAnchor.constraint(equalTo: contentLayoutMarginsGuide.bottomAnchor)
         ])
+    }
+
+    // MARK: Deinit
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }

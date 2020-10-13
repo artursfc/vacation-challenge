@@ -24,11 +24,11 @@ final class MemoraSlider: UISlider {
     // - MARK: Layout
     /// Sets up the `UISlider`.
     private func setUp() {
-        minimumTrackTintColor = .memoraLightGray
-        maximumTrackTintColor = .memoraLightGray
+        minimumTrackTintColor = .memoraAccent
+        maximumTrackTintColor = .memoraAccent
 
         setThumbImage(UIImage(systemName: "circle.fill"), for: .normal)
-        tintColor = .memoraLightGray
+        tintColor = .memoraAccent
     }
 
     /// Determines the size of the `UISlider` rect.

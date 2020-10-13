@@ -35,13 +35,13 @@ final class MemoraButton: UIButton {
         let buttonImageConfig = UIImage.SymbolConfiguration(pointSize: 0, weight: .bold, scale: .large)
         let buttonImage = UIImage(systemName: "xmark.circle.fill", withConfiguration: buttonImageConfig)
         setImage(buttonImage, for: .normal)
-        tintColor = .memoraLightGray
+        tintColor = .memoraAccent
     }
 
     private func setUpWithSave() {
-        setTitleColor(.memoraDarkGray, for: .normal)
+        setTitleColor(.memoraBackground, for: .normal)
         titleLabel?.font = .preferredFont(forTextStyle: .headline)
         layer.cornerRadius = 10
-        backgroundColor = .memoraLightGray
+        backgroundColor = .memoraAccent
     }
 }

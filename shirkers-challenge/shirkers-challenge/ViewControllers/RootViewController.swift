@@ -36,7 +36,7 @@ final class RootViewController: UIViewController {
 // - MARK: Life cycle
 
     override func viewDidLoad() {
-        view.backgroundColor = .memoraDarkGray
+        view.backgroundColor = .memoraBackground
 
         self.addChild(memoraNavigationViewController)
         self.view.addSubview(memoraNavigationViewController.view)
@@ -49,6 +49,16 @@ final class RootViewController: UIViewController {
         playerComponentViewController.didMove(toParent: self)
 
         setupLayout()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didChangeTheme(_:)),
+                                               name: Notification.Name("theme-changed"),
+                                               object: nil)
+    }
+
+    // MARK: @objc
+    @objc private func didChangeTheme(_ notification: NSNotification) {
+        view.backgroundColor = .memoraBackground
     }
 
 // - MARK: Layout
@@ -69,5 +79,10 @@ final class RootViewController: UIViewController {
             playerComponentViewController.view.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor),
             playerComponentViewController.view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.175)
         ])
+    }
+
+    // MARK: Deinit
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
