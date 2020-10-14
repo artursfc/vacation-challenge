@@ -22,6 +22,7 @@
 		A41B419F253491D100AC11EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A41B41A1253491D100AC11EE /* Localizable.strings */; };
 		A41B41B02534F4F200AC11EE /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41B41AF2534F4F200AC11EE /* Date+Extensions.swift */; };
 		A41B41B42535018600AC11EE /* UserDefaultsAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41B41B32535018600AC11EE /* UserDefaultsAccess.swift */; };
+		A41B41C52535F0F600AC11EE /* ArchiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41B41C42535F0F600AC11EE /* ArchiveViewModel.swift */; };
 		A43A5DB8243F918000E6FBBB /* RecordingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A5DB7243F918000E6FBBB /* RecordingController.swift */; };
 		A44AEA13251E9D6C00352E21 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44AEA12251E9D6C00352E21 /* SettingsViewController.swift */; };
 		A453E261243E680D00D05C65 /* RecordingSessionSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A453E260243E680D00D05C65 /* RecordingSessionSettings.swift */; };
@@ -59,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A408C3E425372D6D005914AB /* shirkers_challenge 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "shirkers_challenge 2.xcdatamodel"; sourceTree = "<group>"; };
 		A40BCDC624FADF2C002F53A0 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		A40BCDC824FADF54002F53A0 /* AutoLayoutPropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutPropertyWrapper.swift; sourceTree = "<group>"; };
 		A40BCDCD24FAF542002F53A0 /* RootPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootPageViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 		A41B41A82534929100AC11EE /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A41B41AF2534F4F200AC11EE /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		A41B41B32535018600AC11EE /* UserDefaultsAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsAccess.swift; sourceTree = "<group>"; };
+		A41B41C42535F0F600AC11EE /* ArchiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewModel.swift; sourceTree = "<group>"; };
 		A43A5DB7243F918000E6FBBB /* RecordingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingController.swift; sourceTree = "<group>"; };
 		A44AEA12251E9D6C00352E21 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A453E260243E680D00D05C65 /* RecordingSessionSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingSessionSettings.swift; sourceTree = "<group>"; };
@@ -264,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				A46B35E1252F4DEA00B6ECCF /* RecorderViewModel.swift */,
+				A41B41C42535F0F600AC11EE /* ArchiveViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -467,6 +471,7 @@
 				A40BCDCE24FAF542002F53A0 /* RootPageViewController.swift in Sources */,
 				A41B41B02534F4F200AC11EE /* Date+Extensions.swift in Sources */,
 				A44AEA13251E9D6C00352E21 /* SettingsViewController.swift in Sources */,
+				A41B41C52535F0F600AC11EE /* ArchiveViewModel.swift in Sources */,
 				A4A241E3243FB50E0025DA3D /* OSLog+Extensions.swift in Sources */,
 				A43A5DB8243F918000E6FBBB /* RecordingController.swift in Sources */,
 				A41B41B42535018600AC11EE /* UserDefaultsAccess.swift in Sources */,
@@ -755,9 +760,10 @@
 		A468155422D66BE200537D16 /* shirkers_challenge.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A408C3E425372D6D005914AB /* shirkers_challenge 2.xcdatamodel */,
 				A468155522D66BE200537D16 /* shirkers_challenge.xcdatamodel */,
 			);
-			currentVersion = A468155522D66BE200537D16 /* shirkers_challenge.xcdatamodel */;
+			currentVersion = A408C3E425372D6D005914AB /* shirkers_challenge 2.xcdatamodel */;
 			path = shirkers_challenge.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

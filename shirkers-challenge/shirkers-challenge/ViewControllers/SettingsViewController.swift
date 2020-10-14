@@ -28,7 +28,7 @@ final class SettingsViewController: UIViewController {
         defaultThemeCell.selectionStyle = .none
 
         let pastelThemeCell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        pastelThemeCell.textLabel?.text = "Pastel"
+        pastelThemeCell.textLabel?.text = NSLocalizedString("pastel-theme", comment: "The app's pastel theme")
         pastelThemeCell.textLabel?.font = .preferredFont(forTextStyle: .headline)
         pastelThemeCell.textLabel?.textColor = .memoraAccent
         pastelThemeCell.backgroundColor = .memoraBackground
