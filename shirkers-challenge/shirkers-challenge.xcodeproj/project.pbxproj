@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A408C3EA2537328D005914AB /* ArchiveTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A408C3E92537328D005914AB /* ArchiveTableViewCellViewModel.swift */; };
 		A40BCDC724FADF2C002F53A0 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BCDC624FADF2C002F53A0 /* RootViewController.swift */; };
 		A40BCDC924FADF54002F53A0 /* AutoLayoutPropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BCDC824FADF54002F53A0 /* AutoLayoutPropertyWrapper.swift */; };
 		A40BCDCE24FAF542002F53A0 /* RootPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40BCDCD24FAF542002F53A0 /* RootPageViewController.swift */; };
@@ -61,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		A408C3E425372D6D005914AB /* shirkers_challenge 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "shirkers_challenge 2.xcdatamodel"; sourceTree = "<group>"; };
+		A408C3E92537328D005914AB /* ArchiveTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		A40BCDC624FADF2C002F53A0 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		A40BCDC824FADF54002F53A0 /* AutoLayoutPropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutPropertyWrapper.swift; sourceTree = "<group>"; };
 		A40BCDCD24FAF542002F53A0 /* RootPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootPageViewController.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 			children = (
 				A46B35E1252F4DEA00B6ECCF /* RecorderViewModel.swift */,
 				A41B41C42535F0F600AC11EE /* ArchiveViewModel.swift */,
+				A408C3E92537328D005914AB /* ArchiveTableViewCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 				A468155622D66BE200537D16 /* shirkers_challenge.xcdatamodeld in Sources */,
 				A419A3012533959600BE5A1F /* MemoraRecordButton.swift in Sources */,
 				A499E96A24FC3D0200290B16 /* ArchiveViewController.swift in Sources */,
+				A408C3EA2537328D005914AB /* ArchiveTableViewCellViewModel.swift in Sources */,
 				A4DB55AE2524D76300C9A3B2 /* UIFont+Extensions.swift in Sources */,
 				A468154E22D66BE200537D16 /* AppDelegate.swift in Sources */,
 				A4D0E00C25056C1200B3B12D /* Recorder.swift in Sources */,
