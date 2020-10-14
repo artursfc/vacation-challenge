@@ -18,12 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        // Override point for customization after application launch.
+        //Core Data stack init
+        let coreDataStack = CoreDataStack(model: "shirkers_challenge")
 
         // Initialization of each page for the `UIPageViewController`.
+        // First Page
         let firstPage = SettingsViewController()
+
+        // Second Page
         let secondPage = InboxViewController()
-        let thirdPage = ArchiveViewController()
+
+        // Third Page
+        let thirdPageViewModel = ArchiveViewModel(context: coreDataStack.mainContext)
+        let thirdPage = ArchiveViewController(viewModel: thirdPageViewModel)
 
         let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
 

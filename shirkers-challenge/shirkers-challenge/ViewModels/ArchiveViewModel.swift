@@ -8,10 +8,12 @@
 
 import CoreData
 
+// MARK: - Protocol-Delegate
 protocol ArchiveViewModelDelegate: AnyObject {
-    func beginUpdate()
-    func insertNewEntryAt(_ index: IndexPath)
-    func endUpdate()
+    func beginUpdates()
+    func insertNewMemoryAt(_ index: IndexPath)
+    func deleteMemoryAt(_ index: IndexPath)
+    func endUpdates()
 }
 
 final class ArchiveViewModel: NSObject {
@@ -75,5 +77,30 @@ final class ArchiveViewModel: NSObject {
 
 // MARK: - FRC Delegate
 extension ArchiveViewModel: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        delegate?.beginUpdates()
+    }
 
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        delegate?.endUpdates()
+    }
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any,
+                    at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType,
+                    newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            if let newIndexPath = newIndexPath {
+                delegate?.insertNewMemoryAt(newIndexPath)
+            }
+        case .delete:
+            if let newIndexPath = newIndexPath {
+                delegate?.deleteMemoryAt(newIndexPath)
+            }
+        default:
+            break
+        }
+    }
 }

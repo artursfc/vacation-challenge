@@ -16,12 +16,16 @@ final class ArchiveViewController: UIViewController {
     /// `UITableView` used to display all archived recordings.
     @AutoLayout private var archiveTableView: UITableView
 
+    private let viewModel: ArchiveViewModel
+
 // - MARK: Init
 
-    init() {
+    init(viewModel: ArchiveViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         self.archiveTableView.delegate = self
         self.archiveTableView.dataSource = self
+        self.viewModel.delegate = self
 
         self.archiveTableView.register(ArchiveTableViewCell.self,
                                        forCellReuseIdentifier: ArchiveTableViewCell.identifier)
@@ -89,8 +93,7 @@ extension ArchiveViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        /// - TODO: Add correct number of archived recordings.
-        return 30
+        return viewModel.numberOfMemories
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -98,8 +101,28 @@ extension ArchiveViewController: UITableViewDataSource {
                                                     for: indexPath) as? ArchiveTableViewCell else {
             return UITableViewCell()
         }
-        cell.style()
+        cell.configure(with: viewModel.viewModelAt(index: indexPath))
         return cell
+    }
+
+}
+
+// MARK: - ViewModel Delegate
+extension ArchiveViewController: ArchiveViewModelDelegate {
+    func beginUpdates() {
+        archiveTableView.beginUpdates()
+    }
+
+    func insertNewMemoryAt(_ index: IndexPath) {
+        archiveTableView.insertRows(at: [index], with: .fade)
+    }
+
+    func deleteMemoryAt(_ index: IndexPath) {
+        archiveTableView.deleteRows(at: [index], with: .fade)
+    }
+
+    func endUpdates() {
+        archiveTableView.endUpdates()
     }
 
 }

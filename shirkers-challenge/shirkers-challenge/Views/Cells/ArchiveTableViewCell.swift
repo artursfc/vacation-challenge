@@ -23,8 +23,12 @@ final class ArchiveTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func style() {
-        textLabel?.text = "🍑 Memory Title"
+    func configure(with viewModel: ArchiveTableViewCellViewModel) {
+        setUp()
+        textLabel?.text = viewModel.title
+    }
+
+    private func setUp() {
         textLabel?.textColor = .memoraAccent
         textLabel?.font = UIFont.preferredFont(forTextStyle: .title2).bold()
 
