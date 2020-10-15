@@ -32,7 +32,7 @@ final class RecorderViewController: UIViewController {
     }
 
     // MARK: - Init
-    init(viewModel: RecorderViewModel = RecorderViewModel(recorder: RecordingController())) {
+    init(viewModel: RecorderViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -62,6 +62,14 @@ final class RecorderViewController: UIViewController {
         viewModel.remindMePeriod = slider.value
     }
 
+    @objc private func didTapSave(_ button: MemoraButton) {
+        viewModel.save()
+    }
+
+    @objc private func didEditText(_ textfield: MemoraTextField) {
+        viewModel.title = textfield.text ?? ""
+    }
+
     // MARK: - ViewModel setup
     private func setUpViewModel() {
         if !viewModel.permission {
@@ -74,6 +82,8 @@ final class RecorderViewController: UIViewController {
     private func setUpViews() {
         setUpBlurredView()
         setUpRecordButton()
+        setUpSaveButton()
+        setUpTextField()
         setUpRemindMeSlider()
         setUpTimestampLabel()
         setUpCloseButton()
@@ -99,6 +109,14 @@ final class RecorderViewController: UIViewController {
 
     private func setUpRecordButton() {
         recordButton.addTarget(self, action: #selector(didTapRecord(_:)), for: .touchUpInside)
+    }
+
+    private func setUpSaveButton() {
+        saveButton.addTarget(self, action: #selector(didTapSave(_:)), for: .touchUpInside)
+    }
+
+    private func setUpTextField() {
+        titleTextField.addTarget(self, action: #selector(didEditText(_:)), for: .editingChanged)
     }
 
     private func setUpRemindMeSlider() {

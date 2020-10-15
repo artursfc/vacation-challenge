@@ -45,6 +45,7 @@ final class ArchiveViewController: UIViewController {
                                                selector: #selector(didChangeTheme(_:)),
                                                name: Notification.Name("theme-changed"),
                                                object: nil)
+        viewModel.requestFetch()
 
     }
 

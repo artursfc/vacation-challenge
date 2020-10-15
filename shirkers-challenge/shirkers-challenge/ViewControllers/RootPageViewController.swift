@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 /// Container UIViewController for the UIPageViewController used to
 /// display the Archive, Inbox and Settings screen.
@@ -32,11 +33,16 @@ final class RootPageViewController: UIViewController {
         return 1
     }
 
+    private let context: NSManagedObjectContext
+
 // - MARK: Init
 
-    init(pages: [UIViewController], pageViewController: UIPageViewController) {
+    init(pages: [UIViewController],
+         pageViewController: UIPageViewController,
+         context: NSManagedObjectContext) {
         self.pages = pages
         self.pageViewController = pageViewController
+        self.context = context
         super.init(nibName: nil, bundle: nil)
         self.pageViewController.delegate = self
         self.pageViewController.dataSource = self
@@ -64,7 +70,9 @@ final class RootPageViewController: UIViewController {
 
     //- MARK : @objc
     @objc private func recordMemory() {
-        let recorderViewController = RecorderViewController()
+        let recorder = RecordingController()
+        let recorderViewModel = RecorderViewModel(recorder: recorder, context: context)
+        let recorderViewController = RecorderViewController(viewModel: recorderViewModel)
         recorderViewController.modalPresentationStyle = .overFullScreen
 
         present(recorderViewController, animated: true, completion: nil)

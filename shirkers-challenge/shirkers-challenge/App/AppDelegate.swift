@@ -36,7 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Initialization of the `RootPageViewController` and `MemoraNavigationViewController`
         let rootPageViewController = RootPageViewController(pages: [firstPage, secondPage, thirdPage],
-                                                            pageViewController: pageViewController)
+                                                            pageViewController: pageViewController,
+                                                            context: coreDataStack.mainContext)
         let memoraNavigationViewController = MemoraNavigationViewController(rootViewController: rootPageViewController)
 
         // Initialization of the PlayerComponentViewController

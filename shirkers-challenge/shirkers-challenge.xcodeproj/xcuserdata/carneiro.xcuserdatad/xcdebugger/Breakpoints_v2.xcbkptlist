@@ -138,17 +138,40 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5CC20E3A-08B0-4525-B979-8855148A3CFE"
+            uuid = "912DB22D-E24E-453E-9017-C503708A7D90"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "shirkers-challenge/ViewModels/RecorderViewModel.swift"
+            filePath = "shirkers-challenge/ViewModels/ArchiveViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "remove(file:at:)"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "viewModelAt(index:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            uuid = "932DF531-ACE9-44A7-8444-7A9B7A435218"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "objc_weak_error"
+            moduleName = "">
+            <Locations>
+               <Location
+                  uuid = "932DF531-ACE9-44A7-8444-7A9B7A435218 - 91d0cb68f9756aa8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "objc_weak_error"
+                  moduleName = "libobjc.A.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  offsetFromSymbolStart = "0">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

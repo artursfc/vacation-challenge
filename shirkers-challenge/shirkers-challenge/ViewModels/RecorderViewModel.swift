@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 /// The  delegate responsible for allowing communication between
 /// `RecorderViewModel` and its `View`.
@@ -39,6 +40,8 @@ final class RecorderViewModel {
         }
     }
 
+    private let context: NSManagedObjectContext
+
     /// The  delegate responsible for allowing communication between
     /// `RecorderViewModel` and its `View`.
     weak var delegate: RecorderViewModelDelegate?
@@ -46,8 +49,10 @@ final class RecorderViewModel {
     // MARK: - Init
     /// Initializes a new instance of this type.
     /// - Parameter recorder: The recorder abstraction.
-    init(recorder: Recorder) {
+    init(recorder: Recorder,
+         context: NSManagedObjectContext) {
         self.recorder = recorder
+        self.context = context
         self.recorder.didFinishRecording = { [weak self] (successfully) in
             guard let self = self else { return }
             self.recording = false
@@ -127,6 +132,30 @@ final class RecorderViewModel {
         } catch {
             print(error.localizedDescription)
             // TODO: Error handling
+        }
+    }
+
+    func save() {
+        guard let createdAt = currentDate else {
+            return
+        }
+
+        let memory = Recording(context: context)
+        memory.title = title
+        memory.createdAt = createdAt
+        memory.isActive = true
+        memory.modifiedAt = createdAt
+        let timeInterval = TimeInterval.random(in: TimeInterval(Double(remindMeInSeconds)*0.8)..<TimeInterval(remindMeInSeconds))
+        memory.period = Date(timeInterval: timeInterval, since: createdAt)
+        memory.path = createdAt.stringFormatted()
+
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                print(error.localizedDescription)
+                // TODO: Error handling
+            }
         }
     }
 
