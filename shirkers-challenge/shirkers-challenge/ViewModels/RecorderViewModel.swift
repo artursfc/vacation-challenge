@@ -146,7 +146,7 @@ final class RecorderViewModel {
         memory.isActive = true
         memory.modifiedAt = createdAt
         let timeInterval = TimeInterval.random(in: TimeInterval(Double(remindMeInSeconds)*0.8)..<TimeInterval(remindMeInSeconds))
-        memory.period = Date(timeInterval: timeInterval, since: createdAt)
+        memory.dueDate = Date(timeInterval: timeInterval, since: createdAt)
         memory.path = createdAt.stringFormatted()
 
         if context.hasChanges {

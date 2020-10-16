@@ -12,12 +12,13 @@ import UIKit
 /// a `UIPageViewController`. However, it should be encapsulated inside a `UINavigationController`.
 final class InboxViewController: UIViewController {
 
-// - MARK: Properties
+    // MARK: - Properties
 
     /// `UICollectionView` used to display all recordings currently in the Inbox.
     @AutoLayout private var inboxCollectionView: InboxCollectionView
 
-// - MARK: Init
+
+    // MARK: - Init
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -27,7 +28,7 @@ final class InboxViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-// - MARK: Life cycle
+    // MARK: - Life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,13 +40,13 @@ final class InboxViewController: UIViewController {
                                                object: nil)
     }
 
-    // MARK: @objc
+    // MARK: - @objc
     @objc private func didChangeTheme(_ notification: NSNotification) {
         inboxCollectionView.backgroundColor = .memoraBackground
         inboxCollectionView.reloadData()
     }
 
-// - MARK: Layout
+    // MARK: - Layout
 
     /// Configures constraints and look of the `inboxCollectionView`
     private func setupCollectionView() {
@@ -65,20 +66,18 @@ final class InboxViewController: UIViewController {
         ])
     }
 
-    // MARK: Deinit
+    // MARK: - Deinit
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
 }
 
-// - MARK: UICollectionViewDelegate
-
+// MARK: - UICollectionViewDelegate
 extension InboxViewController: UICollectionViewDelegate {
 
 }
 
-// - MARK: UICollectionViewDataSource
-
+// MARK: - UICollectionViewDataSource
 extension InboxViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10

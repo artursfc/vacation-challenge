@@ -20,7 +20,7 @@ final class ArchiveViewModel: NSObject {
     // MARK: - Properties
     private let context: NSManagedObjectContext
 
-    private(set) lazy var fetchedResultsController: NSFetchedResultsController<Recording> = {
+    private lazy var fetchedResultsController: NSFetchedResultsController<Recording> = {
         let fetchRequest: NSFetchRequest<Recording> = Recording.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Recording.modifiedAt, ascending: false)]
 
@@ -40,6 +40,7 @@ final class ArchiveViewModel: NSObject {
         self.context = context
     }
 
+    // MARK: - API
     var numberOfMemories: Int {
         guard let memories = fetchedResultsController.fetchedObjects else {
             return 0
@@ -62,7 +63,7 @@ final class ArchiveViewModel: NSObject {
         guard let title = memory.title,
               let createdAt = memory.createdAt?.stringFormatted(),
               let modifiedAt = memory.modifiedAt?.stringFormatted(),
-              let period = memory.period?.stringFormatted() else {
+              let period = memory.dueDate?.stringFormatted() else {
             return ArchiveTableViewCellViewModel()
         }
 
