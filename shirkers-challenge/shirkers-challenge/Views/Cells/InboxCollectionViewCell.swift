@@ -28,12 +28,12 @@ final class InboxCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(with emoji: String) {
-        memoryEmojiLabel.text = emoji
-        memoryEmojiLabel.font = .preferredFont(forTextStyle: .largeTitle)
+    func configure(with viewModel: MemoryViewModel) {
+        memoryEmojiLabel.text = viewModel.title
+        memoryEmojiLabel.textColor = .memoraAccent
         memoryEmojiLabel.textAlignment = .center
-
-        contentView.backgroundColor = .memoraFill
+        memoryEmojiLabel.font = .preferredFont(forTextStyle: .headline)
+        memoryEmojiLabel.backgroundColor = .memoraFill
     }
 
     // - MARK: Layout

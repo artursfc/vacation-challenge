@@ -57,17 +57,17 @@ final class ArchiveViewModel: NSObject {
         }
     }
 
-    func viewModelAt(index: IndexPath) -> ArchiveTableViewCellViewModel {
+    func viewModelAt(index: IndexPath) -> MemoryViewModel {
         let memory = fetchedResultsController.object(at: index)
 
         guard let title = memory.title,
               let createdAt = memory.createdAt?.stringFormatted(),
               let modifiedAt = memory.modifiedAt?.stringFormatted(),
               let period = memory.dueDate?.stringFormatted() else {
-            return ArchiveTableViewCellViewModel()
+            return MemoryViewModel()
         }
 
-        return ArchiveTableViewCellViewModel(title: title,
+        return MemoryViewModel(title: title,
                                              createdAt: createdAt,
                                              isActive: memory.isActive,
                                              modifiedAt: modifiedAt,

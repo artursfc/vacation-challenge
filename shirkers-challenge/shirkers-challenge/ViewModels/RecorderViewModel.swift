@@ -26,7 +26,7 @@ final class RecorderViewModel {
 
     /// The period to remind the user in seconds. It should be
     /// used to perform comparision between periods.
-    private var remindMeInSeconds: Int = 0
+    private var remindMeInSeconds: Int = 1
 
     /// The current date which is used as the recording filename.
     /// It resets everytime a new recording is started. With every new
@@ -118,7 +118,7 @@ final class RecorderViewModel {
     }
 
     /// The memory's notification period.
-    var remindMePeriod: Float = 0.0 {
+    var remindMePeriod: Float = 1.0 {
         didSet {
             remindMeInSeconds = Int(remindMePeriod) * 24 * 60 * 60
             delegate?.didUpdateRemindMe()

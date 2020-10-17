@@ -10,13 +10,15 @@ import CoreData
 
 // MARK: - Protocol-delegate
 protocol InboxViewModelDelegate: AnyObject {
-    func beginUpdates()
-    func endUpdates()
+    func insertNewMemoryAt(_ index: IndexPath)
+    func updates(from blocks: [BlockOperation])
 }
 
 final class InboxViewModel: NSObject {
     // MARK: - Properties
     private let context: NSManagedObjectContext
+
+    private var updateBlock: [BlockOperation] = [BlockOperation]()
 
     private lazy var fetchedResultsController: NSFetchedResultsController<Recording> = {
         let fetchRequest: NSFetchRequest<Recording> = Recording.fetchRequest()
@@ -47,6 +49,14 @@ final class InboxViewModel: NSObject {
         return memories.count
     }
 
+    var didUpdate: Bool = false {
+        didSet {
+            if didUpdate {
+                updateBlock.removeAll(keepingCapacity: false)
+            }
+        }
+    }
+
     func requestFetch() {
         do {
             try fetchedResultsController.performFetch()
@@ -55,15 +65,51 @@ final class InboxViewModel: NSObject {
             // TODO: Error Handling
         }
     }
+
+    func viewModelAt(index: IndexPath) -> MemoryViewModel {
+        let memory = fetchedResultsController.object(at: index)
+
+        guard let title = memory.title,
+                   let createdAt = memory.createdAt?.stringFormatted(),
+                   let modifiedAt = memory.modifiedAt?.stringFormatted(),
+                   let period = memory.dueDate?.stringFormatted() else {
+                    return MemoryViewModel()
+                   }
+
+        return MemoryViewModel(title: title,
+                               createdAt: createdAt,
+                               isActive: memory.isActive,
+                               modifiedAt: modifiedAt,
+                               period: period)
+    }
 }
 
 // MARK: - FRC Delegate
 extension InboxViewModel: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        delegate?.beginUpdates()
+        updateBlock.removeAll(keepingCapacity: false)
+    }
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any,
+                    at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType,
+                    newIndexPath: IndexPath?) {
+        let block = BlockOperation { [weak self] in
+            guard let self = self else { return }
+            switch type {
+            case .insert:
+                if let newIndexPath = newIndexPath {
+                    self.delegate?.insertNewMemoryAt(newIndexPath)
+                }
+            default:
+                break
+            }
+        }
+        updateBlock.append(block)
     }
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        delegate?.endUpdates()
+        delegate?.updates(from: updateBlock)
     }
 }

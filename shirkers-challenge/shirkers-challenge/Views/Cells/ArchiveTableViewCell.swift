@@ -23,7 +23,7 @@ final class ArchiveTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(with viewModel: ArchiveTableViewCellViewModel) {
+    func configure(with viewModel: MemoryViewModel) {
         setUp()
         textLabel?.text = viewModel.title
     }

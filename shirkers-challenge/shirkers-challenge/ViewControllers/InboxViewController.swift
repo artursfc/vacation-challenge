@@ -17,10 +17,11 @@ final class InboxViewController: UIViewController {
     /// `UICollectionView` used to display all recordings currently in the Inbox.
     @AutoLayout private var inboxCollectionView: InboxCollectionView
 
-
+    private let viewModel: InboxViewModel
     // MARK: - Init
 
-    init() {
+    init(viewModel: InboxViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -28,10 +29,11 @@ final class InboxViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - Life cycle
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpViewModel()
         setupCollectionView()
         title = NSLocalizedString("inbox", comment: "Title of the InboxViewController")
         NotificationCenter.default.addObserver(self,
@@ -44,6 +46,12 @@ final class InboxViewController: UIViewController {
     @objc private func didChangeTheme(_ notification: NSNotification) {
         inboxCollectionView.backgroundColor = .memoraBackground
         inboxCollectionView.reloadData()
+    }
+
+    // MARK: ViewModel setup
+    private func setUpViewModel() {
+        viewModel.delegate = self
+        viewModel.requestFetch()
     }
 
     // MARK: - Layout
@@ -80,7 +88,7 @@ extension InboxViewController: UICollectionViewDelegate {
 // MARK: - UICollectionViewDataSource
 extension InboxViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return viewModel.numberOfMemories
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -90,8 +98,28 @@ extension InboxViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
 
-        cell.configure(with: "💎")
+        cell.configure(with: viewModel.viewModelAt(index: indexPath))
 
         return cell
+    }
+}
+
+// MARK: - ViewModel Delegate
+extension InboxViewController: InboxViewModelDelegate {
+    func insertNewMemoryAt(_ index: IndexPath) {
+        inboxCollectionView.insertItems(at: [index])
+    }
+
+    func updates(from blocks: [BlockOperation]) {
+        inboxCollectionView.performBatchUpdates({
+            for block in blocks {
+                block.start()
+            }
+        }, completion: { [weak self] (didUpdate) in
+            guard let self = self else {
+                return
+            }
+            self.viewModel.didUpdate = didUpdate
+        })
     }
 }

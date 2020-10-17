@@ -26,7 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let firstPage = SettingsViewController()
 
         // Second Page
-        let secondPage = InboxViewController()
+        let secondPageViewModel = InboxViewModel(context: coreDataStack.mainContext)
+        let secondPage = InboxViewController(viewModel: secondPageViewModel)
 
         // Third Page
         let thirdPageViewModel = ArchiveViewModel(context: coreDataStack.mainContext)

@@ -1,5 +1,5 @@
 //
-//  ArchiveTableViewCellViewModel.swift
+//  MemoryViewModel.swift
 //  shirkers-challenge
 //
 //  Created by Artur Carneiro on 14/10/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ArchiveTableViewCellViewModel {
+struct MemoryViewModel {
     let title: String
     let createdAt: String
     let isActive: Bool
