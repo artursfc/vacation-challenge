@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import os.log
 
 /// Representation of the Player Component. Should be instantiated only once as part
 /// of the `RootViewController`.
 final class PlayerComponentViewController: UIViewController {
 
-// - MARK: Properties
+    // MARK: - Properties
     /// The slider representing the progress of the audio playback.
     @AutoLayout private var progressSlider: MemoraSlider
     /// The timestamp of the audio's duration.
@@ -27,16 +28,17 @@ final class PlayerComponentViewController: UIViewController {
     /// constraints with its superview (`RootViewController.view`).
     @AutoLayout private var contentView: UIView
 
-// - MARK: Init
+    // MARK: - Init
     init() {
         super.init(nibName: nil, bundle: nil)
+        os_log("PlayerComponentViewController initialized.", log: .appFlow, type: .debug)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-// - MARK: Life cycle
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -50,8 +52,9 @@ final class PlayerComponentViewController: UIViewController {
                                                object: nil)
     }
 
-    // MARK: @objc
+    // MARK: - @objc
     @objc private func didChangeTheme(_ notification: NSNotification) {
+        os_log("PlayerComponentViewController should change theme.", log: .appFlow, type: .debug)
         timestampLabel.textColor = .memoraAccent
         creationDateLabel.textColor = .memoraAccent
         titleLabel.textColor = .memoraAccent
@@ -63,7 +66,7 @@ final class PlayerComponentViewController: UIViewController {
         view.backgroundColor = .memoraFill
     }
 
-// - MARK: Layout
+    // MARK: - Layout
 
     /// Configures the main view.
     private func configureView() {
@@ -136,8 +139,9 @@ final class PlayerComponentViewController: UIViewController {
         ])
     }
 
-    // MARK: Deinit
+    // MARK: - Deinit
     deinit {
         NotificationCenter.default.removeObserver(self)
+        os_log("PlayerComponentViewController deinitialized.", log: .appFlow, type: .debug)
     }
 }

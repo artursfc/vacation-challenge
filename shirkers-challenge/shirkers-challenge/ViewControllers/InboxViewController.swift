@@ -7,22 +7,24 @@
 //
 
 import UIKit
+import os.log
 
 /// Representation of the Inbox screen. Should be instantianted as one the pages of
-/// a `UIPageViewController`. However, it should be encapsulated inside a `UINavigationController`.
+/// a `UIPageViewController`. 
 final class InboxViewController: UIViewController {
-
     // MARK: - Properties
-
     /// `UICollectionView` used to display all recordings currently in the Inbox.
     @AutoLayout private var inboxCollectionView: InboxCollectionView
 
+    ///  The `ViewModel` responsible for this `View`.
     private let viewModel: InboxViewModel
     // MARK: - Init
-
+    /// Initializes a new instance of this type.
+    /// - Parameter viewModel: The `ViewModel` responsible for this `View`.
     init(viewModel: InboxViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        os_log("InboxViewController initialized.", log: .appFlow, type: .debug)
     }
 
     required init?(coder: NSCoder) {
@@ -30,11 +32,10 @@ final class InboxViewController: UIViewController {
     }
 
     // MARK: - Lifecycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViewModel()
-        setupCollectionView()
+        setUpCollectionView()
         title = NSLocalizedString("inbox", comment: "Title of the InboxViewController")
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didChangeTheme(_:)),
@@ -44,20 +45,19 @@ final class InboxViewController: UIViewController {
 
     // MARK: - @objc
     @objc private func didChangeTheme(_ notification: NSNotification) {
+        os_log("InboxViewController should change theme.", log: .appFlow, type: .debug)
         inboxCollectionView.backgroundColor = .memoraBackground
         inboxCollectionView.reloadData()
     }
 
-    // MARK: ViewModel setup
+    // MARK: - ViewModel setup
     private func setUpViewModel() {
         viewModel.delegate = self
         viewModel.requestFetch()
     }
 
     // MARK: - Layout
-
-    /// Configures constraints and look of the `inboxCollectionView`
-    private func setupCollectionView() {
+    private func setUpCollectionView() {
         inboxCollectionView.delegate = self
         inboxCollectionView.dataSource = self
 
@@ -77,6 +77,7 @@ final class InboxViewController: UIViewController {
     // MARK: - Deinit
     deinit {
         NotificationCenter.default.removeObserver(self)
+        os_log("InboxViewController deinitialized.", log: .appFlow, type: .debug)
     }
 }
 
@@ -107,10 +108,12 @@ extension InboxViewController: UICollectionViewDataSource {
 // MARK: - ViewModel Delegate
 extension InboxViewController: InboxViewModelDelegate {
     func insertNewMemoryAt(_ index: IndexPath) {
+        os_log("InboxViewController inserting new memories...", log: .appFlow, type: .debug)
         inboxCollectionView.insertItems(at: [index])
     }
 
     func updates(from blocks: [BlockOperation]) {
+        os_log("InboxViewController peforming batch updates.", log: .appFlow, type: .debug)
         inboxCollectionView.performBatchUpdates({
             for block in blocks {
                 block.start()
@@ -120,6 +123,7 @@ extension InboxViewController: InboxViewModelDelegate {
                 return
             }
             self.viewModel.didUpdate = didUpdate
+            os_log("InboxViewController done with batch updates.", log: .appFlow, type: .debug)
         })
     }
 }

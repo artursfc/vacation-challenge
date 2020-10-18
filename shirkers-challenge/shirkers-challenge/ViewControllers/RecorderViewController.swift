@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import os.log
 
+/// Representation of the Recorder screen.
 final class RecorderViewController: UIViewController {
     // MARK: - Properties
     @AutoLayout private var recordButton: MemoraRecordButton
@@ -19,11 +21,13 @@ final class RecorderViewController: UIViewController {
     @AutoLayout private var saveButton: MemoraButton
     @AutoLayout private var closeButton: MemoraButton
 
+    /// The `CAShapeLayer` used to animate the recording button.
     private lazy var recordButtonShapeLayer = RecordButtonShapeLayer(buttonFrame: recordButton.frame)
 
+    /// The `ViewModel` responsible for this `View`.
     private let viewModel: RecorderViewModel
 
-    /// A anchor identifier used to animate constraints.
+    /// An anchor identifier used to animate constraints.
     fileprivate enum AnchorIdentifier: String {
         case recordButtonBottom = "record-bottom"
         case recordButtonWidth = "record-width"
@@ -32,9 +36,12 @@ final class RecorderViewController: UIViewController {
     }
 
     // MARK: - Init
+    /// Initializes a new instance of this type.
+    /// - Parameter viewModel: The `ViewModel` responsible for this `View`.
     init(viewModel: RecorderViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        os_log("RecorderViewController initialized.", log: .appFlow, type: .debug)
     }
 
     required init?(coder: NSCoder) {
@@ -51,10 +58,12 @@ final class RecorderViewController: UIViewController {
 
     // MARK: - @objc
     @objc private func didTapRecord(_ button: MemoraButton) {
+        os_log("RecorderViewController requested its ViewModel to start recording.", log: .appFlow, type: .debug)
         viewModel.recording.toggle()
     }
 
     @objc private func didTapClose(_ button: MemoraButton) {
+        os_log("RecorderViewController should close.", log: .appFlow, type: .debug)
         dismiss(animated: true, completion: nil)
     }
 
@@ -63,6 +72,7 @@ final class RecorderViewController: UIViewController {
     }
 
     @objc private func didTapSave(_ button: MemoraButton) {
+        os_log("RecorderViewController requested its ViewModel to save the recording.", log: .appFlow, type: .debug)
         viewModel.save()
     }
 
@@ -269,6 +279,7 @@ extension RecorderViewController: RecorderViewModelDelegate {
     }
 
     func didStartRecording() {
+        os_log("RecorderViewController should start the recording animation.", log: .appFlow, type: .debug)
         guard let timestampBottomAnchor = view.constraints.first(where: {
             $0.identifier == AnchorIdentifier.timestampLabelBottom.rawValue
         }) else { return }
@@ -301,6 +312,7 @@ extension RecorderViewController: RecorderViewModelDelegate {
     }
 
     func didStopRecording() {
+        os_log("RecorderViewController should stop the recording animation.", log: .appFlow, type: .debug)
         guard let timestampBottomAnchor = view.constraints.first(where: {
             $0.identifier == AnchorIdentifier.timestampLabelBottom.rawValue
         }) else { return }

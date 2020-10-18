@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import os.log
 
+/// Custom `UINavigationController` in the app's visual style.
 final class MemoraNavigationViewController: UINavigationController {
 
-    // MARK: Init
+    // MARK: - Init
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
+        os_log("MemoraNavigationViewController initialized.", log: .appFlow, type: .debug)
         setUpNavigationController()
     }
 
@@ -20,7 +23,7 @@ final class MemoraNavigationViewController: UINavigationController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: Life cycle
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self,
@@ -29,14 +32,15 @@ final class MemoraNavigationViewController: UINavigationController {
                                                object: nil)
     }
 
-    // MARK: @objc
+    // MARK: - @objc
     @objc private func didChangeTheme(_ notification: NSNotification) {
+        os_log("MemoraNavigationViewController should change theme.", log: .appFlow, type: .debug)
         navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.memoraAccent]
         navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.memoraAccent]
         navigationBar.barTintColor = .memoraBackground
     }
 
-    // MARK: Setup
+    // MARK: - Setup
     private func setUpNavigationController() {
         navigationBar.prefersLargeTitles = true
         navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.memoraAccent]
@@ -45,8 +49,9 @@ final class MemoraNavigationViewController: UINavigationController {
         navigationBar.isTranslucent = true
     }
 
-    // MARK: Deinit
+    // MARK: - Deinit
     deinit {
         NotificationCenter.default.removeObserver(self)
+        os_log("MemoraNavigationViewController deinitialized.", log: .appFlow, type: .debug)
     }
 }

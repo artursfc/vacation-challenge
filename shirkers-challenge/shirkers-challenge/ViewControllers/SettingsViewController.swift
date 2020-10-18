@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import os.log
 
+/// Representation of the Settings screen. Should be instantiated as one the pages of
+/// a `UIPageViewController`.
 final class SettingsViewController: UIViewController {
-    // - MARK: Properties
+    // MARK: - Properties
     private lazy var settingsTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -63,17 +66,17 @@ final class SettingsViewController: UIViewController {
         return [themesSection, aboutSection]
     }()
 
-    // - MARK: Init
-
+    // MARK: - Init
     init() {
         super.init(nibName: nil, bundle: nil)
+        os_log("SettingsViewController initialized.", log: .appFlow, type: .debug)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // - MARK: Life cycle
+    // MARK: - Life cycle
     override func loadView() {
         super.loadView()
 
@@ -100,8 +103,9 @@ final class SettingsViewController: UIViewController {
                                                object: nil)
     }
 
-    // MARK: @objc
+    // MARK: - @objc
     @objc private func didChangeTheme(_ notification: NSNotification) {
+        os_log("SettingsViewController should change theme.", log: .appFlow, type: .debug)
         settingsTableView.backgroundColor = .memoraBackground
         for section in settingsCellArray {
             for row in section {
@@ -112,13 +116,14 @@ final class SettingsViewController: UIViewController {
         }
     }
 
-    // MARK: Deinit
+    // MARK: - Deinit
     deinit {
         NotificationCenter.default.removeObserver(self)
+        os_log("SettingsViewController deinitialized.", log: .appFlow, type: .debug)
     }
 }
 
-// - MARK: UITableViewDelegate
+// MARK: - UITableViewDelegate
 extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {

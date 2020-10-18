@@ -8,12 +8,12 @@
 
 import UIKit
 import CoreData
+import os.log
 
 /// Container UIViewController for the UIPageViewController used to
 /// display the Archive, Inbox and Settings screen.
 final class RootPageViewController: UIViewController {
-// - MARK: Properties
-
+    // MARK: - Properties
     /// UIPageViewController used to display all three main screens.
     private let pageViewController: UIPageViewController
     /// UIViewController array with the pages being displayed. Should
@@ -33,10 +33,17 @@ final class RootPageViewController: UIViewController {
         return 1
     }
 
+    /// The Core Data context used by the recorder. It should **only**
+    /// used to perform Dependecy Injection.
     private let context: NSManagedObjectContext
 
-// - MARK: Init
-
+    // MARK: - Init
+    /// Initializes a new instance of this type.
+    /// - Parameter pages: UIViewController array with the pages being displayed.
+    /// Should be passed through Dependency Injection using the init for this type.
+    /// - Parameter pageViewController: UIPageViewController used to display all three main screens.
+    /// - Parameter context: The Core Data context used by the recorder.
+    /// It should **only** used to perform Dependecy Injection.
     init(pages: [UIViewController],
          pageViewController: UIPageViewController,
          context: NSManagedObjectContext) {
@@ -46,14 +53,14 @@ final class RootPageViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.pageViewController.delegate = self
         self.pageViewController.dataSource = self
+        os_log("RootPageViewController initialized.", log: .appFlow, type: .debug)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-// - MARK: Life cycle
-
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPageViewController()
@@ -68,8 +75,9 @@ final class RootPageViewController: UIViewController {
                                                object: nil)
     }
 
-    //- MARK : @objc
+    // MARK: - @objc
     @objc private func recordMemory() {
+        os_log("RootViewController should present recorder.", log: .appFlow, type: .debug)
         let recorder = RecordingController()
         let recorderViewModel = RecorderViewModel(recorder: recorder, context: context)
         let recorderViewController = RecorderViewController(viewModel: recorderViewModel)
@@ -79,12 +87,13 @@ final class RootPageViewController: UIViewController {
     }
 
     @objc private func didChangeTheme(_ notification: NSNotification) {
+        os_log("RootViewController should change theme.", log: .appFlow, type: .debug)
         navigationItem.rightBarButtonItem?.tintColor = .memoraAccent
         setUpPageControl()
 
     }
 
-    // MARK: Views setup
+    // MARK: - Views setup
     private func setUpPageControl() {
         for subView in pageViewController.view.subviews {
             if let pageControl = subView as? UIPageControl {
@@ -94,7 +103,7 @@ final class RootPageViewController: UIViewController {
         }
     }
 
-// - MARK: Layout
+    // MARK: - Layout
     /// Configures the UIPageViewController with the pages passed through
     /// the init. It also layouts all the necessary constraints for this view.
     private func setupPageViewController() {
@@ -106,7 +115,7 @@ final class RootPageViewController: UIViewController {
         view.addSubview(pageViewController.view)
 
         guard let pageViewControllerView = pageViewController.view else {
-            /// - TODO: Add error handling
+            os_log("RootViewController failed to access pageViewController.view.", log: .appFlow, type: .error)
             return
         }
 
@@ -118,9 +127,10 @@ final class RootPageViewController: UIViewController {
         ])
     }
 
-    // MARK: Deinitt
+    // MARK: - Deinit
     deinit {
         NotificationCenter.default.removeObserver(self)
+        os_log("RootViewController deinitialized.", log: .appFlow, type: .debug)
     }
 }
 

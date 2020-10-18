@@ -7,36 +7,37 @@
 //
 
 import UIKit
+import os.log
 
 /// Representation of the Archive screen. Should be instantianted as one the pages of
-/// a `UIPageViewController`. However, it should be encapsulated inside a `UINavigationController`.
+/// a `UIPageViewController`.
 final class ArchiveViewController: UIViewController {
-// - MARK: Properties
+    // MARK: - Properties
 
     /// `UITableView` used to display all archived recordings.
     @AutoLayout private var archiveTableView: UITableView
 
+    /// The `ViewModel` responsible for this `View`.
     private let viewModel: ArchiveViewModel
 
-// - MARK: Init
-
+    // MARK: - Init
+    /// Initializes a new instace of this type.
+    /// - Parameter viewModel: The `ViewModel` responsible for this `View`.
     init(viewModel: ArchiveViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         self.archiveTableView.delegate = self
         self.archiveTableView.dataSource = self
-        self.viewModel.delegate = self
-
         self.archiveTableView.register(ArchiveTableViewCell.self,
                                        forCellReuseIdentifier: ArchiveTableViewCell.identifier)
+        os_log("ArchiveViewController initialized.", log: .appFlow, type: .debug)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-// - MARK: Life cycle
-
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableViewLayout()
@@ -45,17 +46,21 @@ final class ArchiveViewController: UIViewController {
                                                selector: #selector(didChangeTheme(_:)),
                                                name: Notification.Name("theme-changed"),
                                                object: nil)
-        viewModel.requestFetch()
-
     }
 
-    // MARK: @objc
+    // MARK: - @objc
     @objc private func didChangeTheme(_ notification: NSNotification) {
+        os_log("ArchiveViewController should change theme.", log: .appFlow, type: .debug)
         archiveTableView.backgroundColor = .memoraBackground
         archiveTableView.reloadData()
     }
 
-// - MARK: Layout
+    // MARK: - ViewModel setup
+    private func setUpViewModel() {
+        viewModel.delegate = self
+        viewModel.requestFetch()
+    }
+    // MARK: - Layout
     /// Configures constraints and look of the `archiveTableView`.
     private func setupTableViewLayout() {
         archiveTableView.backgroundColor = .memoraBackground
@@ -76,17 +81,16 @@ final class ArchiveViewController: UIViewController {
     // MARK: Deinit
     deinit {
         NotificationCenter.default.removeObserver(self)
+        os_log("ArchiveViewController deinitialized.", log: .appFlow, type: .debug)
     }
 }
 
-// - MARK: UITableViewDelegate
-
+// MARK: - UITableViewDelegate
 extension ArchiveViewController: UITableViewDelegate {
 
 }
 
-// - MARK: UITableViewDataSource
-
+// MARK: - UITableViewDataSource
 extension ArchiveViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -111,18 +115,22 @@ extension ArchiveViewController: UITableViewDataSource {
 // MARK: - ViewModel Delegate
 extension ArchiveViewController: ArchiveViewModelDelegate {
     func beginUpdates() {
+        os_log("ArchiveViewController updating...", log: .appFlow, type: .debug)
         archiveTableView.beginUpdates()
     }
 
     func insertNewMemoryAt(_ index: IndexPath) {
+        os_log("ArchiveViewController inserting new memories...", log: .appFlow, type: .debug)
         archiveTableView.insertRows(at: [index], with: .fade)
     }
 
     func deleteMemoryAt(_ index: IndexPath) {
+        os_log("ArchiveViewController deleting memories...", log: .appFlow, type: .debug)
         archiveTableView.deleteRows(at: [index], with: .fade)
     }
 
     func endUpdates() {
+        os_log("ArchiveViewController done updating.", log: .appFlow, type: .debug)
         archiveTableView.endUpdates()
     }
 
