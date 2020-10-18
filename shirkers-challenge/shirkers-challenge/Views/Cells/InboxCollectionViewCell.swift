@@ -11,7 +11,12 @@ import UIKit
 /// Representation of a `InboxViewController`'s cell.
 final class InboxCollectionViewCell: UICollectionViewCell {
     // - MARK: Properties
-    @AutoLayout private var memoryEmojiLabel: UILabel
+    private lazy var memoryEmojiLabel: UIImageView = {
+        let imageView = UIImageView(image: UIImage(systemName: "waveform"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.tintColor = .memoraAccent
+        return imageView
+    }()
 
     static var identifier: String {
         return String(describing: self)
@@ -29,11 +34,9 @@ final class InboxCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(with viewModel: MemoryViewModel) {
-        memoryEmojiLabel.text = viewModel.title
-        memoryEmojiLabel.textColor = .memoraAccent
-        memoryEmojiLabel.textAlignment = .center
-        memoryEmojiLabel.font = .preferredFont(forTextStyle: .headline)
-        memoryEmojiLabel.backgroundColor = .memoraFill
+        memoryEmojiLabel.image = UIImage(systemName: "waveform")
+        memoryEmojiLabel.tintColor = .memoraAccent
+        contentView.backgroundColor = .memoraFill
     }
 
     // - MARK: Layout
@@ -48,8 +51,10 @@ final class InboxCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             memoryEmojiLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             memoryEmojiLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            memoryEmojiLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            memoryEmojiLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor)
+            memoryEmojiLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor,
+                                                    multiplier: 0.4),
+            memoryEmojiLabel.heightAnchor.constraint(equalTo: contentView.widthAnchor,
+                                                     multiplier: 0.4)
         ])
     }
 }

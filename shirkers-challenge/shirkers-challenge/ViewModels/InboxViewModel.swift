@@ -23,7 +23,7 @@ final class InboxViewModel: NSObject {
     private lazy var fetchedResultsController: NSFetchedResultsController<Recording> = {
         let fetchRequest: NSFetchRequest<Recording> = Recording.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Recording.modifiedAt, ascending: false)]
-        fetchRequest.predicate = NSPredicate(format: "dueDate >= %@ AND isActive == true", Date() as NSDate)
+        fetchRequest.predicate = NSPredicate(format: "dueDate =< %@ AND isActive == true", Date() as NSDate)
 
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest,
                                              managedObjectContext: self.context,
