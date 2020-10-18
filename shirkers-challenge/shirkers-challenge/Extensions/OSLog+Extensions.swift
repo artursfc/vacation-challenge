@@ -15,4 +15,5 @@ extension OSLog {
 
     static let recordingCycle: OSLog = OSLog(subsystem: subsystem, category: "recordingCycle")
     static let coreDataStack: OSLog = OSLog(subsystem: subsystem, category: "coreDataStack")
+    static let appFlow: OSLog = OSLog(subsystem: subsystem, category: "appFlow")
 }

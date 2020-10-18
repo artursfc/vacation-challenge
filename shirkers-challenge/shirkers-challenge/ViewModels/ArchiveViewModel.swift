@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import os.log
 
 // MARK: - Protocol-Delegate
 /// The delegate responsible for allowing communication between
@@ -49,6 +50,7 @@ final class ArchiveViewModel: NSObject {
     /// - Parameter context: The context used to access Core Data through a FRC.
     init(context: NSManagedObjectContext) {
         self.context = context
+        os_log("ArchiveViewModel initialized.", log: .appFlow, type: .debug)
     }
 
     // MARK: - API
@@ -65,8 +67,7 @@ final class ArchiveViewModel: NSObject {
         do {
             try fetchedResultsController.performFetch()
         } catch {
-            print(error.localizedDescription)
-            // TODO: Error handling
+            os_log("ArchiveViewModel fetch request to FRC failed.", log: .appFlow, type: .error)
         }
     }
 
@@ -93,10 +94,12 @@ final class ArchiveViewModel: NSObject {
 // MARK: - FRC Delegate
 extension ArchiveViewModel: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        os_log("ArchiveViewModel data updating...", log: .appFlow, type: .debug)
         delegate?.beginUpdates()
     }
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        os_log("ArchiveViewModel is done updating.", log: .appFlow, type: .debug)
         delegate?.endUpdates()
     }
 
@@ -108,10 +111,12 @@ extension ArchiveViewModel: NSFetchedResultsControllerDelegate {
         switch type {
         case .insert:
             if let newIndexPath = newIndexPath {
+                os_log("ArchiveViewModel inserted new memory.", log: .appFlow, type: .debug)
                 delegate?.insertNewMemoryAt(newIndexPath)
             }
         case .delete:
             if let newIndexPath = newIndexPath {
+                os_log("ArchiveViewModel deleted a memory.", log: .appFlow, type: .debug)
                 delegate?.deleteMemoryAt(newIndexPath)
             }
         default:

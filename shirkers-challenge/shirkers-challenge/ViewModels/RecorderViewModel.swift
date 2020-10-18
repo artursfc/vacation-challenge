@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import os.log
 
 // MARK: - Protocol-Delegate
 /// The  delegate responsible for allowing communication between
@@ -67,6 +68,7 @@ final class RecorderViewModel {
                                        selector: #selector(remove(_:)),
                                        name: UIApplication.willTerminateNotification,
                                        object: nil)
+        os_log("RecorderViewModel initialized.", log: .appFlow, type: .debug)
     }
 
     // MARK: - API
@@ -88,8 +90,7 @@ final class RecorderViewModel {
                         try recorder.start()
                         delegate?.didStartRecording()
                     } catch {
-                        print(error.localizedDescription)
-                        // TODO: Error Handling
+                        os_log("RecorderViewModel's recorder failed to start", log: .appFlow, type: .error)
                     }
                 }
             } else {
@@ -97,8 +98,7 @@ final class RecorderViewModel {
                     try recorder.stop()
                     delegate?.didStopRecording()
                 } catch {
-                    print(error.localizedDescription)
-                    // TODO: Error handling
+                    os_log("RecorderViewModel's recorder failed to stop", log: .appFlow, type: .error)
                 }
 
             }
@@ -133,8 +133,7 @@ final class RecorderViewModel {
         do {
             try recorder.requestPermission()
         } catch {
-            print(error.localizedDescription)
-            // TODO: Error handling
+            os_log("RecorderViewModel's recorder failed to get permission.", log: .appFlow, type: .error)
         }
     }
 
@@ -157,8 +156,7 @@ final class RecorderViewModel {
             do {
                 try context.save()
             } catch {
-                print(error.localizedDescription)
-                // TODO: Error handling
+                os_log("RecorderViewModel failed to save to Core Data", log: .appFlow, type: .error)
             }
         }
     }
@@ -171,14 +169,14 @@ final class RecorderViewModel {
         do {
             try fileManager.removeItem(at: fileURL)
         } catch {
-            print(error.localizedDescription)
-            // TODO: Error handling
+            os_log("RecorderViewModel failed to remove a memory's file.", log: .appFlow, type: .error)
         }
     }
 
     /// Removes file representing a memory's audio before app is terminated.
     @objc private func remove(_ notification: Notification) {
         guard let fileName = currentDate?.stringFormatted() else {
+            os_log("RecorderViewModel failed to remove a memory's file befoe app's termination.", log: .appFlow, type: .error)
             return
         }
         remove(file: fileName)

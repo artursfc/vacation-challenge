@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import os.log
 
 // MARK: - Protocol-Delegate
 /// The delegate responsible for allowing communication between
@@ -52,6 +53,7 @@ final class InboxViewModel: NSObject {
     /// - Parameter context: The context used to access Core Data through a FRC.
     init(context: NSManagedObjectContext) {
         self.context = context
+        os_log("InboxViewModel initialized.", log: .appFlow, type: .debug)
     }
 
     // MARK: - API
@@ -77,8 +79,7 @@ final class InboxViewModel: NSObject {
         do {
             try fetchedResultsController.performFetch()
         } catch {
-            print(error.localizedDescription)
-            // TODO: Error Handling
+            os_log("InboxViewModel fetch request to FRC failed.", log: .appFlow, type: .error)
         }
     }
 
@@ -104,6 +105,7 @@ final class InboxViewModel: NSObject {
 // MARK: - FRC Delegate
 extension InboxViewModel: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        os_log("InboxViewModel data updating...", log: .appFlow, type: .debug)
         updateBlock.removeAll(keepingCapacity: false)
     }
 
@@ -117,6 +119,7 @@ extension InboxViewModel: NSFetchedResultsControllerDelegate {
             switch type {
             case .insert:
                 if let newIndexPath = newIndexPath {
+                    os_log("InboxViewModel inserted new memory.", log: .appFlow, type: .debug)
                     self.delegate?.insertNewMemoryAt(newIndexPath)
                 }
             default:
@@ -127,6 +130,7 @@ extension InboxViewModel: NSFetchedResultsControllerDelegate {
     }
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        os_log("InboxViewModel is done updating. Sending update blocks to View.", log: .appFlow, type: .debug)
         delegate?.updates(from: updateBlock)
     }
 }
