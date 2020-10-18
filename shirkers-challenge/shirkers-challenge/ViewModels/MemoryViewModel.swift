@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Responsible for providing a memory formatted data.
 struct MemoryViewModel {
     let title: String
     let createdAt: String

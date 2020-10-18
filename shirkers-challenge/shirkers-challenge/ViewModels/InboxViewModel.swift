@@ -8,18 +8,27 @@
 
 import CoreData
 
-// MARK: - Protocol-delegate
+// MARK: - Protocol-Delegate
+/// The delegate responsible for allowing communication between
+/// `InboxViewModelDelegate` and its `View`.
 protocol InboxViewModelDelegate: AnyObject {
     func insertNewMemoryAt(_ index: IndexPath)
     func updates(from blocks: [BlockOperation])
 }
 
+/// Responsible for providing the `View` with all the necessary
+/// funcionalities and data for displaying the inbox.
 final class InboxViewModel: NSObject {
     // MARK: - Properties
+    /// The context used to access Core Data through a FRC.
     private let context: NSManagedObjectContext
 
+    /// The update blocks used to batch update the `View`.
     private var updateBlock: [BlockOperation] = [BlockOperation]()
 
+    /// The FRC responsible for fetching memories. It orders memories
+    /// by last modified. Returns only active memories which the due date is equal or
+    /// lower than `Date()` .
     private lazy var fetchedResultsController: NSFetchedResultsController<Recording> = {
         let fetchRequest: NSFetchRequest<Recording> = Recording.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Recording.modifiedAt, ascending: false)]
@@ -34,14 +43,19 @@ final class InboxViewModel: NSObject {
          return frc
     }()
 
+    /// The delegate responsible for allowing communication between
+    /// `InboxViewModel` and its `View`.
     weak var delegate: InboxViewModelDelegate?
 
     // MARK: - Init
+    /// Initializes a new instance of this type.
+    /// - Parameter context: The context used to access Core Data through a FRC.
     init(context: NSManagedObjectContext) {
         self.context = context
     }
 
     // MARK: - API
+    /// The number of memories fetched by the FRC.
     var numberOfMemories: Int {
         guard let memories = fetchedResultsController.fetchedObjects else {
             return 0
@@ -49,6 +63,7 @@ final class InboxViewModel: NSObject {
         return memories.count
     }
 
+    /// Whether the `View` has been updated.
     var didUpdate: Bool = false {
         didSet {
             if didUpdate {
@@ -57,6 +72,7 @@ final class InboxViewModel: NSObject {
         }
     }
 
+    /// Requests a fetch from the FRC.
     func requestFetch() {
         do {
             try fetchedResultsController.performFetch()
@@ -66,6 +82,7 @@ final class InboxViewModel: NSObject {
         }
     }
 
+    /// Returns a `ViewModel` corresponding to an index.
     func viewModelAt(index: IndexPath) -> MemoryViewModel {
         let memory = fetchedResultsController.object(at: index)
 

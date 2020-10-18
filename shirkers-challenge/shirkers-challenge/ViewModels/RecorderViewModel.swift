@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+// MARK: - Protocol-Delegate
 /// The  delegate responsible for allowing communication between
 /// `RecorderViewModel` and its `View`.
 protocol RecorderViewModelDelegate: AnyObject {
@@ -40,6 +41,7 @@ final class RecorderViewModel {
         }
     }
 
+    /// The context used to save to Core Data.
     private let context: NSManagedObjectContext
 
     /// The  delegate responsible for allowing communication between
@@ -49,6 +51,7 @@ final class RecorderViewModel {
     // MARK: - Init
     /// Initializes a new instance of this type.
     /// - Parameter recorder: The recorder abstraction.
+    /// - Parameter context: The context used to save to Core Data.
     init(recorder: Recorder,
          context: NSManagedObjectContext) {
         self.recorder = recorder
@@ -67,6 +70,7 @@ final class RecorderViewModel {
     }
 
     // MARK: - API
+    /// Whether the app has permission or not record audio.
     var permission: Bool {
         return recorder.permission
     }
@@ -104,7 +108,6 @@ final class RecorderViewModel {
     /// The memory's title.
     var title: String = ""
 
-
     /// The formatted memory's notification period.
     var remindMe: String {
         let localizedRemindMe = NSLocalizedString("remind-me-in", comment: "The reminder deadline")
@@ -135,6 +138,7 @@ final class RecorderViewModel {
         }
     }
 
+    /// Saves memory to Core Data.
     func save() {
         guard let createdAt = currentDate else {
             return
@@ -160,6 +164,7 @@ final class RecorderViewModel {
     }
 
     // MARK: - FileManager
+    /// Removes file representing a memory's audio.
     private func remove(file: String, at fileManager: FileManager = FileManager.default) {
         let url = fileManager.userDocumentDirectory
         let fileURL = url.appendingPathComponent("\(file).m4a")
@@ -171,6 +176,7 @@ final class RecorderViewModel {
         }
     }
 
+    /// Removes file representing a memory's audio before app is terminated.
     @objc private func remove(_ notification: Notification) {
         guard let fileName = currentDate?.stringFormatted() else {
             return

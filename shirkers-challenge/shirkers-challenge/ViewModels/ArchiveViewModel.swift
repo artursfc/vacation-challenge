@@ -9,6 +9,8 @@
 import CoreData
 
 // MARK: - Protocol-Delegate
+/// The delegate responsible for allowing communication between
+/// `ArchiveViewModel` and its `View`.
 protocol ArchiveViewModelDelegate: AnyObject {
     func beginUpdates()
     func insertNewMemoryAt(_ index: IndexPath)
@@ -16,10 +18,15 @@ protocol ArchiveViewModelDelegate: AnyObject {
     func endUpdates()
 }
 
+/// Responsible for providing the `View` with all the necessary
+/// funcionalities and data for displaying the archive of memories.
 final class ArchiveViewModel: NSObject {
     // MARK: - Properties
+    /// The context used to access Core Data through a FRC.
     private let context: NSManagedObjectContext
 
+    /// The FRC responsible for fetching memories. It orders memories
+    /// by last modified.
     private lazy var fetchedResultsController: NSFetchedResultsController<Recording> = {
         let fetchRequest: NSFetchRequest<Recording> = Recording.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Recording.modifiedAt, ascending: false)]
@@ -33,14 +40,19 @@ final class ArchiveViewModel: NSObject {
         return frc
     }()
 
+    /// The delegate responsible for allowing communication between
+    /// `ArchiveViewModel` and its `View`.
     weak var delegate: ArchiveViewModelDelegate?
 
     // MARK: - Init
+    /// Initializes a new instance of this type.
+    /// - Parameter context: The context used to access Core Data through a FRC.
     init(context: NSManagedObjectContext) {
         self.context = context
     }
 
     // MARK: - API
+    /// The number of memories fetched by the FRC.
     var numberOfMemories: Int {
         guard let memories = fetchedResultsController.fetchedObjects else {
             return 0
@@ -48,6 +60,7 @@ final class ArchiveViewModel: NSObject {
         return memories.count
     }
 
+    /// Requests a fetch from the FRC.
     func requestFetch() {
         do {
             try fetchedResultsController.performFetch()
@@ -57,6 +70,7 @@ final class ArchiveViewModel: NSObject {
         }
     }
 
+    /// Returns a `ViewModel` corresponding to an index.
     func viewModelAt(index: IndexPath) -> MemoryViewModel {
         let memory = fetchedResultsController.object(at: index)
 
