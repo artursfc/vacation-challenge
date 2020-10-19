@@ -10,12 +10,14 @@ import Foundation
 
 /// Responsible for providing a memory formatted data.
 struct MemoryViewModel {
+    // MARK: - Properties
     let title: String
     let createdAt: String
     let isActive: Bool
     let modifiedAt: String
-    let period: String
+    let dueDate: String
 
+    // MARK: - Init
     init(title: String = "",
          createdAt: String = "",
          isActive: Bool = false,
@@ -25,6 +27,6 @@ struct MemoryViewModel {
         self.createdAt = createdAt
         self.isActive = isActive
         self.modifiedAt = modifiedAt
-        self.period = period
+        self.dueDate = period
     }
 }

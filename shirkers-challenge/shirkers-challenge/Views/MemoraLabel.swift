@@ -22,7 +22,7 @@ final class MemoraLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setUp(with style: MemoraLabel.Style) {
+    func setUp(as style: MemoraLabel.Style) {
         textColor = .memoraAccent
         switch style {
         case .default:

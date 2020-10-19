@@ -112,10 +112,10 @@ final class RecorderViewModel {
     var remindMe: String {
         let localizedRemindMe = NSLocalizedString("remind-me-in", comment: "The reminder deadline")
         if remindMeInSeconds > (60*60*24) {
-            let localizedDays = NSLocalizedString("days", comment: "Plural reminder period")
+            let localizedDays = NSLocalizedString("days", comment: "Plural reminder dueDate")
             return "\(localizedRemindMe) \(Int(remindMePeriod)) \(localizedDays)"
         } else {
-            let localizedDay = NSLocalizedString("day", comment: "Singular reminder period")
+            let localizedDay = NSLocalizedString("day", comment: "Singular reminder dueDate")
             return "\(localizedRemindMe) \(Int(remindMePeriod)) \(localizedDay)"
         }
     }

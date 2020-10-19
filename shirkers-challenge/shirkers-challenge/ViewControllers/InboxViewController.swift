@@ -84,6 +84,19 @@ final class InboxViewController: UIViewController {
 // MARK: - UICollectionViewDelegate
 extension InboxViewController: UICollectionViewDelegate {
 
+    func collectionView(_ collectionView: UICollectionView,
+                        contextMenuConfigurationForItemAt indexPath: IndexPath,
+                        point: CGPoint) -> UIContextMenuConfiguration? {
+        let previewViewController = MemoryContextViewController()
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: { previewViewController }, actionProvider: { (_) -> UIMenu? in
+            let sampleAction = UIAction(title: "Sample",
+                                        image: UIImage(systemName: "checkmark.circle")) { (_) in
+            }
+            let children = [sampleAction]
+            return UIMenu(title: "", children: children)
+        })
+    }
+
 }
 
 // MARK: - UICollectionViewDataSource
@@ -102,6 +115,14 @@ extension InboxViewController: UICollectionViewDataSource {
         cell.configure(with: viewModel.viewModelAt(index: indexPath))
 
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        animator.addCompletion { [weak self] in
+            guard let self = self else { return }
+            let previewViewController = MemoryContextViewController()
+            self.show(previewViewController, sender: self)
+        }
     }
 }
 

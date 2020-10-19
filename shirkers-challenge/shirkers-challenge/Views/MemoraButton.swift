@@ -22,23 +22,23 @@ final class MemoraButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setUp(with style: MemoraButton.Style) {
+    func setUp(as style: MemoraButton.Style) {
         switch style {
         case .close:
-            setUpWithClose()
+            setUpAsClose()
         case .save:
-            setUpWithSave()
+            setUpAsSave()
         }
     }
 
-    private func setUpWithClose() {
+    private func setUpAsClose() {
         let buttonImageConfig = UIImage.SymbolConfiguration(pointSize: 0, weight: .bold, scale: .large)
         let buttonImage = UIImage(systemName: "xmark.circle.fill", withConfiguration: buttonImageConfig)
         setImage(buttonImage, for: .normal)
         tintColor = .memoraAccent
     }
 
-    private func setUpWithSave() {
+    private func setUpAsSave() {
         setTitleColor(.memoraBackground, for: .normal)
         titleLabel?.font = .preferredFont(forTextStyle: .headline)
         layer.cornerRadius = 10

@@ -137,22 +137,22 @@ final class RecorderViewController: UIViewController {
     }
 
     private func setUpTimestampLabel() {
-        timestampLabel.setUp(with: .timestamp)
+        timestampLabel.setUp(as: .timestamp)
     }
 
     private func setUpCloseButton() {
-        closeButton.setUp(with: .close)
+        closeButton.setUp(as: .close)
         closeButton.addTarget(self, action: #selector(didTapClose(_:)), for: .touchUpInside)
     }
 
     private func setUpInfoStackViews() {
-        titleLabel.setUp(with: .default)
+        titleLabel.setUp(as: .default)
         titleLabel.text = NSLocalizedString("title", comment: "The memory's title")
 
-        remindMeLabel.setUp(with: .default)
+        remindMeLabel.setUp(as: .default)
         remindMeLabel.text = "\(NSLocalizedString("remind-me-in", comment: "The reminder deadline")) 1 day"
 
-        saveButton.setUp(with: .save)
+        saveButton.setUp(as: .save)
         saveButton.setTitle(NSLocalizedString("save", comment: ""), for: .normal)
     }
 

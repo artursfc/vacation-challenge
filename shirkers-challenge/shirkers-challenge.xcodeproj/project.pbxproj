@@ -26,6 +26,7 @@
 		A41B41C52535F0F600AC11EE /* ArchiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41B41C42535F0F600AC11EE /* ArchiveViewModel.swift */; };
 		A43A5DB8243F918000E6FBBB /* RecordingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A5DB7243F918000E6FBBB /* RecordingController.swift */; };
 		A44AEA13251E9D6C00352E21 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44AEA12251E9D6C00352E21 /* SettingsViewController.swift */; };
+		A44F99C9253DCAA2008CF93F /* MemoryContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44F99C8253DCAA2008CF93F /* MemoryContextViewController.swift */; };
 		A453E261243E680D00D05C65 /* RecordingSessionSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A453E260243E680D00D05C65 /* RecordingSessionSettings.swift */; };
 		A4596AC22530CCBF00D1D034 /* MemoraTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4596AC12530CCBF00D1D034 /* MemoraTextField.swift */; };
 		A468154E22D66BE200537D16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A468154D22D66BE200537D16 /* AppDelegate.swift */; };
@@ -83,6 +84,7 @@
 		A41B41C42535F0F600AC11EE /* ArchiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewModel.swift; sourceTree = "<group>"; };
 		A43A5DB7243F918000E6FBBB /* RecordingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingController.swift; sourceTree = "<group>"; };
 		A44AEA12251E9D6C00352E21 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		A44F99C8253DCAA2008CF93F /* MemoryContextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryContextViewController.swift; sourceTree = "<group>"; };
 		A453E260243E680D00D05C65 /* RecordingSessionSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingSessionSettings.swift; sourceTree = "<group>"; };
 		A4596AC12530CCBF00D1D034 /* MemoraTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoraTextField.swift; sourceTree = "<group>"; };
 		A468154A22D66BE200537D16 /* shirkers-challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shirkers-challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,7 +240,6 @@
 				A47D8174252C992400242592 /* Views */,
 				A47D816A252C98A100242592 /* ViewControllers */,
 				A47D816D252C98EE00242592 /* ViewModels */,
-				A4CC531322E3BA500095C921 /* Models */,
 				A43A5DB9243F950700E6FBBB /* Recorder */,
 			);
 			path = "shirkers-challenge";
@@ -263,6 +264,7 @@
 				A499E96924FC3D0200290B16 /* ArchiveViewController.swift */,
 				A40BCDD124FB05BE002F53A0 /* InboxViewController.swift */,
 				A4CCA8A0252DFB3C0035676E /* RecorderViewController.swift */,
+				A44F99C8253DCAA2008CF93F /* MemoryContextViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -290,13 +292,6 @@
 				A419A3042533965C00BE5A1F /* MemoraButton.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		A4CC531322E3BA500095C921 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		A4D0E0222505706900B3B12D /* shirkers-challengeTests */ = {
@@ -459,6 +454,7 @@
 				A4C49CC025240E0F0057507C /* MemoraNavigationViewController.swift in Sources */,
 				A40BCDD224FB05BE002F53A0 /* InboxViewController.swift in Sources */,
 				A4D0E030250587EB00B3B12D /* CoreDataStack.swift in Sources */,
+				A44F99C9253DCAA2008CF93F /* MemoryContextViewController.swift in Sources */,
 				A47C3C2F251CF3D1001C3A55 /* DesignSystem.swift in Sources */,
 				A4DB55B42524EA7E00C9A3B2 /* MemoraSlider.swift in Sources */,
 				A4152CFD2530A0EA00556D3A /* RecordButtonShapeLayer.swift in Sources */,
