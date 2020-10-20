@@ -41,6 +41,7 @@ final class ArchiveViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableViewLayout()
+        setUpViewModel()
         title = NSLocalizedString("archive", comment: "Title of the ArchiveViewController")
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didChangeTheme(_:)),

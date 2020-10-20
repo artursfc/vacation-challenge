@@ -98,6 +98,7 @@ final class RecorderViewModel {
                     try recorder.stop()
                     delegate?.didStopRecording()
                 } catch {
+                    print(error.localizedDescription)
                     os_log("RecorderViewModel's recorder failed to stop", log: .appFlow, type: .error)
                 }
 

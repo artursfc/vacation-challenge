@@ -30,11 +30,13 @@ final class MemoryContextViewController: UIViewController {
         super.viewDidLoad()
         setUpViews()
         layoutConstraints()
+
+        preferredContentSize = CGSize(width: view.frame.width, height: 250)
     }
 
     // MARK: - Views setup
     private func setUpViews() {
-        view.backgroundColor = .memoraBackground
+        view.backgroundColor = .memoraFill
         setUpTitleLabel()
         setUpCreatedAtLabel()
         setUpModifiedAtLabel()
@@ -79,7 +81,8 @@ final class MemoryContextViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: guide.centerYAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: guide.centerYAnchor,
+                                                constant: -50),
             titleLabel.heightAnchor.constraint(equalToConstant: 50),
             titleLabel.widthAnchor.constraint(equalTo: guide.widthAnchor)
         ])

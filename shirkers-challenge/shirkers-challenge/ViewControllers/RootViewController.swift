@@ -75,9 +75,9 @@ final class RootViewController: UIViewController {
             memoraNavigationViewController.view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.8),
 
             playerComponentViewController.view.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            playerComponentViewController.view.topAnchor.constraint(equalTo: memoraNavigationViewController.view.bottomAnchor, constant: 5),
+            playerComponentViewController.view.topAnchor.constraint(equalTo: memoraNavigationViewController.view.bottomAnchor),
             playerComponentViewController.view.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor),
-            playerComponentViewController.view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.175)
+            playerComponentViewController.view.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.19)
         ])
     }
 

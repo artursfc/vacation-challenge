@@ -27,6 +27,7 @@ final class InboxCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupContentView()
         layoutConstraints()
+
     }
 
     required init?(coder: NSCoder) {
@@ -43,6 +44,8 @@ final class InboxCollectionViewCell: UICollectionViewCell {
     private func setupContentView() {
         contentView.layer.cornerRadius = 15
         contentView.clipsToBounds = true
+        backgroundColor = .memoraFill
+        layer.cornerRadius = 20
     }
 
     private func layoutConstraints() {
