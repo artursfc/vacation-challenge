@@ -13,10 +13,8 @@ final class MemoryContextViewController: UIViewController {
     @AutoLayout private var titleLabel: MemoraLabel
     @AutoLayout private var createdAtLabel: MemoraLabel
     @AutoLayout private var modifiedAtLabel: MemoraLabel
-    @AutoLayout private var dueDateLabel: MemoraLabel
-    @AutoLayout private var dueDateSlider: MemoraSlider
-    @AutoLayout private var closeButton: MemoraButton
-    @AutoLayout private var stackView: UIStackView
+    @AutoLayout private var newDueDateLabel: MemoraLabel
+    @AutoLayout private var newDueDateSlider: MemoraSlider
 
     // MARK: - Init
     init() {
@@ -36,16 +34,16 @@ final class MemoryContextViewController: UIViewController {
 
     // MARK: - Views setup
     private func setUpViews() {
+        view.backgroundColor = .memoraBackground
         setUpTitleLabel()
         setUpCreatedAtLabel()
         setUpModifiedAtLabel()
         setUpDueDateLabel()
-        setUpCloseButton()
-        setUpStackView()
     }
 
     private func setUpTitleLabel() {
-        titleLabel.setUp(as: .default)
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .title2).bold()
+        titleLabel.textColor = .memoraAccent
         titleLabel.text = "Memory title"
     }
 
@@ -60,35 +58,88 @@ final class MemoryContextViewController: UIViewController {
     }
 
     private func setUpDueDateLabel() {
-        dueDateLabel.setUp(as: .timestamp)
-        dueDateLabel.text = "19/10/2020"
-    }
-
-    private func setUpCloseButton() {
-        closeButton.setUp(as: .close)
-    }
-
-    private func setUpStackView() {
-        stackView.axis = .vertical
-        stackView.distribution = .equalCentering
-        stackView.addArrangedSubview(titleLabel)
-        stackView.addArrangedSubview(createdAtLabel)
-        stackView.addArrangedSubview(modifiedAtLabel)
-        stackView.addArrangedSubview(dueDateLabel)
-        stackView.addArrangedSubview(closeButton)
+        newDueDateLabel.setUp(as: .timestamp)
+        newDueDateLabel.textAlignment = .natural
+        newDueDateLabel.text = "19/10/2020"
     }
 
     // MARK: - Layout
     private func layoutConstraints() {
-        view.addSubview(stackView)
+        layoutTitleLabelConstraints()
+        layoutCreatedAtLabelConstraints()
+        layoutModifiedAtLabelConstraints()
+        layoutNewDueDateLabelConstraints()
+        layoutNewDueDateSliderConstraints()
+    }
+
+    private func layoutTitleLabelConstraints() {
+        view.addSubview(titleLabel)
 
         let guide = view.layoutMarginsGuide
 
         NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: guide.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: guide.centerYAnchor),
-            stackView.widthAnchor.constraint(equalTo: guide.widthAnchor),
-            stackView.heightAnchor.constraint(equalTo: guide.heightAnchor)
+            titleLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: guide.centerYAnchor),
+            titleLabel.heightAnchor.constraint(equalToConstant: 50),
+            titleLabel.widthAnchor.constraint(equalTo: guide.widthAnchor)
+        ])
+    }
+
+    private func layoutCreatedAtLabelConstraints() {
+        view.addSubview(createdAtLabel)
+
+        let guide = view.layoutMarginsGuide
+
+        NSLayoutConstraint.activate([
+            createdAtLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
+            createdAtLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,
+                                                constant: DesignSystem.MemoryContext.createdAtLabelSpacingFromTitle),
+            createdAtLabel.heightAnchor.constraint(equalToConstant: DesignSystem.MemoryContext.createdAtLabelHeight),
+            createdAtLabel.widthAnchor.constraint(equalTo: guide.widthAnchor,
+                                                  multiplier: DesignSystem.MemoryContext.createdAtLabelWidthMultiplier)
+        ])
+    }
+
+    private func layoutModifiedAtLabelConstraints() {
+        view.addSubview(modifiedAtLabel)
+
+        let guide = view.layoutMarginsGuide
+
+        NSLayoutConstraint.activate([
+            modifiedAtLabel.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
+            modifiedAtLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,
+                                                 constant: DesignSystem.MemoryContext.modifiedAtLabelSpacingFromTitle),
+            modifiedAtLabel.heightAnchor.constraint(equalToConstant: DesignSystem.MemoryContext.modifiedAtLabelHeight),
+            modifiedAtLabel.widthAnchor.constraint(equalTo: guide.widthAnchor,
+                                                   multiplier: DesignSystem.MemoryContext.modifiedAtLabelWidthMultiplier)
+        ])
+    }
+
+    private func layoutNewDueDateLabelConstraints() {
+        view.addSubview(newDueDateLabel)
+
+        let guide = view.layoutMarginsGuide
+
+        NSLayoutConstraint.activate([
+            newDueDateLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
+            newDueDateLabel.topAnchor.constraint(equalTo: createdAtLabel.bottomAnchor,
+                                                 constant: DesignSystem.MemoryContext.newDueDateLabelSpacingFromCreatedAt),
+            newDueDateLabel.heightAnchor.constraint(equalToConstant: DesignSystem.MemoryContext.newDueDateLabelHeight),
+            newDueDateLabel.widthAnchor.constraint(equalTo: guide.widthAnchor)
+        ])
+    }
+
+    private func layoutNewDueDateSliderConstraints() {
+        view.addSubview(newDueDateSlider)
+
+        let guide = view.layoutMarginsGuide
+
+        NSLayoutConstraint.activate([
+            newDueDateSlider.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
+            newDueDateSlider.topAnchor.constraint(equalTo: newDueDateLabel.bottomAnchor,
+                                                  constant: DesignSystem.MemoryContext.newDueDateSliderSpacingFromNewDueDateLabel),
+            newDueDateSlider.heightAnchor.constraint(equalToConstant: DesignSystem.MemoryContext.newDueDateSliderHeight),
+            newDueDateSlider.widthAnchor.constraint(equalTo: guide.widthAnchor)
         ])
     }
 }

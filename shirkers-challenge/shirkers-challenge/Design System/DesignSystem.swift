@@ -9,8 +9,7 @@
 import UIKit
 
 enum DesignSystem {
-
-    //- MARK: Inbox
+    // MARK: - Inbox
     enum Inbox {
         /// UICollectionViewCompositionalLayout Item
         static let itemTopSpacing: CGFloat = 0
@@ -31,7 +30,7 @@ enum DesignSystem {
         static let groupFractionalHeight: CGFloat = 0.3
     }
 
-    //- MARK: PlayerComponent
+    // MARK: - PlayerComponent
     enum PlayerComponent {
         /// Safe area for the elements inside the `Player Component`.
         static let widthMultiplier: CGFloat = 0.9
@@ -41,12 +40,12 @@ enum DesignSystem {
         static let spacingFromProgressSlider: CGFloat = 5
     }
 
-    //- MARK: Archive
+    // MARK: - Archive
     enum Archive {
         static let rowHeight: CGFloat = 60
     }
 
-    // MARK: Recorder
+    // MARK: - Recorder
     enum Recorder {
         static let spacingFromBottom: CGFloat = 50
         static let recordButtonWidth: CGFloat = 80
@@ -72,5 +71,25 @@ enum DesignSystem {
 
         static let saveButtonSpacingFromTimestampLabel: CGFloat = -50
         static let saveButtonHeight: CGFloat = 50
+    }
+
+    // MARK: - Memory Context
+    enum MemoryContext {
+        static let titleLabelSpacingFromTop: CGFloat = 50
+        static let titleLabelHeight: CGFloat = 50
+
+        static let createdAtLabelSpacingFromTitle: CGFloat = 15
+        static let createdAtLabelHeight: CGFloat = 30
+        static let createdAtLabelWidthMultiplier: CGFloat = 0.45
+
+        static let modifiedAtLabelSpacingFromTitle: CGFloat = 15
+        static let modifiedAtLabelHeight: CGFloat = 30
+        static let modifiedAtLabelWidthMultiplier: CGFloat = 0.45
+
+        static let newDueDateLabelSpacingFromCreatedAt: CGFloat = 20
+        static let newDueDateLabelHeight: CGFloat = 40
+
+        static let newDueDateSliderSpacingFromNewDueDateLabel: CGFloat = 15
+        static let newDueDateSliderHeight: CGFloat = 30
     }
 }
