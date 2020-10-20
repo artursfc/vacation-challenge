@@ -31,7 +31,7 @@ final class MemoryContextViewController: UIViewController {
         setUpViews()
         layoutConstraints()
 
-        preferredContentSize = CGSize(width: view.frame.width, height: 250)
+        preferredContentSize = CGSize(width: view.frame.width, height: 275)
     }
 
     // MARK: - Views setup
@@ -44,25 +44,29 @@ final class MemoryContextViewController: UIViewController {
     }
 
     private func setUpTitleLabel() {
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .title2).bold()
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .title1).bold()
         titleLabel.textColor = .memoraAccent
-        titleLabel.text = "Memory title"
+        titleLabel.text = "A very long Memory title"
     }
 
     private func setUpCreatedAtLabel() {
         createdAtLabel.setUp(as: .timestamp)
-        createdAtLabel.text = "09/10/2020"
+        createdAtLabel.font = .preferredFont(forTextStyle: .subheadline)
+        createdAtLabel.text = "Created at 09/10/2020"
+        createdAtLabel.textAlignment = .natural
     }
 
     private func setUpModifiedAtLabel() {
         modifiedAtLabel.setUp(as: .timestamp)
-        modifiedAtLabel.text = "19/10/2020"
+        modifiedAtLabel.font = .preferredFont(forTextStyle: .subheadline)
+        modifiedAtLabel.text = "Last modified at 19/10/2020"
+        modifiedAtLabel.textAlignment = .natural
     }
 
     private func setUpDueDateLabel() {
         newDueDateLabel.setUp(as: .timestamp)
         newDueDateLabel.textAlignment = .natural
-        newDueDateLabel.text = "19/10/2020"
+        newDueDateLabel.text = "Due date 19/10/2020"
     }
 
     // MARK: - Layout
@@ -82,8 +86,8 @@ final class MemoryContextViewController: UIViewController {
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
             titleLabel.centerYAnchor.constraint(equalTo: guide.centerYAnchor,
-                                                constant: -50),
-            titleLabel.heightAnchor.constraint(equalToConstant: 50),
+                                                constant: DesignSystem.MemoryContext.titleLabelSpacingFromCenterY),
+            titleLabel.heightAnchor.constraint(equalToConstant: DesignSystem.MemoryContext.titleLabelHeight),
             titleLabel.widthAnchor.constraint(equalTo: guide.widthAnchor)
         ])
     }
@@ -98,8 +102,7 @@ final class MemoryContextViewController: UIViewController {
             createdAtLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,
                                                 constant: DesignSystem.MemoryContext.createdAtLabelSpacingFromTitle),
             createdAtLabel.heightAnchor.constraint(equalToConstant: DesignSystem.MemoryContext.createdAtLabelHeight),
-            createdAtLabel.widthAnchor.constraint(equalTo: guide.widthAnchor,
-                                                  multiplier: DesignSystem.MemoryContext.createdAtLabelWidthMultiplier)
+            createdAtLabel.widthAnchor.constraint(equalTo: guide.widthAnchor)
         ])
     }
 
@@ -109,12 +112,11 @@ final class MemoryContextViewController: UIViewController {
         let guide = view.layoutMarginsGuide
 
         NSLayoutConstraint.activate([
-            modifiedAtLabel.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
-            modifiedAtLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,
-                                                 constant: DesignSystem.MemoryContext.modifiedAtLabelSpacingFromTitle),
+            modifiedAtLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
+            modifiedAtLabel.topAnchor.constraint(equalTo: createdAtLabel.bottomAnchor,
+                                                 constant: DesignSystem.MemoryContext.modifiedAtLabelSpacingFromCreatedAt),
             modifiedAtLabel.heightAnchor.constraint(equalToConstant: DesignSystem.MemoryContext.modifiedAtLabelHeight),
-            modifiedAtLabel.widthAnchor.constraint(equalTo: guide.widthAnchor,
-                                                   multiplier: DesignSystem.MemoryContext.modifiedAtLabelWidthMultiplier)
+            modifiedAtLabel.widthAnchor.constraint(equalTo: guide.widthAnchor)
         ])
     }
 
@@ -125,8 +127,8 @@ final class MemoryContextViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             newDueDateLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
-            newDueDateLabel.topAnchor.constraint(equalTo: createdAtLabel.bottomAnchor,
-                                                 constant: DesignSystem.MemoryContext.newDueDateLabelSpacingFromCreatedAt),
+            newDueDateLabel.topAnchor.constraint(equalTo: modifiedAtLabel.bottomAnchor,
+                                                 constant: DesignSystem.MemoryContext.newDueDateLabelSpacingFromModifiedAt),
             newDueDateLabel.heightAnchor.constraint(equalToConstant: DesignSystem.MemoryContext.newDueDateLabelHeight),
             newDueDateLabel.widthAnchor.constraint(equalTo: guide.widthAnchor)
         ])
