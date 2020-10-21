@@ -40,6 +40,7 @@
 		A4A241E3243FB50E0025DA3D /* OSLog+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A241E2243FB50E0025DA3D /* OSLog+Extensions.swift */; };
 		A4A241E5243FC1850025DA3D /* RecordingControllerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A241E4243FC1850025DA3D /* RecordingControllerError.swift */; };
 		A4A972182539DA080055651D /* InboxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A972172539DA080055651D /* InboxViewModel.swift */; };
+		A4B4D254254065F700AF5FDA /* MemoryContextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B4D253254065F700AF5FDA /* MemoryContextViewModel.swift */; };
 		A4C49CC025240E0F0057507C /* MemoraNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C49CBF25240E0F0057507C /* MemoraNavigationViewController.swift */; };
 		A4CCA8A1252DFB3C0035676E /* RecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CCA8A0252DFB3C0035676E /* RecorderViewController.swift */; };
 		A4D0E00C25056C1200B3B12D /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0E00B25056C1200B3B12D /* Recorder.swift */; };
@@ -100,6 +101,7 @@
 		A4A241E2243FB50E0025DA3D /* OSLog+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+Extensions.swift"; sourceTree = "<group>"; };
 		A4A241E4243FC1850025DA3D /* RecordingControllerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingControllerError.swift; sourceTree = "<group>"; };
 		A4A972172539DA080055651D /* InboxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewModel.swift; sourceTree = "<group>"; };
+		A4B4D253254065F700AF5FDA /* MemoryContextViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryContextViewModel.swift; sourceTree = "<group>"; };
 		A4C49CBF25240E0F0057507C /* MemoraNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoraNavigationViewController.swift; sourceTree = "<group>"; };
 		A4CCA8A0252DFB3C0035676E /* RecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderViewController.swift; sourceTree = "<group>"; };
 		A4D0E00B25056C1200B3B12D /* Recorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recorder.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				A41B41C42535F0F600AC11EE /* ArchiveViewModel.swift */,
 				A408C3E92537328D005914AB /* MemoryViewModel.swift */,
 				A4A972172539DA080055651D /* InboxViewModel.swift */,
+				A4B4D253254065F700AF5FDA /* MemoryContextViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				A468154E22D66BE200537D16 /* AppDelegate.swift in Sources */,
 				A4D0E00C25056C1200B3B12D /* Recorder.swift in Sources */,
 				A419A2FD253393DC00BE5A1F /* MemoraLabel.swift in Sources */,
+				A4B4D254254065F700AF5FDA /* MemoryContextViewModel.swift in Sources */,
 				A4152CF925309EA500556D3A /* RecordButtonAnimation.swift in Sources */,
 				A4D0E0342507B8A400B3B12D /* PlayerComponentViewController.swift in Sources */,
 				A40BCDCE24FAF542002F53A0 /* RootPageViewController.swift in Sources */,

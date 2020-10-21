@@ -15,9 +15,13 @@ final class MemoryContextViewController: UIViewController {
     @AutoLayout private var modifiedAtLabel: MemoraLabel
     @AutoLayout private var newDueDateLabel: MemoraLabel
     @AutoLayout private var newDueDateSlider: MemoraSlider
+    @AutoLayout private var saveButton: MemoraButton
+
+    private let fullscreen: Bool
 
     // MARK: - Init
-    init() {
+    init(fullscreen: Bool = false) {
+        self.fullscreen = fullscreen
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -34,13 +38,24 @@ final class MemoryContextViewController: UIViewController {
         preferredContentSize = CGSize(width: view.frame.width, height: 275)
     }
 
+    // MARK: - @objc
+    @objc private func didTapSave(_ button: MemoraButton) {
+
+    }
+
+    @objc private func didChangeNewDueDate(_ slider: MemoraSlider) {
+
+    }
+
     // MARK: - Views setup
     private func setUpViews() {
         view.backgroundColor = .memoraFill
         setUpTitleLabel()
         setUpCreatedAtLabel()
         setUpModifiedAtLabel()
-        setUpDueDateLabel()
+        setUpNewDueDateLabel()
+        setUpNewDueDateDateSlider()
+        setUpSaveButton()
     }
 
     private func setUpTitleLabel() {
@@ -63,10 +78,29 @@ final class MemoryContextViewController: UIViewController {
         modifiedAtLabel.textAlignment = .natural
     }
 
-    private func setUpDueDateLabel() {
+    private func setUpNewDueDateLabel() {
         newDueDateLabel.setUp(as: .timestamp)
         newDueDateLabel.textAlignment = .natural
         newDueDateLabel.text = "Due date 19/10/2020"
+    }
+
+    private func setUpNewDueDateDateSlider() {
+        newDueDateSlider.minimumValue = 1
+        newDueDateSlider.maximumValue = 365
+
+        newDueDateSlider.addTarget(self, action: #selector(didChangeNewDueDate(_:)), for: .valueChanged)
+    }
+
+    private func setUpSaveButton() {
+        saveButton.setUp(as: .save)
+        saveButton.setTitle(NSLocalizedString("save", comment: ""), for: .normal)
+        saveButton.addTarget(self, action: #selector(didTapSave(_:)), for: .touchUpInside)
+
+        if fullscreen {
+            saveButton.isHidden = false
+        } else {
+            saveButton.isHidden = true
+        }
     }
 
     // MARK: - Layout
@@ -76,6 +110,7 @@ final class MemoryContextViewController: UIViewController {
         layoutModifiedAtLabelConstraints()
         layoutNewDueDateLabelConstraints()
         layoutNewDueDateSliderConstraints()
+        layoutSaveButtonConstraints()
     }
 
     private func layoutTitleLabelConstraints() {
@@ -145,6 +180,20 @@ final class MemoryContextViewController: UIViewController {
                                                   constant: DesignSystem.MemoryContext.newDueDateSliderSpacingFromNewDueDateLabel),
             newDueDateSlider.heightAnchor.constraint(equalToConstant: DesignSystem.MemoryContext.newDueDateSliderHeight),
             newDueDateSlider.widthAnchor.constraint(equalTo: guide.widthAnchor)
+        ])
+    }
+
+    private func layoutSaveButtonConstraints() {
+        view.addSubview(saveButton)
+
+        let guide = view.layoutMarginsGuide
+
+        NSLayoutConstraint.activate([
+            saveButton.widthAnchor.constraint(equalTo: guide.widthAnchor),
+            saveButton.heightAnchor.constraint(equalToConstant: DesignSystem.MemoryContext.saveButtonHeight),
+            saveButton.centerXAnchor.constraint(equalTo: guide.centerXAnchor),
+            saveButton.bottomAnchor.constraint(equalTo: guide.bottomAnchor,
+                                               constant: DesignSystem.MemoryContext.saveButtonSpacingFromBottom)
         ])
     }
 }

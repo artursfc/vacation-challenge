@@ -88,6 +88,18 @@ final class ArchiveViewController: UIViewController {
 
 // MARK: - UITableViewDelegate
 extension ArchiveViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView,
+                   contextMenuConfigurationForRowAt indexPath: IndexPath,
+                   point: CGPoint) -> UIContextMenuConfiguration? {
+        let previewViewController = MemoryContextViewController()
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: { previewViewController }, actionProvider: { (_) -> UIMenu? in
+            let sampleAction = UIAction(title: "Sample",
+                                        image: UIImage(systemName: "checkmark.circle")) { (_) in
+            }
+            let children = [sampleAction]
+            return UIMenu(title: "", children: children)
+        })
+    }
 
 }
 
@@ -109,6 +121,16 @@ extension ArchiveViewController: UITableViewDataSource {
         }
         cell.configure(with: viewModel.viewModelAt(index: indexPath))
         return cell
+    }
+
+    func tableView(_ tableView: UITableView,
+                   willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
+                   animator: UIContextMenuInteractionCommitAnimating) {
+        animator.addCompletion { [weak self] in
+            guard let self = self else { return }
+            let previewViewController = MemoryContextViewController(fullscreen: true)
+            self.show(previewViewController, sender: self)
+        }
     }
 
 }

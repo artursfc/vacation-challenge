@@ -122,7 +122,7 @@ extension InboxViewController: UICollectionViewDataSource {
                         animator: UIContextMenuInteractionCommitAnimating) {
         animator.addCompletion { [weak self] in
             guard let self = self else { return }
-            let previewViewController = MemoryContextViewController()
+            let previewViewController = MemoryContextViewController(fullscreen: true)
             self.show(previewViewController, sender: self)
         }
     }

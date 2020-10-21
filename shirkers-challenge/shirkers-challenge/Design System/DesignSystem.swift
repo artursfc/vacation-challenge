@@ -89,5 +89,8 @@ enum DesignSystem {
 
         static let newDueDateSliderSpacingFromNewDueDateLabel: CGFloat = 15
         static let newDueDateSliderHeight: CGFloat = 30
+
+        static let saveButtonHeight: CGFloat = 50
+        static let saveButtonSpacingFromBottom: CGFloat = -25
     }
 }

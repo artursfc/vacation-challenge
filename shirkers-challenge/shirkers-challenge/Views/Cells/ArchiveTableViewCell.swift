@@ -33,5 +33,7 @@ final class ArchiveTableViewCell: UITableViewCell {
         textLabel?.font = UIFont.preferredFont(forTextStyle: .title2).bold()
 
         contentView.backgroundColor = .memoraBackground
+        backgroundColor = .memoraBackground
+        selectionStyle = .none
     }
 }
