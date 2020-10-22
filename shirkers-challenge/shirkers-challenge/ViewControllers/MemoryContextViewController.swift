@@ -14,14 +14,12 @@ final class MemoryContextViewController: UIViewController {
     @AutoLayout private var createdAtLabel: MemoraLabel
     @AutoLayout private var modifiedAtLabel: MemoraLabel
     @AutoLayout private var newDueDateLabel: MemoraLabel
-    @AutoLayout private var newDueDateSlider: MemoraSlider
-    @AutoLayout private var saveButton: MemoraButton
 
-    private let fullscreen: Bool
+    private let viewModel: MemoryViewModel
 
     // MARK: - Init
-    init(fullscreen: Bool = false) {
-        self.fullscreen = fullscreen
+    init(viewModel: MemoryViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -35,16 +33,7 @@ final class MemoryContextViewController: UIViewController {
         setUpViews()
         layoutConstraints()
 
-        preferredContentSize = CGSize(width: view.frame.width, height: 275)
-    }
-
-    // MARK: - @objc
-    @objc private func didTapSave(_ button: MemoraButton) {
-
-    }
-
-    @objc private func didChangeNewDueDate(_ slider: MemoraSlider) {
-
+        preferredContentSize = CGSize(width: view.frame.width, height: 250)
     }
 
     // MARK: - Views setup
@@ -54,53 +43,32 @@ final class MemoryContextViewController: UIViewController {
         setUpCreatedAtLabel()
         setUpModifiedAtLabel()
         setUpNewDueDateLabel()
-        setUpNewDueDateDateSlider()
-        setUpSaveButton()
     }
 
     private func setUpTitleLabel() {
         titleLabel.font = UIFont.preferredFont(forTextStyle: .title1).bold()
         titleLabel.textColor = .memoraAccent
-        titleLabel.text = "A very long Memory title"
+        titleLabel.text = viewModel.title
     }
 
     private func setUpCreatedAtLabel() {
         createdAtLabel.setUp(as: .timestamp)
         createdAtLabel.font = .preferredFont(forTextStyle: .subheadline)
-        createdAtLabel.text = "Created at 09/10/2020"
+        createdAtLabel.text = "\(NSLocalizedString("created-at", comment: "")) \(viewModel.createdAt)"
         createdAtLabel.textAlignment = .natural
     }
 
     private func setUpModifiedAtLabel() {
         modifiedAtLabel.setUp(as: .timestamp)
         modifiedAtLabel.font = .preferredFont(forTextStyle: .subheadline)
-        modifiedAtLabel.text = "Last modified at 19/10/2020"
+        modifiedAtLabel.text = "\(NSLocalizedString("modified-at", comment: "")) \(viewModel.modifiedAt)"
         modifiedAtLabel.textAlignment = .natural
     }
 
     private func setUpNewDueDateLabel() {
         newDueDateLabel.setUp(as: .timestamp)
         newDueDateLabel.textAlignment = .natural
-        newDueDateLabel.text = "Due date 19/10/2020"
-    }
-
-    private func setUpNewDueDateDateSlider() {
-        newDueDateSlider.minimumValue = 1
-        newDueDateSlider.maximumValue = 365
-
-        newDueDateSlider.addTarget(self, action: #selector(didChangeNewDueDate(_:)), for: .valueChanged)
-    }
-
-    private func setUpSaveButton() {
-        saveButton.setUp(as: .save)
-        saveButton.setTitle(NSLocalizedString("save", comment: ""), for: .normal)
-        saveButton.addTarget(self, action: #selector(didTapSave(_:)), for: .touchUpInside)
-
-        if fullscreen {
-            saveButton.isHidden = false
-        } else {
-            saveButton.isHidden = true
-        }
+        newDueDateLabel.text = "\(NSLocalizedString("remind-me-in", comment: "")) \(viewModel.dueDate)"
     }
 
     // MARK: - Layout
@@ -109,8 +77,6 @@ final class MemoryContextViewController: UIViewController {
         layoutCreatedAtLabelConstraints()
         layoutModifiedAtLabelConstraints()
         layoutNewDueDateLabelConstraints()
-        layoutNewDueDateSliderConstraints()
-        layoutSaveButtonConstraints()
     }
 
     private func layoutTitleLabelConstraints() {
@@ -166,34 +132,6 @@ final class MemoryContextViewController: UIViewController {
                                                  constant: DesignSystem.MemoryContext.newDueDateLabelSpacingFromModifiedAt),
             newDueDateLabel.heightAnchor.constraint(equalToConstant: DesignSystem.MemoryContext.newDueDateLabelHeight),
             newDueDateLabel.widthAnchor.constraint(equalTo: guide.widthAnchor)
-        ])
-    }
-
-    private func layoutNewDueDateSliderConstraints() {
-        view.addSubview(newDueDateSlider)
-
-        let guide = view.layoutMarginsGuide
-
-        NSLayoutConstraint.activate([
-            newDueDateSlider.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
-            newDueDateSlider.topAnchor.constraint(equalTo: newDueDateLabel.bottomAnchor,
-                                                  constant: DesignSystem.MemoryContext.newDueDateSliderSpacingFromNewDueDateLabel),
-            newDueDateSlider.heightAnchor.constraint(equalToConstant: DesignSystem.MemoryContext.newDueDateSliderHeight),
-            newDueDateSlider.widthAnchor.constraint(equalTo: guide.widthAnchor)
-        ])
-    }
-
-    private func layoutSaveButtonConstraints() {
-        view.addSubview(saveButton)
-
-        let guide = view.layoutMarginsGuide
-
-        NSLayoutConstraint.activate([
-            saveButton.widthAnchor.constraint(equalTo: guide.widthAnchor),
-            saveButton.heightAnchor.constraint(equalToConstant: DesignSystem.MemoryContext.saveButtonHeight),
-            saveButton.centerXAnchor.constraint(equalTo: guide.centerXAnchor),
-            saveButton.bottomAnchor.constraint(equalTo: guide.bottomAnchor,
-                                               constant: DesignSystem.MemoryContext.saveButtonSpacingFromBottom)
         ])
     }
 }

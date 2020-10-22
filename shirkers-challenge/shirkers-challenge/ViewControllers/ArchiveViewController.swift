@@ -91,12 +91,17 @@ extension ArchiveViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView,
                    contextMenuConfigurationForRowAt indexPath: IndexPath,
                    point: CGPoint) -> UIContextMenuConfiguration? {
-        let previewViewController = MemoryContextViewController()
+        let previewViewController = MemoryContextViewController(viewModel: viewModel.viewModelAt(index: indexPath))
         return UIContextMenuConfiguration(identifier: nil, previewProvider: { previewViewController }, actionProvider: { (_) -> UIMenu? in
-            let sampleAction = UIAction(title: "Sample",
-                                        image: UIImage(systemName: "checkmark.circle")) { (_) in
+            let resetAction = UIAction(title: NSLocalizedString("reset-reminder", comment: "Action to reset reminder"),
+                                       image: UIImage(systemName: "arrow.clockwise")) { (_) in
+
             }
-            let children = [sampleAction]
+            let deleteAction = UIAction(title: NSLocalizedString("delete-memory", comment: "Action to delete memory. Destructive."),
+                                        image: UIImage(systemName: "trash"), attributes: .destructive) { (_) in
+
+            }
+            let children = [resetAction, deleteAction]
             return UIMenu(title: "", children: children)
         })
     }
@@ -121,16 +126,6 @@ extension ArchiveViewController: UITableViewDataSource {
         }
         cell.configure(with: viewModel.viewModelAt(index: indexPath))
         return cell
-    }
-
-    func tableView(_ tableView: UITableView,
-                   willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
-                   animator: UIContextMenuInteractionCommitAnimating) {
-        animator.addCompletion { [weak self] in
-            guard let self = self else { return }
-            let previewViewController = MemoryContextViewController(fullscreen: true)
-            self.show(previewViewController, sender: self)
-        }
     }
 
 }

@@ -75,7 +75,7 @@ enum DesignSystem {
 
     // MARK: - Memory Context
     enum MemoryContext {
-        static let titleLabelSpacingFromCenterY: CGFloat = -90
+        static let titleLabelSpacingFromCenterY: CGFloat = -70
         static let titleLabelHeight: CGFloat = 50
 
         static let createdAtLabelSpacingFromTitle: CGFloat = 10

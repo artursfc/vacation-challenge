@@ -25,3 +25,10 @@
 "default-theme" = "Padrão";
 "pastel-theme" = "Pastel";
 "privacy" = "Política de Privacidade";
+
+// MARK: - MemoryContextViewController
+"created-at" = "Criado em";
+"modified-at" = "Modificado em";
+"reset-reminder" = "Redefinir lembrete";
+"archive-memory" = "Arquivar";
+"delete-memory" = "Deletar";
