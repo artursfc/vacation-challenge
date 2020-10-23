@@ -10,8 +10,8 @@ import UIKit
 
 /// Representation of a `InboxViewController`'s cell.
 final class InboxCollectionViewCell: UICollectionViewCell {
-    // - MARK: Properties
-    private lazy var memoryEmojiLabel: UIImageView = {
+    // MARK: - Properties
+    private lazy var memorySymbolImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(systemName: "waveform"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.tintColor = .memoraAccent
@@ -22,10 +22,10 @@ final class InboxCollectionViewCell: UICollectionViewCell {
         return String(describing: self)
     }
 
-    // - MARK: Init
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupContentView()
+        setUp()
         layoutConstraints()
 
     }
@@ -34,29 +34,31 @@ final class InboxCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - API
     func configure(with viewModel: MemoryViewModel) {
-        memoryEmojiLabel.image = UIImage(systemName: "waveform")
-        memoryEmojiLabel.tintColor = .memoraAccent
+        memorySymbolImageView.image = UIImage(systemName: "waveform")
+        memorySymbolImageView.tintColor = .memoraAccent
         contentView.backgroundColor = .memoraFill
     }
 
-    // - MARK: Layout
-    private func setupContentView() {
+    // MARK: - Setup
+    private func setUp() {
         contentView.layer.cornerRadius = 15
         contentView.clipsToBounds = true
         backgroundColor = .memoraFill
         layer.cornerRadius = 20
     }
 
+    // MARK: - Layout
     private func layoutConstraints() {
-        contentView.addSubview(memoryEmojiLabel)
+        contentView.addSubview(memorySymbolImageView)
 
         NSLayoutConstraint.activate([
-            memoryEmojiLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            memoryEmojiLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            memoryEmojiLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor,
+            memorySymbolImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            memorySymbolImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            memorySymbolImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor,
                                                     multiplier: 0.4),
-            memoryEmojiLabel.heightAnchor.constraint(equalTo: contentView.widthAnchor,
+            memorySymbolImageView.heightAnchor.constraint(equalTo: contentView.widthAnchor,
                                                      multiplier: 0.4)
         ])
     }

@@ -76,17 +76,17 @@ final class ArchiveViewModel: NSObject {
         let memory = fetchedResultsController.object(at: index)
 
         guard let title = memory.title,
-              let createdAt = memory.createdAt?.stringFormatted(),
-              let modifiedAt = memory.modifiedAt?.stringFormatted(),
-              let period = memory.dueDate?.stringFormatted() else {
+              let createdAt = memory.createdAt,
+              let modifiedAt = memory.modifiedAt,
+              let dueDate = memory.dueDate else {
             return MemoryViewModel()
         }
 
         return MemoryViewModel(title: title,
-                                             createdAt: createdAt,
-                                             isActive: memory.isActive,
-                                             modifiedAt: modifiedAt,
-                                             period: period)
+                               createdAt: createdAt,
+                               isActive: memory.isActive,
+                               modifiedAt: modifiedAt,
+                               dueDate: dueDate)
     }
 
 }

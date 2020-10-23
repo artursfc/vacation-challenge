@@ -19,14 +19,14 @@ struct MemoryViewModel {
 
     // MARK: - Init
     init(title: String = "",
-         createdAt: String = "",
+         createdAt: Date = Date(),
          isActive: Bool = false,
-         modifiedAt: String = "",
-         period: String = "") {
+         modifiedAt: Date = Date(),
+         dueDate: Date = Date()) {
         self.title = title
-        self.createdAt = createdAt
+        self.createdAt = createdAt.toBeDisplayedFormat()
         self.isActive = isActive
-        self.modifiedAt = modifiedAt
-        self.dueDate = period
+        self.modifiedAt = modifiedAt.toBeDisplayedFormat()
+        self.dueDate = dueDate.toBeDisplayedFormat()
     }
 }

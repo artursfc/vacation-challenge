@@ -37,7 +37,7 @@ final class RecorderViewModel {
     private var currentDate: Date? {
         didSet {
             if let previousDate = oldValue {
-                remove(file: previousDate.stringFormatted())
+                remove(file: previousDate.toBeSavedFormat())
             }
         }
     }
@@ -84,7 +84,7 @@ final class RecorderViewModel {
         didSet {
             if recording {
                 currentDate = Date()
-                if let fileName = currentDate?.stringFormatted() {
+                if let fileName = currentDate?.toBeSavedFormat() {
                     do {
                         try recorder.setUp(for: fileName)
                         try recorder.start()
@@ -151,7 +151,7 @@ final class RecorderViewModel {
         memory.modifiedAt = createdAt
         let timeInterval = TimeInterval.random(in: TimeInterval(Double(remindMeInSeconds)*0.8)..<TimeInterval(remindMeInSeconds))
         memory.dueDate = Date(timeInterval: timeInterval, since: createdAt)
-        memory.path = createdAt.stringFormatted()
+        memory.path = createdAt.toBeSavedFormat()
 
         if context.hasChanges {
             do {
@@ -176,7 +176,7 @@ final class RecorderViewModel {
 
     /// Removes file representing a memory's audio before app is terminated.
     @objc private func remove(_ notification: Notification) {
-        guard let fileName = currentDate?.stringFormatted() else {
+        guard let fileName = currentDate?.toBeSavedFormat() else {
             os_log("RecorderViewModel failed to remove a memory's file befoe app's termination.", log: .appFlow, type: .error)
             return
         }

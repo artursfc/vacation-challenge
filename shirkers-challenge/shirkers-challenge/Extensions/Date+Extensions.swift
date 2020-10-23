@@ -9,9 +9,15 @@
 import Foundation
 
 extension Date {
-    func stringFormatted(as format: String = "yyyy-MM-dd+HH-mm-ss") -> String {
+    func toBeSavedFormat(as format: String = "yyyy-MM-dd+HH-mm-ss") -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
+        return dateFormatter.string(from: self)
+    }
+
+    func toBeDisplayedFormat() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
         return dateFormatter.string(from: self)
     }
 }
