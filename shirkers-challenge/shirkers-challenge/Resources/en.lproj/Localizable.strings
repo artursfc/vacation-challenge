@@ -30,5 +30,6 @@
 "created-at" = "Created at";
 "modified-at" = "Modified at";
 "reset-reminder" = "Reset reminder";
+"new-remind-me-in" = "If reset, the reminder will be set to around";
 "archive-memory" = "Archive";
 "delete-memory" = "Delete";

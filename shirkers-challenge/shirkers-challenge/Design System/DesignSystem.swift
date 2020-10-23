@@ -75,7 +75,7 @@ enum DesignSystem {
 
     // MARK: - Memory Context
     enum MemoryContext {
-        static let titleLabelSpacingFromCenterY: CGFloat = -70
+        static let titleLabelSpacingFromCenterY: CGFloat = -80
         static let titleLabelHeight: CGFloat = 50
 
         static let createdAtLabelSpacingFromTitle: CGFloat = 10
@@ -84,11 +84,8 @@ enum DesignSystem {
         static let modifiedAtLabelSpacingFromCreatedAt: CGFloat = 10
         static let modifiedAtLabelHeight: CGFloat = 30
 
-        static let newDueDateLabelSpacingFromModifiedAt: CGFloat = 30
-        static let newDueDateLabelHeight: CGFloat = 40
-
-        static let newDueDateSliderSpacingFromNewDueDateLabel: CGFloat = 15
-        static let newDueDateSliderHeight: CGFloat = 30
+        static let newDueDateLabelSpacingFromModifiedAt: CGFloat = 15
+        static let newDueDateLabelHeight: CGFloat = 80
 
         static let saveButtonHeight: CGFloat = 50
         static let saveButtonSpacingFromBottom: CGFloat = -25

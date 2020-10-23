@@ -15,6 +15,13 @@ final class MemoryContextViewController: UIViewController {
     @AutoLayout private var modifiedAtLabel: MemoraLabel
     @AutoLayout private var newDueDateLabel: MemoraLabel
 
+    private lazy var memorySymbolImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(systemName: "waveform"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.tintColor = .memoraAccent
+        return imageView
+    }()
+
     private let viewModel: MemoryViewModel
 
     // MARK: - Init
@@ -33,7 +40,7 @@ final class MemoryContextViewController: UIViewController {
         setUpViews()
         layoutConstraints()
 
-        preferredContentSize = CGSize(width: view.frame.width, height: 250)
+        preferredContentSize = CGSize(width: view.frame.width, height: 320)
     }
 
     // MARK: - Views setup
@@ -48,6 +55,7 @@ final class MemoryContextViewController: UIViewController {
     private func setUpTitleLabel() {
         titleLabel.font = UIFont.preferredFont(forTextStyle: .title1).bold()
         titleLabel.textColor = .memoraAccent
+        titleLabel.numberOfLines = 3
         titleLabel.text = viewModel.title
     }
 
@@ -68,12 +76,15 @@ final class MemoryContextViewController: UIViewController {
     private func setUpNewDueDateLabel() {
         newDueDateLabel.setUp(as: .timestamp)
         newDueDateLabel.textAlignment = .natural
-        newDueDateLabel.text = "\(NSLocalizedString("remind-me-in", comment: "")) \(viewModel.dueDate)"
+        newDueDateLabel.numberOfLines = 3
+        newDueDateLabel.lineBreakMode = .byWordWrapping
+        newDueDateLabel.text = "\(NSLocalizedString("new-remind-me-in", comment: "")) \(viewModel.dueDate)"
     }
 
     // MARK: - Layout
     private func layoutConstraints() {
         layoutTitleLabelConstraints()
+        layoutMemorySymbolImageViewConstraints()
         layoutCreatedAtLabelConstraints()
         layoutModifiedAtLabelConstraints()
         layoutNewDueDateLabelConstraints()
@@ -88,8 +99,24 @@ final class MemoryContextViewController: UIViewController {
             titleLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
             titleLabel.centerYAnchor.constraint(equalTo: guide.centerYAnchor,
                                                 constant: DesignSystem.MemoryContext.titleLabelSpacingFromCenterY),
-            titleLabel.heightAnchor.constraint(equalToConstant: DesignSystem.MemoryContext.titleLabelHeight),
-            titleLabel.widthAnchor.constraint(equalTo: guide.widthAnchor)
+            titleLabel.widthAnchor.constraint(equalTo: guide.widthAnchor,
+                                              multiplier: 0.8)
+        ])
+    }
+
+    private func layoutMemorySymbolImageViewConstraints() {
+        view.addSubview(memorySymbolImageView)
+
+        let guide = view.layoutMarginsGuide
+
+        NSLayoutConstraint.activate([
+            memorySymbolImageView.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
+            memorySymbolImageView.centerYAnchor.constraint(equalTo: guide.centerYAnchor,
+                                                constant: DesignSystem.MemoryContext.titleLabelSpacingFromCenterY),
+            memorySymbolImageView.widthAnchor.constraint(equalTo: guide.widthAnchor,
+                                              multiplier: 0.2),
+            memorySymbolImageView.heightAnchor.constraint(equalTo: guide.widthAnchor,
+                                                          multiplier: 0.2)
         ])
     }
 

@@ -30,5 +30,6 @@
 "created-at" = "Criado em";
 "modified-at" = "Modificado em";
 "reset-reminder" = "Redefinir lembrete";
+"new-remind-me-in" = "Caso redefinido, o lembrete será marcado para em torno de";
 "archive-memory" = "Arquivar";
 "delete-memory" = "Deletar";
