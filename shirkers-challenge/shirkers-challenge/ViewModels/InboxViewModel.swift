@@ -14,6 +14,8 @@ import os.log
 /// `InboxViewModelDelegate` and its `View`.
 protocol InboxViewModelDelegate: AnyObject {
     func insertNewMemoryAt(_ index: IndexPath)
+    func deleteMemoryAt(_ index: IndexPath)
+    func updateMemoryAt(_ index: IndexPath)
     func updates(from blocks: [BlockOperation])
 }
 
@@ -100,6 +102,13 @@ final class InboxViewModel: NSObject {
                                modifiedAt: modifiedAt,
                                dueDate: dueDate)
     }
+
+    func archiveMemoryAt(index: IndexPath) {
+        os_log("InboxViewController archiving memory...", log: .appFlow, type: .debug)
+        let memory = fetchedResultsController.object(at: index)
+
+        memory.isActive = false
+    }
 }
 
 // MARK: - FRC Delegate
@@ -122,7 +131,26 @@ extension InboxViewModel: NSFetchedResultsControllerDelegate {
                     os_log("InboxViewModel inserted new memory.", log: .appFlow, type: .debug)
                     self.delegate?.insertNewMemoryAt(newIndexPath)
                 }
-            default:
+            case .delete:
+                if let indexPath = indexPath {
+                    os_log("InboxViewModel deleted memory.", log: .appFlow, type: .debug)
+                    self.delegate?.deleteMemoryAt(indexPath)
+                }
+            case .update:
+                if let indexPath = indexPath {
+                    os_log("InboxViewModel updated memory.", log: .appFlow, type: .debug)
+                    self.delegate?.updateMemoryAt(indexPath)
+                }
+            case .move:
+                os_log("InboxViewModel is moving memory...", log: .appFlow, type: .debug)
+                if let indexPath = indexPath {
+                    self.delegate?.deleteMemoryAt(indexPath)
+                }
+
+                if let newIndexPath = newIndexPath {
+                    self.delegate?.insertNewMemoryAt(newIndexPath)
+                }
+            @unknown default:
                 break
             }
         }

@@ -36,7 +36,6 @@ final class InboxCollectionViewCell: UICollectionViewCell {
 
     // MARK: - API
     func configure(with viewModel: MemoryViewModel) {
-        memorySymbolImageView.image = UIImage(systemName: "waveform")
         memorySymbolImageView.tintColor = .memoraAccent
         contentView.backgroundColor = .memoraFill
     }

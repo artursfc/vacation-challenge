@@ -16,6 +16,10 @@ final class InboxViewController: UIViewController {
     /// `UICollectionView` used to display all recordings currently in the Inbox.
     @AutoLayout private var inboxCollectionView: InboxCollectionView
 
+    private lazy var memoryContextViewController: MemoryContextViewController = {
+        return MemoryContextViewController(viewModel: MemoryViewModel())
+    }()
+
     ///  The `ViewModel` responsible for this `View`.
     private let viewModel: InboxViewModel
     // MARK: - Init
@@ -87,23 +91,31 @@ extension InboxViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         contextMenuConfigurationForItemAt indexPath: IndexPath,
                         point: CGPoint) -> UIContextMenuConfiguration? {
-        let previewViewController = MemoryContextViewController(viewModel: viewModel.viewModelAt(index: indexPath))
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: { previewViewController }, actionProvider: { (_) -> UIMenu? in
-            let resetAction = UIAction(title: NSLocalizedString("reset-reminder", comment: "Action to reset reminder"),
-                                       image: UIImage(systemName: "arrow.clockwise")) { (_) in
+        collectionView.cellForItem(at: indexPath)?.backgroundColor = .memoraFill
+        memoryContextViewController.updates(from: viewModel.viewModelAt(index: indexPath))
+        return UIContextMenuConfiguration(identifier: nil,
+                                          previewProvider: { [unowned self] in self.memoryContextViewController },
+                                          actionProvider: { (_) -> UIMenu? in
+                                            let resetAction = UIAction(title: NSLocalizedString("reset-reminder",
+                                                                                                comment: "Action to reset reminder"),
+                                                                       image: UIImage(systemName: "arrow.clockwise")) { (_) in
 
-            }
-            let archiveAction = UIAction(title: NSLocalizedString("archive-memory", comment: "Action to archive memory"),
-                                         image: UIImage(systemName: "archivebox")) { (_) in
 
-            }
-            let deleteAction = UIAction(title: NSLocalizedString("delete-memory", comment: "Action to delete memory. Destructive."),
-                                        image: UIImage(systemName: "trash"), attributes: .destructive) { (_) in
+                                            }
+                                            let archiveAction = UIAction(title: NSLocalizedString("archive-memory",
+                                                                                                  comment: "Action to archive memory"),
+                                                                         image: UIImage(systemName: "archivebox")) { [weak self] (_) in
+                                                self?.viewModel.archiveMemoryAt(index: indexPath)
+                                            }
+                                            let deleteAction = UIAction(title: NSLocalizedString("delete-memory",
+                                                                                                 comment: "Action to delete memory."),
+                                                                        image: UIImage(systemName: "trash"),
+                                                                        attributes: .destructive) { (_) in
 
-            }
-            let children = [resetAction, archiveAction, deleteAction]
-            return UIMenu(title: "", children: children)
-        })
+                                            }
+                                            let children = [resetAction, archiveAction, deleteAction]
+                                            return UIMenu(title: "", children: children)
+                                          })
     }
 
 }
@@ -129,6 +141,24 @@ extension InboxViewController: UICollectionViewDataSource {
 
 // MARK: - ViewModel Delegate
 extension InboxViewController: InboxViewModelDelegate {
+    func deleteMemoryAt(_ index: IndexPath) {
+        os_log("InboxViewController deleting memories...", log: .appFlow, type: .debug)
+        inboxCollectionView.deleteItems(at: [index])
+    }
+
+    func updateMemoryAt(_ index: IndexPath) {
+        if let cell = inboxCollectionView.cellForItem(at: index) as? InboxCollectionViewCell {
+            os_log("InboxViewController updating memories...", log: .appFlow, type: .debug)
+            let newViewModel = viewModel.viewModelAt(index: index)
+            if newViewModel.isActive {
+                cell.configure(with: newViewModel)
+            } else {
+
+                inboxCollectionView.deleteItems(at: [index])
+            }
+        }
+    }
+
     func insertNewMemoryAt(_ index: IndexPath) {
         os_log("InboxViewController inserting new memories...", log: .appFlow, type: .debug)
         inboxCollectionView.insertItems(at: [index])
@@ -136,16 +166,19 @@ extension InboxViewController: InboxViewModelDelegate {
 
     func updates(from blocks: [BlockOperation]) {
         os_log("InboxViewController peforming batch updates.", log: .appFlow, type: .debug)
-        inboxCollectionView.performBatchUpdates({
-            for block in blocks {
-                block.start()
-            }
-        }, completion: { [weak self] (didUpdate) in
-            guard let self = self else {
-                return
-            }
-            self.viewModel.didUpdate = didUpdate
-            os_log("InboxViewController done with batch updates.", log: .appFlow, type: .debug)
-        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) { [weak self] in
+            guard let self = self else { return }
+            self.inboxCollectionView.performBatchUpdates({
+                for block in blocks {
+                    block.start()
+                }
+            }, completion: { [weak self] (didUpdate) in
+                guard let self = self else {
+                    return
+                }
+                self.viewModel.didUpdate = didUpdate
+                os_log("InboxViewController done with batch updates.", log: .appFlow, type: .debug)
+            })
+        }
     }
 }

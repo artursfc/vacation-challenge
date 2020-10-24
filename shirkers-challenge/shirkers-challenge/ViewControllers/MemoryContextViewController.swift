@@ -22,7 +22,25 @@ final class MemoryContextViewController: UIViewController {
         return imageView
     }()
 
-    private let viewModel: MemoryViewModel
+    private var viewModel: MemoryViewModel {
+        didSet {
+            titleLabel.text = viewModel.title
+            titleLabel.textColor = .memoraAccent
+
+            createdAtLabel.text = "\(NSLocalizedString("created-at", comment: "")) \(viewModel.createdAt)"
+            createdAtLabel.textColor = .memoraAccent
+
+            modifiedAtLabel.text = "\(NSLocalizedString("modified-at", comment: "")) \(viewModel.modifiedAt)"
+            modifiedAtLabel.textColor = .memoraAccent
+
+            newDueDateLabel.text = "\(NSLocalizedString("new-remind-me-in", comment: "")) \(viewModel.dueDate)"
+            newDueDateLabel.textColor = .memoraAccent
+
+            memorySymbolImageView.tintColor = .memoraAccent
+
+            view.backgroundColor = .memoraFill
+        }
+    }
 
     // MARK: - Init
     init(viewModel: MemoryViewModel) {
@@ -41,6 +59,11 @@ final class MemoryContextViewController: UIViewController {
         layoutConstraints()
 
         preferredContentSize = CGSize(width: view.frame.width, height: 320)
+    }
+
+    // MARK: - ViewModel update
+    func updates(from viewModel: MemoryViewModel) {
+        self.viewModel = viewModel
     }
 
     // MARK: - Views setup

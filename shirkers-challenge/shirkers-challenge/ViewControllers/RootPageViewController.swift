@@ -95,6 +95,7 @@ final class RootPageViewController: UIViewController {
 
     // MARK: - Views setup
     private func setUpPageControl() {
+        view.backgroundColor = .memoraBackground
         for subView in pageViewController.view.subviews {
             if let pageControl = subView as? UIPageControl {
                 pageControl.pageIndicatorTintColor = .memoraFill
