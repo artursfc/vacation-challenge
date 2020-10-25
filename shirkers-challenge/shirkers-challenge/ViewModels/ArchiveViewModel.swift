@@ -89,6 +89,13 @@ final class ArchiveViewModel: NSObject {
                                dueDate: dueDate)
     }
 
+    func deleteMemoryAt(index: IndexPath) {
+        os_log("ArchiveViewController deleting memory...", log: .appFlow, type: .debug)
+        let memory = fetchedResultsController.object(at: index)
+        
+        context.delete(memory)
+    }
+
 }
 
 // MARK: - FRC Delegate
@@ -115,9 +122,9 @@ extension ArchiveViewModel: NSFetchedResultsControllerDelegate {
                 delegate?.insertNewMemoryAt(newIndexPath)
             }
         case .delete:
-            if let newIndexPath = newIndexPath {
+            if let indexPath = indexPath {
                 os_log("ArchiveViewModel deleted a memory.", log: .appFlow, type: .debug)
-                delegate?.deleteMemoryAt(newIndexPath)
+                delegate?.deleteMemoryAt(indexPath)
             }
         default:
             break

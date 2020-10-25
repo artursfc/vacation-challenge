@@ -98,14 +98,17 @@ extension ArchiveViewController: UITableViewDelegate {
 
             }
             let deleteAction = UIAction(title: NSLocalizedString("delete-memory", comment: "Action to delete memory. Destructive."),
-                                        image: UIImage(systemName: "trash"), attributes: .destructive) { (_) in
+                                        image: UIImage(systemName: "trash"), attributes: .destructive) { [weak self] (_) in
+                guard let self = self else {
+                    return
+                }
 
+                self.viewModel.deleteMemoryAt(index: indexPath)
             }
             let children = [resetAction, deleteAction]
             return UIMenu(title: "", children: children)
         })
     }
-
 }
 
 // MARK: - UITableViewDataSource
@@ -149,7 +152,12 @@ extension ArchiveViewController: ArchiveViewModelDelegate {
 
     func endUpdates() {
         os_log("ArchiveViewController done updating.", log: .appFlow, type: .debug)
-        archiveTableView.endUpdates()
+        DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.archiveTableView.endUpdates()
+        }
     }
 
 }

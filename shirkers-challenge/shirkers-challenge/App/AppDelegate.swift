@@ -42,7 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let memoraNavigationViewController = MemoraNavigationViewController(rootViewController: rootPageViewController)
 
         // Initialization of the PlayerComponentViewController
-        let playerComponentViewController = PlayerComponentViewController()
+        let playerComponentViewModel = PlayerComponentViewModel()
+        let playerComponentViewController = PlayerComponentViewController(viewModel: playerComponentViewModel)
 
         window = UIWindow(frame: UIScreen.main.bounds)
         if let window = window {

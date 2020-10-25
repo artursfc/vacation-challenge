@@ -24,6 +24,7 @@
 		A41B41B02534F4F200AC11EE /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41B41AF2534F4F200AC11EE /* Date+Extensions.swift */; };
 		A41B41B42535018600AC11EE /* UserDefaultsAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41B41B32535018600AC11EE /* UserDefaultsAccess.swift */; };
 		A41B41C52535F0F600AC11EE /* ArchiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41B41C42535F0F600AC11EE /* ArchiveViewModel.swift */; };
+		A4380CA02545F57B0017DA9C /* PlayerComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4380C9F2545F57B0017DA9C /* PlayerComponentViewModel.swift */; };
 		A43A5DB8243F918000E6FBBB /* RecordingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A5DB7243F918000E6FBBB /* RecordingController.swift */; };
 		A44AEA13251E9D6C00352E21 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44AEA12251E9D6C00352E21 /* SettingsViewController.swift */; };
 		A44F99C9253DCAA2008CF93F /* MemoryContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44F99C8253DCAA2008CF93F /* MemoryContextViewController.swift */; };
@@ -82,6 +83,7 @@
 		A41B41AF2534F4F200AC11EE /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		A41B41B32535018600AC11EE /* UserDefaultsAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsAccess.swift; sourceTree = "<group>"; };
 		A41B41C42535F0F600AC11EE /* ArchiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewModel.swift; sourceTree = "<group>"; };
+		A4380C9F2545F57B0017DA9C /* PlayerComponentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerComponentViewModel.swift; sourceTree = "<group>"; };
 		A43A5DB7243F918000E6FBBB /* RecordingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingController.swift; sourceTree = "<group>"; };
 		A44AEA12251E9D6C00352E21 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A44F99C8253DCAA2008CF93F /* MemoryContextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryContextViewController.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				A41B41C42535F0F600AC11EE /* ArchiveViewModel.swift */,
 				A408C3E92537328D005914AB /* MemoryViewModel.swift */,
 				A4A972172539DA080055651D /* InboxViewModel.swift */,
+				A4380C9F2545F57B0017DA9C /* PlayerComponentViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				A419A3012533959600BE5A1F /* MemoraRecordButton.swift in Sources */,
 				A499E96A24FC3D0200290B16 /* ArchiveViewController.swift in Sources */,
 				A408C3EA2537328D005914AB /* MemoryViewModel.swift in Sources */,
+				A4380CA02545F57B0017DA9C /* PlayerComponentViewModel.swift in Sources */,
 				A4DB55AE2524D76300C9A3B2 /* UIFont+Extensions.swift in Sources */,
 				A468154E22D66BE200537D16 /* AppDelegate.swift in Sources */,
 				A4D0E00C25056C1200B3B12D /* Recorder.swift in Sources */,

@@ -100,7 +100,6 @@ extension InboxViewController: UICollectionViewDelegate {
                                                                                                 comment: "Action to reset reminder"),
                                                                        image: UIImage(systemName: "arrow.clockwise")) { (_) in
 
-
                                             }
                                             let archiveAction = UIAction(title: NSLocalizedString("archive-memory",
                                                                                                   comment: "Action to archive memory"),

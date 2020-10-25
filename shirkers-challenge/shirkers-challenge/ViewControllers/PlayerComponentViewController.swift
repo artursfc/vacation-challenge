@@ -28,8 +28,11 @@ final class PlayerComponentViewController: UIViewController {
     /// constraints with its superview (`RootViewController.view`).
     @AutoLayout private var contentView: UIView
 
+    private let viewModel: PlayerComponentViewModel
+
     // MARK: - Init
-    init() {
+    init(viewModel: PlayerComponentViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         os_log("PlayerComponentViewController initialized.", log: .appFlow, type: .debug)
     }
