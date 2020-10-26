@@ -48,6 +48,7 @@ final class PlayerComponentViewController: UIViewController {
         configureLabels()
         configurePlayButton()
         configureLayout()
+        viewModel.delegate = self
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didChangeTheme(_:)),
@@ -146,5 +147,15 @@ final class PlayerComponentViewController: UIViewController {
     deinit {
         NotificationCenter.default.removeObserver(self)
         os_log("PlayerComponentViewController deinitialized.", log: .appFlow, type: .debug)
+    }
+}
+
+// MARK: - ViewModel Delegate
+extension PlayerComponentViewController: PlayerComponentViewModelDelegate {
+    func didStopPlaying() {
+    }
+
+    func updateTimestamp() {
+        timestampLabel.text = viewModel.currentTimestamp
     }
 }

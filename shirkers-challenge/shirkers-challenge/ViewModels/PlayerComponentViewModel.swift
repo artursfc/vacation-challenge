@@ -11,19 +11,43 @@ import AVFoundation
 // MARK: - Protocol-Delegate
 protocol PlayerComponentViewModelDelegate: AnyObject {
     func didStopPlaying()
+    func updateTimestamp()
 }
 
-final class PlayerComponentViewModel {
+final class PlayerComponentViewModel: NSObject {
     // MARK: - Properties
     weak var delegate: PlayerComponentViewModelDelegate?
 
     private var player: AVAudioPlayer?
 
-    private var memory: MemoryViewModel?
+    private var timestampTimer: Timer?
+
+    private var internalCurrentTime: TimeInterval = 0.0
+
+    private var memory: MemoryViewModel? {
+        didSet {
+            play()
+        }
+    }
 
     // MARK: - Init
-    init() {
+    override init() {
+        super.init()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(shouldPlay(_:)),
+                                               name: Notification.Name("play"),
+                                               object: nil)
+    }
 
+    // MARK: - @objc
+    @objc private func shouldPlay(_ notification: NSNotification) {
+        guard let memory = notification.userInfo?["play"] as? MemoryViewModel else {
+            return
+        }
+
+        setUp(for: memory)
+
+        self.memory = memory
     }
 
     // MARK: - API
@@ -37,31 +61,31 @@ final class PlayerComponentViewModel {
     }
 
     var createdAt: String {
-        return memory?.createdAt ?? ""
+        return memory?.createdAt.toBeDisplayedFormat() ?? ""
     }
 
-    func setUp(for memory: MemoryViewModel) {
-        self.memory = memory
-
-        guard let audioFile = Bundle.main.path(forResource: memory.createdAt, ofType: "m4a") else {
-            /// TODO: Error Handling
-            return
-        }
-
-        let fileURL = URL(fileURLWithPath: audioFile)
-
-        do {
-            player = try AVAudioPlayer(contentsOf: fileURL)
-            player?.prepareToPlay()
-        } catch {
-            print(error.localizedDescription)
-        }
+    var currentTimestamp: String {
+        return String(internalCurrentTime)
     }
 
     func play() {
         guard let player = player else {
             /// TODO: Error Handling
             return
+        }
+        if timestampTimer != nil {
+            timestampTimer?.invalidate()
+            internalCurrentTime = 0.0
+            timestampTimer = nil
+        } else {
+            timestampTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] (_) in
+                guard let self = self else {
+                    return
+                }
+
+                self.internalCurrentTime += 1
+                self.delegate?.updateTimestamp()
+            })
         }
 
         player.play()
@@ -73,6 +97,8 @@ final class PlayerComponentViewModel {
             return
         }
 
+        timestampTimer?.invalidate()
+
         player.stop()
     }
 
@@ -83,5 +109,34 @@ final class PlayerComponentViewModel {
         }
 
         player.currentTime = TimeInterval(pos)
+    }
+
+    // MARK: - Player setup
+    private func setUp(for memory: MemoryViewModel) {
+        self.memory = memory
+
+        let fileURL = FileManager.userDocumentDirectory.appendingPathComponent(memory.createdAt.toBeSavedFormat()).appendingPathExtension(".m4a")
+
+        do {
+            player = try AVAudioPlayer(contentsOf: fileURL)
+            player?.prepareToPlay()
+            player?.delegate = self
+        } catch {
+            /// TODO: Error Handling
+            print(error.localizedDescription)
+        }
+    }
+
+    // MARK: - Deinit
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+}
+
+extension PlayerComponentViewModel: AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        timestampTimer?.invalidate()
+        timestampTimer = nil
+        internalCurrentTime = 0.0
     }
 }

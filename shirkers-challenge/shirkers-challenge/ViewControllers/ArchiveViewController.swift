@@ -109,6 +109,12 @@ extension ArchiveViewController: UITableViewDelegate {
             return UIMenu(title: "", children: children)
         })
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        NotificationCenter.default.post(name: NSNotification.Name("play"),
+                                        object: nil,
+                                        userInfo: ["play": viewModel.viewModelAt(index: indexPath)])
+    }
 }
 
 // MARK: - UITableViewDataSource

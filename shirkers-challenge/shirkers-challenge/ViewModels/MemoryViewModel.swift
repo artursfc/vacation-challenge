@@ -9,13 +9,13 @@
 import Foundation
 
 /// Responsible for providing a memory formatted data.
-struct MemoryViewModel {
+struct MemoryViewModel: Hashable {
     // MARK: - Properties
     let title: String
-    let createdAt: String
+    let createdAt: Date
     let isActive: Bool
-    let modifiedAt: String
-    let dueDate: String
+    let modifiedAt: Date
+    let dueDate: Date
 
     // MARK: - Init
     init(title: String = "",
@@ -24,9 +24,9 @@ struct MemoryViewModel {
          modifiedAt: Date = Date(),
          dueDate: Date = Date()) {
         self.title = title
-        self.createdAt = createdAt.toBeDisplayedFormat()
+        self.createdAt = createdAt
         self.isActive = isActive
-        self.modifiedAt = modifiedAt.toBeDisplayedFormat()
-        self.dueDate = dueDate.toBeDisplayedFormat()
+        self.modifiedAt = modifiedAt
+        self.dueDate = dueDate
     }
 }

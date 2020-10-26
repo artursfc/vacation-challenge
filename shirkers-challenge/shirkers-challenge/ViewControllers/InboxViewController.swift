@@ -117,6 +117,12 @@ extension InboxViewController: UICollectionViewDelegate {
                                           })
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        NotificationCenter.default.post(name: NSNotification.Name("play"),
+                                        object: nil,
+                                        userInfo: ["play": viewModel.viewModelAt(index: indexPath)])
+    }
+
 }
 
 // MARK: - UICollectionViewDataSource

@@ -85,14 +85,14 @@ final class MemoryContextViewController: UIViewController {
     private func setUpCreatedAtLabel() {
         createdAtLabel.setUp(as: .timestamp)
         createdAtLabel.font = .preferredFont(forTextStyle: .subheadline)
-        createdAtLabel.text = "\(NSLocalizedString("created-at", comment: "")) \(viewModel.createdAt)"
+        createdAtLabel.text = "\(NSLocalizedString("created-at", comment: "")) \(viewModel.createdAt.toBeDisplayedFormat())"
         createdAtLabel.textAlignment = .natural
     }
 
     private func setUpModifiedAtLabel() {
         modifiedAtLabel.setUp(as: .timestamp)
         modifiedAtLabel.font = .preferredFont(forTextStyle: .subheadline)
-        modifiedAtLabel.text = "\(NSLocalizedString("modified-at", comment: "")) \(viewModel.modifiedAt)"
+        modifiedAtLabel.text = "\(NSLocalizedString("modified-at", comment: "")) \(viewModel.modifiedAt.toBeDisplayedFormat())"
         modifiedAtLabel.textAlignment = .natural
     }
 
@@ -101,7 +101,7 @@ final class MemoryContextViewController: UIViewController {
         newDueDateLabel.textAlignment = .natural
         newDueDateLabel.numberOfLines = 3
         newDueDateLabel.lineBreakMode = .byWordWrapping
-        newDueDateLabel.text = "\(NSLocalizedString("new-remind-me-in", comment: "")) \(viewModel.dueDate)"
+        newDueDateLabel.text = "\(NSLocalizedString("new-remind-me-in", comment: "")) \(viewModel.dueDate.toBeDisplayedFormat())"
     }
 
     // MARK: - Layout
