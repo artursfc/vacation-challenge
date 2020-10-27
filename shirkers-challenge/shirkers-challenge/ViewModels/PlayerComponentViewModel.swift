@@ -65,7 +65,7 @@ final class PlayerComponentViewModel: NSObject {
     }
 
     var currentTimestamp: String {
-        return String(internalCurrentTime)
+        return internalCurrentTime.toBeDisplayedFormat()
     }
 
     func play() {
@@ -77,6 +77,7 @@ final class PlayerComponentViewModel: NSObject {
             timestampTimer?.invalidate()
             internalCurrentTime = 0.0
             timestampTimer = nil
+            delegate?.updateTimestamp()
         } else {
             timestampTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] (_) in
                 guard let self = self else {
