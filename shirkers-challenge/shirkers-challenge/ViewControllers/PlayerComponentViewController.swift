@@ -70,6 +70,14 @@ final class PlayerComponentViewController: UIViewController {
         view.backgroundColor = .memoraFill
     }
 
+    @objc private func didTapPlay(_ button: MemoraButton) {
+        if viewModel.isPlaying {
+            viewModel.stop()
+        } else {
+            viewModel.play()
+        }
+    }
+
     // MARK: - Layout
 
     /// Configures the main view.
@@ -82,15 +90,18 @@ final class PlayerComponentViewController: UIViewController {
     private func configureLabels() {
         timestampLabel.textColor = .memoraAccent
         timestampLabel.font = .preferredFont(forTextStyle: .body)
-        timestampLabel.text = "04:00"
+        timestampLabel.text = "-"
 
         creationDateLabel.textColor = .memoraAccent
         creationDateLabel.font = .preferredFont(forTextStyle: .body)
-        creationDateLabel.text = "12/12/2020"
+        creationDateLabel.text = "-"
 
         titleLabel.textColor = .memoraAccent
         titleLabel.font = UIFont.preferredFont(forTextStyle: .title2).bold()
-        titleLabel.text = "Memory Title"
+        titleLabel.minimumScaleFactor = 0.5
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.numberOfLines = 2
+        titleLabel.text = "-"
     }
 
     /// Configures the play button.
@@ -99,6 +110,7 @@ final class PlayerComponentViewController: UIViewController {
                                     withConfiguration: UIImage.SymbolConfiguration(textStyle: .title2)),
                             for: .normal)
         playButton.tintColor = .memoraAccent
+        playButton.addTarget(self, action: #selector(didTapPlay(_:)), for: .touchUpInside)
     }
 
     /// Configures the layout using the `contentView`.
@@ -136,6 +148,8 @@ final class PlayerComponentViewController: UIViewController {
             titleLabel.topAnchor.constraint(equalTo: timestampLabel.bottomAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: contentLayoutMarginsGuide.leadingAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: contentLayoutMarginsGuide.bottomAnchor),
+            titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor,
+                                              multiplier: 0.8),
 
             playButton.topAnchor.constraint(equalTo: creationDateLabel.bottomAnchor),
             playButton.trailingAnchor.constraint(equalTo: contentLayoutMarginsGuide.trailingAnchor),
@@ -152,10 +166,10 @@ final class PlayerComponentViewController: UIViewController {
 
 // MARK: - ViewModel Delegate
 extension PlayerComponentViewController: PlayerComponentViewModelDelegate {
-    func didStopPlaying() {
-    }
-
-    func updateTimestamp() {
+    func update() {
+        playButton.setImage(viewModel.isPlaying ? UIImage(systemName: "stop.fill") : UIImage(systemName: "play.fill"), for: .normal)
         timestampLabel.text = viewModel.currentTimestamp
+        creationDateLabel.text = viewModel.createdAt
+        titleLabel.text = viewModel.title
     }
 }

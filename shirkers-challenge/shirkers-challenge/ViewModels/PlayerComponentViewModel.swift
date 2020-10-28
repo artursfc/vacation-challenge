@@ -10,8 +10,7 @@ import AVFoundation
 
 // MARK: - Protocol-Delegate
 protocol PlayerComponentViewModelDelegate: AnyObject {
-    func didStopPlaying()
-    func updateTimestamp()
+    func update()
 }
 
 final class PlayerComponentViewModel: NSObject {
@@ -24,11 +23,7 @@ final class PlayerComponentViewModel: NSObject {
 
     private var internalCurrentTime: TimeInterval = 0.0
 
-    private var memory: MemoryViewModel? {
-        didSet {
-            play()
-        }
-    }
+    private var memory: MemoryViewModel?
 
     // MARK: - Init
     override init() {
@@ -48,6 +43,7 @@ final class PlayerComponentViewModel: NSObject {
         setUp(for: memory)
 
         self.memory = memory
+        play()
     }
 
     // MARK: - API
@@ -68,6 +64,10 @@ final class PlayerComponentViewModel: NSObject {
         return internalCurrentTime.toBeDisplayedFormat()
     }
 
+    var isPlaying: Bool {
+        return player?.isPlaying ?? false
+    }
+
     func play() {
         guard let player = player else {
             /// TODO: Error Handling
@@ -77,7 +77,7 @@ final class PlayerComponentViewModel: NSObject {
             timestampTimer?.invalidate()
             internalCurrentTime = 0.0
             timestampTimer = nil
-            delegate?.updateTimestamp()
+            delegate?.update()
         } else {
             timestampTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] (_) in
                 guard let self = self else {
@@ -85,11 +85,12 @@ final class PlayerComponentViewModel: NSObject {
                 }
 
                 self.internalCurrentTime += 1
-                self.delegate?.updateTimestamp()
+                self.delegate?.update()
             })
+            player.play()
+            delegate?.update()
         }
 
-        player.play()
     }
 
     func stop() {
@@ -99,8 +100,11 @@ final class PlayerComponentViewModel: NSObject {
         }
 
         timestampTimer?.invalidate()
+        timestampTimer = nil
+        internalCurrentTime = 0.0
 
         player.stop()
+        delegate?.update()
     }
 
     func seekTo(_ pos: Float) {
@@ -139,5 +143,6 @@ extension PlayerComponentViewModel: AVAudioPlayerDelegate {
         timestampTimer?.invalidate()
         timestampTimer = nil
         internalCurrentTime = 0.0
+        delegate?.update()
     }
 }
