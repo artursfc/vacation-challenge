@@ -79,7 +79,6 @@ final class PlayerComponentViewController: UIViewController {
     }
 
     // MARK: - Layout
-
     /// Configures the main view.
     private func configureView() {
         view.backgroundColor = .memoraFill
@@ -102,6 +101,9 @@ final class PlayerComponentViewController: UIViewController {
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.numberOfLines = 2
         titleLabel.text = "-"
+
+        progressSlider.maximumValue = 100
+        progressSlider.minimumValue = 0.0
     }
 
     /// Configures the play button.
@@ -171,5 +173,6 @@ extension PlayerComponentViewController: PlayerComponentViewModelDelegate {
         timestampLabel.text = viewModel.currentTimestamp
         creationDateLabel.text = viewModel.createdAt
         titleLabel.text = viewModel.title
+        progressSlider.value = viewModel.currentPos
     }
 }

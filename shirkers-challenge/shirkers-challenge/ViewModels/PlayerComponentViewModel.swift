@@ -43,13 +43,20 @@ final class PlayerComponentViewModel: NSObject {
         setUp(for: memory)
 
         self.memory = memory
+
+        if timestampTimer != nil {
+            timestampTimer?.invalidate()
+            timestampTimer = nil
+            internalCurrentTime = 0.0
+        }
+        
         play()
     }
 
     // MARK: - API
 
     var duration: Float {
-        return Float(player?.duration ?? 0.0)
+        return Float(player?.duration ?? 1.0)
     }
 
     var title: String {
@@ -68,6 +75,10 @@ final class PlayerComponentViewModel: NSObject {
         return player?.isPlaying ?? false
     }
 
+    var currentPos: Float {
+        return Float(internalCurrentTime * 100) / duration
+    }
+
     func play() {
         guard let player = player else {
             /// TODO: Error Handling
@@ -79,12 +90,12 @@ final class PlayerComponentViewModel: NSObject {
             timestampTimer = nil
             delegate?.update()
         } else {
-            timestampTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] (_) in
+            timestampTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { [weak self] (_) in
                 guard let self = self else {
                     return
                 }
 
-                self.internalCurrentTime += 1
+                self.internalCurrentTime += 0.01
                 self.delegate?.update()
             })
             player.play()
