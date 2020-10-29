@@ -123,8 +123,9 @@ final class PlayerComponentViewModel: NSObject {
             /// TODO: Error Handling
             return
         }
-
-        player.currentTime = TimeInterval(pos)
+        
+        internalCurrentTime = TimeInterval((pos*duration)/100)
+        player.currentTime = TimeInterval((pos*duration)/100)
     }
 
     // MARK: - Player setup

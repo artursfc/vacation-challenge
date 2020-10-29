@@ -78,6 +78,10 @@ final class PlayerComponentViewController: UIViewController {
         }
     }
 
+    @objc private func didStartSeek(_ slider: MemoraSlider) {
+        viewModel.seekTo(slider.value)
+    }
+
     // MARK: - Layout
     /// Configures the main view.
     private func configureView() {
@@ -104,6 +108,7 @@ final class PlayerComponentViewController: UIViewController {
 
         progressSlider.maximumValue = 100
         progressSlider.minimumValue = 0.0
+        progressSlider.addTarget(self, action: #selector(didStartSeek(_:)), for: .valueChanged)
     }
 
     /// Configures the play button.
