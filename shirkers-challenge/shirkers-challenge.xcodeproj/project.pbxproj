@@ -36,6 +36,9 @@
 		A468155B22D66BE300537D16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A468155922D66BE300537D16 /* LaunchScreen.storyboard */; };
 		A46B35E2252F4DEA00B6ECCF /* RecorderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46B35E1252F4DEA00B6ECCF /* RecorderViewModel.swift */; };
 		A47C3C2F251CF3D1001C3A55 /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47C3C2E251CF3D1001C3A55 /* DesignSystem.swift */; };
+		A4955C33254AFF92000C284C /* pastel-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A4955C30254AFF92000C284C /* pastel-icon.png */; };
+		A4955C34254AFF92000C284C /* pastel-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4955C31254AFF92000C284C /* pastel-icon@2x.png */; };
+		A4955C35254AFF92000C284C /* pastel-icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4955C32254AFF92000C284C /* pastel-icon@3x.png */; };
 		A499E96A24FC3D0200290B16 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A499E96924FC3D0200290B16 /* ArchiveViewController.swift */; };
 		A499E96C24FC3DD000290B16 /* ArchiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A499E96B24FC3DD000290B16 /* ArchiveTableViewCell.swift */; };
 		A4A241E3243FB50E0025DA3D /* OSLog+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A241E2243FB50E0025DA3D /* OSLog+Extensions.swift */; };
@@ -98,6 +101,9 @@
 		A468155C22D66BE300537D16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A46B35E1252F4DEA00B6ECCF /* RecorderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderViewModel.swift; sourceTree = "<group>"; };
 		A47C3C2E251CF3D1001C3A55 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
+		A4955C30254AFF92000C284C /* pastel-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pastel-icon.png"; sourceTree = "<group>"; };
+		A4955C31254AFF92000C284C /* pastel-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pastel-icon@2x.png"; sourceTree = "<group>"; };
+		A4955C32254AFF92000C284C /* pastel-icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pastel-icon@3x.png"; sourceTree = "<group>"; };
 		A499E96924FC3D0200290B16 /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
 		A499E96B24FC3DD000290B16 /* ArchiveTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveTableViewCell.swift; sourceTree = "<group>"; };
 		A4A241E2243FB50E0025DA3D /* OSLog+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+Extensions.swift"; sourceTree = "<group>"; };
@@ -139,6 +145,7 @@
 		A40BCDC424FADE3C002F53A0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A4955C2F254AFC9C000C284C /* Alternate Icons */,
 				A41B41A1253491D100AC11EE /* Localizable.strings */,
 				A468155722D66BE300537D16 /* Assets.xcassets */,
 				A468155922D66BE300537D16 /* LaunchScreen.storyboard */,
@@ -300,6 +307,16 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		A4955C2F254AFC9C000C284C /* Alternate Icons */ = {
+			isa = PBXGroup;
+			children = (
+				A4955C30254AFF92000C284C /* pastel-icon.png */,
+				A4955C31254AFF92000C284C /* pastel-icon@2x.png */,
+				A4955C32254AFF92000C284C /* pastel-icon@3x.png */,
+			);
+			path = "Alternate Icons";
+			sourceTree = "<group>";
+		};
 		A4D0E0222505706900B3B12D /* shirkers-challengeTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -410,9 +427,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4955C34254AFF92000C284C /* pastel-icon@2x.png in Resources */,
 				A468155B22D66BE300537D16 /* LaunchScreen.storyboard in Resources */,
+				A4955C33254AFF92000C284C /* pastel-icon.png in Resources */,
 				A41B419F253491D100AC11EE /* Localizable.strings in Resources */,
 				A468155822D66BE300537D16 /* Assets.xcassets in Resources */,
+				A4955C35254AFF92000C284C /* pastel-icon@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

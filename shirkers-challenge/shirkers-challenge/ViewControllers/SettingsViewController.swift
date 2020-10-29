@@ -116,6 +116,29 @@ final class SettingsViewController: UIViewController {
         }
     }
 
+    // MARK: Theme
+    private func changeIcon(for theme: UIColor.Theme) {
+        os_log("SettingsViewController should change app's icon.", log: .appFlow, type: .debug)
+        switch theme {
+        case .default:
+            if UIApplication.shared.supportsAlternateIcons {
+                UIApplication.shared.setAlternateIconName(nil) { (error) in
+                    if error != nil {
+                        os_log("SettingsViewController failed to change app's icon.", log: .appFlow, type: .debug)
+                    }
+                }
+            }
+        case .pastel:
+            if UIApplication.shared.supportsAlternateIcons {
+                UIApplication.shared.setAlternateIconName("Pastel-Icon") { (error) in
+                    if error != nil {
+                        os_log("SettingsViewController failed to change app's icon.", log: .appFlow, type: .debug)
+                    }
+                }
+            }
+        }
+    }
+
     // MARK: - Deinit
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -130,8 +153,10 @@ extension SettingsViewController: UITableViewDelegate {
             switch indexPath.row {
             case 0:
                 UIColor.currentTheme = .default
+                changeIcon(for: .default)
             case 1:
                 UIColor.currentTheme = .pastel
+                changeIcon(for: .pastel)
             default:
                 break
             }
