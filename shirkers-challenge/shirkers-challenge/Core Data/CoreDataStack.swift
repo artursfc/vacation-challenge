@@ -35,7 +35,7 @@ final class CoreDataStack {
             let sqliteURL = defaultURL.appendingPathComponent("\(self.model).sqlite")
             let storeDescription = NSPersistentStoreDescription(url: sqliteURL)
 
-            storeDescription.shouldAddStoreAsynchronously = true
+            storeDescription.shouldAddStoreAsynchronously = false
             storeDescription.shouldInferMappingModelAutomatically = true
             storeDescription.shouldMigrateStoreAutomatically = true
 
@@ -44,7 +44,7 @@ final class CoreDataStack {
             let inMemoryURL = URL(fileURLWithPath: "/dev/null")
             let storeDescription = NSPersistentStoreDescription(url: inMemoryURL)
 
-            storeDescription.shouldAddStoreAsynchronously = true
+            storeDescription.shouldAddStoreAsynchronously = false
             storeDescription.shouldInferMappingModelAutomatically = true
             storeDescription.shouldMigrateStoreAutomatically = true
 

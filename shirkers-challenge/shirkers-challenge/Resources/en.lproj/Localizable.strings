@@ -33,3 +33,7 @@
 "new-remind-me-in" = "If reset, the reminder will be set to around";
 "archive-memory" = "Archive";
 "delete-memory" = "Delete";
+
+// MARK: - Notification
+"notification-title" = "New memory";
+"notification-body" = "A memory is waiting.";

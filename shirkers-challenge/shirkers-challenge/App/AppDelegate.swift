@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import UserNotifications
+import os.log
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,9 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        //Core Data stack init
+        // Core Data stack init
         let coreDataStack = CoreDataStack(model: "shirkers_challenge")
 
+        // Notification Request
+        let uncenter = UNUserNotificationCenter.current()
+
+        uncenter.requestAuthorization(options: [.alert, .sound]) { (success, failure) in
+            if success {
+                os_log("User accepted notification request.", log: .appFlow, type: .debug)
+            } else {
+                os_log("User denied notification request.", log: .appFlow, type: .debug)
+            }
+        }
         // Initialization of each page for the `UIPageViewController`.
         // First Page
         let firstPage = SettingsViewController()

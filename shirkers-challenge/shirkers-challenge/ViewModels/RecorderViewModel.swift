@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 import os.log
 
 // MARK: - Protocol-Delegate
@@ -45,6 +46,8 @@ final class RecorderViewModel {
     /// The context used to save to Core Data.
     private let context: NSManagedObjectContext
 
+    private let uncenter: UNUserNotificationCenter
+
     /// The  delegate responsible for allowing communication between
     /// `RecorderViewModel` and its `View`.
     weak var delegate: RecorderViewModelDelegate?
@@ -54,9 +57,11 @@ final class RecorderViewModel {
     /// - Parameter recorder: The recorder abstraction.
     /// - Parameter context: The context used to save to Core Data.
     init(recorder: Recorder,
-         context: NSManagedObjectContext) {
+         context: NSManagedObjectContext,
+         uncenter: UNUserNotificationCenter = UNUserNotificationCenter.current()) {
         self.recorder = recorder
         self.context = context
+        self.uncenter = uncenter
         self.recorder.didFinishRecording = { [weak self] (successfully) in
             guard let self = self else { return }
             self.recording = false
@@ -150,14 +155,51 @@ final class RecorderViewModel {
         memory.isActive = true
         memory.modifiedAt = createdAt
         let timeInterval = TimeInterval.random(in: TimeInterval(Double(remindMeInSeconds)*0.8)..<TimeInterval(remindMeInSeconds))
-        memory.dueDate = Date(timeInterval: timeInterval, since: createdAt)
+        let dueDate = Date(timeInterval: timeInterval, since: createdAt)
+        memory.dueDate = dueDate
         memory.path = createdAt.toBeSavedFormat()
+
+        schedule(for: timeInterval, with: createdAt.toBeSavedFormat())
 
         if context.hasChanges {
             do {
                 try context.save()
             } catch {
                 os_log("RecorderViewModel failed to save to Core Data", log: .appFlow, type: .error)
+            }
+        }
+    }
+
+    // MARK: - UserNotification
+    private func schedule(for interval: TimeInterval, with identifier: String) {
+        uncenter.getNotificationSettings { [weak self] (settings) in
+            guard let self = self else {
+                return
+            }
+
+            switch settings.authorizationStatus {
+            case .authorized:
+                os_log("RecorderViewModel is scheduling a notification...", log: .appFlow, type: .debug)
+                let content = UNMutableNotificationContent()
+                content.title = NSLocalizedString("notification-title", comment: "")
+                content.body = NSLocalizedString("notification-body", comment: "")
+                content.sound = .default
+
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
+
+                let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+
+                self.uncenter.add(request) { (error) in
+                    if error != nil {
+                        os_log("RecorderViewModel failed to schedule notification.", log: .appFlow, type: .error)
+                    } else {
+                        os_log("RecorderViewModel successfully scheduled a notification.", log: .appFlow, type: .debug)
+                    }
+                }
+            case .denied:
+                os_log("RecorderViewModel can`t schedule notification due to `denied` authorization status.", log: .appFlow, type: .debug)
+            default:
+                os_log("RecorderViewModel has unknown user notification status.", log: .appFlow, type: .debug)
             }
         }
     }

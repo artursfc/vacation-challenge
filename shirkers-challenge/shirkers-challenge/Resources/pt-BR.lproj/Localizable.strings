@@ -33,3 +33,7 @@
 "new-remind-me-in" = "Caso redefinido, o lembrete será marcado para em torno de";
 "archive-memory" = "Arquivar";
 "delete-memory" = "Deletar";
+
+// MARK: - Notification
+"notification-title" = "Nova memória";
+"notification-body" = "Uma memória à espera.";

@@ -46,7 +46,7 @@ final class InboxViewController: UIViewController {
                                                name: Notification.Name("theme-changed"),
                                                object: nil)
     }
-
+    
     // MARK: - @objc
     @objc private func didChangeTheme(_ notification: NSNotification) {
         os_log("InboxViewController should change theme.", log: .appFlow, type: .debug)
@@ -122,7 +122,6 @@ extension InboxViewController: UICollectionViewDelegate {
                                         object: nil,
                                         userInfo: ["play": viewModel.viewModelAt(index: indexPath)])
     }
-
 }
 
 // MARK: - UICollectionViewDataSource
@@ -158,7 +157,6 @@ extension InboxViewController: InboxViewModelDelegate {
             if newViewModel.isActive {
                 cell.configure(with: newViewModel)
             } else {
-
                 inboxCollectionView.deleteItems(at: [index])
             }
         }
