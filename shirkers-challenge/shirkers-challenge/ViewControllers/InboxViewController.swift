@@ -28,6 +28,8 @@ final class InboxViewController: UIViewController {
     init(viewModel: InboxViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        let uncenter = UNUserNotificationCenter.current()
+        uncenter.delegate = self
         os_log("InboxViewController initialized.", log: .appFlow, type: .debug)
     }
 
@@ -182,6 +184,17 @@ extension InboxViewController: InboxViewModelDelegate {
                 self.viewModel.didUpdate = didUpdate
                 os_log("InboxViewController done with batch updates.", log: .appFlow, type: .debug)
             })
+        }
+    }
+}
+
+// MARK: - UNCenter Delegate
+extension InboxViewController: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        if response.actionIdentifier == UNNotificationDefaultActionIdentifier {
+            viewModel.requestFetch()
         }
     }
 }

@@ -35,7 +35,6 @@ final class InboxViewModel: NSObject {
     private lazy var fetchedResultsController: NSFetchedResultsController<Recording> = {
         let fetchRequest: NSFetchRequest<Recording> = Recording.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Recording.modifiedAt, ascending: false)]
-        fetchRequest.predicate = NSPredicate(format: "dueDate =< %@ AND isActive == true", Date() as NSDate)
 
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest,
                                              managedObjectContext: self.context,
@@ -79,6 +78,7 @@ final class InboxViewModel: NSObject {
     /// Requests a fetch from the FRC.
     func requestFetch() {
         do {
+            fetchedResultsController.fetchRequest.predicate = NSPredicate(format: "dueDate =< %@ AND isActive == true", Date() as NSDate)
             try fetchedResultsController.performFetch()
         } catch {
             os_log("InboxViewModel fetch request to FRC failed.", log: .appFlow, type: .error)

@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Notification Request
         let uncenter = UNUserNotificationCenter.current()
 
-        uncenter.requestAuthorization(options: [.alert, .sound]) { (success, failure) in
+        uncenter.requestAuthorization(options: [.alert, .sound]) { (success, _) in
             if success {
                 os_log("User accepted notification request.", log: .appFlow, type: .debug)
             } else {
