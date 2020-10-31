@@ -37,3 +37,7 @@
 // MARK: - Notification
 "notification-title" = "New memory";
 "notification-body" = "A memory is waiting.";
+
+// MARK: - Empty Inbox/Archive
+"empty-inbox" = "Empty inbox.\nMemories past their due date will be displayed in this section.";
+"empty-archive" = "Empty archive.\nRecorded memories will be displayed in this section.";

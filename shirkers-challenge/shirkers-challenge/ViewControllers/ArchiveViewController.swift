@@ -17,6 +17,9 @@ final class ArchiveViewController: UIViewController {
     /// `UITableView` used to display all archived recordings.
     @AutoLayout private var archiveTableView: UITableView
 
+    /// Used to display message if `Archive` is empty.
+    @AutoLayout private var emptyArchiveLabel: MemoraLabel
+
     /// The `ViewModel` responsible for this `View`.
     private let viewModel: ArchiveViewModel
 
@@ -40,8 +43,11 @@ final class ArchiveViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableViewLayout()
         setUpViewModel()
+        setUpTableView()
+        setUpEmptyInboxLabel()
+        layoutTableViewConstraints()
+        layoutEmptyArchiveLabelConstraints()
         title = NSLocalizedString("archive", comment: "Title of the ArchiveViewController")
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didChangeTheme(_:)),
@@ -53,6 +59,7 @@ final class ArchiveViewController: UIViewController {
     @objc private func didChangeTheme(_ notification: NSNotification) {
         os_log("ArchiveViewController should change theme.", log: .appFlow, type: .debug)
         archiveTableView.backgroundColor = .memoraBackground
+        emptyArchiveLabel.textColor = .memoraAccent
         archiveTableView.reloadData()
     }
 
@@ -61,14 +68,25 @@ final class ArchiveViewController: UIViewController {
         viewModel.delegate = self
         viewModel.requestFetch()
     }
-    // MARK: - Layout
-    /// Configures constraints and look of the `archiveTableView`.
-    private func setupTableViewLayout() {
+
+    // MARK: - Views setup
+    private func setUpTableView() {
         archiveTableView.backgroundColor = .memoraBackground
         archiveTableView.estimatedRowHeight = DesignSystem.Archive.rowHeight
         archiveTableView.rowHeight = UITableView.automaticDimension
         archiveTableView.separatorStyle = .none
+    }
 
+    private func setUpEmptyInboxLabel() {
+        emptyArchiveLabel.setUp(as: .default)
+        emptyArchiveLabel.text = NSLocalizedString("empty-archive", comment: "")
+        emptyArchiveLabel.numberOfLines = 0
+        emptyArchiveLabel.textAlignment = .center
+    }
+
+    // MARK: - Layout
+    /// Configures constraints of the `archiveTableView`.
+    private func layoutTableViewConstraints() {
         view.addSubview(archiveTableView)
 
         NSLayoutConstraint.activate([
@@ -76,6 +94,19 @@ final class ArchiveViewController: UIViewController {
             archiveTableView.heightAnchor.constraint(equalTo: view.heightAnchor),
             archiveTableView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             archiveTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+
+    private func layoutEmptyArchiveLabelConstraints() {
+        view.addSubview(emptyArchiveLabel)
+
+        NSLayoutConstraint.activate([
+            emptyArchiveLabel.widthAnchor.constraint(equalTo: view.widthAnchor,
+                                                       multiplier: 0.65),
+            emptyArchiveLabel.heightAnchor.constraint(equalTo: view.heightAnchor,
+                                                        multiplier: 0.8),
+            emptyArchiveLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyArchiveLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
 

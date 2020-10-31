@@ -16,6 +16,10 @@ final class InboxViewController: UIViewController {
     /// `UICollectionView` used to display all recordings currently in the Inbox.
     @AutoLayout private var inboxCollectionView: InboxCollectionView
 
+    /// Used to display message if `Inbox` is empty.
+    @AutoLayout private var emptyInboxLabel: MemoraLabel
+
+    /// The `UIViewController` used to display a `UIContextMenu`.
     private lazy var memoryContextViewController: MemoryContextViewController = {
         return MemoryContextViewController(viewModel: MemoryViewModel())
     }()
@@ -42,6 +46,9 @@ final class InboxViewController: UIViewController {
         super.viewDidLoad()
         setUpViewModel()
         setUpCollectionView()
+        setUpEmptyInboxLabel()
+        layoutInboxCollectionViewConstraints()
+        layoutEmptyInboxLabelConstraints()
         title = NSLocalizedString("inbox", comment: "Title of the InboxViewController")
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didChangeTheme(_:)),
@@ -53,6 +60,7 @@ final class InboxViewController: UIViewController {
     @objc private func didChangeTheme(_ notification: NSNotification) {
         os_log("InboxViewController should change theme.", log: .appFlow, type: .debug)
         inboxCollectionView.backgroundColor = .memoraBackground
+        emptyInboxLabel.textColor = .memoraAccent
         inboxCollectionView.reloadData()
     }
 
@@ -62,14 +70,24 @@ final class InboxViewController: UIViewController {
         viewModel.requestFetch()
     }
 
-    // MARK: - Layout
+    // MARK: - Views setup
     private func setUpCollectionView() {
         inboxCollectionView.delegate = self
         inboxCollectionView.dataSource = self
 
         inboxCollectionView.register(InboxCollectionViewCell.self,
                                      forCellWithReuseIdentifier: InboxCollectionViewCell.identifier)
-        
+    }
+
+    private func setUpEmptyInboxLabel() {
+        emptyInboxLabel.setUp(as: .default)
+        emptyInboxLabel.text = NSLocalizedString("empty-inbox", comment: "")
+        emptyInboxLabel.numberOfLines = 0
+        emptyInboxLabel.textAlignment = .center
+    }
+
+    // MARK: - Layout
+    private func layoutInboxCollectionViewConstraints() {
         view.addSubview(inboxCollectionView)
 
         NSLayoutConstraint.activate([
@@ -77,6 +95,19 @@ final class InboxViewController: UIViewController {
             inboxCollectionView.heightAnchor.constraint(equalTo: view.heightAnchor),
             inboxCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             inboxCollectionView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+
+    private func layoutEmptyInboxLabelConstraints() {
+        view.addSubview(emptyInboxLabel)
+
+        NSLayoutConstraint.activate([
+            emptyInboxLabel.widthAnchor.constraint(equalTo: view.widthAnchor,
+                                                       multiplier: 0.65),
+            emptyInboxLabel.heightAnchor.constraint(equalTo: view.heightAnchor,
+                                                        multiplier: 0.8),
+            emptyInboxLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyInboxLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
 
@@ -129,6 +160,11 @@ extension InboxViewController: UICollectionViewDelegate {
 // MARK: - UICollectionViewDataSource
 extension InboxViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if viewModel.numberOfMemories == 0 {
+            emptyInboxLabel.isHidden = false
+        } else {
+            emptyInboxLabel.isHidden = true
+        }
         return viewModel.numberOfMemories
     }
 
