@@ -54,6 +54,13 @@ final class RecorderViewController: UIViewController {
         setUpViewModel()
         setUpViews()
         layoutConstraints()
+
+        // Sets a observer in case the user closes the app before it deletes
+        // the previous recording.
+        NotificationCenter.default.addObserver(self,
+                                       selector: #selector(remove(_:)),
+                                       name: UIApplication.willTerminateNotification,
+                                       object: nil)
     }
 
     // MARK: - @objc
@@ -64,6 +71,7 @@ final class RecorderViewController: UIViewController {
 
     @objc private func didTapClose(_ button: MemoraButton) {
         os_log("RecorderViewController should close.", log: .appFlow, type: .debug)
+        viewModel.clean()
         dismiss(animated: true, completion: nil)
     }
 
@@ -74,10 +82,16 @@ final class RecorderViewController: UIViewController {
     @objc private func didTapSave(_ button: MemoraButton) {
         os_log("RecorderViewController requested its ViewModel to save the recording.", log: .appFlow, type: .debug)
         viewModel.save()
+        dismiss(animated: true, completion: nil)
     }
 
     @objc private func didEditText(_ textfield: MemoraTextField) {
         viewModel.title = textfield.text ?? ""
+    }
+
+    /// Removes file representing a memory's audio before app is terminated.
+    @objc private func remove(_ notification: Notification) {
+        viewModel.clean()
     }
 
     // MARK: - ViewModel setup
@@ -269,6 +283,11 @@ final class RecorderViewController: UIViewController {
             recordButtonShapeLayer.removeAllAnimations()
             recordButtonShapeLayer.removeFromSuperlayer()
         }
+    }
+
+    // MARK: - Deinit
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

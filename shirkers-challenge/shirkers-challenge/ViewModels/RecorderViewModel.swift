@@ -6,7 +6,6 @@
 //  Copyright © 2020 Artur Carneiro. All rights reserved.
 //
 
-import UIKit
 import CoreData
 import UserNotifications
 import os.log
@@ -66,13 +65,6 @@ final class RecorderViewModel {
             guard let self = self else { return }
             self.recording = false
         }
-
-        // Sets a observer in case the user closes the app before it deletes
-        // the previous recording.
-        NotificationCenter.default.addObserver(self,
-                                       selector: #selector(remove(_:)),
-                                       name: UIApplication.willTerminateNotification,
-                                       object: nil)
         os_log("RecorderViewModel initialized.", log: .appFlow, type: .debug)
     }
 
@@ -170,6 +162,14 @@ final class RecorderViewModel {
         }
     }
 
+    func clean() {
+        guard let fileName = currentDate?.toBeSavedFormat() else {
+            os_log("RecorderViewModel failed to remove a memory's file befoe app's termination.", log: .appFlow, type: .error)
+            return
+        }
+        remove(file: fileName)
+    }
+
     // MARK: - UserNotification
     private func schedule(for interval: TimeInterval, with identifier: String) {
         uncenter.getNotificationSettings { [weak self] (settings) in
@@ -214,18 +214,5 @@ final class RecorderViewModel {
         } catch {
             os_log("RecorderViewModel failed to remove a memory's file.", log: .appFlow, type: .error)
         }
-    }
-
-    /// Removes file representing a memory's audio before app is terminated.
-    @objc private func remove(_ notification: Notification) {
-        guard let fileName = currentDate?.toBeSavedFormat() else {
-            os_log("RecorderViewModel failed to remove a memory's file befoe app's termination.", log: .appFlow, type: .error)
-            return
-        }
-        remove(file: fileName)
-    }
-    // MARK: - Deinit
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
 }

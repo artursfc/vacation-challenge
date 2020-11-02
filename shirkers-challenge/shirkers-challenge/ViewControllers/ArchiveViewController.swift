@@ -156,6 +156,11 @@ extension ArchiveViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if viewModel.numberOfMemories == 0 {
+            emptyArchiveLabel.isHidden = false
+        } else {
+            emptyArchiveLabel.isHidden = true
+        }
         return viewModel.numberOfMemories
     }
 
