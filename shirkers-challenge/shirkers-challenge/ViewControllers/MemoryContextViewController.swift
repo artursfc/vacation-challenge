@@ -22,6 +22,7 @@ final class MemoryContextViewController: UIViewController {
         return imageView
     }()
 
+    /// The `ViewModel` responsible for this `View`.
     private var viewModel: MemoryViewModel {
         didSet {
             titleLabel.text = viewModel.title
@@ -43,6 +44,9 @@ final class MemoryContextViewController: UIViewController {
     }
 
     // MARK: - Init
+    /// Initializes a new instance of this type.
+    ///
+    /// - Parameter viewModel: The `ViewModel` responsible for this `View`.
     init(viewModel: MemoryViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -62,6 +66,7 @@ final class MemoryContextViewController: UIViewController {
     }
 
     // MARK: - ViewModel update
+    /// Performs updates on the `View` based on the new `ViewModel`.
     func updates(from viewModel: MemoryViewModel) {
         self.viewModel = viewModel
     }

@@ -67,6 +67,7 @@ final class SettingsViewController: UIViewController {
     }()
 
     // MARK: - Init
+    /// Initializes a new instance of this type.
     init() {
         super.init(nibName: nil, bundle: nil)
         os_log("SettingsViewController initialized.", log: .appFlow, type: .debug)
