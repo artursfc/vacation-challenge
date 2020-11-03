@@ -207,7 +207,7 @@ extension InboxViewController: InboxViewModelDelegate {
 
     func updates(from blocks: [BlockOperation]) {
         os_log("InboxViewController peforming batch updates.", log: .appFlow, type: .debug)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
             guard let self = self else { return }
             self.inboxCollectionView.performBatchUpdates({
                 for block in blocks {

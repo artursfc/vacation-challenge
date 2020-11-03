@@ -194,7 +194,7 @@ extension ArchiveViewController: ArchiveViewModelDelegate {
 
     func endUpdates() {
         os_log("ArchiveViewController done updating.", log: .appFlow, type: .debug)
-        DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
             guard let self = self else {
                 return
             }

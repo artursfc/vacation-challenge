@@ -141,16 +141,7 @@ extension InboxViewModel: NSFetchedResultsControllerDelegate {
                     os_log("InboxViewModel updated memory.", log: .appFlow, type: .debug)
                     self.delegate?.updateMemoryAt(indexPath)
                 }
-            case .move:
-                os_log("InboxViewModel is moving memory...", log: .appFlow, type: .debug)
-                if let indexPath = indexPath {
-                    self.delegate?.deleteMemoryAt(indexPath)
-                }
-
-                if let newIndexPath = newIndexPath {
-                    self.delegate?.insertNewMemoryAt(newIndexPath)
-                }
-            @unknown default:
+            default:
                 break
             }
         }
@@ -159,6 +150,14 @@ extension InboxViewModel: NSFetchedResultsControllerDelegate {
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         os_log("InboxViewModel is done updating. Sending update blocks to View.", log: .appFlow, type: .debug)
+        if context.hasChanges {
+            do {
+                try context.save()
+                os_log("InboxViewModel has saved to save to Core Data.", log: .appFlow, type: .debug)
+            } catch {
+                os_log("InboxViewModel has failed to save to Core Data.", log: .appFlow, type: .error)
+            }
+        }
         delegate?.updates(from: updateBlock)
     }
 }

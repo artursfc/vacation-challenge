@@ -107,6 +107,14 @@ extension ArchiveViewModel: NSFetchedResultsControllerDelegate {
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         os_log("ArchiveViewModel is done updating.", log: .appFlow, type: .debug)
+        if context.hasChanges {
+            do {
+                try context.save()
+                os_log("ArchiveViewModel has saved to save to Core Data.", log: .appFlow, type: .debug)
+            } catch {
+                os_log("ArchiveViewModel has failed to save to Core Data.", log: .appFlow, type: .error)
+            }
+        }
         delegate?.endUpdates()
     }
 

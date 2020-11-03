@@ -7,6 +7,7 @@
 //
 
 import AVFoundation
+import os.log
 
 // MARK: - Protocol-Delegate
 /// The delegate responsible for allowing communication between
@@ -43,6 +44,7 @@ final class PlayerComponentViewModel: NSObject {
                                                selector: #selector(shouldPlay(_:)),
                                                name: Notification.Name("play"),
                                                object: nil)
+        os_log("PlayerComponentViewModel initialized.", log: .appFlow, type: .debug)
     }
 
     // MARK: - @objc
@@ -100,7 +102,7 @@ final class PlayerComponentViewModel: NSObject {
     /// Plays the memory loaded in the player.
     func play() {
         guard let player = player else {
-            /// TODO: Error Handling
+            os_log("PlayerComponentViewModel tried playing without a player.", log: .appFlow, type: .error)
             return
         }
         if timestampTimer != nil {
@@ -126,7 +128,7 @@ final class PlayerComponentViewModel: NSObject {
     /// Stops playback of the memory loaded in the player.
     func stop() {
         guard let player = player else {
-            /// TODO: Error Handling
+            os_log("PlayerComponentViewModel tried to stop playback without a player.", log: .appFlow, type: .error)
             return
         }
 
@@ -142,7 +144,7 @@ final class PlayerComponentViewModel: NSObject {
     /// memory is being played.
     func seekTo(_ pos: Float) {
         guard let player = player else {
-            /// TODO: Error Handling
+            os_log("PlayerComponentViewModel tried to seek without a player.", log: .appFlow, type: .error)
             return
         }
         
@@ -155,15 +157,15 @@ final class PlayerComponentViewModel: NSObject {
     private func setUp(for memory: MemoryViewModel) {
         self.memory = memory
 
-        let fileURL = FileManager.userDocumentDirectory.appendingPathComponent(memory.createdAt.toBeSavedFormat()).appendingPathExtension(".m4a")
+        let filename = FileManager.userDocumentDirectory.appendingPathComponent(memory.createdAt.toBeSavedFormat())
+        let fileURL = filename.appendingPathExtension(".m4a")
 
         do {
             player = try AVAudioPlayer(contentsOf: fileURL)
             player?.prepareToPlay()
             player?.delegate = self
         } catch {
-            /// TODO: Error Handling
-            print(error.localizedDescription)
+            os_log("PlayerComponentViewModel failed to set up player.", log: .appFlow, type: .error)
         }
     }
 
