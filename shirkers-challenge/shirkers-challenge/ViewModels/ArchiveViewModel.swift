@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import UserNotifications
 import os.log
 
 // MARK: - Protocol-Delegate
@@ -45,11 +46,15 @@ final class ArchiveViewModel: NSObject {
     /// `ArchiveViewModel` and its `View`.
     weak var delegate: ArchiveViewModelDelegate?
 
+    private let uncenter: UNUserNotificationCenter
+
     // MARK: - Init
     /// Initializes a new instance of this type.
     /// - Parameter context: The context used to access Core Data through a FRC.
-    init(context: NSManagedObjectContext) {
+    init(context: NSManagedObjectContext,
+         uncenter: UNUserNotificationCenter = UNUserNotificationCenter.current()) {
         self.context = context
+        self.uncenter = uncenter
         os_log("ArchiveViewModel initialized.", log: .appFlow, type: .debug)
     }
 
@@ -71,7 +76,8 @@ final class ArchiveViewModel: NSObject {
         }
     }
 
-    /// Returns a `ViewModel` corresponding to an index.
+    /// Returns a `MemoryViewModel`.
+    /// - Parameter index: `IndexPath` corresponding to the memory.
     func viewModelAt(index: IndexPath) -> MemoryViewModel {
         let memory = fetchedResultsController.object(at: index)
 
@@ -89,11 +95,75 @@ final class ArchiveViewModel: NSObject {
                                dueDate: dueDate)
     }
 
+    /// Deletes a memory.
+    /// - Parameter index: `IndexPath` corresponding to the memory.
     func deleteMemoryAt(index: IndexPath) {
         os_log("ArchiveViewController deleting memory...", log: .appFlow, type: .debug)
         let memory = fetchedResultsController.object(at: index)
         
         context.delete(memory)
+    }
+
+    /// Resets the due date of a memory.
+    /// - Parameter index: `IndexPath` corresponding to the memory.
+    func resetMemoryAt(index: IndexPath) {
+        let memory = fetchedResultsController.object(at: index)
+
+        guard let dueDate = memory.dueDate,
+              let modifiedAt = memory.modifiedAt else {
+            os_log("ArchiveViewModel failed to retrieve a valid memory", log: .appFlow, type: .error)
+            return
+        }
+
+        let newDueDateInterval = dueDate.timeIntervalSince(modifiedAt)
+        schedule(for: newDueDateInterval, with: modifiedAt.toBeSavedFormat())
+
+        let newModifiedAtDate = Date()
+        memory.dueDate = Date(timeInterval: newDueDateInterval, since: newModifiedAtDate)
+        memory.modifiedAt = newModifiedAtDate
+
+        if context.hasChanges {
+            do {
+                try context.save()
+                os_log("ArchiveViewModel has saved to save to Core Data.", log: .appFlow, type: .debug)
+            } catch {
+                os_log("ArchiveViewModel has failed to save to Core Data.", log: .appFlow, type: .error)
+            }
+        }
+    }
+
+    // MARK: - UserNotification
+    private func schedule(for interval: TimeInterval, with identifier: String) {
+        uncenter.getNotificationSettings { [weak self] (settings) in
+            guard let self = self else {
+                return
+            }
+
+            switch settings.authorizationStatus {
+            case .authorized:
+                os_log("ArchiveViewModel is scheduling a notification...", log: .appFlow, type: .debug)
+                let content = UNMutableNotificationContent()
+                content.title = NSLocalizedString("notification-title", comment: "")
+                content.body = NSLocalizedString("notification-body", comment: "")
+                content.sound = .default
+
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
+
+                let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+
+                self.uncenter.add(request) { (error) in
+                    if error != nil {
+                        os_log("ArchiveViewModel failed to schedule notification.", log: .appFlow, type: .error)
+                    } else {
+                        os_log("ArchiveViewModel successfully scheduled a notification.", log: .appFlow, type: .debug)
+                    }
+                }
+            case .denied:
+                os_log("ArchiveViewModel can`t schedule notification due to `denied` authorization status.", log: .appFlow, type: .debug)
+            default:
+                os_log("ArchiveViewModel has unknown user notification status.", log: .appFlow, type: .debug)
+            }
+        }
     }
 
 }

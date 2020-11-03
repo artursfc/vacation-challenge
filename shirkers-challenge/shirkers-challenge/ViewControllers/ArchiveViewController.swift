@@ -125,7 +125,12 @@ extension ArchiveViewController: UITableViewDelegate {
         let previewViewController = MemoryContextViewController(viewModel: viewModel.viewModelAt(index: indexPath))
         return UIContextMenuConfiguration(identifier: nil, previewProvider: { previewViewController }, actionProvider: { (_) -> UIMenu? in
             let resetAction = UIAction(title: NSLocalizedString("reset-reminder", comment: "Action to reset reminder"),
-                                       image: UIImage(systemName: "arrow.clockwise")) { (_) in
+                                       image: UIImage(systemName: "arrow.clockwise")) { [weak self] (_) in
+                guard let self = self else {
+                    return
+                }
+
+                self.viewModel.resetMemoryAt(index: indexPath)
 
             }
             let deleteAction = UIAction(title: NSLocalizedString("delete-memory", comment: "Action to delete memory. Destructive."),

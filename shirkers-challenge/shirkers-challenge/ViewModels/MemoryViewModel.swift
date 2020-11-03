@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Responsible for providing a memory formatted data.
+/// Responsible for providing a memory's formatted data.
 struct MemoryViewModel: Hashable {
     // MARK: - Properties
     let title: String
