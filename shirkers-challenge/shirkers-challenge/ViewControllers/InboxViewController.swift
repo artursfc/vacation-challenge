@@ -131,7 +131,8 @@ extension InboxViewController: UICollectionViewDelegate {
                                           actionProvider: { (_) -> UIMenu? in
                                             let resetAction = UIAction(title: NSLocalizedString("reset-reminder",
                                                                                                 comment: "Action to reset reminder"),
-                                                                       image: UIImage(systemName: "arrow.clockwise")) { (_) in
+                                                                       image: UIImage(systemName: "arrow.clockwise")) { [weak self] (_) in
+                                                self?.viewModel.resetMemoryAt(index: indexPath)
 
                                             }
                                             let archiveAction = UIAction(title: NSLocalizedString("archive-memory",

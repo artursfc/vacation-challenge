@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import UserNotifications
 import os.log
 
 // MARK: - Protocol-Delegate
@@ -49,11 +50,16 @@ final class InboxViewModel: NSObject {
     /// `InboxViewModel` and its `View`.
     weak var delegate: InboxViewModelDelegate?
 
+    /// The `UNUserNotificationCenter` instance responsible for scheduling notifications.
+    private let uncenter: UNUserNotificationCenter
+
     // MARK: - Init
     /// Initializes a new instance of this type.
     /// - Parameter context: The context used to access Core Data through a FRC.
-    init(context: NSManagedObjectContext) {
+    init(context: NSManagedObjectContext,
+         uncenter: UNUserNotificationCenter = UNUserNotificationCenter.current()) {
         self.context = context
+        self.uncenter = uncenter
         os_log("InboxViewModel initialized.", log: .appFlow, type: .debug)
     }
 
@@ -108,6 +114,68 @@ final class InboxViewModel: NSObject {
         let memory = fetchedResultsController.object(at: index)
 
         memory.isActive = false
+    }
+
+    /// Resets the due date of a memory.
+    /// - Parameter index: `IndexPath` corresponding to the memory.
+    func resetMemoryAt(index: IndexPath) {
+        let memory = fetchedResultsController.object(at: index)
+
+        guard let dueDate = memory.dueDate,
+              let modifiedAt = memory.modifiedAt else {
+            os_log("InboxViewModel failed to retrieve a valid memory", log: .appFlow, type: .error)
+            return
+        }
+
+        let newDueDateInterval = dueDate.timeIntervalSince(modifiedAt)
+        schedule(for: newDueDateInterval, with: modifiedAt.toBeSavedFormat())
+
+        let newModifiedAtDate = Date()
+        memory.dueDate = Date(timeInterval: newDueDateInterval, since: newModifiedAtDate)
+        memory.modifiedAt = newModifiedAtDate
+
+        if context.hasChanges {
+            do {
+                try context.save()
+                os_log("InboxViewModel has saved to save to Core Data.", log: .appFlow, type: .debug)
+            } catch {
+                os_log("InboxViewModel has failed to save to Core Data.", log: .appFlow, type: .error)
+            }
+        }
+    }
+
+    // MARK: - UserNotification
+    private func schedule(for interval: TimeInterval, with identifier: String) {
+        uncenter.getNotificationSettings { [weak self] (settings) in
+            guard let self = self else {
+                return
+            }
+
+            switch settings.authorizationStatus {
+            case .authorized:
+                os_log("InboxViewModel is scheduling a notification...", log: .appFlow, type: .debug)
+                let content = UNMutableNotificationContent()
+                content.title = NSLocalizedString("notification-title", comment: "")
+                content.body = NSLocalizedString("notification-body", comment: "")
+                content.sound = .default
+
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
+
+                let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+
+                self.uncenter.add(request) { (error) in
+                    if error != nil {
+                        os_log("InboxViewModel failed to schedule notification.", log: .appFlow, type: .error)
+                    } else {
+                        os_log("InboxViewModel successfully scheduled a notification.", log: .appFlow, type: .debug)
+                    }
+                }
+            case .denied:
+                os_log("InboxViewModel can`t schedule notification due to `denied` authorization status.", log: .appFlow, type: .debug)
+            default:
+                os_log("InboxViewModel has unknown user notification status.", log: .appFlow, type: .debug)
+            }
+        }
     }
 }
 

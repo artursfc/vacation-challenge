@@ -46,11 +46,13 @@ final class ArchiveViewModel: NSObject {
     /// `ArchiveViewModel` and its `View`.
     weak var delegate: ArchiveViewModelDelegate?
 
+    /// The `UNUserNotificationCenter` instance responsible for scheduling notifications.
     private let uncenter: UNUserNotificationCenter
 
     // MARK: - Init
     /// Initializes a new instance of this type.
     /// - Parameter context: The context used to access Core Data through a FRC.
+    /// - Parameter uncenter: The `UNUserNotificationCenter` instance responsible for scheduling notifications.
     init(context: NSManagedObjectContext,
          uncenter: UNUserNotificationCenter = UNUserNotificationCenter.current()) {
         self.context = context
