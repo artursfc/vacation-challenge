@@ -54,6 +54,9 @@
 		A4DB55AE2524D76300C9A3B2 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DB55AD2524D76300C9A3B2 /* UIFont+Extensions.swift */; };
 		A4DB55B42524EA7E00C9A3B2 /* MemoraSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DB55B32524EA7E00C9A3B2 /* MemoraSlider.swift */; };
 		A4E60F8925485C8D008C8284 /* TimeInterval+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E60F8825485C8D008C8284 /* TimeInterval+Extensions.swift */; };
+		A4E9FF522552EE870049DD4D /* AutoLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E9FF512552EE870049DD4D /* AutoLayoutTests.swift */; };
+		A4E9FF582552EF2D0049DD4D /* UserDefaultsAccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E9FF572552EF2D0049DD4D /* UserDefaultsAccessTests.swift */; };
+		A4E9FF5E2552F1040049DD4D /* UserDefaultsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E9FF5D2552F1040049DD4D /* UserDefaultsMock.swift */; };
 		A4F80E14252B55720098919E /* InboxCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F80E13252B55720098919E /* InboxCollectionView.swift */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +124,9 @@
 		A4DB55AD2524D76300C9A3B2 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		A4DB55B32524EA7E00C9A3B2 /* MemoraSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoraSlider.swift; sourceTree = "<group>"; };
 		A4E60F8825485C8D008C8284 /* TimeInterval+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extensions.swift"; sourceTree = "<group>"; };
+		A4E9FF512552EE870049DD4D /* AutoLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutTests.swift; sourceTree = "<group>"; };
+		A4E9FF572552EF2D0049DD4D /* UserDefaultsAccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsAccessTests.swift; sourceTree = "<group>"; };
+		A4E9FF5D2552F1040049DD4D /* UserDefaultsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsMock.swift; sourceTree = "<group>"; };
 		A4F80E13252B55720098919E /* InboxCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -320,6 +326,8 @@
 		A4D0E0222505706900B3B12D /* shirkers-challengeTests */ = {
 			isa = PBXGroup;
 			children = (
+				A4E9FF5C2552F0EF0049DD4D /* Mocks */,
+				A4E9FF502552EE720049DD4D /* Property Wrappers */,
 				A4D0E0232505706900B3B12D /* shirkers_challengeTests.swift */,
 				A4D0E0252505706900B3B12D /* Info.plist */,
 			);
@@ -342,6 +350,23 @@
 				A40BCDD424FC2C3B002F53A0 /* InboxCollectionViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		A4E9FF502552EE720049DD4D /* Property Wrappers */ = {
+			isa = PBXGroup;
+			children = (
+				A4E9FF512552EE870049DD4D /* AutoLayoutTests.swift */,
+				A4E9FF572552EF2D0049DD4D /* UserDefaultsAccessTests.swift */,
+			);
+			path = "Property Wrappers";
+			sourceTree = "<group>";
+		};
+		A4E9FF5C2552F0EF0049DD4D /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				A4E9FF5D2552F1040049DD4D /* UserDefaultsMock.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -519,6 +544,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4E9FF522552EE870049DD4D /* AutoLayoutTests.swift in Sources */,
+				A4E9FF582552EF2D0049DD4D /* UserDefaultsAccessTests.swift in Sources */,
+				A4E9FF5E2552F1040049DD4D /* UserDefaultsMock.swift in Sources */,
 				A4D0E0242505706900B3B12D /* shirkers_challengeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
