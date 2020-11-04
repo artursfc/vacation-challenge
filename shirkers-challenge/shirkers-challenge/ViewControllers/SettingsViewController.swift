@@ -61,7 +61,7 @@ final class SettingsViewController: UIViewController {
             privacyPolicyCell.accessoryView = UIImageView(image: chevron)
         }
 
-        let aboutSection = [githubCell, privacyPolicyCell]
+        let aboutSection = [privacyPolicyCell, githubCell]
 
         return [themesSection, aboutSection]
     }()
@@ -165,12 +165,12 @@ extension SettingsViewController: UITableViewDelegate {
         if indexPath.section == 1 {
             switch indexPath.row {
             case 0:
-                if let githubURL = URL(string: ExternalURL.github.rawValue) {
-                    UIApplication.shared.open(githubURL)
-                }
-            case 1:
                 if let privacyURL = URL(string: ExternalURL.privacy.rawValue) {
                     UIApplication.shared.open(privacyURL)
+                }
+            case 1:
+                if let githubURL = URL(string: ExternalURL.github.rawValue) {
+                    UIApplication.shared.open(githubURL)
                 }
             default:
                 break

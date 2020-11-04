@@ -109,6 +109,15 @@ final class InboxViewModel: NSObject {
                                dueDate: dueDate)
     }
 
+    /// Deletes a memory.
+    /// - Parameter index: `IndexPath` corresponding to the memory.
+    func deleteMemoryAt(index: IndexPath) {
+        os_log("ArchiveViewController deleting memory...", log: .appFlow, type: .debug)
+        let memory = fetchedResultsController.object(at: index)
+
+        context.delete(memory)
+    }
+
     func archiveMemoryAt(index: IndexPath) {
         os_log("InboxViewController archiving memory...", log: .appFlow, type: .debug)
         let memory = fetchedResultsController.object(at: index)

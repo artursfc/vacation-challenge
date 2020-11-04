@@ -143,8 +143,8 @@ extension InboxViewController: UICollectionViewDelegate {
                                             let deleteAction = UIAction(title: NSLocalizedString("delete-memory",
                                                                                                  comment: "Action to delete memory."),
                                                                         image: UIImage(systemName: "trash"),
-                                                                        attributes: .destructive) { (_) in
-
+                                                                        attributes: .destructive) { [weak self] (_) in
+                                                self?.viewModel.deleteMemoryAt(index: indexPath)
                                             }
                                             let children = [resetAction, archiveAction, deleteAction]
                                             return UIMenu(title: "", children: children)

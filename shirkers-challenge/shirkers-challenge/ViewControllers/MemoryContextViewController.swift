@@ -28,13 +28,13 @@ final class MemoryContextViewController: UIViewController {
             titleLabel.text = viewModel.title
             titleLabel.textColor = .memoraAccent
 
-            createdAtLabel.text = "\(NSLocalizedString("created-at", comment: "")) \(viewModel.createdAt)"
+            createdAtLabel.text = "\(NSLocalizedString("created-at", comment: "")) \(viewModel.createdAt.toBeDisplayedFormat())"
             createdAtLabel.textColor = .memoraAccent
 
-            modifiedAtLabel.text = "\(NSLocalizedString("modified-at", comment: "")) \(viewModel.modifiedAt)"
+            modifiedAtLabel.text = "\(NSLocalizedString("modified-at", comment: "")) \(viewModel.modifiedAt.toBeDisplayedFormat())"
             modifiedAtLabel.textColor = .memoraAccent
 
-            newDueDateLabel.text = "\(NSLocalizedString("new-remind-me-in", comment: "")) \(viewModel.dueDate)"
+            newDueDateLabel.text = "\(NSLocalizedString("new-remind-me-in", comment: "")) \(viewModel.dueDate.toBeDisplayedFormat())"
             newDueDateLabel.textColor = .memoraAccent
 
             memorySymbolImageView.tintColor = .memoraAccent
