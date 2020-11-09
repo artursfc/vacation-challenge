@@ -115,6 +115,10 @@ final class InboxViewModel: NSObject {
         os_log("ArchiveViewController deleting memory...", log: .appFlow, type: .debug)
         let memory = fetchedResultsController.object(at: index)
 
+        guard let createdAt = memory.createdAt else {
+            return
+        }
+        remove(file: createdAt.toBeSavedFormat())
         context.delete(memory)
     }
 
@@ -184,6 +188,19 @@ final class InboxViewModel: NSObject {
             default:
                 os_log("InboxViewModel has unknown user notification status.", log: .appFlow, type: .debug)
             }
+        }
+    }
+
+    // MARK: - FileManager
+    /// Removes file representing a memory's audio.
+    private func remove(file: String, at fileManager: FileManager = FileManager.default) {
+        let url = fileManager.userDocumentDirectory
+        let fileURL = url.appendingPathComponent("\(file)").appendingPathExtension("m4a")
+        do {
+            os_log("InboxViewModel removed memory's file.", log: .appFlow, type: .debug)
+            try fileManager.removeItem(at: fileURL)
+        } catch {
+            os_log("InboxViewModel failed to remove a memory's file.", log: .appFlow, type: .error)
         }
     }
 }

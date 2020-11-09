@@ -158,7 +158,7 @@ final class PlayerComponentViewModel: NSObject {
         self.memory = memory
 
         let filename = FileManager.userDocumentDirectory.appendingPathComponent(memory.createdAt.toBeSavedFormat())
-        let fileURL = filename.appendingPathExtension(".m4a")
+        let fileURL = filename.appendingPathExtension("m4a")
 
         do {
             player = try AVAudioPlayer(contentsOf: fileURL)

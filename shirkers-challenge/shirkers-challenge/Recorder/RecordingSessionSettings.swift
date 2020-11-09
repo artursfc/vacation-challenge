@@ -28,7 +28,7 @@ struct RecordingSessionSettings {
     init(filename: String, directory: URL = FileManager.userDocumentDirectory) {
         self.filename = filename
         self.directory = directory
-        self.filepath = directory.appendingPathComponent(filename).appendingPathExtension(".m4a")
+        self.filepath = directory.appendingPathComponent(filename).appendingPathExtension("m4a")
     }
 }
 

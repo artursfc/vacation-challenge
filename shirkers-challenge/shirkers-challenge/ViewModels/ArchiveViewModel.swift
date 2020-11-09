@@ -102,7 +102,11 @@ final class ArchiveViewModel: NSObject {
     func deleteMemoryAt(index: IndexPath) {
         os_log("ArchiveViewController deleting memory...", log: .appFlow, type: .debug)
         let memory = fetchedResultsController.object(at: index)
-        
+
+        guard let createdAt = memory.createdAt else {
+            return
+        }
+        remove(file: createdAt.toBeSavedFormat())
         context.delete(memory)
     }
 
@@ -165,6 +169,20 @@ final class ArchiveViewModel: NSObject {
             default:
                 os_log("ArchiveViewModel has unknown user notification status.", log: .appFlow, type: .debug)
             }
+        }
+    }
+
+    // MARK: - FileManager
+    /// Removes file representing a memory's audio.
+    private func remove(file: String, at fileManager: FileManager = FileManager.default) {
+        let url = fileManager.userDocumentDirectory
+        let fileURL = url.appendingPathComponent("\(file)").appendingPathExtension("m4a")
+        do {
+
+            try fileManager.removeItem(at: fileURL)
+            os_log("ArchiveViewModel removed memory's file.", log: .appFlow, type: .debug)
+        } catch {
+            os_log("ArchiveViewModel failed to remove a memory's file.", log: .appFlow, type: .error)
         }
     }
 
