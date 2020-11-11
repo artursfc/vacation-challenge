@@ -293,6 +293,10 @@ final class RecorderViewController: UIViewController {
 
 // MARK: - ViewModel Delegate
 extension RecorderViewController: RecorderViewModelDelegate {
+    func didUpdateTimestamp() {
+        timestampLabel.text = viewModel.currentTimestamp
+    }
+
     func didUpdateRemindMe() {
         remindMeLabel.text = viewModel.remindMe
     }

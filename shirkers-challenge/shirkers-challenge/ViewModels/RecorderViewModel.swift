@@ -17,6 +17,7 @@ protocol RecorderViewModelDelegate: AnyObject {
     func didStartRecording()
     func didStopRecording()
     func didUpdateRemindMe()
+    func didUpdateTimestamp()
 }
 
 /// Responsible for providing the `View` with all the necessary
@@ -30,6 +31,12 @@ final class RecorderViewModel {
     /// used to perform comparision between periods.
     private var remindMeInSeconds: Int = 1
 
+    /// The curent time in sync with `timestampTimer`.
+    private var internalCurrentTime: TimeInterval = 0.0
+
+    /// The timer responsible for keeping track of time elapsed.
+    private var timestampTimer: Timer?
+
     /// The current date which is used as the recording filename.
     /// It resets everytime a new recording is started. With every new
     /// recording, the previous recording file should be deleted using the `oldValue`
@@ -40,6 +47,11 @@ final class RecorderViewModel {
                 remove(file: previousDate.toBeSavedFormat())
             }
         }
+    }
+
+    /// The memory's timestamp.
+    var currentTimestamp: String {
+        return internalCurrentTime.toBeDisplayedFormat()
     }
 
     /// The context used to save to Core Data.
@@ -86,6 +98,15 @@ final class RecorderViewModel {
                         try recorder.setUp(for: fileName)
                         try recorder.start()
                         delegate?.didStartRecording()
+                        timestampTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { [weak self] (_) in
+                            guard let self = self else {
+                                return
+                            }
+
+                            self.internalCurrentTime += 0.01
+                            self.delegate?.didUpdateTimestamp()
+                        })
+                        delegate?.didUpdateTimestamp()
                     } catch {
                         os_log("RecorderViewModel's recorder failed to start", log: .appFlow, type: .error)
                     }
@@ -94,8 +115,13 @@ final class RecorderViewModel {
                 do {
                     try recorder.stop()
                     delegate?.didStopRecording()
+                    if timestampTimer != nil {
+                        timestampTimer?.invalidate()
+                        internalCurrentTime = 0.0
+                        timestampTimer = nil
+                        delegate?.didUpdateTimestamp()
+                    }
                 } catch {
-                    print(error.localizedDescription)
                     os_log("RecorderViewModel's recorder failed to stop", log: .appFlow, type: .error)
                 }
 
