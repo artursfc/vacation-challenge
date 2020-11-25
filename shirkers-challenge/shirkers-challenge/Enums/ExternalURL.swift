@@ -10,5 +10,5 @@ import Foundation
 
 enum ExternalURL: String {
     case github = "https://github.com/csfar/vacation-challenge"
-    case privacy = ""
+    case privacy = "https://csfar.github.io/memora-privacy-policy"
 }
